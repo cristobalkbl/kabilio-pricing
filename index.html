@@ -19,11 +19,11 @@
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
   a{color:inherit}
 
-  /* Selector de versiones */
-  .vtabs-wrap{position:sticky;top:0;z-index:30;background:rgba(243,240,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  .vtabs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:1080px;margin:0 auto;padding:10px 24px}
-  .vtab{flex:0 0 auto;border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:9px 16px;border-radius:10px;cursor:pointer;transition:.15s;white-space:nowrap}
-  .vtab:hover{color:var(--ink);background:#fff}
+  /* Selector de versiones (flotante vertical, izquierda) */
+  .vtabs-wrap{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:40;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:var(--shadow)}
+  .vtabs{display:flex;flex-direction:column;gap:4px}
+  .vtab{border:none;background:transparent;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--muted);padding:9px 14px;border-radius:9px;cursor:pointer;transition:.15s;text-align:left;white-space:nowrap}
+  .vtab:hover{color:var(--ink);background:var(--bg)}
   .vtab.active{color:var(--accent-ink);background:var(--accent-soft)}
 
   /* Hero */
@@ -227,7 +227,7 @@
   table.capsub th,table.capsub td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:center;font-variant-numeric:tabular-nums}
   table.capsub th:first-child,table.capsub td:first-child{text-align:left;font-variant-numeric:normal;width:38%}
   table.capsub th:nth-child(2),table.capsub td:nth-child(2){border-left:1px solid var(--line)}
-  table.capsub thead th{position:sticky;top:var(--vtabsH,52px);background:#fff;z-index:10;box-shadow:inset 0 -2px 0 var(--line);vertical-align:bottom;padding-top:18px;padding-bottom:16px}
+  table.capsub thead th{position:sticky;top:0;background:#fff;z-index:10;box-shadow:inset 0 -2px 0 var(--line);vertical-align:bottom;padding-top:18px;padding-bottom:16px}
   table.capsub thead .hcta{display:none;margin-top:12px;background:var(--accent);color:#fff;font-size:12.5px;font-weight:600;padding:8px 16px;border-radius:8px;text-decoration:none;transition:.15s}
   table.capsub thead .hcta:hover{background:var(--accent-ink)}
   table.capsub thead th.col-pop{background:var(--accent-soft)}
@@ -732,10 +732,9 @@ document.addEventListener('input',e=>{
 (function(){
   const sentinel=document.getElementById('capSentinel'), tbl=document.getElementById('capSubTable');
   if(!sentinel||!tbl||!('IntersectionObserver' in window)) return;
-  const vh=(document.querySelector('.vtabs-wrap')||{}).offsetHeight||52;
   new IntersectionObserver(([e])=>{
-    tbl.classList.toggle('stuck', !e.isIntersecting && e.boundingClientRect.top < vh);
-  },{rootMargin:`-${vh}px 0px 0px 0px`, threshold:0}).observe(sentinel);
+    tbl.classList.toggle('stuck', !e.isIntersecting && e.boundingClientRect.top < 0);
+  },{threshold:0}).observe(sentinel);
 })();
 
 // init
