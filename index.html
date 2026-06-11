@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precios para asesorías · Kabilio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  :root{
+    --bg:#f3f0ec;--surface:#ffffff;--surface-2:#ece7df;--ink:#111827;--muted:#6b7280;
+    --line:#e4ded5;--accent:#111827;--accent-soft:#e9e3fd;--accent-ink:#3a2f7a;
+    --lav:#ddd5fd;--pink:#f8d5e4;
+    --radius:18px;--shadow:0 1px 2px rgba(17,24,39,.04),0 10px 28px rgba(17,24,39,.07);
+    --font:'Manrope','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  /* Selector de versiones */
+  .vtabs-wrap{position:sticky;top:0;z-index:30;background:rgba(243,240,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .vtabs{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:1080px;margin:0 auto;padding:10px 24px}
+  .vtab{flex:0 0 auto;border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:9px 16px;border-radius:10px;cursor:pointer;transition:.15s;white-space:nowrap}
+  .vtab:hover{color:var(--ink);background:#fff}
+  .vtab.active{color:var(--accent-ink);background:var(--accent-soft)}
+
+  /* Hero */
+  header{padding:64px 0 24px;text-align:center}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:20px}
+  h1{font-size:clamp(32px,5vw,46px);line-height:1.1;font-weight:700;letter-spacing:-.02em;margin-bottom:16px}
+  .sub{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto}
+
+  section{padding:44px 0}
+  .section-title{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;text-align:center}
+  .section-h{font-size:26px;font-weight:700;letter-spacing:-.01em;text-align:center;margin-bottom:8px}
+  .section-lead{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 32px}
+
+  .enterprise{margin-top:16px;border:1px dashed var(--line);border-radius:var(--radius);background:var(--surface);padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .enterprise .et h4{font-size:17px;margin-bottom:3px}
+  .enterprise .et p{font-size:14px;color:var(--muted)}
+  .ghost{display:inline-block;border:1px solid var(--accent);color:var(--accent-ink);background:#fff;font-weight:600;border-radius:10px;padding:11px 20px;font-size:14px;text-decoration:none;white-space:nowrap;transition:.15s}
+  .ghost:hover{background:var(--accent-soft)}
+
+  /* Configurador embebido */
+  .reco{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:36px;box-shadow:var(--shadow)}
+  .reco-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:36px;align-items:start}
+  @media(max-width:820px){.reco-grid{grid-template-columns:1fr;gap:28px}}
+  .q{margin-bottom:26px}
+  .q:last-child{margin-bottom:0}
+  .q label.qlabel{display:block;font-weight:600;font-size:15px;margin-bottom:4px}
+  .range-row{display:flex;align-items:center;gap:14px}
+  input[type=range]{flex:1;accent-color:var(--accent);height:4px}
+  .range-val{font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;min-width:64px;text-align:right;color:var(--accent-ink)}
+  .result{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--shadow)}
+  .result .rk{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+  .result .rplan{font-size:32px;font-weight:700;letter-spacing:-.01em;margin:4px 0 2px;color:var(--accent-ink)}
+  .result .rprice{font-size:15px;color:var(--muted);margin-bottom:18px}
+  .result .rprice b{color:var(--ink);font-size:18px}
+  .meter{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin:6px 0}
+  .meter > span{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .4s ease}
+  .result .rline{display:flex;justify-content:space-between;font-size:14px;padding:9px 0;border-top:1px solid var(--line)}
+  .result .rline span:last-child{font-weight:600;font-variant-numeric:tabular-nums}
+  .result .rnote{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.45}
+  .result .rcta{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:13px;text-decoration:none;margin-top:18px;transition:.15s}
+  .result .rcta:hover{background:var(--accent-ink)}
+
+  /* Toggle de pago */
+  .billrow{display:flex;justify-content:flex-end;margin-bottom:24px}
+  .billtoggle{display:inline-flex;align-items:center;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+  .billtoggle button{border:none;background:transparent;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:6px 12px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+  .billtoggle button.active{background:#fff;color:var(--ink);box-shadow:var(--shadow)}
+  .savebadge{background:var(--pink);color:var(--ink);font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px}
+
+  /* Tarjetas de plan */
+  .subcards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+  @media(max-width:880px){.subcards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.subcards{grid-template-columns:1fr}}
+  .scard{border:1px solid var(--line);border-radius:18px;background:#fff;padding:26px 22px;position:relative;display:flex;flex-direction:column}
+  .scard.popular{border-color:var(--accent);box-shadow:var(--shadow)}
+  .scard .stag{position:absolute;top:14px;right:14px;background:linear-gradient(90deg,#6d5efc,#9b8bff);color:#fff;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:8px;letter-spacing:.02em}
+  .scard h4{font-size:20px;font-weight:700}
+  .scard .sdesc{font-size:13.5px;color:var(--muted);margin:8px 0 22px;min-height:60px}
+  .scard .sprice{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .scard .sbig{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .scard .sbig sup{font-size:15px;font-weight:600;vertical-align:super}
+  .scard .smo{font-size:14px;color:var(--muted);font-weight:500}
+  .scard .sbilled{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px}
+  .scard .screds{font-size:14px;color:var(--muted);margin-top:6px}
+  .scard .screds b{color:var(--ink);font-weight:700}
+  .scard .scta{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:13px;text-decoration:none;margin-top:18px;transition:.15s}
+  .scard .scta:hover{background:var(--accent-ink)}
+  .scard .sdivider{border:none;border-top:1px solid var(--line);margin:18px 0}
+  .scard ul.sfeat{list-style:none;margin:0;padding:0}
+  .scard ul.sfeat li{font-size:13.5px;padding:7px 0 7px 26px;position:relative;color:var(--ink)}
+  .scard ul.sfeat li:before{content:"\2713";position:absolute;left:0;top:7px;font-size:13px;font-weight:700;color:var(--accent)}
+  .scard ul.sfeat-metrics li{padding-left:0;color:var(--muted)}
+  .scard ul.sfeat-metrics li:before{content:""}
+  .scard ul.sfeat-metrics li b{color:var(--ink)}
+  .scard .sfeat-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:14px 0 8px}
+  .scard .sfeat-all{font-size:13.5px;color:var(--accent-ink);background:var(--accent-soft);border-radius:10px;padding:11px 13px;margin-bottom:14px;line-height:1.4}
+  .scard .sfeat-all b{font-weight:700}
+
+  /* Versión 3: filas */
+  .plist{display:flex;flex-direction:column;gap:12px}
+  .prow{display:grid;grid-template-columns:1.7fr 1fr 1fr auto;align-items:center;gap:24px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 26px}
+  .prow.popular{border-color:var(--accent);box-shadow:var(--shadow)}
+  .prow-main h4{font-size:19px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .prow-main p{font-size:13.5px;color:var(--muted);margin-top:3px}
+  .prow-tag{font-size:10.5px;font-weight:700;color:var(--accent-ink);background:var(--lav);padding:3px 9px;border-radius:999px;letter-spacing:.02em}
+  .prow-cred{font-size:13.5px;color:var(--muted)}
+  .prow-cred b{color:var(--ink);font-size:16px;display:block}
+  .prow-cred small{display:block;font-size:12px;margin-top:2px}
+  .prow-price{text-align:right}
+  .prow-amt{font-size:28px;font-weight:700;letter-spacing:-.01em}
+  .prow-amt span{font-size:13px;color:var(--muted);font-weight:500;margin-left:3px}
+  .prow-amt sup{font-size:13px;font-weight:600}
+  .prow-price small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .prow-cta{background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:12px 22px;text-decoration:none;white-space:nowrap;transition:.15s}
+  .prow-cta:hover{background:var(--accent-ink)}
+  @media(max-width:780px){
+    .prow{grid-template-columns:1fr;gap:12px;text-align:left}
+    .prow-price{text-align:left}
+    .prow-cta{text-align:center}
+  }
+
+  /* Versión 4: tabla pura */
+  .ptable-wrap{overflow-x:auto}
+  table.ptable{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:14px;min-width:560px}
+  table.ptable th,table.ptable td{padding:15px 16px;text-align:center;border-bottom:1px solid var(--line)}
+  table.ptable th:first-child,table.ptable td:first-child{text-align:left;color:var(--muted);font-weight:600;font-size:13px}
+  table.ptable thead th{font-size:17px;font-weight:700;background:var(--surface-2)}
+  table.ptable th.pp,table.ptable td.pp{background:var(--accent-soft)}
+  table.ptable tr:last-child td{border-bottom:none}
+  .pt-amt{font-size:24px;font-weight:700;letter-spacing:-.01em}
+  .pt-amt sup{font-size:11px}
+  .pt-billed{font-size:11px;color:var(--muted);font-weight:500;margin-top:4px}
+  .pt-cta{display:inline-block;background:var(--accent);color:#fff;font-weight:600;border-radius:8px;padding:9px 18px;text-decoration:none;font-size:13px;transition:.15s}
+  .pt-cta:hover{background:var(--accent-ink)}
+
+  /* Versión 5: selector + tarjeta grande */
+  .v5-sel{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:4px;width:fit-content;margin:0 auto 26px}
+  .selbtn{border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--muted);padding:9px 22px;border-radius:999px;cursor:pointer;transition:.15s}
+  .selbtn.active{background:#fff;color:var(--accent-ink);box-shadow:var(--shadow)}
+  .v5-card{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:var(--shadow);align-items:center}
+  @media(max-width:760px){.v5-card{grid-template-columns:1fr;gap:20px}}
+  .v5-left h4{font-size:28px;font-weight:700}
+  .v5-desc{color:var(--muted);margin:6px 0 18px}
+  .v5-right{text-align:center;border-left:1px solid var(--line);padding-left:32px}
+  @media(max-width:760px){.v5-right{border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:20px}}
+  .v5-amt{font-size:46px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .v5-amt span{font-size:16px;color:var(--muted);font-weight:500;margin-left:4px}
+  .v5-amt sup{font-size:18px}
+  .v5-billed{color:var(--muted);font-size:13px;margin:6px 0 18px}
+
+  /* Versión 6: destacado + secundarios */
+  .v6{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
+  @media(max-width:820px){.v6{grid-template-columns:1fr}}
+  .v6-feat{background:#fff;border:2px solid var(--accent);border-radius:20px;padding:30px;box-shadow:var(--shadow)}
+  .v6-tag{display:inline-block;background:var(--lav);color:var(--accent-ink);font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+  .v6-feat h4{font-size:26px;font-weight:700}
+  .v6-desc{color:var(--muted);margin:4px 0 14px}
+  .v6-amt{font-size:42px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .v6-amt span{font-size:15px;color:var(--muted);font-weight:500;margin-left:4px}
+  .v6-amt sup{font-size:17px}
+  .v6-billed{color:var(--muted);font-size:13px;margin:6px 0 14px}
+  .v6-others{display:flex;flex-direction:column;gap:12px}
+  .v6-mini{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .v6-mini-top{display:flex;justify-content:space-between;align-items:baseline;font-size:15px}
+  .v6-mini-top b{font-weight:700}
+  .v6-mini-sub{font-size:12.5px;color:var(--muted);margin:4px 0 10px}
+  .v6-mini-cta{display:inline-block;border:1px solid var(--accent);color:var(--accent-ink);font-weight:600;border-radius:8px;padding:7px 16px;text-decoration:none;font-size:13px}
+
+  /* Versión 7: barra de volumen */
+  .volbar{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin:16px 0 8px}
+  .volbar span{display:block;height:100%;background:linear-gradient(90deg,#111827,#5b4fae);border-radius:999px}
+  .volnum{font-size:13px;color:var(--muted)}
+  .volnum b{color:var(--ink)}
+
+  /* Versión 8: configurador */
+  .v8-box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:var(--shadow);max-width:680px;margin:0 auto}
+  .v8-h{font-size:18px;font-weight:700;text-align:center;margin-bottom:18px}
+  .v8-plan{text-align:center;margin-top:24px;border-top:1px solid var(--line);padding-top:24px}
+  .v8-name{font-size:24px;font-weight:700;color:var(--accent-ink)}
+  .v8-amt{font-size:42px;font-weight:700;letter-spacing:-.02em;margin-top:4px;line-height:1}
+  .v8-amt span{font-size:15px;color:var(--muted);font-weight:500;margin-left:4px}
+  .v8-amt sup{font-size:17px}
+  .v8-sub{color:var(--muted);font-size:13.5px;margin:8px 0 16px}
+  .v5 .rcta,.v6 .rcta,.v8 .rcta{display:inline-block;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:12px 26px;text-decoration:none;transition:.15s}
+  .v5 .rcta:hover,.v6 .rcta:hover,.v8 .rcta:hover{background:var(--accent-ink)}
+
+  /* Incluido en todos los planes */
+  .allincl{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px}
+  .allincl .ai-title{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:14px}
+  .allincl ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px 28px}
+  @media(max-width:600px){.allincl ul{grid-template-columns:repeat(2,1fr)}}
+  .allincl li{font-size:14.5px;font-weight:500;position:relative;padding-left:26px}
+  .allincl li:before{content:"\2713";position:absolute;left:0;top:0;color:var(--accent);font-weight:700}
+
+  /* Incluido · chips (v6) */
+  .allincl-chips{margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  .ichip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:500;color:var(--ink)}
+  .ichip b{color:var(--accent);margin-right:4px}
+  /* Incluido · banner con iconos (v7) */
+  .allincl-banner{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .aib-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:18px;text-align:center}
+  .aib-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:820px){.aib-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:460px){.aib-grid{grid-template-columns:repeat(2,1fr)}}
+  .aib-item small{color:var(--muted);font-weight:600}
+  .aib-item{text-align:center;display:flex;flex-direction:column;align-items:center;gap:9px;font-size:12.5px;color:var(--ink);font-weight:500;line-height:1.3}
+  .aib-ic{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink)}
+  .aib-ic svg{width:23px;height:23px}
+
+  /* CTA encuentra tu plan */
+  .findplan{margin-top:72px}
+  .findplan-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--lav);border:1px solid var(--lav);border-radius:16px;padding:22px 26px}
+  .findplan-cta h4{font-size:18px;color:var(--ink);margin-bottom:2px}
+  .findplan-cta p{font-size:14px;color:var(--ink);opacity:.8}
+  .findbtn{background:var(--accent);color:#fff;border:none;font-family:inherit;font-weight:600;font-size:15px;padding:13px 22px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .findbtn:hover{background:var(--accent-ink)}
+  .findplan-panel[hidden]{display:none}
+
+  /* Tabla "Compara los planes" (cabecera fija; toggle + CTA aparecen al fijarse) */
+  table.capsub{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
+  table.capsub th,table.capsub td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:center;font-variant-numeric:tabular-nums}
+  table.capsub th:first-child,table.capsub td:first-child{text-align:left;font-variant-numeric:normal;width:38%}
+  table.capsub th:nth-child(2),table.capsub td:nth-child(2){border-left:1px solid var(--line)}
+  table.capsub thead th{position:sticky;top:var(--vtabsH,52px);background:#fff;z-index:10;box-shadow:inset 0 -2px 0 var(--line);vertical-align:bottom;padding-top:18px;padding-bottom:16px}
+  table.capsub thead .hcta{display:none;margin-top:12px;background:var(--accent);color:#fff;font-size:12.5px;font-weight:600;padding:8px 16px;border-radius:8px;text-decoration:none;transition:.15s}
+  table.capsub thead .hcta:hover{background:var(--accent-ink)}
+  table.capsub thead th.col-pop{background:var(--accent-soft)}
+  table.capsub .cap-title-wrap{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  table.capsub .cap-title{font-size:20px;font-weight:700;color:var(--ink)}
+  .billtoggle.mini{display:none;padding:3px}
+  .billtoggle.mini button{padding:5px 9px;font-size:11.5px;gap:5px}
+  table.capsub.stuck thead .hcta{display:inline-block}
+  table.capsub.stuck .cap-title-wrap .billtoggle.mini{display:inline-flex}
+  table.capsub thead .hname{font-size:15px;font-weight:700;color:var(--ink)}
+  table.capsub thead .hprice{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-top:3px}
+  table.capsub td.col-pop{background:var(--accent-soft)}
+  table.capsub .cap-feat{color:var(--ink);text-decoration:underline;text-decoration-color:#d7dee5;text-underline-offset:3px}
+  table.capsub tr.rowhead td{background:#fff;font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-top:24px}
+  table.capsub td.cap-allincl{text-align:left;color:var(--muted);font-size:13.5px;padding:12px 16px}
+  table.capsub tr:last-child td{border-bottom:none}
+  table.capsub .yes{color:var(--accent);font-weight:700;font-size:15px}
+  @media(max-width:620px){table.capsub{font-size:12px}table.capsub th,table.capsub td{padding:10px 6px}table.capsub .cap-title{font-size:15px}}
+
+  /* Consumo + Notas (comunes) */
+  .common{border-top:1px solid var(--line);background:var(--surface)}
+  .consume{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  table.ct{width:100%;border-collapse:collapse;font-size:14.5px}
+  table.ct th,table.ct td{text-align:left;padding:13px 18px;border-bottom:1px solid var(--line)}
+  table.ct th{background:var(--surface-2);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);font-weight:600}
+  table.ct td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent-ink);white-space:nowrap}
+  table.ct tr:last-child td{border-bottom:none}
+  .notes{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:680px){.notes{grid-template-columns:1fr}}
+  .note{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+  .note .nicon{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;background:var(--accent-soft);color:var(--accent-ink);margin-bottom:14px}
+  .note .nicon svg{width:20px;height:20px}
+  .note h4{font-size:15px;margin-bottom:6px}
+  .note p{font-size:14px;color:var(--muted)}
+  /* Tooltips de la tabla */
+  .tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--muted);color:var(--muted);font-size:9px;font-weight:700;font-style:normal;margin-left:6px;cursor:help;position:relative;vertical-align:middle;text-decoration:none}
+  .tip::after{content:attr(data-tip);position:absolute;bottom:150%;left:0;background:var(--ink);color:#fff;font-size:12px;font-weight:500;line-height:1.45;padding:9px 11px;border-radius:8px;width:240px;max-width:62vw;opacity:0;visibility:hidden;transition:.15s;z-index:30;text-align:left;text-transform:none;letter-spacing:normal;box-shadow:var(--shadow)}
+  .tip:hover::after,.tip:focus::after{opacity:1;visibility:visible}
+  .miniline{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px}
+  /* FAQ */
+  details.faq{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 20px;margin-bottom:12px}
+  details.faq summary{list-style:none;cursor:pointer;font-weight:600;font-size:15.5px;padding:18px 0;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{content:"+";font-size:22px;font-weight:400;color:var(--muted);transition:.2s}
+  details.faq[open] summary::after{transform:rotate(45deg)}
+  details.faq .faq-a{font-size:14.5px;color:var(--muted);padding:0 0 18px;line-height:1.55}
+  footer{padding:48px 0 64px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="vtabs-wrap">
+  <div class="vtabs" id="vtabs">
+    <button class="vtab active" data-v="1.1">Precio mensual</button>
+    <button class="vtab" data-v="1.11">Precio anual</button>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Tarifas</span>
+    <h1>La tecnología más avanzada a un precio asequible</h1>
+    <p class="sub">Un único saldo de créditos compartido entre todos los productos Kabilio. Sin licencias por usuario, sin módulos cerrados: los créditos se descuentan solo cuando se utilizan.</p>
+  </div>
+</header>
+
+<section style="padding-top:32px">
+  <div class="wrap">
+    <div class="billrow">
+      <div class="billtoggle" data-billtoggle>
+        <button data-mult="1.2" data-splits="4">4 pagos</button>
+        <button data-mult="1.1" data-splits="2">2 pagos</button>
+        <button data-mult="1" data-splits="1" class="active">Pago único <span class="savebadge">ahorra ~17%</span></button>
+      </div>
+    </div>
+
+    <div class="subcards" id="subCards"></div>
+
+    <div id="allincl"></div>
+
+    <div class="enterprise" style="margin-top:18px">
+      <div class="et">
+        <h4>Enterprise</h4>
+        <p>Para grandes volúmenes (más de 48.000 créditos al año). Precio por crédito a medida y soporte dedicado.</p>
+      </div>
+      <a href="#contacto" class="ghost">Contáctanos</a>
+    </div>
+
+    <div style="height:40px"></div>
+    <div id="capSentinel"></div>
+    <table class="capsub" id="capSubTable"></table>
+    <p class="miniline">Cifras de capacidad orientativas: muestran cuánto podrías hacer si dedicaras todo el saldo a una sola acción.</p>
+
+    <div class="findplan">
+      <p class="section-title">Encuentra tu plan</p>
+      <h3 class="section-h" style="font-size:23px">¿No sabes qué plan elegir?</h3>
+      <p class="section-lead">Responde 4 datos de tu despacho y te recomendamos el plan ideal.</p>
+      <div class="reco">
+        <div class="reco-grid">
+          <div>
+            <div class="q">
+              <label class="qlabel">Clientes en cartera</label>
+              <div class="range-row"><input type="range" id="scfg_clients" min="1" max="300" value="20"><span class="range-val" id="scfg_clientsVal">20</span></div>
+            </div>
+            <div class="q">
+              <label class="qlabel">Facturas al mes por cliente</label>
+              <div class="range-row"><input type="range" id="scfg_invoices" min="1" max="150" value="30"><span class="range-val" id="scfg_invoicesVal">30</span></div>
+            </div>
+            <div class="q">
+              <label class="qlabel">Movimientos conciliados por cliente / mes</label>
+              <div class="range-row"><input type="range" id="scfg_recon" min="0" max="200" value="25" step="5"><span class="range-val" id="scfg_reconVal">25</span></div>
+            </div>
+            <div class="q">
+              <label class="qlabel">Acciones del Agente Kabi por cliente / mes</label>
+              <div class="range-row"><input type="range" id="scfg_agent" min="0" max="20" value="3"><span class="range-val" id="scfg_agentVal">3</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="result">
+              <div class="rk">Tu plan recomendado</div>
+              <div class="rplan" id="scfg_rPlan">Básico</div>
+              <div class="rprice"><b id="scfg_rPrice">1.560 €</b> <span id="scfg_rSuffix"></span></div>
+              <div class="meter"><span id="scfg_rMeter" style="width:60%"></span></div>
+              <div class="rline"><span>Consumo anual estimado</span><span id="scfg_rEst">0</span></div>
+              <div class="rline"><span>Precio efectivo / crédito</span><span id="scfg_rUnit">—</span></div>
+              <a href="#contacto" class="rcta" id="scfg_rCta">Empezar ahora</a>
+              <p class="rnote" id="scfg_rNote"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMÚN ===================== -->
+<div class="common">
+  <section id="contacto">
+    <div class="wrap">
+      <h2 class="section-h" style="margin-bottom:28px">Condiciones</h2>
+      <div class="notes">
+        <div class="note"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h4>Vigencia de 12 meses</h4><p>Todos los créditos caducan un año después de su compra.</p></div>
+        <div class="note"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><h4>Productos siempre abiertos</h4><p>Tienes acceso a todos los productos; solo se cobran créditos si los usas.</p></div>
+        <div class="note"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><h4>Formas de pago</h4><p>Pago por adelantado al mejor precio. En 2 pagos: +10%. En 4 pagos: +20%.</p></div>
+        <div class="note"><span class="nicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg></span><h4>Sobreconsumo</h4><p>Si superas tu saldo, cada crédito extra se factura a 0,20 €.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap" style="max-width:760px">
+      <h2 class="section-h" style="margin-bottom:28px">Preguntas frecuentes</h2>
+      <details class="faq"><summary>¿Cuándo se realiza el pago de cada plan?</summary><div class="faq-a">El pago se realiza al principio del periodo de facturación.</div></details>
+      <details class="faq"><summary>¿Qué medios de pago aceptáis?</summary><div class="faq-a">SEPA y transferencia bancaria.</div></details>
+      <details class="faq"><summary>¿Qué pasa si llego al límite de créditos de mi plan?</summary><div class="faq-a">Puedes contratar a tiempo un nuevo plan para mantener tus condiciones. Mientras tanto, cada crédito de sobreconsumo se factura a 0,20 € a final de cada mes vencido.</div></details>
+      <details class="faq"><summary>¿Puedo contratar un plan antes del vencimiento?</summary><div class="faq-a">Por supuesto. El nuevo plan empezará a consumirse en cuanto acabes el vigente, y su validez comienza en la fecha de contratación.</div></details>
+      <details class="faq"><summary>¿Y si los planes predefinidos no se adaptan a mis necesidades?</summary><div class="faq-a">Contacta con nuestro equipo en sales@kabilio.ai y vemos cómo trabajar juntos con un plan Enterprise a medida.</div></details>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap">Kabilio · Pricing orientativo para asesorías. Los importes anuales se muestran con pago por adelantado salvo que se indique otra forma de pago.</div></footer>
+
+<script>
+// ---------- Datos ----------
+const PACKS = [
+  {name:"Starter",  price:680,  credits:4000,  unit:0.170},
+  {name:"Básico",   price:1560, credits:12000, unit:0.130},
+  {name:"Avanzado", price:2640, credits:24000, unit:0.110},
+  {name:"Pro",      price:4080, credits:48000, unit:0.090},
+];
+const C = {invoice:1, reconcile:0.4, bankConn:15, agentAction:5, doc:0.4};
+const fmt  = n => Math.round(n).toLocaleString('es-ES');
+const eur  = n => Math.round(n).toLocaleString('es-ES') + ' €';
+const eur3 = n => n.toLocaleString('es-ES',{minimumFractionDigits:3,maximumFractionDigits:3}) + ' €';
+
+function estimateAnnual({clients, invoices, recon, agent}){
+  const facturas = invoices * C.invoice;
+  const concilia = recon * C.reconcile;
+  const agente   = agent * C.agentAction;   // 5 créditos por acción
+  return Math.round((facturas + concilia + agente) * clients * 12);
+}
+function recommend(annual){
+  const match = PACKS.find(p => p.credits >= annual);
+  return match ? {match, enterprise:false} : {match:null, enterprise:true};
+}
+
+// ---------- Tarjetas de plan ----------
+const SUB = [
+  {name:"Starter",  desc:"Para despachos que empiezan con Kabilio."},
+  {name:"Básico",   desc:"Para despachos pequeños ya en marcha."},
+  {name:"Avanzado", desc:"Para despachos en crecimiento que escalan volumen.", popular:true},
+  {name:"Pro",      desc:"Para despachos consolidados y gran volumen."},
+];
+let subPay = {mult:1, splits:1};
+let version = 1.1;   // 1.1 = precio mensual · 1.11 = precio anual
+let selPlan = 'Avanzado';
+let v8vol = 800;
+function moParts(v){const r=Math.round(v*100)/100;const i=Math.floor(r);const d=Math.round((r-i)*100);return {i, d:String(d).padStart(2,'0')};}
+function billedLabel(){
+  return subPay.splits===1 ? 'Facturado anualmente'
+       : subPay.splits===2 ? 'Facturado en 2 semestres'
+       : 'Facturado en 4 trimestres';
+}
+function renderSub(){
+  const cont = document.getElementById('subCards');
+  const billedMo = subPay.splits===1 ? 'Facturado anualmente'
+                 : subPay.splits===2 ? 'Facturado dos veces al año'
+                 : 'Facturado cuatro veces al año';
+  if(version===4){renderV4(cont); return;}
+  cont.className='subcards';
+  const maxC=Math.max(...PACKS.map(p=>p.credits));
+  cont.innerHTML = SUB.map(s=>{
+    const pk = PACKS.find(p=>p.name===s.name);
+    const total = Math.round(pk.price*subPay.mult);
+    let priceHtml, billed;
+    if(version===2 || version===1.11){
+      priceHtml = `<span class="sbig">${eur(total)}</span>`;
+      billed = subPay.splits===1 ? 'Pago único' : `${subPay.splits} pagos de ${eur(total/subPay.splits)}`;
+    } else {
+      const mo = moParts(total/12);
+      const moHtml = mo.d==="00" ? `${mo.i}` : `${mo.i}<sup>,${mo.d}</sup>`;
+      priceHtml = `<span class="sbig">${moHtml}</span><span class="smo">€/mes</span>`;
+      billed = subPay.splits===1 ? 'Facturado anualmente'
+             : subPay.splits===2 ? 'Facturado dos veces al año'
+             : 'Facturado cuatro veces al año';
+    }
+    const prods = `<li>Procesador</li><li>Conciliador</li><li>Agente Kabi</li>`;
+    const facturasLi = `<li>≈ ${fmt(pk.credits/C.invoice)} facturas procesables</li>`;
+    const eqTip = `Equivale a ~${fmt(pk.credits/C.invoice)} facturas, ~${fmt(pk.credits/C.reconcile)} transacciones conciliadas o ~${fmt(pk.credits/C.doc)} documentos gestionados, si usaras todo el saldo en una sola función.`;
+    const credsTip = (version===1.1||version===1.11) ? ` <span class="tip" tabindex="0" data-tip="${eqTip}">i</span>` : '';
+    let featBlock;
+    if(version===1.1||version===1.11){
+      featBlock = `<div class="sfeat-label">Incluye</div><ul class="sfeat">${prods}</ul>`;
+    } else if(version===1.2){
+      featBlock = `<div class="sfeat-all">Incluye <b>todas las funcionalidades</b> de todos los productos</div><ul class="sfeat">${prods}</ul>`;
+    } else if(version===1.5){
+      featBlock = `<ul class="sfeat">${prods}</ul>`;
+    } else {
+      featBlock = `<ul class="sfeat">${facturasLi}</ul>`;
+    }
+    return `<div class="scard ${s.popular?'popular':''}">
+      ${s.popular?'<div class="stag">MÁS POPULAR</div>':''}
+      <h4>${s.name}</h4>
+      <div class="sdesc">${s.desc}</div>
+      <div class="sprice">${priceHtml}</div>
+      <div class="sbilled">${billed}</div>
+      <div class="screds"><b>${fmt(pk.credits)}</b> créditos${credsTip}</div>
+      <a href="#contacto" class="scta">Empezar ahora</a>
+      <hr class="sdivider">
+      ${featBlock}
+    </div>`;
+  }).join('');
+}
+
+// ---------- Helpers de versiones ----------
+function planTotal(pk){return Math.round(pk.price*subPay.mult);}
+function moHtmlOf(total){const mo=moParts(total/12);return mo.d==="00"?`${mo.i}`:`${mo.i}<sup>,${mo.d}</sup>`;}
+function billedMonthly(){return subPay.splits===1?'Facturado anualmente':subPay.splits===2?'Facturado dos veces al año':'Facturado cuatro veces al año';}
+
+// v4 · tabla pura
+function renderV4(cont){
+  cont.className='';
+  const pop='Avanzado';
+  const cls=n=>n===pop?' class="pp"':'';
+  cont.innerHTML=`<div class="ptable-wrap"><table class="ptable">
+    <thead><tr><th></th>${SUB.map(s=>`<th${cls(s.name)}>${s.name}</th>`).join('')}</tr></thead>
+    <tbody>
+      <tr><td>Precio</td>${SUB.map(s=>{const pk=PACKS.find(p=>p.name===s.name);return `<td${cls(s.name)}><span class="pt-amt">${moHtmlOf(planTotal(pk))}</span> €/mes<div class="pt-billed">${billedMonthly()}</div></td>`;}).join('')}</tr>
+      <tr><td>Créditos al año</td>${SUB.map(s=>{const pk=PACKS.find(p=>p.name===s.name);return `<td${cls(s.name)}><b>${fmt(pk.credits)}</b></td>`;}).join('')}</tr>
+      <tr><td>Precio por crédito</td>${SUB.map(s=>{const pk=PACKS.find(p=>p.name===s.name);return `<td${cls(s.name)}>${eur3(pk.unit)}</td>`;}).join('')}</tr>
+      <tr><td></td>${SUB.map(s=>`<td${cls(s.name)}><a href="#contacto" class="pt-cta">Empezar</a></td>`).join('')}</tr>
+    </tbody></table></div>`;
+}
+
+// v5 · selector + tarjeta grande
+function renderV5(cont){
+  cont.className='v5';
+  const sel=SUB.find(s=>s.name===selPlan)||SUB[2];
+  const pk=PACKS.find(p=>p.name===sel.name);const t=planTotal(pk);
+  cont.innerHTML=`
+    <div class="v5-sel">${SUB.map(s=>`<button class="selbtn ${s.name===selPlan?'active':''}" data-plan="${s.name}">${s.name}</button>`).join('')}</div>
+    <div class="v5-card">
+      <div class="v5-left">
+        <h4>${sel.name}</h4>
+        <p class="v5-desc">${sel.desc}</p>
+        <ul class="sfeat">
+          <li><b>${fmt(pk.credits)}</b> créditos al año</li>
+          <li>≈ ${fmt(pk.credits/C.invoice)} facturas procesables</li>
+          <li>${eur3(pk.unit)} por crédito</li>
+          <li>Todos los productos incluidos</li>
+        </ul>
+      </div>
+      <div class="v5-right">
+        <div class="v5-amt">${moHtmlOf(t)}<span>€/mes</span></div>
+        <div class="v5-billed">${billedMonthly()}</div>
+        <a href="#contacto" class="rcta">Empezar con ${sel.name}</a>
+      </div>
+    </div>`;
+}
+
+// v6 · destacado + secundarios
+function renderV6(cont){
+  cont.className='v6';
+  const feat=SUB.find(s=>s.popular)||SUB[2];const fpk=PACKS.find(p=>p.name===feat.name);const ft=planTotal(fpk);
+  const others=SUB.filter(s=>s.name!==feat.name);
+  cont.innerHTML=`
+    <div class="v6-feat">
+      <span class="v6-tag">Más popular</span>
+      <h4>${feat.name}</h4>
+      <p class="v6-desc">${feat.desc}</p>
+      <div class="v6-amt">${moHtmlOf(ft)}<span>€/mes</span></div>
+      <div class="v6-billed">${billedMonthly()}</div>
+      <ul class="sfeat"><li><b>${fmt(fpk.credits)}</b> créditos al año</li><li>≈ ${fmt(fpk.credits/C.invoice)} facturas procesables</li><li>${eur3(fpk.unit)} por crédito</li></ul>
+      <a href="#contacto" class="rcta">Empezar con ${feat.name}</a>
+    </div>
+    <div class="v6-others">${others.map(s=>{const pk=PACKS.find(p=>p.name===s.name);const t=planTotal(pk);return `<div class="v6-mini"><div class="v6-mini-top"><b>${s.name}</b><span>${moHtmlOf(t)} €/mes</span></div><div class="v6-mini-sub">${fmt(pk.credits)} créditos/año · ${eur3(pk.unit)} por crédito</div><a href="#contacto" class="v6-mini-cta">Elegir ${s.name}</a></div>`;}).join('')}</div>`;
+}
+
+// v7 · barras de volumen
+function renderV7(cont){
+  cont.className='subcards';
+  const maxC=Math.max(...PACKS.map(p=>p.credits));
+  cont.innerHTML=SUB.map(s=>{
+    const pk=PACKS.find(p=>p.name===s.name);const t=planTotal(pk);
+    const w=(pk.credits/maxC*100).toFixed(0);
+    return `<div class="scard ${s.popular?'popular':''}">
+      ${s.popular?'<div class="stag">MÁS POPULAR</div>':''}
+      <h4>${s.name}</h4>
+      <div class="sprice" style="margin-top:10px"><span class="sbig">${moHtmlOf(t)}</span><span class="smo">€/mes</span></div>
+      <div class="sbilled">${billedMonthly()}</div>
+      <div class="volbar"><span style="width:${w}%"></span></div>
+      <div class="volnum"><b>${fmt(pk.credits)}</b> créditos/año</div>
+      <a href="#contacto" class="scta">Empezar ahora</a>
+    </div>`;
+  }).join('');
+}
+
+// v8 · configurador protagonista
+function renderV8(cont){
+  cont.className='v8';
+  cont.innerHTML=`<div class="v8-box">
+    <h4 class="v8-h">¿Cuántas facturas procesa tu despacho al mes?</h4>
+    <div class="range-row"><input type="range" id="v8slider" min="100" max="6000" step="100" value="${v8vol}"><span class="range-val" id="v8volVal">${fmt(v8vol)}</span></div>
+    <div id="v8result"></div>
+  </div>`;
+  renderV8Result();
+}
+function renderV8Result(){
+  const el=document.getElementById('v8result'); if(!el) return;
+  const annual=v8vol*12;
+  const m=PACKS.find(p=>p.credits>=annual);
+  if(!m){ el.innerHTML=`<div class="v8-plan"><div class="v8-name">Enterprise</div><div class="v8-sub">Más de 48.000 créditos/año · plan a medida</div><a href="#contacto" class="rcta">Contáctanos</a></div>`; return; }
+  const t=planTotal(m);
+  el.innerHTML=`<div class="v8-plan"><div class="v8-name">${m.name}</div><div class="v8-amt">${moHtmlOf(t)}<span>€/mes</span></div><div class="v8-sub">${fmt(m.credits)} créditos/año · ${billedMonthly()}</div><a href="#contacto" class="rcta">Empezar con ${m.name}</a></div>`;
+}
+
+// ---------- "Incluido en todos los planes": distintas presentaciones por versión ----------
+const INCLUDED=[
+  {l:'Procesador', t:'Procesa y digitaliza automáticamente las facturas de tus clientes.'},
+  {l:'Conciliador', t:'Concilia los movimientos bancarios de tus clientes.'},
+  {l:'Facturador de cliente', t:'Facturación electrónica para tus clientes. Se cobra aparte: 5 € por NIF.', v:'5 €/NIF'},
+  {l:'Usuarios ilimitados', t:'Añade a todo tu equipo sin coste por usuario.'},
+  {l:'Agente Kabi', t:'Asistente de IA que automatiza tareas; cada acción consume 5 créditos.'},
+  {l:'Instalación y formación', t:'Puesta en marcha y formación inicial del equipo, incluidas.'},
+  {l:'Responsable de cuenta', t:'Una persona de Kabilio asignada a tu despacho como punto de contacto.'},
+  {l:'Soporte', t:'Soporte por email, chat y teléfono.'},
+];
+const ICONS=[
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12l-3-3"/><path d="M20 16H8l3 3"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v17l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h4"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.6a3 3 0 0 1 0 5.7"/><path d="M17.2 14.6a5.5 5.5 0 0 1 3.3 5"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4-9-4z"/><path d="M7 11v4.5c0 1.1 2.2 2 5 2s5-.9 5-2V11"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a7 7 0 0 1 14 0"/><rect x="3.5" y="13" width="3.5" height="6" rx="1.2"/><rect x="17" y="13" width="3.5" height="6" rx="1.2"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a7.5 7.5 0 0 1-10.8 6.7L4.5 19.5l1.3-4A7.5 7.5 0 1 1 20 11.5z"/></svg>'
+];
+function renderIncluded(){
+  const el=document.getElementById('allincl'); if(!el) return;
+  if(version===1 || version===1.1 || version===1.11 || version===1.2 || version===1.5 || version===5){ el.style.display='none'; return; }
+  el.style.display='';
+  if(version===6){
+    el.className='allincl-chips';
+    el.innerHTML=INCLUDED.map(x=>`<span class="ichip"><b>✓</b> ${x.l}${x.v?` · ${x.v}`:''}</span>`).join('');
+  } else if(version===7){
+    el.className='allincl-banner';
+    el.innerHTML=`<div class="aib-title">Incluido en todos los planes</div><div class="aib-grid">${INCLUDED.map((x,i)=>`<div class="aib-item"><span class="aib-ic">${ICONS[i]}</span><span>${x.l}${x.v?`<br><small>${x.v}</small>`:''}</span></div>`).join('')}</div>`;
+  } else {
+    el.className='allincl';
+    el.innerHTML=`<span class="ai-title">Incluido en todos los planes</span><ul>${INCLUDED.map(x=>`<li>${x.l}${x.v?` <small>(${x.v})</small>`:''}</li>`).join('')}</ul>`;
+  }
+}
+
+// ---------- Toggle de pago (sincroniza todos los [data-billtoggle]) ----------
+function syncBillToggles(){
+  document.querySelectorAll('[data-billtoggle] button').forEach(b=>{
+    b.classList.toggle('active', parseInt(b.dataset.splits)===subPay.splits);
+  });
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-billtoggle] button'); if(!b)return;
+  subPay.mult=parseFloat(b.dataset.mult); subPay.splits=parseInt(b.dataset.splits);
+  renderSub(); renderSubCap(); syncBillToggles();
+});
+function billToggleHtml(){
+  const opts=[['1.2','4','4 pagos'],['1.1','2','2 pagos'],['1','1','Pago único']];
+  return `<div class="billtoggle mini" data-billtoggle>${opts.map(o=>
+    `<button data-mult="${o[0]}" data-splits="${o[1]}" class="${parseInt(o[1])===subPay.splits?'active':''}">${o[2]}${o[0]==='1'?' <span class="savebadge">-17%</span>':''}</button>`
+  ).join('')}</div>`;
+}
+
+// ---------- Tabla "Compara los planes" ----------
+function renderSubCap(){
+  const popIdx = PACKS.findIndex(p=>p.name==='Avanzado');
+  const head = `<thead><tr><th><div class="cap-title-wrap"><div class="cap-title">Compara los planes</div>${billToggleHtml()}</div></th>${PACKS.map((p,i)=>{
+    const total=Math.round(p.price*subPay.mult);
+    const hp = (version===1.11||version===2) ? eur(total) : `${moHtmlOf(total)} €/mes`;
+    return `<th class="${i===popIdx?'col-pop':''}"><span class="hname">${p.name}</span><span class="hprice">${hp}</span><a href="#contacto" class="hcta">Empezar ahora</a></th>`;
+  }).join('')}</tr></thead>`;
+  const cell=(p,v,i)=>`<td class="${i===popIdx?'col-pop':''}">${v}</td>`;
+  const row=(label,tip,vals)=>`<tr><td class="cap-feat">${label}${tip?`<span class="tip" tabindex="0" data-tip="${tip}">i</span>`:''}</td>${vals.map((v,i)=>cell(PACKS[i],v,i)).join('')}</tr>`;
+  const group=label=>`<tr class="rowhead"><td colspan="${PACKS.length+1}">${label}</td></tr>`;
+  const cr=PACKS.map(p=>p.credits);
+  const yes='<span class="yes">✓</span>';
+  const inclRows = group('Incluido en todos los planes') + INCLUDED.map(x=>row(x.l, x.t, PACKS.map(()=>x.v||yes))).join('');
+  let incl='';
+  if(version===5){
+    incl = inclRows;
+  } else if(version!==1 && version!==1.1 && version!==1.11 && version!==1.2 && version!==1.5 && version!==6 && version!==7){
+    incl = `<tr class="rowhead"><td colspan="${PACKS.length+1}">Incluido en todos los planes (sin diferencias entre ellos)</td></tr><tr><td colspan="${PACKS.length+1}" class="cap-allincl">${INCLUDED.map(x=>x.v?`${x.l} (${x.v})`:x.l).join(' · ')}</td></tr>`;
+  }
+  const body = `<tbody>
+    ${group('Créditos y precio')}
+    ${row('Créditos incluidos','Saldo de créditos del plan. Se descuentan solo al usar una función y caducan a los 12 meses.', cr.map(c=>`<b>${fmt(c)}</b>`))}
+    ${row('Precio por crédito','Coste medio de cada crédito: el precio del plan dividido entre los créditos incluidos.', PACKS.map(p=>eur3(p.unit)))}
+    ${(version===1||version===1.1||version===1.11||version===1.2||version===1.5) ? inclRows : ''}
+    ${group('Equivalencia orientativa · si gastaras todo el saldo en una sola función')}
+    ${row('Facturas que podrías procesar','Facturas que procesarías si dedicaras todo el saldo a esto. Cuesta 1 crédito por factura.', cr.map(c=>fmt(c/C.invoice)))}
+    ${row('Transacciones que podrías conciliar','Movimientos bancarios conciliados con todo el saldo. Cuesta 0,4 créditos por movimiento.', cr.map(c=>fmt(c/C.reconcile)))}
+    ${row('Documentos que podrías gestionar','Documentos subidos al gestor documental con todo el saldo. Cuesta 0,4 créditos por documento.', cr.map(c=>fmt(c/C.doc)))}
+    ${row('Acciones del Agente Kabi','Acciones automatizadas por el Agente Kabi con todo el saldo. Cuesta 5 créditos por acción.', cr.map(c=>fmt(c/C.agentAction)))}
+    ${incl}
+  </tbody>`;
+  document.getElementById('capSubTable').innerHTML = head+body;
+}
+
+// ---------- Configurador embebido (CTA "Encuentra tu plan") ----------
+const scfg = {clients:20, invoices:30, recon:25, agent:3};
+function updateSCfg(){
+  const annual = estimateAnnual(scfg);
+  const {match, enterprise} = recommend(annual);
+  document.getElementById('scfg_rEst').textContent = fmt(annual)+' créditos';
+  if(enterprise){
+    document.getElementById('scfg_rPlan').textContent="Enterprise";
+    document.getElementById('scfg_rPrice').textContent="A medida";
+    document.getElementById('scfg_rSuffix').textContent="";
+    document.getElementById('scfg_rUnit').textContent="El mejor precio";
+    document.getElementById('scfg_rMeter').style.width="100%";
+    document.getElementById('scfg_rCta').textContent="Contáctanos";
+    document.getElementById('scfg_rNote').textContent="Tu consumo supera los 48.000 créditos/año: plan Enterprise a medida.";
+    return;
+  }
+  document.getElementById('scfg_rCta').textContent=`Empezar con ${match.name}`;
+  document.getElementById('scfg_rPlan').textContent=match.name;
+  document.getElementById('scfg_rPrice').textContent=eur(match.price);
+  document.getElementById('scfg_rSuffix').innerHTML=`/ año · ${fmt(match.credits)} créditos`;
+  document.getElementById('scfg_rUnit').textContent=eur3(match.price/match.credits)+' / crédito';
+  const pct=Math.min(100,Math.round(annual/match.credits*100));
+  document.getElementById('scfg_rMeter').style.width=pct+'%';
+  let note=`${fmt(scfg.clients)} clientes · ${scfg.invoices} facturas, ${scfg.recon} conciliaciones y ${scfg.agent} acciones de agente por cliente/mes.`;
+  if(pct>90) note+=` Vas justo de saldo.`;
+  document.getElementById('scfg_rNote').textContent=note;
+}
+function bindSCfg(id,key,fmtFn){
+  document.getElementById(id).addEventListener('input',e=>{
+    const v=+e.target.value; scfg[key]=v;
+    document.getElementById(id+'Val').textContent=fmtFn(v); updateSCfg();
+  });
+}
+bindSCfg('scfg_clients','clients',v=>v);
+bindSCfg('scfg_invoices','invoices',v=>v);
+bindSCfg('scfg_recon','recon',v=>v);
+bindSCfg('scfg_agent','agent',v=>v);
+
+// ---------- Selector de versiones ----------
+function setVtabsH(){const v=document.querySelector('.vtabs-wrap'); if(v) document.documentElement.style.setProperty('--vtabsH', v.offsetHeight+'px');}
+window.addEventListener('resize',setVtabsH); setVtabsH();
+document.getElementById('vtabs').addEventListener('click',e=>{
+  const b=e.target.closest('.vtab'); if(!b)return;
+  document.querySelectorAll('.vtab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); version=+b.dataset.v; renderSub(); renderIncluded(); renderSubCap();
+});
+document.addEventListener('click',e=>{
+  const sb=e.target.closest('.selbtn'); if(sb){ selPlan=sb.dataset.plan; renderSub(); }
+});
+document.addEventListener('input',e=>{
+  if(e.target.id==='v8slider'){ v8vol=+e.target.value; const l=document.getElementById('v8volVal'); if(l) l.textContent=fmt(v8vol); renderV8Result(); }
+});
+
+// ---------- La cabecera muestra toggle + CTA solo cuando queda fija ----------
+(function(){
+  const sentinel=document.getElementById('capSentinel'), tbl=document.getElementById('capSubTable');
+  if(!sentinel||!tbl||!('IntersectionObserver' in window)) return;
+  const vh=(document.querySelector('.vtabs-wrap')||{}).offsetHeight||52;
+  new IntersectionObserver(([e])=>{
+    tbl.classList.toggle('stuck', !e.isIntersecting && e.boundingClientRect.top < vh);
+  },{rootMargin:`-${vh}px 0px 0px 0px`, threshold:0}).observe(sentinel);
+})();
+
+// init
+renderSub(); renderIncluded(); renderSubCap(); updateSCfg();
+</script>
+</body>
+</html>
