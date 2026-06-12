@@ -311,6 +311,7 @@
     <button class="vtab" data-v="1.11" data-slug="anual-tabla">Anual · tabla</button>
     <button class="vtab" data-v="3" data-slug="mensual-grid">Mensual · grid</button>
     <button class="vtab" data-v="3.1" data-slug="anual-grid">Anual · grid</button>
+    <button class="vtab" data-v="4.0" data-slug="mensual-grid-plegable">Mensual · grid plegable</button>
     <button class="vtab" data-v="4.1" data-slug="anual-grid-plegable">Anual · grid plegable</button>
   </div>
 </div>
@@ -764,8 +765,8 @@ function activateTab(b){
   document.querySelectorAll('.vtab').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   const dv=b.dataset.v;
-  collapseTable = (dv==='4.1');
-  version = (dv==='4.1') ? 3.1 : +dv;
+  collapseTable = (dv==='4.0' || dv==='4.1');
+  version = dv==='4.0' ? 3 : dv==='4.1' ? 3.1 : +dv;
   renderSub(); renderIncluded(); renderSubCap(); applyCollapse();
 }
 document.getElementById('vtabs').addEventListener('click',e=>{
