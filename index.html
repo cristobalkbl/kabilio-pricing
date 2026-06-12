@@ -37,11 +37,13 @@
   .section-h{font-size:26px;font-weight:700;letter-spacing:-.01em;text-align:center;margin-bottom:8px}
   .section-lead{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 32px}
 
-  .enterprise{margin-top:16px;border:1px dashed var(--line);border-radius:var(--radius);background:var(--surface);padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-  .enterprise .et h4{font-size:17px;margin-bottom:3px}
-  .enterprise .et p{font-size:14px;color:var(--muted)}
+  .enterprise{margin-top:16px;border:1px solid var(--lav);border-radius:var(--radius);background:var(--accent-soft);color:var(--ink);padding:26px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .enterprise .et h4{font-size:20px;margin-bottom:4px;color:var(--ink)}
+  .enterprise .et p{font-size:14px;color:var(--muted);max-width:560px}
   .ghost{display:inline-block;border:1px solid var(--accent);color:var(--accent-ink);background:#fff;font-weight:600;border-radius:10px;padding:11px 20px;font-size:14px;text-decoration:none;white-space:nowrap;transition:.15s}
   .ghost:hover{background:var(--accent-soft)}
+  .enterprise .ghost{border:none;background:var(--accent);color:#fff;font-weight:700;padding:12px 22px}
+  .enterprise .ghost:hover{background:var(--accent-ink)}
 
   /* Configurador embebido */
   .reco{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:36px;box-shadow:var(--shadow)}
@@ -89,6 +91,7 @@
   .scard .sbilled{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px}
   .scard .screds{font-size:14px;color:var(--muted);margin-top:6px}
   .scard .screds b{color:var(--ink);font-weight:700}
+  .scard .sunit{font-size:12.5px;color:var(--accent-ink);font-weight:600;margin-top:3px}
   .scard .scta{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:13px;text-decoration:none;margin-top:18px;transition:.15s}
   .scard .scta:hover{background:var(--accent-ink)}
   .scard .sdivider{border:none;border-top:1px solid var(--line);margin:18px 0}
@@ -213,6 +216,20 @@
   .aib-ic{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink)}
   .aib-ic svg{width:23px;height:23px}
 
+  /* Incluido · grid de funciones (v3) */
+  .featgrid-wrap{margin-top:24px}
+  .fg-head{text-align:center;margin:8px 0 28px}
+  .fg-eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  .fg-title{font-size:25px;font-weight:700;letter-spacing:-.01em}
+  .featgrid{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:900px){.featgrid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.featgrid{grid-template-columns:1fr}}
+  .fgcell{padding:30px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .fg-ic{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);margin-bottom:18px}
+  .fg-ic svg{width:23px;height:23px}
+  .fgcell h4{font-size:16px;font-weight:700;margin-bottom:9px}
+  .fgcell p{font-size:13px;color:var(--muted);line-height:1.55}
+
   /* CTA encuentra tu plan */
   .findplan{margin-top:72px}
   .findplan-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--lav);border:1px solid var(--lav);border-radius:16px;padding:22px 26px}
@@ -241,11 +258,20 @@
   table.capsub thead .hprice{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-top:3px}
   table.capsub td.col-pop{background:var(--accent-soft)}
   table.capsub .cap-feat{color:var(--ink);text-decoration:underline;text-decoration-color:#d7dee5;text-underline-offset:3px}
-  table.capsub tr.rowhead td{background:#fff;font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line);padding-top:24px}
+  table.capsub tr.rowhead td{background:var(--surface-2);font-weight:700;color:var(--ink);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 16px}
   table.capsub td.cap-allincl{text-align:left;color:var(--muted);font-size:13.5px;padding:12px 16px}
+  table.capsub td.cap-incl-all{text-align:center;color:var(--ink);font-weight:600;font-size:13px}
   table.capsub tr:last-child td{border-bottom:none}
   table.capsub .yes{color:var(--accent);font-weight:700;font-size:15px}
   @media(max-width:620px){table.capsub{font-size:12px}table.capsub th,table.capsub td{padding:10px 6px}table.capsub .cap-title{font-size:15px}}
+
+  /* Tabla plegable con difuminado (Anual · grid plegable) */
+  .cmp-clip{position:relative}
+  .cmp-clip.collapsed{max-height:540px;overflow:hidden}
+  .cmp-clip.collapsed::after{content:"";position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 88%);pointer-events:none}
+  .cmp-vertodo{display:block;margin:18px auto 0;background:var(--accent);color:#fff;border:none;font-family:inherit;font-weight:600;font-size:14px;padding:11px 24px;border-radius:10px;cursor:pointer;transition:.15s}
+  .cmp-vertodo:hover{background:var(--accent-ink)}
+  .cmp-vertodo[hidden]{display:none}
 
   /* Consumo + Notas (comunes) */
   .common{border-top:1px solid var(--line);background:var(--surface)}
@@ -281,8 +307,11 @@
 
 <div class="vtabs-wrap">
   <div class="vtabs" id="vtabs">
-    <button class="vtab active" data-v="1.1">Precio mensual</button>
-    <button class="vtab" data-v="1.11">Precio anual</button>
+    <button class="vtab active" data-v="1.1">Mensual · tabla</button>
+    <button class="vtab" data-v="1.11">Anual · tabla</button>
+    <button class="vtab" data-v="3">Mensual · grid</button>
+    <button class="vtab" data-v="3.1">Anual · grid</button>
+    <button class="vtab" data-v="4.1">Anual · grid plegable</button>
   </div>
 </div>
 
@@ -306,8 +335,6 @@
 
     <div class="subcards" id="subCards"></div>
 
-    <div id="allincl"></div>
-
     <div class="enterprise" style="margin-top:18px">
       <div class="et">
         <h4>Enterprise</h4>
@@ -316,9 +343,12 @@
       <a href="#contacto" class="ghost">Contáctanos</a>
     </div>
 
+    <div id="allincl"></div>
+
     <div style="height:40px"></div>
     <div id="capSentinel"></div>
-    <table class="capsub" id="capSubTable"></table>
+    <div class="cmp-clip" id="capClip"><table class="capsub" id="capSubTable"></table></div>
+    <button class="cmp-vertodo" id="capVerTodo" hidden>Ver todo</button>
     <p class="miniline">Cifras de capacidad orientativas: muestran cuánto podrías hacer si dedicaras todo el saldo a una sola acción.</p>
 
     <div class="findplan">
@@ -341,8 +371,8 @@
               <div class="range-row"><input type="range" id="scfg_recon" min="0" max="200" value="25" step="5"><span class="range-val" id="scfg_reconVal">25</span></div>
             </div>
             <div class="q">
-              <label class="qlabel">Acciones del Agente Kabi por cliente / mes</label>
-              <div class="range-row"><input type="range" id="scfg_agent" min="0" max="20" value="3"><span class="range-val" id="scfg_agentVal">3</span></div>
+              <label class="qlabel">Conexiones vivas por cliente</label>
+              <div class="range-row"><input type="range" id="scfg_conn" min="0" max="10" value="1"><span class="range-val" id="scfg_connVal">1</span></div>
             </div>
           </div>
           <div>
@@ -404,11 +434,11 @@ const fmt  = n => Math.round(n).toLocaleString('es-ES');
 const eur  = n => Math.round(n).toLocaleString('es-ES') + ' €';
 const eur3 = n => n.toLocaleString('es-ES',{minimumFractionDigits:3,maximumFractionDigits:3}) + ' €';
 
-function estimateAnnual({clients, invoices, recon, agent}){
+function estimateAnnual({clients, invoices, recon, conn}){
   const facturas = invoices * C.invoice;
   const concilia = recon * C.reconcile;
-  const agente   = agent * C.agentAction;   // 5 créditos por acción
-  return Math.round((facturas + concilia + agente) * clients * 12);
+  const conexiones = conn * C.bankConn;   // 15 créditos/mes por conexión viva
+  return Math.round((facturas + concilia + conexiones) * clients * 12);
 }
 function recommend(annual){
   const match = PACKS.find(p => p.credits >= annual);
@@ -419,13 +449,14 @@ function recommend(annual){
 const SUB = [
   {name:"Starter",  desc:"Para despachos que empiezan con Kabilio."},
   {name:"Básico",   desc:"Para despachos pequeños ya en marcha."},
-  {name:"Avanzado", desc:"Para despachos en crecimiento que escalan volumen.", popular:true},
+  {name:"Avanzado", desc:"Para despachos en crecimiento que escalan volumen."},
   {name:"Pro",      desc:"Para despachos consolidados y gran volumen."},
 ];
 let subPay = {mult:1, splits:1};
 let version = 1.1;   // 1.1 = precio mensual · 1.11 = precio anual
 let selPlan = 'Avanzado';
 let v8vol = 800;
+let collapseTable = false;
 function moParts(v){const r=Math.round(v*100)/100;const i=Math.floor(r);const d=Math.round((r-i)*100);return {i, d:String(d).padStart(2,'0')};}
 function billedLabel(){
   return subPay.splits===1 ? 'Facturado anualmente'
@@ -444,7 +475,7 @@ function renderSub(){
     const pk = PACKS.find(p=>p.name===s.name);
     const total = Math.round(pk.price*subPay.mult);
     let priceHtml, billed;
-    if(version===2 || version===1.11){
+    if(version===2 || version===1.11 || version===3.1){
       priceHtml = `<span class="sbig">${eur(total)}</span>`;
       billed = subPay.splits===1 ? 'Pago único' : `${subPay.splits} pagos de ${eur(total/subPay.splits)}`;
     } else {
@@ -458,10 +489,10 @@ function renderSub(){
     const prods = `<li>Procesador</li><li>Conciliador</li><li>Agente Kabi</li>`;
     const facturasLi = `<li>≈ ${fmt(pk.credits/C.invoice)} facturas procesables</li>`;
     const eqTip = `Equivale a ~${fmt(pk.credits/C.invoice)} facturas, ~${fmt(pk.credits/C.reconcile)} transacciones conciliadas o ~${fmt(pk.credits/C.doc)} documentos gestionados, si usaras todo el saldo en una sola función.`;
-    const credsTip = (version===1.1||version===1.11) ? ` <span class="tip" tabindex="0" data-tip="${eqTip}">i</span>` : '';
+    const credsTip = (version===1.1||version===1.11||version===3||version===3.1) ? ` <span class="tip" tabindex="0" data-tip="${eqTip}">i</span>` : '';
     let featBlock;
-    if(version===1.1||version===1.11){
-      featBlock = `<div class="sfeat-label">Incluye</div><ul class="sfeat">${prods}</ul>`;
+    if(version===1.1||version===1.11||version===3||version===3.1){
+      featBlock = '';
     } else if(version===1.2){
       featBlock = `<div class="sfeat-all">Incluye <b>todas las funcionalidades</b> de todos los productos</div><ul class="sfeat">${prods}</ul>`;
     } else if(version===1.5){
@@ -475,10 +506,9 @@ function renderSub(){
       <div class="sdesc">${s.desc}</div>
       <div class="sprice">${priceHtml}</div>
       <div class="sbilled">${billed}</div>
-      <div class="screds"><b>${fmt(pk.credits)}</b> créditos${credsTip}</div>
+      <div class="screds"><b>${fmt(pk.credits)}</b> créditos${credsTip}<div class="sunit">${eur3(pk.unit)} / crédito</div></div>
       <a href="#contacto" class="scta">Empezar ahora</a>
-      <hr class="sdivider">
-      ${featBlock}
+      ${featBlock ? `<hr class="sdivider">${featBlock}` : ''}
     </div>`;
   }).join('');
 }
@@ -587,27 +617,33 @@ function renderV8Result(){
 
 // ---------- "Incluido en todos los planes": distintas presentaciones por versión ----------
 const INCLUDED=[
-  {l:'Procesador', t:'Procesa y digitaliza automáticamente las facturas de tus clientes.'},
-  {l:'Conciliador', t:'Concilia los movimientos bancarios de tus clientes.'},
-  {l:'Facturador de cliente', t:'Facturación electrónica para tus clientes. Se cobra aparte: 5 € por NIF.', v:'5 €/NIF'},
-  {l:'Usuarios ilimitados', t:'Añade a todo tu equipo sin coste por usuario.'},
-  {l:'Agente Kabi', t:'Asistente de IA que automatiza tareas; cada acción consume 5 créditos.'},
-  {l:'Instalación y formación', t:'Puesta en marcha y formación inicial del equipo, incluidas.'},
-  {l:'Responsable de cuenta', t:'Una persona de Kabilio asignada a tu despacho como punto de contacto.'},
-  {l:'Soporte', t:'Soporte por email, chat y teléfono.'},
+  {l:'Procesador', g:'Productos', t:'Procesa y digitaliza automáticamente las facturas de tus clientes.'},
+  {l:'Conciliador', g:'Productos', t:'Concilia los movimientos bancarios de tus clientes.'},
+  {l:'Facturador de cliente', g:'Productos', t:'Facturación electrónica para tus clientes. Se cobra aparte: 5 € por NIF.', v:'5 €/NIF'},
+  {l:'Agente Kabi', g:'Productos', t:'Asistente de IA que automatiza tareas; cada acción consume 5 créditos.', gt:'Asistente de IA que automatiza las tareas repetitivas de tu despacho.'},
+  {l:'Usuarios ilimitados', g:'Servicio y soporte', t:'Añade a todo tu equipo sin coste por usuario.'},
+  {l:'Instalación y formación', g:'Servicio y soporte', t:'Puesta en marcha y formación inicial del equipo, incluidas.'},
+  {l:'Responsable de cuenta', g:'Servicio y soporte', t:'Una persona de Kabilio asignada a tu despacho como punto de contacto.'},
+  {l:'Soporte', g:'Servicio y soporte', t:'Soporte por email, chat y teléfono.'},
 ];
 const ICONS=[
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h4"/></svg>',
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12l-3-3"/><path d="M20 16H8l3 3"/></svg>',
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v17l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h4"/></svg>',
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.6a3 3 0 0 1 0 5.7"/><path d="M17.2 14.6a5.5 5.5 0 0 1 3.3 5"/></svg>',
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.6a3 3 0 0 1 0 5.7"/><path d="M17.2 14.6a5.5 5.5 0 0 1 3.3 5"/></svg>',
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4-9-4z"/><path d="M7 11v4.5c0 1.1 2.2 2 5 2s5-.9 5-2V11"/></svg>',
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a7 7 0 0 1 14 0"/><rect x="3.5" y="13" width="3.5" height="6" rx="1.2"/><rect x="17" y="13" width="3.5" height="6" rx="1.2"/></svg>',
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a7.5 7.5 0 0 1-10.8 6.7L4.5 19.5l1.3-4A7.5 7.5 0 1 1 20 11.5z"/></svg>'
 ];
 function renderIncluded(){
   const el=document.getElementById('allincl'); if(!el) return;
+  if(version===3 || version===3.1){
+    el.style.display='';
+    el.className='featgrid-wrap';
+    el.innerHTML=`<div class="fg-head"><span class="fg-eyebrow">Para todos los planes</span><h3 class="fg-title">Productos incluidos en cada plan</h3></div><div class="featgrid">${INCLUDED.map((x,i)=>({x,i})).filter(o=>o.x.g==='Productos').map(({x,i})=>`<div class="fgcell"><span class="fg-ic">${ICONS[i]}</span><h4>${x.l}</h4><p>${x.gt||x.t}</p></div>`).join('')}</div>`;
+    return;
+  }
   if(version===1 || version===1.1 || version===1.11 || version===1.2 || version===1.5 || version===5){ el.style.display='none'; return; }
   el.style.display='';
   if(version===6){
@@ -642,7 +678,7 @@ function billToggleHtml(){
 
 // ---------- Tabla "Compara los planes" ----------
 function renderSubCap(){
-  const popIdx = PACKS.findIndex(p=>p.name==='Avanzado');
+  const popIdx = -1;
   const head = `<thead><tr><th><div class="cap-title-wrap"><div class="cap-title">Compara los planes</div>${billToggleHtml()}</div></th>${PACKS.map((p,i)=>{
     const total=Math.round(p.price*subPay.mult);
     const hp = (version===1.11||version===2) ? eur(total) : `${moHtmlOf(total)} €/mes`;
@@ -653,18 +689,20 @@ function renderSubCap(){
   const group=label=>`<tr class="rowhead"><td colspan="${PACKS.length+1}">${label}</td></tr>`;
   const cr=PACKS.map(p=>p.credits);
   const yes='<span class="yes">✓</span>';
-  const inclRows = group('Incluido en todos los planes') + INCLUDED.map(x=>row(x.l, x.t, PACKS.map(()=>x.v||yes))).join('');
+  const inclRowsFor=(items)=>{let lg='';return items.map(x=>{const gh=x.g!==lg?(lg=x.g,group(x.g)):'';return gh+`<tr><td class="cap-feat">${x.l}${x.t?`<span class="tip" tabindex="0" data-tip="${x.t}">i</span>`:''}</td><td colspan="${PACKS.length}" class="cap-incl-all">${x.v?x.v:'<span class="yes">✓</span> Incluido'}</td></tr>`;}).join('');};
+  const inclRows = inclRowsFor(INCLUDED);
+  const inclSupport = inclRowsFor(INCLUDED.filter(x=>x.g==='Servicio y soporte'));
   let incl='';
   if(version===5){
     incl = inclRows;
-  } else if(version!==1 && version!==1.1 && version!==1.11 && version!==1.2 && version!==1.5 && version!==6 && version!==7){
+  } else if(version!==1 && version!==1.1 && version!==1.11 && version!==1.2 && version!==1.5 && version!==3 && version!==3.1 && version!==6 && version!==7){
     incl = `<tr class="rowhead"><td colspan="${PACKS.length+1}">Incluido en todos los planes (sin diferencias entre ellos)</td></tr><tr><td colspan="${PACKS.length+1}" class="cap-allincl">${INCLUDED.map(x=>x.v?`${x.l} (${x.v})`:x.l).join(' · ')}</td></tr>`;
   }
   const body = `<tbody>
     ${group('Créditos y precio')}
     ${row('Créditos incluidos','Saldo de créditos del plan. Se descuentan solo al usar una función y caducan a los 12 meses.', cr.map(c=>`<b>${fmt(c)}</b>`))}
     ${row('Precio por crédito','Coste medio de cada crédito: el precio del plan dividido entre los créditos incluidos.', PACKS.map(p=>eur3(p.unit)))}
-    ${(version===1||version===1.1||version===1.11||version===1.2||version===1.5) ? inclRows : ''}
+    ${(version===1||version===1.1||version===1.11||version===1.2||version===1.5) ? inclRows : ((version===3||version===3.1) ? inclSupport : '')}
     ${group('Equivalencia orientativa · si gastaras todo el saldo en una sola función')}
     ${row('Facturas que podrías procesar','Facturas que procesarías si dedicaras todo el saldo a esto. Cuesta 1 crédito por factura.', cr.map(c=>fmt(c/C.invoice)))}
     ${row('Transacciones que podrías conciliar','Movimientos bancarios conciliados con todo el saldo. Cuesta 0,4 créditos por movimiento.', cr.map(c=>fmt(c/C.reconcile)))}
@@ -676,7 +714,7 @@ function renderSubCap(){
 }
 
 // ---------- Configurador embebido (CTA "Encuentra tu plan") ----------
-const scfg = {clients:20, invoices:30, recon:25, agent:3};
+const scfg = {clients:20, invoices:30, recon:25, conn:1};
 function updateSCfg(){
   const annual = estimateAnnual(scfg);
   const {match, enterprise} = recommend(annual);
@@ -698,7 +736,7 @@ function updateSCfg(){
   document.getElementById('scfg_rUnit').textContent=eur3(match.price/match.credits)+' / crédito';
   const pct=Math.min(100,Math.round(annual/match.credits*100));
   document.getElementById('scfg_rMeter').style.width=pct+'%';
-  let note=`${fmt(scfg.clients)} clientes · ${scfg.invoices} facturas, ${scfg.recon} conciliaciones y ${scfg.agent} acciones de agente por cliente/mes.`;
+  let note=`${fmt(scfg.clients)} clientes · ${scfg.invoices} facturas, ${scfg.recon} conciliaciones/mes y ${scfg.conn} conexiones vivas por cliente.`;
   if(pct>90) note+=` Vas justo de saldo.`;
   document.getElementById('scfg_rNote').textContent=note;
 }
@@ -711,15 +749,29 @@ function bindSCfg(id,key,fmtFn){
 bindSCfg('scfg_clients','clients',v=>v);
 bindSCfg('scfg_invoices','invoices',v=>v);
 bindSCfg('scfg_recon','recon',v=>v);
-bindSCfg('scfg_agent','agent',v=>v);
+bindSCfg('scfg_conn','conn',v=>v);
 
 // ---------- Selector de versiones ----------
 function setVtabsH(){const v=document.querySelector('.vtabs-wrap'); if(v) document.documentElement.style.setProperty('--vtabsH', v.offsetHeight+'px');}
 window.addEventListener('resize',setVtabsH); setVtabsH();
+function applyCollapse(){
+  const clip=document.getElementById('capClip'), btn=document.getElementById('capVerTodo');
+  if(!clip||!btn) return;
+  if(collapseTable){ clip.classList.add('collapsed'); btn.hidden=false; }
+  else { clip.classList.remove('collapsed'); btn.hidden=true; }
+}
 document.getElementById('vtabs').addEventListener('click',e=>{
   const b=e.target.closest('.vtab'); if(!b)return;
   document.querySelectorAll('.vtab').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active'); version=+b.dataset.v; renderSub(); renderIncluded(); renderSubCap();
+  b.classList.add('active');
+  const dv=b.dataset.v;
+  collapseTable = (dv==='4.1');
+  version = (dv==='4.1') ? 3.1 : +dv;
+  renderSub(); renderIncluded(); renderSubCap(); applyCollapse();
+});
+document.getElementById('capVerTodo').addEventListener('click',()=>{
+  document.getElementById('capClip').classList.remove('collapsed');
+  document.getElementById('capVerTodo').hidden=true;
 });
 document.addEventListener('click',e=>{
   const sb=e.target.closest('.selbtn'); if(sb){ selPlan=sb.dataset.plan; renderSub(); }
@@ -738,7 +790,7 @@ document.addEventListener('input',e=>{
 })();
 
 // init
-renderSub(); renderIncluded(); renderSubCap(); updateSCfg();
+renderSub(); renderIncluded(); renderSubCap(); updateSCfg(); applyCollapse();
 </script>
 </body>
 </html>
