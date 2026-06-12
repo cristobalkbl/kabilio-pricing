@@ -307,11 +307,11 @@
 
 <div class="vtabs-wrap">
   <div class="vtabs" id="vtabs">
-    <button class="vtab active" data-v="1.1">Mensual · tabla</button>
-    <button class="vtab" data-v="1.11">Anual · tabla</button>
-    <button class="vtab" data-v="3">Mensual · grid</button>
-    <button class="vtab" data-v="3.1">Anual · grid</button>
-    <button class="vtab" data-v="4.1">Anual · grid plegable</button>
+    <button class="vtab active" data-v="1.1" data-slug="mensual-tabla">Mensual · tabla</button>
+    <button class="vtab" data-v="1.11" data-slug="anual-tabla">Anual · tabla</button>
+    <button class="vtab" data-v="3" data-slug="mensual-grid">Mensual · grid</button>
+    <button class="vtab" data-v="3.1" data-slug="anual-grid">Anual · grid</button>
+    <button class="vtab" data-v="4.1" data-slug="anual-grid-plegable">Anual · grid plegable</button>
   </div>
 </div>
 
@@ -760,15 +760,26 @@ function applyCollapse(){
   if(collapseTable){ clip.classList.add('collapsed'); btn.hidden=false; }
   else { clip.classList.remove('collapsed'); btn.hidden=true; }
 }
-document.getElementById('vtabs').addEventListener('click',e=>{
-  const b=e.target.closest('.vtab'); if(!b)return;
+function activateTab(b){
   document.querySelectorAll('.vtab').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   const dv=b.dataset.v;
   collapseTable = (dv==='4.1');
   version = (dv==='4.1') ? 3.1 : +dv;
   renderSub(); renderIncluded(); renderSubCap(); applyCollapse();
+}
+document.getElementById('vtabs').addEventListener('click',e=>{
+  const b=e.target.closest('.vtab'); if(!b)return;
+  activateTab(b);
+  if(b.dataset.slug) location.hash=b.dataset.slug;
 });
+function selectFromHash(){
+  const slug=location.hash.replace('#','');
+  if(!slug) return;
+  const b=document.querySelector(`.vtab[data-slug="${slug}"]`);
+  if(b) activateTab(b);
+}
+window.addEventListener('hashchange',selectFromHash);
 document.getElementById('capVerTodo').addEventListener('click',()=>{
   document.getElementById('capClip').classList.remove('collapsed');
   document.getElementById('capVerTodo').hidden=true;
@@ -790,7 +801,7 @@ document.addEventListener('input',e=>{
 })();
 
 // init
-renderSub(); renderIncluded(); renderSubCap(); updateSCfg(); applyCollapse();
+renderSub(); renderIncluded(); renderSubCap(); updateSCfg(); applyCollapse(); selectFromHash();
 </script>
 </body>
 </html>
