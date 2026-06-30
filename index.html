@@ -36,7 +36,7 @@
   h1{font-size:clamp(32px,5vw,46px);line-height:1.1;font-weight:700;letter-spacing:-.02em;margin-bottom:16px}
   .sub{font-size:18px;color:var(--muted);max-width:620px;margin:0 auto}
 
-  section{padding:44px 0}
+  section{padding:64px 0}
   .section-title{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;text-align:center}
   .section-h{font-size:26px;font-weight:700;letter-spacing:-.01em;text-align:center;margin-bottom:8px}
   .section-lead{text-align:center;color:var(--muted);max-width:600px;margin:0 auto 32px}
@@ -84,8 +84,32 @@
   @media(max-width:1040px){.subcards{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:680px){.subcards{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:440px){.subcards{grid-template-columns:1fr}}
+  /* v2 · contenedor único dividido */
+  .uplans{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+  @media(max-width:900px){.uplans{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.uplans{grid-template-columns:1fr}}
+  .uplan{position:relative;padding:28px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column}
+  .uplan:last-child{border-right:none}
+  @media(max-width:900px){.uplan:nth-child(2n){border-right:none}.uplan{border-bottom:1px solid var(--line)}}
+  @media(max-width:560px){.uplan{border-right:none}}
+  .utag{position:absolute;top:12px;right:12px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink);background:var(--accent-soft);border:1px solid var(--lav);padding:3px 8px;border-radius:999px}
+  .uname{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700}
+  .udot{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .udesc{font-size:12px;color:var(--muted);margin:7px 0 16px;min-height:50px;line-height:1.4}
+  .uprice{display:flex;align-items:baseline;gap:4px}
+  .ubig{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .ubig sup{font-size:15px;font-weight:700}
+  .umo{font-size:12px;color:var(--muted)}
+  .ubilled{font-size:11.5px;color:var(--muted);margin-top:6px;min-height:16px}
+  .ucreds{font-size:13px;margin:16px 0}
+  .ucreds b{font-weight:700}
+  .uunit{font-size:11.5px;color:var(--muted);margin-top:3px}
+  .ucta{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:11px;text-decoration:none;margin-top:auto;transition:.15s;font-size:13.5px}
+  .ucta:hover{background:#000}
   .scard{border:1px solid var(--line);border-radius:18px;background:#fff;padding:24px 18px;position:relative;display:flex;flex-direction:column}
-  .scard-ent{border-style:dashed}
+  .scard-soft{background:var(--bg)}
+  .scard-soft h4{color:var(--muted)}
+  .scard-ent{border-style:dashed;border-color:var(--lav);background:var(--accent-soft)}
   .scard.popular{border-color:var(--accent);box-shadow:var(--shadow)}
   .scard .stag{position:absolute;top:14px;right:14px;background:linear-gradient(90deg,#6d5efc,#9b8bff);color:#fff;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:8px;letter-spacing:.02em}
   .scard h4{font-size:20px;font-weight:700}
@@ -98,7 +122,8 @@
   .scard .screds{font-size:14px;color:var(--muted);margin-top:6px}
   .scard .screds b{color:var(--ink);font-weight:700}
   .scard .sunit{font-size:12.5px;color:var(--accent-ink);font-weight:600;margin-top:3px}
-  .scard .scta{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:13px;text-decoration:none;margin-top:18px;transition:.15s}
+  .scard .scta{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:13px;text-decoration:none;margin-top:auto;transition:.15s}
+  .scard .screds{margin-bottom:18px}
   .scard .scta:hover{background:var(--accent-ink)}
   .scard .sdivider{border:none;border-top:1px solid var(--line);margin:18px 0}
   .scard ul.sfeat{list-style:none;margin:0;padding:0}
@@ -237,7 +262,7 @@
   .fgcell p{font-size:13px;color:var(--muted);line-height:1.55}
 
   /* CTA encuentra tu plan */
-  .findplan{margin-top:72px}
+  .findplan{margin-top:104px}
   .findplan-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--lav);border:1px solid var(--lav);border-radius:16px;padding:22px 26px}
   .findplan-cta h4{font-size:18px;color:var(--ink);margin-bottom:2px}
   .findplan-cta p{font-size:14px;color:var(--ink);opacity:.8}
@@ -319,6 +344,8 @@
     <button class="vtab" data-v="3.1" data-slug="anual-grid">Anual · grid</button>
     <button class="vtab" data-v="4.0" data-slug="mensual-grid-plegable">Mensual · grid plegable</button>
     <button class="vtab" data-v="4.1" data-slug="anual-grid-plegable">Anual · grid plegable</button>
+    <button class="vtab" data-v="2.0" data-slug="mensual-dividido">v2 · grid dividido</button>
+    <button class="vtab" data-href="pricing-con-asesoria.html">Planes pymes →</button>
   </div>
   <button class="vtabs-trigger" id="vtabsTrigger"><span id="vtabsCurrent">Mensual · tabla</span><span class="chev">▾</span></button>
 </div>
@@ -345,7 +372,7 @@
 
     <div id="allincl"></div>
 
-    <div style="height:40px"></div>
+    <div style="height:72px"></div>
     <div id="capSentinel"></div>
     <div class="cmp-clip" id="capClip"><table class="capsub" id="capSubTable"></table></div>
     <button class="cmp-vertodo" id="capVerTodo" hidden>Ver todo</button>
@@ -455,6 +482,7 @@ const SUB = [
 ];
 let subPay = {mult:1, splits:1};
 let version = 1.1;   // 1.1 = precio mensual · 1.11 = precio anual
+let layout = 'cards'; // 'cards' | 'divided' (v2)
 let selPlan = 'Avanzado';
 let v8vol = 800;
 let collapseTable = false;
@@ -469,6 +497,7 @@ function renderSub(){
   const billedMo = subPay.splits===1 ? 'Facturado anualmente'
                  : subPay.splits===2 ? 'Facturado dos veces al año'
                  : 'Facturado cuatro veces al año';
+  if(layout==='divided'){renderV2(cont); return;}
   if(version===4){renderV4(cont); return;}
   cont.className='subcards';
   const maxC=Math.max(...PACKS.map(p=>p.credits));
@@ -511,8 +540,7 @@ function renderSub(){
     } else {
       featBlock = `<ul class="sfeat">${facturasLi}</ul>`;
     }
-    return `<div class="scard ${s.popular?'popular':''}">
-      ${s.popular?'<div class="stag">MÁS POPULAR</div>':''}
+    return `<div class="scard ${s.name==='Starter'?'scard-soft':''}">
       <h4>${s.name}</h4>
       <div class="sdesc">${s.desc}</div>
       <div class="sprice">${priceHtml}</div>
@@ -520,6 +548,37 @@ function renderSub(){
       <div class="screds"><b>${fmt(pk.credits)}</b> créditos${credsTip}<div class="sunit">${eur3(pk.unit)} / crédito</div></div>
       <a href="#contacto" class="scta">Empezar ahora</a>
       ${featBlock ? `<hr class="sdivider">${featBlock}` : ''}
+    </div>`;
+  }).join('');
+}
+
+// v2 · contenedor único dividido (mensual)
+const UCOLORS={Starter:'#f59e0b', 'Básico':'#2f6df0', Avanzado:'#8b5cf6', Pro:'#ec4899', Enterprise:'#111827'};
+function renderV2(cont){
+  cont.className='uplans';
+  const pop='Avanzado';
+  cont.innerHTML = SUB.map(s=>{
+    const dot=`<span class="udot" style="background:${UCOLORS[s.name]||'#111827'}"></span>`;
+    if(s.enterprise){
+      return `<div class="uplan">
+        <div class="uname">${dot}${s.name}</div>
+        <p class="udesc">${s.desc}</p>
+        <div class="uprice"><span class="ubig" style="font-size:22px">A consultar</span></div>
+        <div class="ubilled">Plan a medida</div>
+        <div class="ucreds">+48.000 créditos</div>
+        <a href="#contacto" class="ucta">Contáctanos</a>
+      </div>`;
+    }
+    const pk=PACKS.find(p=>p.name===s.name);
+    const total=planTotal(pk);
+    const eqTip=`Equivale a ~${fmt(pk.credits/C.invoice)} facturas, ~${fmt(pk.credits/C.reconcile)} transacciones conciliadas o ~${fmt(pk.credits/C.doc)} documentos gestionados, si usaras todo el saldo en una sola función.`;
+    return `<div class="uplan">
+      <div class="uname">${dot}${s.name}</div>
+      <p class="udesc">${s.desc}</p>
+      <div class="uprice"><span class="ubig">${moHtmlOf(total)}</span><span class="umo">€/mes</span></div>
+      <div class="ubilled">${billedMonthly()}</div>
+      <div class="ucreds"><b>${fmt(pk.credits)}</b> créditos <span class="tip" tabindex="0" data-tip="${eqTip}">i</span><div class="uunit">${eur3(pk.unit)} / crédito</div></div>
+      <a href="#contacto" class="ucta">Empezar ahora</a>
     </div>`;
   }).join('');
 }
@@ -775,14 +834,16 @@ function activateTab(b){
   document.querySelectorAll('.vtab').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   const dv=b.dataset.v;
-  collapseTable = (dv==='4.0' || dv==='4.1');
-  version = dv==='4.0' ? 3 : dv==='4.1' ? 3.1 : +dv;
+  collapseTable = (dv==='4.0' || dv==='4.1' || dv==='2.0');
+  layout = (dv==='2.0') ? 'divided' : 'cards';
+  version = (dv==='2.0' || dv==='4.0') ? 3 : dv==='4.1' ? 3.1 : +dv;
   renderSub(); renderIncluded(); renderSubCap(); applyCollapse();
   const cur=document.getElementById('vtabsCurrent'); if(cur) cur.textContent=b.textContent;
   document.getElementById('vtabsWrap').classList.remove('open');
 }
 document.getElementById('vtabs').addEventListener('click',e=>{
   const b=e.target.closest('.vtab'); if(!b)return;
+  if(b.dataset.href){ location.href=b.dataset.href; return; }
   activateTab(b);
   if(b.dataset.slug) location.hash=b.dataset.slug;
 });
