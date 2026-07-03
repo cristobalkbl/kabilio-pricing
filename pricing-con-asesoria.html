@@ -48,7 +48,8 @@
   .psave s{color:#9aa7b5;text-decoration:line-through;margin-right:5px}
   .psave b{font-weight:700;color:var(--ink)}
   .ptag2{font-size:13.5px;font-weight:700;margin:16px 0 10px;min-height:20px}
-  .pusers{font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .pusers{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .pusers .vflogo{margin-left:0}
   .pcta{display:block;text-align:center;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:12px;text-decoration:none;transition:.15s}
   .pcta:hover{background:var(--accent-ink)}
   .pdiv{border:none;border-top:1px solid var(--line);margin:24px 0 16px}
@@ -57,6 +58,7 @@
   .plan li{font-size:13.5px;padding:7px 0 7px 24px;position:relative;color:var(--ink)}
   .plan li:before{content:"\2713";position:absolute;left:0;top:7px;color:var(--pc);font-weight:700}
   .pcmp{font-size:13px;font-weight:600;text-decoration:none;margin-top:auto}
+  .vflogo{height:18px;width:auto;margin-left:7px;vertical-align:middle}
 
   /* Tooltip */
   .tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--surface-2);color:var(--muted);font-size:10px;font-weight:700;font-style:normal;cursor:help;position:relative;vertical-align:middle;margin-left:4px}
@@ -69,6 +71,18 @@
   .banner .bic svg{width:22px;height:22px}
   .banner p{font-size:14px;color:var(--ink);line-height:1.5}
   .banner b{font-weight:700}
+
+  /* Banner ¿Eres una asesoría? */
+  .aseband{position:relative;overflow:hidden;margin:16px 0 44px;background:var(--accent);color:#fff;border-radius:20px;padding:46px 40px;min-height:210px;display:flex;align-items:center}
+  .aseband .txt{position:relative;z-index:2;max-width:600px}
+  .aseband .ase-eyebrow{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--lav);margin-bottom:10px}
+  .aseband h3{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.12;margin-bottom:10px}
+  .aseband p{font-size:15.5px;color:rgba(255,255,255,.85);line-height:1.55;margin-bottom:22px;max-width:470px}
+  .aseband a{display:inline-block;background:#fff;color:var(--accent);font-weight:600;font-size:14px;border-radius:11px;padding:13px 24px;text-decoration:none;transition:.15s}
+  .aseband a:hover{background:var(--lav)}
+  .ase-art{position:absolute;right:-8px;top:0;bottom:0;width:46%;z-index:1;pointer-events:none;-webkit-mask-image:linear-gradient(to right,transparent,#000 40%);mask-image:linear-gradient(to right,transparent,#000 40%)}
+  .ase-art svg{width:100%;height:100%;display:block}
+  @media(max-width:760px){.aseband{padding:34px 26px}.ase-art{display:none}}
 
   /* Banner recomendar a la asesoría */
   .refer{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -209,6 +223,29 @@
       <span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11a4 4 0 1 0-4-4"/><path d="M2 21a8 8 0 0 1 13.3-6"/><circle cx="8" cy="7" r="4"/><path d="M19 16v6"/><path d="M16 19h6"/></svg></span>
       <p><b>Todos los planes son para empresas cuya asesoría trabaja con Kabilio.</b> Tu asesor recibe tus facturas y gastos en tiempo real. ¿La tuya todavía no usa Kabilio? Recomiéndasela y trabajad juntos en la misma plataforma.</p>
       <a href="#" id="openRefer">Recomendar a mi asesoría</a>
+    </div>
+
+    <div class="aseband">
+      <div class="txt">
+        <span class="ase-eyebrow">Para despachos</span>
+        <h3>¿Eres una asesoría?</h3>
+        <p>Descubre los planes y precios de Kabilio pensados para asesorías y despachos que gestionan la contabilidad de varios clientes.</p>
+        <a href="index.html">Ver precios para asesorías →</a>
+      </div>
+      <div class="ase-art">
+        <svg viewBox="0 0 260 210" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M130 20 L236 66 L24 66 Z"/>
+          <rect x="26" y="72" width="208" height="12" rx="1"/>
+          <rect x="42" y="90" width="9" height="76"/>
+          <rect x="84" y="90" width="9" height="76"/>
+          <rect x="126" y="90" width="9" height="76"/>
+          <rect x="168" y="90" width="9" height="76"/>
+          <rect x="209" y="90" width="9" height="76"/>
+          <rect x="34" y="166" width="192" height="10" rx="1"/>
+          <rect x="22" y="182" width="216" height="11" rx="1"/>
+          <text x="130" y="56" text-anchor="middle" font-family="Manrope,sans-serif" font-size="22" font-weight="800" fill="rgba(255,255,255,.6)" stroke="none">€</text>
+        </svg>
+      </div>
     </div>
 
     <h2 class="cmp-title" id="cmp">Compara los planes</h2>
@@ -361,9 +398,10 @@
 </aside>
 
 <script>
+const VF='<svg class="vflogo" viewBox="0 0 330 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verifactu"><path d="M14 44 L40 74 L86 12" fill="none" stroke="#0b57b0" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 44 L40 74 L86 12" fill="none" stroke="#f4bf00" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><text x="88" y="64" font-family="Manrope,Arial,sans-serif" font-weight="800" font-style="italic" font-size="54" letter-spacing="-2"><tspan fill="#0b57b0">erif</tspan><tspan fill="#e02b1d">✳</tspan><tspan fill="#0b57b0">ctu</tspan></text></svg>';
 const PLANS=[
   {name:'Plus', color:'#111827', free:true, desc:'Para empezar a facturar y compartir tus gastos con tu asesoría.', tag:'Lo esencial para facturar con Verifactu', inc:'Lo que incluye:',
-   feats:['<b>20</b> facturas al mes','2 conexiones bancarias','Verifactu','Procesado de gastos ilimitado','Conciliación automática y dashboard','IVA a pagar/cobrar estimado','Informes básicos','Comunicación con tu asesoría y gestor documental']},
+   feats:['<b>20</b> facturas al mes','2 conexiones bancarias','Procesado de gastos ilimitado','Conciliación automática y dashboard','IVA a pagar/cobrar estimado','Informes básicos','Comunicación con tu asesoría y gestor documental']},
   {name:'Básico', color:'#2f6df0', mo:14, popular:true, desc:'Para negocios en marcha que facturan cada semana.', tag:'Más facturación y bancos sin límite', inc:'Todo lo de Plus, y además:',
    feats:['<b>80</b> facturas al mes','Conexiones bancarias ilimitadas','2 plantillas de factura','10 facturas recurrentes','Presupuestos','Facturas sin pie “Generado por Kabilio”']},
   {name:'Estándar', color:'#8b5cf6', mo:24, desc:'Para empresas con más volumen y tesorería que gestionar.', tag:'Máximo volumen y remesas bancarias', inc:'Todo lo de Básico, y además:',
@@ -391,7 +429,7 @@ function renderMode(mode){
       <div class="pprice"><span class="big">${big}</span>${mo}</div>
       <div class="psave">${save}</div>
       <div class="ptag2">${p.tag}</div>
-      <div class="pusers">1 usuario · asesoría incluida</div>
+      <div class="pusers">Asesoría incluida ${VF}</div>
       <a href="#" class="pcta">Empieza ahora →</a>
       <hr class="pdiv">
       <div class="pinc">${p.inc}</div>
