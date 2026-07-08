@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Calendario de comunicación · Kabilio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  :root{
+    --bg:#f3f0ec;--surface:#ffffff;--surface-2:#ece7df;--ink:#111827;--muted:#6b7280;
+    --line:#e4ded5;--accent-soft:#e9e3fd;--accent-ink:#3a2f7a;--lav:#ddd5fd;--pink:#f8d5e4;--ok:#1f7a4d;
+    --radius:18px;--shadow:0 1px 2px rgba(17,24,39,.04),0 10px 28px rgba(17,24,39,.07);
+    --font:'Manrope','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--ink);background:#fff;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .tabradio{position:absolute;width:0;height:0;opacity:0;pointer-events:none}
+  .layout{display:flex;align-items:flex-start;min-height:100vh}
+  .sidebar{position:sticky;top:0;align-self:flex-start;flex:0 0 256px;width:256px;height:100vh;background:var(--ink);color:#fff;display:flex;flex-direction:column;padding:18px 14px;overflow-y:auto;z-index:40}
+  .side-brand{display:flex;align-items:center;gap:10px;padding:6px 10px 16px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:14px}
+  .side-brand .kword{font-weight:800;font-size:19px;letter-spacing:-.01em;color:#fff}
+  .side-cap{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b85b8;padding:0 12px 8px}
+  .navlist{display:flex;flex-direction:column;gap:3px}
+  .navitem{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;font-size:14px;font-weight:600;color:#cfcadf;cursor:pointer;transition:background .12s,color .12s;line-height:1.2}
+  .navitem svg{width:18px;height:18px;flex:0 0 auto;color:#a8a2cf;transition:color .12s}
+  .navitem:hover{background:rgba(255,255,255,.07);color:#fff}
+  .navitem:hover svg{color:#fff}
+  #c-timeline:checked~.layout .nav-cli,
+  #c-mail1:checked~.layout .nav-cli,
+  #c-mail2:checked~.layout .nav-cli,
+  #c-mail3:checked~.layout .nav-cli,
+  #c-mail4:checked~.layout .nav-cli,
+  #c-pyme:checked~.layout .nav-pyme,
+  #c-pmail1:checked~.layout .nav-pyme,
+  #c-pmail2:checked~.layout .nav-pyme,
+  #c-pmail3:checked~.layout .nav-pyme,
+  #c-pmail4:checked~.layout .nav-pyme,
+  #c-pmail5:checked~.layout .nav-pyme,
+  #c-pmail6:checked~.layout .nav-pyme,
+  #c-pmail7:checked~.layout .nav-pyme,
+  #c-general:checked~.layout label.navitem[for="c-general"]{background:var(--lav);color:var(--accent-ink)}
+  #c-timeline:checked~.layout .nav-cli svg,
+  #c-mail1:checked~.layout .nav-cli svg,
+  #c-mail2:checked~.layout .nav-cli svg,
+  #c-mail3:checked~.layout .nav-cli svg,
+  #c-mail4:checked~.layout .nav-cli svg,
+  #c-pyme:checked~.layout .nav-pyme svg,
+  #c-pmail1:checked~.layout .nav-pyme svg,
+  #c-pmail2:checked~.layout .nav-pyme svg,
+  #c-pmail3:checked~.layout .nav-pyme svg,
+  #c-pmail4:checked~.layout .nav-pyme svg,
+  #c-pmail5:checked~.layout .nav-pyme svg,
+  #c-pmail6:checked~.layout .nav-pyme svg,
+  #c-pmail7:checked~.layout .nav-pyme svg,
+  #c-general:checked~.layout label.navitem[for="c-general"] svg{color:var(--accent-ink)}
+  #c-timeline:checked~.layout .subwrap[data-for="clientes"],
+  #c-mail1:checked~.layout .subwrap[data-for="clientes"],
+  #c-mail2:checked~.layout .subwrap[data-for="clientes"],
+  #c-mail3:checked~.layout .subwrap[data-for="clientes"],
+  #c-mail4:checked~.layout .subwrap[data-for="clientes"],
+  #c-pyme:checked~.layout .subwrap[data-for="pyme"],
+  #c-pmail1:checked~.layout .subwrap[data-for="pyme"],
+  #c-pmail2:checked~.layout .subwrap[data-for="pyme"],
+  #c-pmail3:checked~.layout .subwrap[data-for="pyme"],
+  #c-pmail4:checked~.layout .subwrap[data-for="pyme"],
+  #c-pmail5:checked~.layout .subwrap[data-for="pyme"],
+  #c-pmail6:checked~.layout .subwrap[data-for="pyme"],
+  #c-pmail7:checked~.layout .subwrap[data-for="pyme"]{display:block}
+  #c-mail1:checked~.layout label.subitem[for="c-mail1"],
+  #c-mail2:checked~.layout label.subitem[for="c-mail2"],
+  #c-mail3:checked~.layout label.subitem[for="c-mail3"],
+  #c-mail4:checked~.layout label.subitem[for="c-mail4"],
+  #c-pmail1:checked~.layout label.subitem[for="c-pmail1"],
+  #c-pmail2:checked~.layout label.subitem[for="c-pmail2"],
+  #c-pmail3:checked~.layout label.subitem[for="c-pmail3"],
+  #c-pmail4:checked~.layout label.subitem[for="c-pmail4"],
+  #c-pmail5:checked~.layout label.subitem[for="c-pmail5"],
+  #c-pmail6:checked~.layout label.subitem[for="c-pmail6"],
+  #c-pmail7:checked~.layout label.subitem[for="c-pmail7"]{color:#fff;font-weight:700}
+  .side-foot{margin-top:auto;padding:14px 12px 4px;border-top:1px solid rgba(255,255,255,.1);font-size:11.5px;line-height:1.5;color:#8b85b8}
+  .side-foot .back{display:inline-flex;align-items:center;gap:6px;color:#cdc6f5;font-weight:700;text-decoration:none;font-size:12.5px}
+  .side-foot .back:hover{color:#fff}
+  .content{flex:1 1 auto;min-width:0;max-width:940px;margin:0 auto;padding:34px 36px 48px}
+  .panel{display:none}
+  #c-timeline:checked~.layout #timeline,
+  #c-mail1:checked~.layout #mail1,
+  #c-mail2:checked~.layout #mail2,
+  #c-mail3:checked~.layout #mail3,
+  #c-mail4:checked~.layout #mail4,
+  #c-general:checked~.layout #general,
+  #c-pyme:checked~.layout #pyme,
+  #c-pmail1:checked~.layout #pmail1,
+  #c-pmail2:checked~.layout #pmail2,
+  #c-pmail3:checked~.layout #pmail3,
+  #c-pmail4:checked~.layout #pmail4,
+  #c-pmail5:checked~.layout #pmail5,
+  #c-pmail6:checked~.layout #pmail6,
+  #c-pmail7:checked~.layout #pmail7{display:block}
+  .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:16px}
+  h1{font-size:clamp(26px,4vw,36px);line-height:1.12;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+  .lead{font-size:17px;color:var(--muted);max-width:640px;line-height:1.55}
+  .ptitle{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+  .home-sec-k{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink);margin:32px 0 12px}
+  /* Hito principal */
+  .keybig{background:linear-gradient(135deg,#efeafe,#f8eef0);border:1px solid var(--lav);border-radius:var(--radius);padding:26px 28px;margin-top:26px}
+  .kbadge{display:inline-block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;background:var(--accent-ink);padding:5px 12px;border-radius:999px;margin-bottom:12px}
+  .keybig h2{font-size:22px;font-weight:800;letter-spacing:-.015em;margin-bottom:8px}
+  .keybig p{font-size:14.5px;color:#514b66;line-height:1.55;max-width:620px}
+  .keymeta{display:flex;gap:34px;flex-wrap:wrap;margin-top:20px}
+  .km-n{display:block;font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--accent-ink);line-height:1}
+  .km-l{display:block;font-size:12px;color:var(--muted);margin-top:5px}
+  .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:720px){.phases{grid-template-columns:1fr}}
+  .phase{border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .phase .ph-n{font-size:11px;font-weight:800;color:var(--accent-ink);text-transform:uppercase;letter-spacing:.04em}
+  .phase h4{font-size:15px;font-weight:800;margin:4px 0 5px}
+  .phase p{font-size:13px;color:var(--muted);line-height:1.5}
+  /* Timeline (clic -> detalle a la derecha) */
+  .tl-intro{color:var(--muted);font-size:14.5px;line-height:1.55;max-width:620px;margin-bottom:16px}
+  .tl-legend{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+  .tl-legend span{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--muted)}
+  .lg-client{display:inline-block;width:13px;height:13px;border-radius:50%;background:var(--pink);border:2px solid #e29ec2}
+  .lg-intern{display:inline-block;width:13px;height:13px;border-radius:3px;background:#fff;border:2px dashed #9aa2ad}
+  .tl-flex{display:flex;gap:28px;align-items:stretch}
+  @media(max-width:820px){.tl-flex{flex-direction:column}}
+  .tl{position:relative;padding-left:120px;flex:0 0 360px}
+  .tl::before{content:"";position:absolute;left:106px;top:16px;bottom:16px;width:2px;background:var(--line)}
+  .tlitem{display:block;position:relative;padding:13px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent;transition:background .14s,border-color .14s}
+  .tlitem:hover{background:var(--surface-2)}
+  .tl-date{position:absolute;left:-120px;top:16px;width:78px;text-align:right;font-size:10.5px;font-weight:700;color:var(--muted);line-height:1.35;letter-spacing:.01em}
+  .tl-dot{position:absolute;left:-22px;top:16px;width:18px;height:18px;border-radius:50%;background:#fff;z-index:1}
+  .tl-dot.client{background:var(--pink);border:2px solid #e29ec2}
+  .tl-dot.intern{background:#fff;border:2px dashed #9aa2ad;border-radius:4px}
+  .tl-t{display:flex;align-items:center;font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .tl-ic{display:inline-flex;flex:0 0 auto;margin-right:8px}
+  .tl-ic svg{width:16px;height:16px;color:var(--accent-ink)}
+  .tlitem.key .tl-dot{width:22px;height:22px;left:-24px;top:16px;background:var(--accent-ink);border:none;display:flex;align-items:center;justify-content:center}
+  .tlitem.key .tl-dot::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+  #h1:checked~.tl-flex label[for="h1"],
+  #h2:checked~.tl-flex label[for="h2"],
+  #h3:checked~.tl-flex label[for="h3"],
+  #h4:checked~.tl-flex label[for="h4"],
+  #h5:checked~.tl-flex label[for="h5"],
+  #h6:checked~.tl-flex label[for="h6"]{background:#fff;border-color:var(--lav);box-shadow:var(--shadow)}
+  /* Frame de detalle + flecha */
+  .tl-frame{position:relative;flex:1 1 auto;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 26px}
+  .fr-arrow{position:absolute;left:-8px;top:30px;width:14px;height:14px;background:#fff;border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg);transition:top .18s;z-index:2}
+  @media(max-width:820px){.fr-arrow{display:none}}
+  .tl-panel{display:none}
+  #h1:checked~.tl-flex .tl-panel.p1,
+  #h2:checked~.tl-flex .tl-panel.p2,
+  #h3:checked~.tl-flex .tl-panel.p3,
+  #h4:checked~.tl-flex .tl-panel.p4,
+  #h5:checked~.tl-flex .tl-panel.p5,
+  #h6:checked~.tl-flex .tl-panel.p6{display:block}
+  .tl-panel h3{font-size:20px;font-weight:800;letter-spacing:-.015em;margin-bottom:8px}
+  .tp-lead{font-size:14.5px;color:var(--muted);line-height:1.55;margin-bottom:16px}
+  .tp-sub{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink);margin:0 0 9px}
+  .tp-list{list-style:none;margin:0 0 16px;padding:0}
+  .tp-list li{font-size:13.5px;color:var(--ink);line-height:1.45;padding:6px 0 6px 23px;position:relative}
+  .tp-list li::before{content:"✓";position:absolute;left:0;top:6px;color:var(--ok);font-weight:800}
+  .tp-seq{counter-reset:sq;list-style:none;margin:0 0 16px;padding:0}
+  .tp-seq li{counter-increment:sq;position:relative;padding:6px 0 6px 28px;font-size:13.5px;line-height:1.45;color:var(--ink)}
+  .tp-seq li::before{content:counter(sq);position:absolute;left:0;top:4px;width:18px;height:18px;border-radius:50%;background:var(--lav);color:var(--accent-ink);font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .tp-rows{border-top:1px solid var(--line)}
+  .tp-row{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .tp-row b{flex:0 0 132px;color:var(--accent-ink);font-weight:700}
+  .tp-row span{color:var(--ink);line-height:1.5}
+  @media(max-width:820px){
+    .tl{flex:1 1 auto;width:100%;padding-left:26px}
+    .tl::before{left:8px}
+    .tl-date{position:static;left:auto;top:auto;width:auto;text-align:left;color:var(--accent-ink);margin-bottom:3px}
+    .tl-dot{left:-26px}
+    .tlitem.key .tl-dot{left:-28px}
+    .tl-frame{width:100%}
+  }
+  @media(max-width:560px){.tp-row{flex-direction:column;gap:3px}.tp-row b{flex:none}}
+  /* Por canal */
+  .chan{border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px}
+  .chan h4{font-size:15px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+  .chan h4 svg{width:17px;height:17px;color:var(--accent-ink)}
+  .chan ul{list-style:none;margin:6px 0 0;padding:0}
+  .chan li{font-size:13.5px;color:var(--ink);line-height:1.5;padding:7px 0 7px 108px;position:relative;border-top:1px solid var(--line)}
+  .chan li:first-child{border-top:none}
+  .chan li b{position:absolute;left:0;top:7px;font-size:11.5px;font-weight:800;color:var(--accent-ink);text-transform:uppercase;letter-spacing:.03em}
+  @media(max-width:560px){.chan li{padding:22px 0 7px 0}.chan li b{top:5px}}
+  /* Header móvil */
+  .mobilebar{display:none}
+  .mb-brand .kword{font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em}
+  .mb-burger{display:flex;align-items:center;cursor:pointer;color:#fff;padding:6px;margin:-6px}
+  .mb-burger svg{width:26px;height:26px}
+  .mb-burger .ic-x{display:none}
+  #mnav:checked~.layout .mobilebar .ic-open{display:none}
+  #mnav:checked~.layout .mobilebar .ic-x{display:block}
+  @media(max-width:860px){
+    .mobilebar{display:flex;align-items:center;justify-content:space-between;width:100%;position:sticky;top:0;z-index:60;background:var(--ink);padding:13px 18px}
+    .layout{flex-direction:column;align-items:stretch}
+    .sidebar{display:none;position:static;width:100%;height:auto;flex:0 0 auto;flex-direction:column;padding:10px 12px 16px;border-bottom:1px solid rgba(255,255,255,.12)}
+    #mnav:checked~.layout .sidebar{display:flex}
+    .side-brand,.side-cap{display:none}
+    .content{padding:24px 18px 36px;max-width:100%}
+  }
+  .mailbtn,.pmailbtn{margin-top:16px;background:var(--accent-soft);color:var(--accent-ink);border:none;font-family:inherit;font-weight:700;font-size:13px;padding:10px 15px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .mailbtn svg,.pmailbtn svg{width:15px;height:15px}
+  .mailbtn:hover,.pmailbtn:hover{background:var(--lav)}
+  .tl-mail{display:none;position:absolute;inset:0;z-index:5;background:#fff;border-radius:16px;overflow:auto}
+  .tl-flex.mail-open .tl-mail{display:block}
+  .tm-head{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;background:var(--surface-2);padding:11px 18px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border-bottom:1px solid var(--line)}
+  .mail-close{border:none;background:none;font-size:20px;line-height:1;color:var(--muted);cursor:pointer;padding:0 2px}
+  .mail-close:hover{color:var(--ink)}
+  .mail-panel{display:none;padding:18px}
+  .mail-panel.on{display:block}
+  .mb-head{padding:0 0 12px;border-bottom:1px solid var(--line)}
+  .mb-from{font-size:11.5px;color:var(--muted)}
+  .mb-subj{font-size:14.5px;font-weight:800;margin-top:3px;letter-spacing:-.01em;line-height:1.3}
+  .mb-body{padding-top:16px}
+  .mb-logo{font-weight:800;color:var(--accent-ink);font-size:15px;margin-bottom:12px}
+  .mb-body p{font-size:13px;color:var(--ink);line-height:1.55;margin-bottom:10px}
+  .mb-body ul{list-style:none;margin:0 0 14px;padding:0}
+  .mb-body li{font-size:13px;color:var(--ink);line-height:1.5;padding:5px 0 5px 22px;position:relative}
+  .mb-body li::before{content:"\2713";position:absolute;left:0;top:5px;color:var(--ok);font-weight:800}
+  .mb-video{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#1c1733,#3a2f7a);color:#fff;border-radius:10px;padding:13px 15px;margin-bottom:12px;font-size:13px;font-weight:600}
+  .mb-video .pv{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:10px;flex:0 0 auto}
+  .mb-cta{display:inline-block;background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:9px;text-decoration:none}
+  .mb-sign{color:var(--muted);font-size:12.5px;margin:12px 0 0}
+  .tl-dow{display:block;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink);margin-bottom:1px}
+  .mk-l{display:block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--accent-ink);margin-bottom:4px}
+  .mk-obj{margin-bottom:14px}
+  .mk-obj p{font-size:14px;color:var(--ink);line-height:1.5}
+  .mk-key{margin-bottom:14px}
+  .mk-key p{font-size:14px;color:var(--ink);line-height:1.5}
+  .tl-tbd{font-size:10px;font-weight:700;color:var(--muted);opacity:.6}
+  .tl-tbd::before{content:" · "}
+  .subwrap{display:none;margin:3px 0 8px 22px;padding-left:14px;border-left:1px solid rgba(255,255,255,.10)}
+  .subitem{display:block;padding:6px 2px;font-size:13px;font-weight:500;color:#948eb5;cursor:pointer;line-height:1.4}
+  .subitem:hover{color:#fff}
+  .email{max-width:600px;margin:0 auto}
+  .em-subjline{font-size:13px;color:var(--ink);margin-bottom:6px}
+  .em-subjline b{color:var(--accent-ink);text-transform:uppercase;font-size:10.5px;letter-spacing:.05em;margin-right:8px}
+  .em-pre{font-size:12px;color:var(--muted);margin-bottom:16px}
+  .em-pre b{font-weight:700}
+  .em-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .em-header{padding:18px 28px;border-bottom:1px solid var(--line)}
+  .em-logo{font-weight:800;font-size:20px;color:var(--accent-ink);letter-spacing:-.01em}
+  .em-hero{background:linear-gradient(135deg,#efeafe,#f8eef0);padding:28px}
+  .em-hero h1{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+  .em-body{padding:26px 28px}
+  .em-body p{font-size:14.5px;line-height:1.6;color:var(--ink);margin-bottom:14px}
+  .em-sub{font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink);margin:2px 0 10px}
+  .em-list{list-style:none;margin:0 0 20px;padding:0}
+  .em-list li{font-size:14px;line-height:1.5;color:var(--ink);padding:7px 0 7px 26px;position:relative}
+  .em-list li::before{content:"\2713";position:absolute;left:0;top:7px;color:var(--ok);font-weight:800}
+  .em-btn{display:inline-block;background:var(--ink);color:#fff;font-weight:700;font-size:14px;padding:13px 26px;border-radius:11px;text-decoration:none}
+  .em-video{display:flex;align-items:center;gap:11px;background:linear-gradient(135deg,#1c1733,#3a2f7a);color:#fff;border-radius:12px;padding:16px 18px;margin-bottom:18px;font-size:14px;font-weight:600}
+  .em-video .pv{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:12px;flex:0 0 auto}
+  .em-sign{font-size:14px;color:var(--muted);margin:6px 0 0}
+  .em-foot{background:var(--surface-2);padding:18px 28px;font-size:11.5px;color:var(--muted);line-height:1.6;text-align:center}
+  .em-foot a{color:var(--accent-ink);text-decoration:underline}
+  .em-media{border-radius:12px;overflow:hidden;margin-bottom:18px;position:relative;display:flex;align-items:center;justify-content:center}
+  .em-media.img{min-height:150px;background:linear-gradient(135deg,#ddd5fd,#f8d5e4)}
+  .em-media.img .ph-ic{width:40px;height:40px;color:rgba(58,47,122,.55)}
+  .em-media.video{min-height:180px;flex-direction:column;gap:12px;background:linear-gradient(135deg,#1c1733,#3a2f7a);color:#fff}
+  .em-media.video.ceo{min-height:210px}
+  .em-play{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center}
+  .em-play svg{width:22px;height:22px;margin-left:3px;color:#fff}
+  .em-vcap{font-size:13px;font-weight:600;color:#e7e3fb;max-width:82%;text-align:center;line-height:1.4}
+  .em-mcap{position:absolute;bottom:10px;left:14px;font-size:11px;font-weight:600;color:var(--accent-ink);background:rgba(255,255,255,.78);padding:3px 9px;border-radius:999px}
+  .em-btns{display:flex;gap:10px;flex-wrap:wrap}
+  .em-btn.ghost{background:#fff;color:var(--accent-ink);border:1px solid var(--lav)}
+  .matrix-note{font-size:12px;color:var(--muted);margin-top:12px}
+  .matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin-top:8px}
+  .matrix{border-collapse:collapse;width:100%;min-width:680px;font-size:12px}
+  .matrix th,.matrix td{border-bottom:1px solid var(--line)}
+  .matrix thead th{background:var(--surface-2);font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-size:9.5px;padding:7px 4px;text-align:center;border-left:1px solid var(--line)}
+  .matrix thead tr:first-child th{font-size:11px;color:var(--ink);padding:8px 4px}
+  .mx-med{position:sticky;left:0;background:#fff;text-align:left;padding:10px 14px;font-size:12.5px;font-weight:700;color:var(--ink);min-width:190px;border-right:1px solid var(--line);z-index:1}
+  .matrix thead .mx-med{background:var(--surface-2)}
+  .matrix tbody td{height:42px;border-left:1px solid var(--line);position:relative}
+  .matrix td .bar{position:absolute;left:0;right:0;top:12px;height:16px;background:var(--lav)}
+  .matrix td.s .bar{left:5px;border-radius:9px 0 0 9px}
+  .matrix td.e .bar{right:5px;border-radius:0 9px 9px 0}
+  .matrix td.s.e .bar{left:5px;right:5px;border-radius:9px}
+  .matrix tr.base td .bar{background:var(--accent-ink)}
+  .matrix tbody th.mx-med .mx-ic{display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--lav);margin-right:9px;vertical-align:1px}
+  .matrix tbody tr.base th.mx-med .mx-ic{background:var(--accent-ink)}
+  .flow{position:relative;margin-top:8px}
+  .flow::before{content:"";position:absolute;left:109px;top:8px;bottom:14px;width:2px;background:var(--line)}
+  .fstep{position:relative;display:grid;grid-template-columns:96px 1fr;gap:26px;padding-bottom:16px}
+  .fs-trigger{text-align:right;font-size:11.5px;font-weight:800;color:var(--accent-ink);padding-top:16px;line-height:1.3}
+  .fs-trigger .beh{display:block;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px}
+  .fs-dot{position:absolute;left:102px;top:18px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--lav);z-index:1}
+  .fstep.beh .fs-dot{border-style:dashed;border-color:#9aa2ad}
+  .fs-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 18px;box-shadow:var(--shadow)}
+  .fstep.beh .fs-card{border-style:dashed}
+  .fs-ch{display:inline-block;font-size:10.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:3px 9px;border-radius:999px;margin-bottom:8px}
+  .fs-card h3{font-size:15.5px;font-weight:800;letter-spacing:-.01em;margin-bottom:5px}
+  .fs-card p{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0 0 9px}
+  .fs-cta{font-size:12.5px;font-weight:700;color:var(--ink)}
+  .fs-cta::before{content:"→ "}
+  @media(max-width:600px){.flow::before,.fs-dot{display:none}.fstep{grid-template-columns:1fr;gap:6px}.fs-trigger{text-align:left;padding-top:0}}
+  .tl-dot.beh{background:#fff;border:2px dashed #9aa2ad}
+  .lg-beh{display:inline-block;width:13px;height:13px;border-radius:50%;background:#fff;border:2px dashed #9aa2ad}
+  #ph1:checked~.tl-flex label[for="ph1"],
+  #ph2:checked~.tl-flex label[for="ph2"],
+  #ph3:checked~.tl-flex label[for="ph3"],
+  #ph4:checked~.tl-flex label[for="ph4"],
+  #ph5:checked~.tl-flex label[for="ph5"],
+  #ph6:checked~.tl-flex label[for="ph6"],
+  #ph7:checked~.tl-flex label[for="ph7"]{background:#fff;border-color:var(--lav);box-shadow:var(--shadow)}
+  #ph1:checked~.tl-flex .tl-panel.pp1,
+  #ph2:checked~.tl-flex .tl-panel.pp2,
+  #ph3:checked~.tl-flex .tl-panel.pp3,
+  #ph4:checked~.tl-flex .tl-panel.pp4,
+  #ph5:checked~.tl-flex .tl-panel.pp5,
+  #ph6:checked~.tl-flex .tl-panel.pp6,
+  #ph7:checked~.tl-flex .tl-panel.pp7{display:block}
+  #c-anew:checked~.layout .nav-anew,
+  #c-amail1:checked~.layout .nav-anew,
+  #c-amail2:checked~.layout .nav-anew,
+  #c-amail3:checked~.layout .nav-anew,
+  #c-amail4:checked~.layout .nav-anew,
+  #c-amail5:checked~.layout .nav-anew,
+  #c-amail6:checked~.layout .nav-anew{background:var(--lav);color:var(--accent-ink)}
+  #c-anew:checked~.layout .nav-anew svg,
+  #c-amail1:checked~.layout .nav-anew svg,
+  #c-amail2:checked~.layout .nav-anew svg,
+  #c-amail3:checked~.layout .nav-anew svg,
+  #c-amail4:checked~.layout .nav-anew svg,
+  #c-amail5:checked~.layout .nav-anew svg,
+  #c-amail6:checked~.layout .nav-anew svg{color:var(--accent-ink)}
+  #c-anew:checked~.layout .subwrap[data-for="anew"],
+  #c-amail1:checked~.layout .subwrap[data-for="anew"],
+  #c-amail2:checked~.layout .subwrap[data-for="anew"],
+  #c-amail3:checked~.layout .subwrap[data-for="anew"],
+  #c-amail4:checked~.layout .subwrap[data-for="anew"],
+  #c-amail5:checked~.layout .subwrap[data-for="anew"],
+  #c-amail6:checked~.layout .subwrap[data-for="anew"]{display:block}
+  #c-amail1:checked~.layout label.subitem[for="c-amail1"],
+  #c-amail2:checked~.layout label.subitem[for="c-amail2"],
+  #c-amail3:checked~.layout label.subitem[for="c-amail3"],
+  #c-amail4:checked~.layout label.subitem[for="c-amail4"],
+  #c-amail5:checked~.layout label.subitem[for="c-amail5"],
+  #c-amail6:checked~.layout label.subitem[for="c-amail6"]{color:#fff;font-weight:700}
+  #c-anew:checked~.layout #anew,
+  #c-amail1:checked~.layout #amail1,
+  #c-amail2:checked~.layout #amail2,
+  #c-amail3:checked~.layout #amail3,
+  #c-amail4:checked~.layout #amail4,
+  #c-amail5:checked~.layout #amail5,
+  #c-amail6:checked~.layout #amail6{display:block}
+  #ah1:checked~.tl-flex label[for="ah1"],
+  #ah2:checked~.tl-flex label[for="ah2"],
+  #ah3:checked~.tl-flex label[for="ah3"],
+  #ah4:checked~.tl-flex label[for="ah4"],
+  #ah5:checked~.tl-flex label[for="ah5"],
+  #ah6:checked~.tl-flex label[for="ah6"]{background:#fff;border-color:var(--lav);box-shadow:var(--shadow)}
+  #ah1:checked~.tl-flex .tl-panel.ap1,
+  #ah2:checked~.tl-flex .tl-panel.ap2,
+  #ah3:checked~.tl-flex .tl-panel.ap3,
+  #ah4:checked~.tl-flex .tl-panel.ap4,
+  #ah5:checked~.tl-flex .tl-panel.ap5,
+  #ah6:checked~.tl-flex .tl-panel.ap6{display:block}
+  .amailbtn{margin-top:16px;background:var(--accent-soft);color:var(--accent-ink);border:none;font-family:inherit;font-weight:700;font-size:13px;padding:10px 15px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .amailbtn svg{width:15px;height:15px}
+  .amailbtn:hover{background:var(--lav)}
+  .tlitem.beh{margin-left:26px}
+  .tlitem.beh .tl-dot::after{content:"";position:absolute;right:100%;top:50%;transform:translateY(-50%);width:24px;height:2px;background:var(--line)}
+  .tlitem.beh .tl-t::before{content:"\21b3";color:#9aa2ad;font-weight:800;margin-right:7px}
+  #h7:checked~.tl-flex label[for="h7"],#h8:checked~.tl-flex label[for="h8"]{background:#fff;border-color:var(--lav);box-shadow:var(--shadow)}
+  #h7:checked~.tl-flex .tl-panel.p7,#h8:checked~.tl-flex .tl-panel.p8{display:block}
+  .em-datebox{display:flex;align-items:center;gap:14px;background:var(--accent-soft);border:1px solid var(--lav);border-radius:12px;padding:16px 18px;margin:2px 0 18px}
+  .em-db-ic{flex:0 0 auto;width:42px;height:42px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--accent-ink)}
+  .em-db-ic svg{width:22px;height:22px}
+  .em-db-l{display:block;font-size:12px;font-weight:700;color:var(--accent-ink)}
+  .em-db-v{display:block;font-size:19px;font-weight:800;letter-spacing:-.01em;color:var(--ink);line-height:1.2}
+  .em-db-note{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+
+<input type="radio" name="ctab" id="c-timeline" class="tabradio" checked>
+<input type="radio" name="ctab" id="c-mail1" class="tabradio">
+<input type="radio" name="ctab" id="c-mail2" class="tabradio">
+<input type="radio" name="ctab" id="c-mail3" class="tabradio">
+<input type="radio" name="ctab" id="c-mail4" class="tabradio">
+<input type="radio" name="ctab" id="c-general" class="tabradio">
+<input type="radio" name="ctab" id="c-pyme" class="tabradio">
+<input type="radio" name="ctab" id="c-pmail1" class="tabradio">
+<input type="radio" name="ctab" id="c-pmail2" class="tabradio">
+<input type="radio" name="ctab" id="c-pmail3" class="tabradio">
+<input type="radio" name="ctab" id="c-pmail4" class="tabradio">
+<input type="radio" name="ctab" id="c-pmail5" class="tabradio">
+<input type="radio" name="ctab" id="c-pmail6" class="tabradio">
+<input type="radio" name="ctab" id="c-pmail7" class="tabradio">
+<input type="radio" name="ctab" id="c-anew" class="tabradio">
+<input type="radio" name="ctab" id="c-amail1" class="tabradio">
+<input type="radio" name="ctab" id="c-amail2" class="tabradio">
+<input type="radio" name="ctab" id="c-amail3" class="tabradio">
+<input type="radio" name="ctab" id="c-amail4" class="tabradio">
+<input type="radio" name="ctab" id="c-amail5" class="tabradio">
+<input type="radio" name="ctab" id="c-amail6" class="tabradio">
+<input type="checkbox" id="mnav" class="tabradio">
+
+<div class="layout">
+
+  <div class="mobilebar">
+    <span class="mb-brand"><span class="kword">kabilio</span></span>
+    <label class="mb-burger" for="mnav" aria-label="Abrir o cerrar menú">
+      <svg class="ic-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </label>
+  </div>
+
+  <aside class="sidebar">
+    <div class="side-brand"><span class="kword">kabilio</span></div>
+    <div class="side-cap">Calendario de comunicación</div>
+    <nav class="navlist">
+      <label class="navitem nav-cli" for="c-timeline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v16"/><circle cx="5" cy="8" r="2"/><circle cx="5" cy="16" r="2"/><path d="M9 8h11M9 16h11"/></svg><span>Asesorías actuales</span></label>
+      <div class="subwrap" data-for="clientes">
+        <label class="subitem" for="c-mail1">El nuevo Kabilio</label>
+        <label class="subitem" for="c-mail2">Prepárate para el lanzamiento</label>
+        <label class="subitem" for="c-mail3">Lanzamiento</label>
+        <label class="subitem" for="c-mail4">Activa tu cartera</label>
+      </div>
+      <label class="navitem nav-anew" for="c-anew"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M18 8v6M15 11h6"/></svg><span>Asesorías nuevas</span></label>
+      <div class="subwrap" data-for="anew">
+        <label class="subitem" for="c-amail1">Bienvenida al asesor</label>
+        <label class="subitem" for="c-amail2">Empieza por 5 clientes</label>
+        <label class="subitem" for="c-amail3">¿Empezamos con tu cartera?</label>
+        <label class="subitem" for="c-amail4">Da un empujón a tu cartera</label>
+        <label class="subitem" for="c-amail5">Cómo va tu cartera</label>
+        <label class="subitem" for="c-amail6">¿Lo vemos juntos?</label>
+      </div>
+      <label class="navitem nav-pyme" for="c-pyme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1-4h14l1 4"/><path d="M5 9v10h14V9"/><path d="M4 9a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/></svg><span>Pyme (tras el alta)</span></label>
+      <div class="subwrap" data-for="pyme">
+        <label class="subitem" for="c-pmail1">Bienvenida</label>
+        <label class="subitem" for="c-pmail2">Tu primera factura</label>
+        <label class="subitem" for="c-pmail3">Conecta tu banco</label>
+        <label class="subitem" for="c-pmail4">¿Te ayudamos a empezar?</label>
+        <label class="subitem" for="c-pmail5">Al día con Verifactu</label>
+        <label class="subitem" for="c-pmail6">Tu asesoría, conectada</label>
+        <label class="subitem" for="c-pmail7">Saca más partido</label>
+      </div>
+    </nav>
+    <div class="side-foot">
+      <a class="back" href="pagina-asesor.html"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg> Volver al portal</a>
+      <div style="margin-top:8px">Uso interno · plan de lanzamiento.</div>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <!-- RESUMEN -->
+    <!-- LÍNEA DE TIEMPO -->
+    <section class="panel" id="timeline">
+      <h2 class="ptitle">Comunicación · asesorías actuales</h2>
+      <p class="tl-intro">Plan de comunicación para las asesorías ya conectadas. Haz clic en cada hito para ver objetivo, mensaje clave y key messages; en los correos puedes abrir el correo tipo.</p>
+      <div class="tl-legend"><span><i class="lg-client"></i> Comunicación al cliente</span><span><i class="lg-intern"></i> Trabajo interno</span></div>
+      <input type="radio" name="hito" id="h1" class="tabradio" checked>
+      <input type="radio" name="hito" id="h2" class="tabradio">
+      <input type="radio" name="hito" id="h3" class="tabradio">
+      <input type="radio" name="hito" id="h4" class="tabradio">
+      <input type="radio" name="hito" id="h6" class="tabradio">
+      <input type="radio" name="hito" id="h7" class="tabradio">
+      <input type="radio" name="hito" id="h8" class="tabradio">
+      
+      <div class="tl-flex">
+        <div class="tl">
+        <label class="tlitem" for="h1"><span class="tl-dot client"></span><div class="tl-date"><span class="tl-dow">Martes</span>1 Sep 2026<span class="tl-tbd">TBD</span></div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>El nuevo Kabilio</div></label>
+        <label class="tlitem" for="h2"><span class="tl-dot client"></span><div class="tl-date"><span class="tl-dow">Martes</span>15 Sep 2026<span class="tl-tbd">TBD</span></div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Prepárate para el lanzamiento</div></label>
+        <label class="tlitem key" for="h3"><span class="tl-dot"></span><div class="tl-date"><span class="tl-dow">Martes</span>22 Sep 2026<span class="tl-tbd">TBD</span></div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Lanzamiento</div></label>
+        <label class="tlitem" for="h4"><span class="tl-dot client"></span><div class="tl-date"><span class="tl-dow">Martes</span>29 Sep 2026<span class="tl-tbd">TBD</span></div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Activa tu cartera</div></label>
+        <label class="tlitem beh" for="h7"><span class="tl-dot beh"></span><div class="tl-date">Si no invita</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Recordatorio de activación</div></label>
+        <label class="tlitem beh" for="h8"><span class="tl-dot beh"></span><div class="tl-date">Sin actividad</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Oferta de ayuda 1:1</div></label>
+        <label class="tlitem" for="h6"><span class="tl-dot intern"></span><div class="tl-date"><span class="tl-dow">Martes</span>1 Dic 2026<span class="tl-tbd">TBD</span></div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 15l4-5 3 3 4-6"/></svg></span>Seguimiento y optimización</div></label>
+        </div>
+        <div class="tl-frame">
+          <div class="fr-arrow"></div>
+        <div class="tl-panel p1"><h3>Correo · el nuevo Kabilio</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Anunciar la evolución de Kabilio y el nuevo modelo de planes por créditos, con enlace al pricing en detalle.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Los planes pasan a funcionar por créditos para todo Kabilio, y llega el portal colaborativo para tus clientes.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Antes pagabas por facturas procesadas o movimientos conciliados; ahora es un saldo de créditos compartido para todas las funcionalidades de Kabilio (procesador, conciliador y más).</li><li>Portal colaborativo: ofrece gratis a tus clientes facturación electrónica y conexión bancaria.</li><li>Como sus datos llegan ya procesados, gastas menos créditos.</li><li>Enlace al nuevo plan de precios en detalle.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesorías conectadas</span></div><div class="tp-row"><b>CTA</b><span>Ver el nuevo plan de precios</span></div></div><button type="button" class="mailbtn" data-mail="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel p2"><h3>Correo · prepárate para el lanzamiento</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Que las asesorías se preparen para el lanzamiento: se apunten al webinar y exploren su portal del asesor.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Prepárate para el lanzamiento: apúntate al webinar y explora tu portal del asesor.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Webinar de preparación: qué cambia y cómo presentarlo a tus clientes.</li><li>Explora el portal del asesor: material para presentar los planes a cada cliente.</li><li>Comunicaciones personalizadas y generador de documentos listos.</li><li>La activación de clientes llega con el lanzamiento; por ahora, prepararse.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesorías conectadas</span></div><div class="tp-row"><b>CTA</b><span>Apuntarme al webinar</span></div></div><button type="button" class="mailbtn" data-mail="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel p3"><h3>Correo de lanzamiento</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Anunciar que el nuevo Kabilio ya está disponible con todo incluido e invitar a activar a los clientes en el facturador.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>El nuevo Kabilio ya está aquí con todo incluido: conciliador y portal colaborativo, con facturación electrónica gratuita para tus clientes y tu asesoría conectada con ellos en tiempo real.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Todo incluido: conciliador y portal colaborativo para ti y tu cliente.</li><li>Facturación electrónica gratuita para tus clientes.</li><li>Conectado en tiempo real: sin pedir facturas a final de mes.</li><li>Invita a tus clientes a facturar con Kabilio: varios planes, y uno gratuito.</li><li>Acceso al portal del cliente.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email · portal pyme · portal asesor</span></div><div class="tp-row"><b>Audiencia</b><span>Asesorías y sus pymes</span></div><div class="tp-row"><b>CTA</b><span>Empezar ahora</span></div></div><button type="button" class="mailbtn" data-mail="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel p4"><h3>Correo · activa tu cartera</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Que las asesorías activen a su cartera desde la plataforma Kabilio.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Activa a tu cartera en minutos: invítalos desde la plataforma y recibirán su correo de invitación.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Invita a tu cartera desde la plataforma Kabilio.</li><li>Cada cliente recibe un correo de invitación para activarse.</li><li>Sigue quién ha activado y quién queda pendiente.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email + portal del asesor</span></div><div class="tp-row"><b>Audiencia</b><span>Asesorías conectadas</span></div><div class="tp-row"><b>CTA</b><span>Invitar a mi cartera</span></div></div><button type="button" class="mailbtn" data-mail="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel p7"><h3>Recordatorio de activación</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Reactivar a la asesoría que aún no ha empezado a invitar.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>¿Ya empezaste? Empieza por 3 clientes.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Recordatorio directo con enlace a la plataforma.</li><li>Sugerencia: empieza por 3 clientes fáciles.</li><li>Oferta de ayuda si la necesita.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesorías sin invitaciones</span></div><div class="tp-row"><b>Disparador</b><span>Comportamiento · +5 días sin invitar</span></div></div></div>
+        <div class="tl-panel p8"><h3>Oferta de ayuda 1:1</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Ayudar a la asesoría que sigue sin activar su cartera.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>¿Lo vemos juntos? Agenda una llamada con tu gestor.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Sesión 1:1 con su gestor.</li><li>Revisión de su cartera y plan a medida.</li><li>Desbloquear lo que le frena.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesorías sin actividad</span></div><div class="tp-row"><b>Disparador</b><span>Comportamiento · +10 días sin actividad</span></div></div></div>
+        <div class="tl-panel p6"><h3>Seguimiento y optimización</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Medir la activación por asesoría y optimizar los mensajes que mejor funcionan.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Aprender qué funciona para escalar la activación en la siguiente ola.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Métricas de activación por asesoría.</li><li>Casos de éxito para reutilizar.</li><li>Ajuste de los correos que mejor convierten.</li></ul><div class="tp-rows"><div class="tp-row"><b>Responsable</b><span>Marketing · Data</span></div><div class="tp-row"><b>Entregable</b><span>Informe de métricas y casos de éxito</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR CANAL -->
+
+    <section class="panel" id="mail1">
+      <h2 class="ptitle">El nuevo Kabilio</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>El nuevo Kabilio: más producto y una nueva forma de planes</div>
+        <div class="em-pre"><b>Preheader:</b> Ahora con créditos para todo Kabilio y un portal colaborativo para tus clientes.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>El nuevo Kabilio ya está en camino</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Kabilio evoluciona, y con él cambia la forma de los planes. Ahora Kabilio funciona con <b>créditos</b> que puedes usar en todas sus funcionalidades —procesador, conciliador y el resto—, en lugar de contar facturas procesadas o movimientos conciliados por separado.</p><div class="em-media img"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg><span class="em-mcap">Imagen · equipo y producto Kabilio</span></div><div class="em-sub">Cómo funcionan los planes ahora</div><ul class="em-list"><li><b>Antes:</b> pagabas por facturas procesadas o movimientos conciliados, por separado. <b>Ahora:</b> un saldo de <b>créditos compartido</b> para todas las funcionalidades de Kabilio (procesador, conciliador y más).</li><li>Puedes revisar el <b>nuevo plan de precios</b> en detalle en el enlace de abajo.</li></ul><div class="em-sub">Y una novedad clave: el portal colaborativo</div><ul class="em-list"><li>Ofrece <b>gratis</b> a tus clientes que <b>facturen electrónicamente</b> y conecten sus <b>cuentas bancarias</b>.</li><li>Como sus datos te llegan ya procesados, <b>gastas menos créditos</b> de procesador y conciliador.</li></ul><a class="em-btn">Ver el nuevo plan de precios</a><p class="em-sign">Hay más novedades en el portal; te las iremos contando.<br>— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="mail2">
+      <h2 class="ptitle">Prepárate para el lanzamiento</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Prepárate para el lanzamiento del nuevo Kabilio</div>
+        <div class="em-pre"><b>Preheader:</b> Apúntate al webinar y explora tu portal del asesor.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Prepárate para el lanzamiento</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>El nuevo Kabilio está a punto de llegar. Antes del lanzamiento, prepárate para presentarlo a tus clientes: apúntate al webinar y explora tu portal del asesor.</p><div class="em-datebox"><span class="em-db-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><div><span class="em-db-l">El lanzamiento es el</span><span class="em-db-v">22 de septiembre de 2026</span><span class="em-db-note">Fecha tentativa · por confirmar</span></div></div><div class="em-media video"><span class="em-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="em-vcap">Webinar de preparación · fecha TBD</span></div><div class="em-sub">Webinar de preparación</div><ul class="em-list"><li>Te contamos qué cambia con el nuevo Kabilio.</li><li>Cómo presentarlo a tus clientes y resolver dudas.</li></ul><div class="em-sub">Explora tu portal del asesor</div><ul class="em-list"><li>Materiales para presentar los distintos planes a cada cliente.</li><li>Comunicaciones personalizadas listas para usar.</li><li>Generador de documento co-branded con tu logo.</li></ul><p style="font-size:13px;color:var(--muted);line-height:1.5">La activación de tus clientes llega con el lanzamiento; por ahora, se trata de que llegues preparado.</p><div class="em-btns"><a class="em-btn">Apuntarme al webinar</a><a class="em-btn ghost">Ir al portal del asesor</a></div><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="mail3">
+      <h2 class="ptitle">Lanzamiento</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Ya está aquí: el nuevo Kabilio</div>
+        <div class="em-pre"><b>Preheader:</b> Todo incluido: conciliador, portal colaborativo y facturación gratis para tus clientes.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>El nuevo Kabilio ya está disponible</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Hoy es el día. El <b>nuevo Kabilio</b> ya está disponible, con <b>todas las funcionalidades incluidas</b>.</p><div class="em-media video ceo"><span class="em-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="em-vcap">Vídeo · nuestro CEO te explica los cambios principales (1 min)</span></div><div class="em-sub">Todo incluido en el nuevo Kabilio</div><ul class="em-list"><li>Conciliador bancario y <b>portal colaborativo</b> para ti y tu cliente.</li><li><b>Facturación electrónica gratuita</b> para tus clientes.</li><li>Tu asesoría <b>conectada con tu cliente en tiempo real</b>, sin pedir facturas a final de mes.</li></ul><div class="em-sub">Invita a tus clientes a facturar con Kabilio</div><ul class="em-list"><li>Tenemos varios planes — y uno es <b>gratuito</b>.</li><li>Ellos facturan fácil; a ti te llega todo ya procesado.</li></ul><div class="em-btns"><a class="em-btn">Empezar ahora</a><a class="em-btn ghost">Ver el portal del cliente</a></div><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="mail4">
+      <h2 class="ptitle">Activa tu cartera</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Activa a tu cartera en Kabilio</div>
+        <div class="em-pre"><b>Preheader:</b> Invítalos desde la plataforma; cada cliente recibe su correo de invitación.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Activa a tu cartera en minutos</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Ahora que el nuevo Kabilio ya está en marcha, es el momento de <b>activar a tu cartera</b>. Se hace en minutos desde la <b>plataforma Kabilio</b>.</p><div class="em-media img"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg><span class="em-mcap">Imagen · invita a tu cartera</span></div><div class="em-sub">Cómo funciona</div><ul class="em-list"><li>Invita a tu cartera desde la plataforma Kabilio.</li><li>Cada cliente recibe un correo de invitación para activarse.</li><li>Sigue quién ha activado y a quién recordárselo.</li></ul><a class="em-btn">Invitar a mi cartera</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="general">
+      <h2 class="ptitle">Difusión general</h2>
+      <p class="tl-intro">La campaña para el mercado, más allá de las asesorías ya conectadas. Se apoya en el vídeo de awareness como pieza central, correos masivos, el plan de PR y las redes. Vista por semanas (Sep–Dic).</p>
+      <div class="matrix-wrap"><table class="matrix">
+        <thead><tr><th class="mx-med"></th><th colspan="4">Sep</th><th colspan="4">Oct</th><th colspan="4">Nov</th><th colspan="4">Dic</th></tr><tr><th class="mx-med">Medio</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th></tr></thead>
+        <tbody>
+        <tr class="base"><th class="mx-med"><span class="mx-ic"></span>Vídeo de awareness</th><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="on s"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on e"><span class="bar"></span></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr>
+        <tr><th class="mx-med"><span class="mx-ic"></span>Correos masivos</th><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="on s"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on e"><span class="bar"></span></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr>
+        <tr><th class="mx-med"><span class="mx-ic"></span>Plan de PR</th><td class=""></td><td class=""></td><td class="on s"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on e"><span class="bar"></span></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr>
+        <tr><th class="mx-med"><span class="mx-ic"></span>Redes y paid media</th><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="on s"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on e"><span class="bar"></span></td></tr>
+        <tr><th class="mx-med"><span class="mx-ic"></span>Web y landing de campaña</th><td class=""></td><td class=""></td><td class=""></td><td class="on s"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on"><span class="bar"></span></td><td class="on e"><span class="bar"></span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="matrix-note">Semanas orientativas · fechas por confirmar (TBD). El vídeo de awareness (fila destacada) es la pieza base de la que cuelga la difusión.</p>
+        </section>
+
+    <section class="panel" id="pyme">
+      <h2 class="ptitle">Comunicación a la pyme (tras el alta)</h2>
+      <p class="tl-intro">Solo podemos comunicarnos con la pyme una vez se da de alta (RGPD). Haz clic en cada hito para ver objetivo, mensaje clave y key messages. Combina envíos por tiempo y por comportamiento.</p>
+      <div class="tl-legend"><span><i class="lg-client"></i> Envío programado</span><span><i class="lg-beh"></i> Por comportamiento</span></div>
+      <input type="radio" name="pito" id="ph1" class="tabradio" checked>
+      <input type="radio" name="pito" id="ph2" class="tabradio">
+      <input type="radio" name="pito" id="ph3" class="tabradio">
+      <input type="radio" name="pito" id="ph4" class="tabradio">
+      <input type="radio" name="pito" id="ph5" class="tabradio">
+      <input type="radio" name="pito" id="ph6" class="tabradio">
+      <input type="radio" name="pito" id="ph7" class="tabradio">
+      <div class="tl-flex">
+        <div class="tl">
+        <label class="tlitem" for="ph1"><span class="tl-dot client"></span><div class="tl-date">Día 0</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Bienvenida</div></label>
+        <label class="tlitem" for="ph2"><span class="tl-dot client"></span><div class="tl-date">Día 1</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Tu primera factura</div></label>
+        <label class="tlitem" for="ph3"><span class="tl-dot client"></span><div class="tl-date">Día 3</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Conecta tu banco</div></label>
+        <label class="tlitem beh" for="ph4"><span class="tl-dot beh"></span><div class="tl-date">Si no factura</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>¿Te ayudamos a empezar?</div></label>
+        <label class="tlitem" for="ph5"><span class="tl-dot client"></span><div class="tl-date">Día 7</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Al día con Verifactu</div></label>
+        <label class="tlitem" for="ph6"><span class="tl-dot client"></span><div class="tl-date">Día 10</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Tu asesoría, conectada</div></label>
+        <label class="tlitem" for="ph7"><span class="tl-dot client"></span><div class="tl-date">Día 30</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Saca más partido</div></label>
+        </div>
+        <div class="tl-frame">
+          <div class="fr-arrow"></div>
+        <div class="tl-panel pp1"><h3>Bienvenida</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Que la pyme complete su cuenta y dé el primer paso.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Ya tienes Kabilio; deja tu cuenta lista en 2 minutos.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Confirma el alta y qué puede hacer con Kabilio.</li><li>Completa datos fiscales (y logo opcional).</li><li>Un único primer paso, claro.</li><li>Tu asesoría ya está conectada: recibe todo al día.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email + in-app</span></div><div class="tp-row"><b>Audiencia</b><span>Pyme recién dada de alta</span></div><div class="tp-row"><b>Disparador</b><span>Día 0</span></div></div><button type="button" class="pmailbtn" data-p="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel pp2"><h3>Tu primera factura</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Activación core: que emita su primera factura.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Crea tu primera factura en minutos.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Plantillas guiadas, sin conocimientos técnicos.</li><li>Queda disponible para su asesoría.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Pyme dada de alta</span></div><div class="tp-row"><b>Disparador</b><span>Día 1</span></div></div><button type="button" class="pmailbtn" data-p="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel pp3"><h3>Conecta tu banco</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Que conecte sus cuentas para conciliar automáticamente.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Conecta tu banco y concilia sin esfuerzo.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Conexión bancaria en unos clics.</li><li>Conciliación automática de movimientos.</li><li>Menos trabajo manual.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Pyme dada de alta</span></div><div class="tp-row"><b>Disparador</b><span>Día 3</span></div></div><button type="button" class="pmailbtn" data-p="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel pp4"><h3>¿Te ayudamos a empezar?</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Reactivar a quien no ha emitido su primera factura.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>¿Te echamos una mano para empezar?</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Vídeos cortos y guía paso a paso.</li><li>Soporte cercano.</li><li>Baja la barrera: empieza por lo básico.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Pyme sin actividad</span></div><div class="tp-row"><b>Disparador</b><span>Comportamiento · +5 días sin facturar</span></div></div><button type="button" class="pmailbtn" data-p="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel pp5"><h3>Al día con Verifactu</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Reforzar confianza y cumplimiento.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Tus facturas cumplen con Verifactu sin que hagas nada.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Cumplimiento automático.</li><li>Tranquilidad normativa.</li><li>Un motivo más para quedarse.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Pyme dada de alta</span></div><div class="tp-row"><b>Disparador</b><span>Día 7</span></div></div><button type="button" class="pmailbtn" data-p="5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel pp6"><h3>Tu asesoría, conectada</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Reforzar el valor del modelo colaborativo.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Todo lo que haces le llega a tu asesoría al día.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Sin reenviar PDFs.</li><li>Cierre sin fricción.</li><li>Trabajáis juntos, en tiempo real.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Pyme dada de alta</span></div><div class="tp-row"><b>Disparador</b><span>Día 10</span></div></div><button type="button" class="pmailbtn" data-p="6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel pp7"><h3>Saca más partido</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Retención y expansión de uso.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Automatiza y ahorra tiempo con Kabilio.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Facturas recurrentes.</li><li>Control de gastos y tesorería.</li><li>Todo, siempre al día.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Pyme activa</span></div><div class="tp-row"><b>Disparador</b><span>Día 30</span></div></div><button type="button" class="pmailbtn" data-p="7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="pmail1">
+      <h2 class="ptitle">Bienvenida</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Bienvenido a Kabilio: tu cuenta ya está lista</div>
+        <div class="em-pre"><b>Preheader:</b> Empieza en 2 minutos. Tu asesoría ya está conectada contigo.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Bienvenido a Kabilio</h1></div>
+          <div class="em-body"><div class="em-media img"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg><span class="em-mcap">Imagen · empieza con Kabilio</span></div><p>Hola [nombre],</p><p>Tu asesoría te ha invitado a Kabilio y <b>tu cuenta ya está activa</b>. Desde aquí facturas, controlas tus gastos y todo le llega a tu asesoría al día, sin reenviar nada.</p><div class="em-sub">Empieza en 3 pasos</div><ul class="em-list"><li>Completa tus datos fiscales (2 minutos).</li><li>Crea tu primera factura con una plantilla.</li><li>Conecta tu banco para conciliar automáticamente.</li></ul><div class="em-sub">Ya estás conectado con tu asesoría</div><p>Todo lo que registres se comparte automáticamente con tu asesoría, en tiempo real. Nada de reenviar PDFs a final de mes.</p><a class="em-btn">Completar mi cuenta</a><p class="em-sign">Cualquier duda, estamos aquí para ayudarte.<br>— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo porque tienes una cuenta en Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="pmail2">
+      <h2 class="ptitle">Tu primera factura</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Crea tu primera factura en 2 minutos</div>
+        <div class="em-pre"><b>Preheader:</b> Con plantillas guiadas. Más fácil de lo que crees.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Tu primera factura, paso a paso</h1></div>
+          <div class="em-body"><div class="em-media video"><span class="em-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="em-vcap">Vídeo · crea tu factura en 1 minuto</span></div><p>Hola [nombre],</p><p>Vamos a por tu primera factura. Con las plantillas guiadas la tienes lista en un par de minutos — y queda guardada y disponible para tu asesoría.</p><div class="em-sub">Cómo funciona</div><ul class="em-list"><li>Elige una plantilla y añade tu logo.</li><li>Rellena cliente y conceptos; los importes se calculan solos.</li><li>Envíala: se guarda y tu asesoría la recibe al instante.</li></ul><a class="em-btn">Crear mi primera factura</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo porque tienes una cuenta en Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="pmail3">
+      <h2 class="ptitle">Conecta tu banco</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Conecta tu banco y olvídate de cuadrar a mano</div>
+        <div class="em-pre"><b>Preheader:</b> Concilia tus movimientos automáticamente.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Conecta tus cuentas bancarias</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Conecta tus cuentas y Kabilio <b>concilia tus movimientos automáticamente</b>. Menos trabajo manual y una foto clara de tu tesorería.</p><div class="em-sub">Qué ganas</div><ul class="em-list"><li>Conciliación automática de ingresos y gastos.</li><li>Visión de tu tesorería en tiempo real.</li><li>Conexión segura y en unos clics.</li></ul><a class="em-btn">Conectar mi banco</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo porque tienes una cuenta en Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="pmail4">
+      <h2 class="ptitle">¿Te ayudamos a empezar?</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>¿Te echamos una mano para empezar?</div>
+        <div class="em-pre"><b>Preheader:</b> Vídeos, guía paso a paso y soporte.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Estamos aquí para ayudarte</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Vimos que aún no has emitido tu primera factura. Es normal tener dudas al principio — te dejamos todo para arrancar sin complicarte.</p><div class="em-sub">Tienes a mano</div><ul class="em-list"><li>Vídeos cortos que van al grano.</li><li>Una guía paso a paso desde cero.</li><li>Soporte por chat cuando lo necesites.</li></ul><a class="em-btn">Ver cómo empezar</a><p class="em-sign">Y si prefieres, respóndenos a este correo y te ayudamos.<br>— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo porque tienes una cuenta en Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="pmail5">
+      <h2 class="ptitle">Al día con Verifactu</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Tus facturas ya cumplen con Verifactu</div>
+        <div class="em-pre"><b>Preheader:</b> Sin que tengas que hacer nada.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Cumples la normativa, sin esfuerzo</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Buenas noticias: tus facturas en Kabilio cumplen con <b>Verifactu</b> y la facturación electrónica, de forma automática.</p><div class="em-sub">Qué significa para ti</div><ul class="em-list"><li>Facturación conforme a la normativa vigente.</li><li>Registro seguro de cada factura.</li><li>Tranquilidad: nada que configurar.</li></ul><a class="em-btn">Saber más</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo porque tienes una cuenta en Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="pmail6">
+      <h2 class="ptitle">Tu asesoría, conectada</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Tu asesoría ya lo recibe todo al día</div>
+        <div class="em-pre"><b>Preheader:</b> Sin reenviar PDFs ni acumular papeles.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Trabajando con tu asesoría, en tiempo real</h1></div>
+          <div class="em-body"><div class="em-media img"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg><span class="em-mcap">Imagen · conectado con tu asesoría</span></div><p>Hola [nombre],</p><p>Todo lo que registras en Kabilio le llega a tu asesoría <b>al día</b>. Se acabó reenviar PDFs o acumular papeles para el cierre.</p><div class="em-sub">Cómo os ayuda</div><ul class="em-list"><li>Tu información llega sola, en tiempo real.</li><li>Cierres sin idas y venidas.</li><li>Más tiempo para lo importante de tu negocio.</li></ul><a class="em-btn">Ir a Kabilio</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo porque tienes una cuenta en Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="pmail7">
+      <h2 class="ptitle">Saca más partido</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Saca más partido a Kabilio</div>
+        <div class="em-pre"><b>Preheader:</b> Automatiza y ahorra tiempo cada mes.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Da el siguiente paso con Kabilio</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Ya tienes lo esencial en marcha. Ahora automatiza lo que repites cada mes y gana tiempo:</p><div class="em-sub">Descubre</div><ul class="em-list"><li>Facturas recurrentes: se emiten solas.</li><li>Control de gastos con tickets y facturas.</li><li>Tesorería siempre al día.</li></ul><a class="em-btn">Descubrir funciones</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo porque tienes una cuenta en Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="anew">
+      <h2 class="ptitle">Asesorías nuevas · activar su cartera</h2>
+      <p class="tl-intro">Flujo para asesorías que acaban de entrar: acompañarlas a activar su cartera. Combina envíos programados y por comportamiento (si no invita o sus clientes no activan, se envía otro correo).</p>
+      <div class="tl-legend"><span><i class="lg-client"></i> Envío programado</span><span><i class="lg-beh"></i> Por comportamiento</span></div>
+      <input type="radio" name="aito" id="ah1" class="tabradio" checked>
+      <input type="radio" name="aito" id="ah2" class="tabradio">
+      <input type="radio" name="aito" id="ah3" class="tabradio">
+      <input type="radio" name="aito" id="ah4" class="tabradio">
+      <input type="radio" name="aito" id="ah5" class="tabradio">
+      <input type="radio" name="aito" id="ah6" class="tabradio">
+      <div class="tl-flex">
+        <div class="tl">
+        <label class="tlitem" for="ah1"><span class="tl-dot client"></span><div class="tl-date">Día 0</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Bienvenida al asesor</div></label>
+        <label class="tlitem" for="ah2"><span class="tl-dot client"></span><div class="tl-date">Día 2</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Empieza por 5 clientes</div></label>
+        <label class="tlitem beh" for="ah3"><span class="tl-dot beh"></span><div class="tl-date">Si no invita</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>¿Empezamos con tu cartera?</div></label>
+        <label class="tlitem beh" for="ah4"><span class="tl-dot beh"></span><div class="tl-date">Clientes sin activar</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Da un empujón a tu cartera</div></label>
+        <label class="tlitem" for="ah5"><span class="tl-dot client"></span><div class="tl-date">Día 14</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>Cómo va tu cartera</div></label>
+        <label class="tlitem beh" for="ah6"><span class="tl-dot beh"></span><div class="tl-date">Sin actividad</div><div class="tl-t"><span class="tl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>¿Lo vemos juntos?</div></label>
+        </div>
+        <div class="tl-frame">
+          <div class="fr-arrow"></div>
+        <div class="tl-panel ap1"><h3>Bienvenida al asesor</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Dar la bienvenida y orientar hacia activar la cartera.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Ya tienes tu portal; el siguiente paso es activar a tus clientes.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Tu cuenta y tu portal del asesor, listos.</li><li>Todo el material para presentar Kabilio.</li><li>Empieza por invitar a tu cartera.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesoría recién dada de alta</span></div><div class="tp-row"><b>Disparador</b><span>Día 0</span></div></div><button type="button" class="amailbtn" data-a="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel ap2"><h3>Empieza por 5 clientes</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Que invite a sus primeros clientes (quick win).</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Empieza por 3-5 clientes fáciles y coge ritmo.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Invita desde el portal en unos clics.</li><li>Usa las plantillas y el generador.</li><li>Los quick wins generan tracción.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email + portal del asesor</span></div><div class="tp-row"><b>Audiencia</b><span>Asesoría nueva</span></div><div class="tp-row"><b>Disparador</b><span>Día 2</span></div></div><button type="button" class="amailbtn" data-a="2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel ap3"><h3>¿Empezamos con tu cartera?</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Reactivar a la asesoría que aún no ha invitado.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Aún no has invitado a ningún cliente: te ayudamos a arrancar.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Recordatorio amable y directo.</li><li>Enlace directo a invitar.</li><li>Oferta de ayuda si la necesita.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesoría sin invitaciones</span></div><div class="tp-row"><b>Disparador</b><span>Comportamiento · +5 días sin invitar</span></div></div><button type="button" class="amailbtn" data-a="3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel ap4"><h3>Da un empujón a tu cartera</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Ayudar a activar a los clientes invitados que no entran.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Algunos clientes aún no han activado; te damos cómo empujarles.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Lista de clientes pendientes.</li><li>Plantillas de recordatorio para clientes.</li><li>Consejos para subir la activación.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesoría con clientes inactivos</span></div><div class="tp-row"><b>Disparador</b><span>Comportamiento · invitados sin activar</span></div></div><button type="button" class="amailbtn" data-a="4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel ap5"><h3>Cómo va tu cartera</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Dar visibilidad del progreso de activación.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Este es el estado de activación de tu cartera.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Invitados, activos y pendientes.</li><li>Qué hacer con los pendientes.</li><li>Reconocimiento del avance.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email + portal del asesor</span></div><div class="tp-row"><b>Audiencia</b><span>Asesoría nueva</span></div><div class="tp-row"><b>Disparador</b><span>Día 14</span></div></div><button type="button" class="amailbtn" data-a="5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        <div class="tl-panel ap6"><h3>¿Lo vemos juntos?</h3><div class="mk-obj"><span class="mk-l">Objetivo</span><p>Ofrecer ayuda 1:1 a la asesoría estancada.</p></div><div class="mk-key"><span class="mk-l">Mensaje clave</span><p>Si te cuesta arrancar, agenda una llamada con tu gestor.</p></div><div class="tp-sub">Key messages</div><ul class="tp-list"><li>Sesión 1:1 con tu gestor.</li><li>Revisamos tu cartera contigo.</li><li>Plan de activación a medida.</li></ul><div class="tp-rows"><div class="tp-row"><b>Canal</b><span>Email</span></div><div class="tp-row"><b>Audiencia</b><span>Asesoría sin actividad</span></div><div class="tp-row"><b>Disparador</b><span>Comportamiento · +14 días sin actividad</span></div></div><button type="button" class="amailbtn" data-a="6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> Ver correo tipo</button></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="amail1">
+      <h2 class="ptitle">Bienvenida al asesor</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Bienvenido a Kabilio: activemos tu cartera</div>
+        <div class="em-pre"><b>Preheader:</b> Tu portal del asesor está listo. Empieza por invitar a tus clientes.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Bienvenido a Kabilio</h1></div>
+          <div class="em-body"><div class="em-media img"><svg class="ph-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg><span class="em-mcap">Imagen · tu portal del asesor</span></div><p>Hola [nombre],</p><p>Ya tienes tu cuenta de asesoría y tu <b>portal del asesor</b>. El siguiente paso es <b>activar tu cartera</b> en Kabilio.</p><div class="em-sub">Todo listo para empezar</div><ul class="em-list"><li>Portal con tarifas y materiales para presentar Kabilio.</li><li>Generador de documento co-branded.</li><li>Guía de activación paso a paso.</li></ul><a class="em-btn">Ir a mi portal del asesor</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="amail2">
+      <h2 class="ptitle">Empieza por 5 clientes</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Empieza por 5 clientes y coge ritmo</div>
+        <div class="em-pre"><b>Preheader:</b> Los quick wins generan tracción.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Activa a tus primeros clientes</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>La mejor forma de arrancar es empezar por unos pocos clientes fáciles. En cuanto veas los primeros activos, el resto va rodado.</p><div class="em-sub">Cómo empezar</div><ul class="em-list"><li>Elige 3-5 clientes con facturación sencilla.</li><li>Invítalos desde el portal en unos clics.</li><li>Apóyate en las plantillas y el generador.</li></ul><a class="em-btn">Invitar a mis clientes</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="amail3">
+      <h2 class="ptitle">¿Empezamos con tu cartera?</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>¿Empezamos con tu cartera?</div>
+        <div class="em-pre"><b>Preheader:</b> Aún no has invitado a ningún cliente.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Te ayudamos a arrancar</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Vimos que todavía no has invitado a ningún cliente. Es más rápido de lo que parece — y estamos para ayudarte.</p><div class="em-sub">En 3 pasos</div><ul class="em-list"><li>Entra a tu portal del asesor.</li><li>Elige unos clientes e invítalos.</li><li>Nosotros acompañamos su alta.</li></ul><a class="em-btn">Invitar a mi cartera</a><p class="em-sign">¿Prefieres que te echemos una mano? Responde a este correo.<br>— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="amail4">
+      <h2 class="ptitle">Da un empujón a tu cartera</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Algunos clientes aún no han activado</div>
+        <div class="em-pre"><b>Preheader:</b> Te damos cómo darles un empujón.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Ayuda a tu cartera a activarse</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Has invitado a tus clientes, pero algunos aún no han entrado. Un pequeño empujón suele bastar.</p><div class="em-sub">Para subir la activación</div><ul class="em-list"><li>Revisa la lista de clientes pendientes.</li><li>Envíales un recordatorio (te dejamos plantilla).</li><li>Ofréceles ayuda para su primera factura.</li></ul><a class="em-btn">Ver clientes pendientes</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="amail5">
+      <h2 class="ptitle">Cómo va tu cartera</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>Así va la activación de tu cartera</div>
+        <div class="em-pre"><b>Preheader:</b> Invitados, activos y pendientes.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>El estado de tu cartera</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Este es el resumen de cómo va la activación de tu cartera en Kabilio.</p><div class="em-sub">Tu resumen</div><ul class="em-list"><li>Clientes invitados, activos y pendientes.</li><li>Qué hacer con los que faltan.</li><li>Buen trabajo con los que ya facturan.</li></ul><a class="em-btn">Ver mi cartera</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="panel" id="amail6">
+      <h2 class="ptitle">¿Lo vemos juntos?</h2>
+      <div class="email">
+        <div class="em-subjline"><b>Asunto</b>¿Lo vemos juntos en una llamada?</div>
+        <div class="em-pre"><b>Preheader:</b> Agenda una sesión 1:1 con tu gestor.</div>
+        <div class="em-card">
+          <div class="em-header"><span class="em-logo">kabilio</span></div>
+          <div class="em-hero"><h1>Estamos aquí para ayudarte</h1></div>
+          <div class="em-body"><p>Hola [nombre],</p><p>Si te está costando arrancar con tu cartera, lo vemos juntos. Agenda una llamada con tu gestor y preparamos un plan a tu medida.</p><div class="em-sub">En la sesión</div><ul class="em-list"><li>Revisamos tu cartera contigo.</li><li>Definimos un plan de activación a medida.</li><li>Resolvemos cualquier duda.</li></ul><a class="em-btn">Agendar una llamada</a><p class="em-sign">— El equipo de Kabilio</p></div>
+          <div class="em-foot">Recibes este correo por tu colaboración con Kabilio.<br><a href="#">Gestionar preferencias</a> · <a href="#">Darse de baja</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  // Días para el lanzamiento
+  (function(){
+    var target=new Date('2026-09-22T00:00:00');
+    var el=document.getElementById('cd_days'); if(!el) return;
+    var d=Math.ceil((target-new Date())/86400000);
+    el.textContent = d>0 ? d : (d===0?'Hoy':'Lanzado');
+  })();
+  // Cerrar menú móvil al elegir sección
+  document.querySelectorAll('.navitem').forEach(function(el){el.addEventListener('click',function(){var m=document.getElementById('mnav');if(m)m.checked=false;});});
+
+  function posOne(g){
+    var sel=document.querySelector('input[name="'+g+'"]:checked'); if(!sel) return;
+    var lbl=document.querySelector('label[for="'+sel.id+'"]'); if(!lbl) return;
+    var flex=lbl.closest('.tl-flex'); if(!flex) return;
+    var frame=flex.querySelector('.tl-frame'), arrow=frame&&frame.querySelector('.fr-arrow');
+    if(!frame||!arrow||window.innerWidth<=820) return;
+    var lr=lbl.getBoundingClientRect(), fr=frame.getBoundingClientRect();
+    if(fr.height===0) return;
+    var t=lr.top+lr.height/2-fr.top-7; t=Math.max(8,Math.min(t,fr.height-22)); arrow.style.top=t+'px';
+  }
+  function posArrow(){ posOne('hito'); posOne('pito'); posOne('aito'); }
+  document.querySelectorAll('input[name="hito"],input[name="pito"],input[name="aito"]').forEach(function(r){r.addEventListener('change',function(){
+    requestAnimationFrame(posArrow);
+    if(window.innerWidth<=820){var l=document.querySelector('label[for="'+r.id+'"]');var fl=l&&l.closest('.tl-flex');var fr=fl&&fl.querySelector('.tl-frame');if(fr)fr.scrollIntoView({behavior:'smooth',block:'start'});}
+  });});
+  document.querySelectorAll('input[name="ctab"]').forEach(function(r){r.addEventListener('change',function(){requestAnimationFrame(posArrow);});});
+  document.querySelectorAll('.pmailbtn').forEach(function(b){b.addEventListener('click',function(){var id=b.getAttribute('data-p');var r=document.getElementById('c-pmail'+id);if(r){r.checked=true;window.scrollTo({top:0,behavior:'auto'});}});});
+  document.querySelectorAll('.amailbtn').forEach(function(b){b.addEventListener('click',function(){var id=b.getAttribute('data-a');var x=document.getElementById('c-amail'+id);if(x){x.checked=true;window.scrollTo({top:0,behavior:'auto'});}});});
+  window.addEventListener('resize',posArrow);
+  window.addEventListener('load',function(){setTimeout(posArrow,60);});
+
+  document.querySelectorAll('.mailbtn').forEach(function(b){b.addEventListener('click',function(){
+    var id=b.getAttribute('data-mail');
+    var r=document.getElementById('c-mail'+id); if(r){ r.checked=true; window.scrollTo({top:0,behavior:'auto'}); }
+  });});
+</script>
+</body>
+</html>
