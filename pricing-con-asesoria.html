@@ -25,7 +25,7 @@
   section{padding:24px 0 44px}
 
   /* Toggle Mensual / Anual */
-  .billrow{display:flex;justify-content:flex-end;margin-bottom:28px}
+  .billrow{display:flex;justify-content:center;margin-bottom:28px}
   .billtoggle{display:inline-flex;align-items:center;background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
   .billtoggle button{border:none;background:transparent;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--muted);padding:6px 14px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
   .billtoggle button.active{background:#fff;color:var(--ink);box-shadow:var(--shadow)}
@@ -59,6 +59,7 @@
   .plan li:before{content:"\2713";position:absolute;left:0;top:7px;color:var(--pc);font-weight:700}
   .pcmp{font-size:13px;font-weight:600;text-decoration:none;margin-top:auto}
   .vflogo{height:18px;width:auto;margin-left:7px;vertical-align:middle}
+  .badge-soon{display:inline-block;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--accent-ink);background:var(--accent-soft);padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle}
 
   /* Tooltip */
   .tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--surface-2);color:var(--muted);font-size:10px;font-weight:700;font-style:normal;cursor:help;position:relative;vertical-align:middle;margin-left:4px}
@@ -154,23 +155,6 @@
   .note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:16px}
   @media(max-width:620px){table.cmp{font-size:12px}table.cmp th,table.cmp td{padding:10px 7px}}
 
-  /* Banner CTA */
-  .ctaband{margin:56px 0 8px;background:var(--accent);color:#fff;border-radius:22px;padding:46px;display:flex;align-items:center;gap:36px}
-  @media(max-width:760px){.ctaband{flex-direction:column;text-align:center;padding:38px 28px}}
-  .cta-txt{flex:1}
-  .ctaband h2{font-size:27px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
-  .ctaband p{font-size:15px;color:rgba(255,255,255,.82);max-width:460px;margin:0 0 24px;line-height:1.55}
-  @media(max-width:760px){.ctaband p{margin-left:auto;margin-right:auto}}
-  .ctaband .acts{display:flex;gap:12px;flex-wrap:wrap}
-  @media(max-width:760px){.ctaband .acts{justify-content:center}}
-  .cta-img{flex:0 0 300px;max-width:300px}
-  @media(max-width:760px){.cta-img{flex:0 0 auto;width:100%;max-width:280px}}
-  .cta-img svg{width:100%;height:auto;display:block}
-  .ctaband .b1{background:#fff;color:var(--accent);font-weight:600;border-radius:11px;padding:13px 26px;text-decoration:none;transition:.15s}
-  .ctaband .b1:hover{background:var(--lav)}
-  .ctaband .b2{background:transparent;color:#fff;font-weight:600;border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 26px;text-decoration:none;transition:.15s}
-  .ctaband .b2:hover{background:rgba(255,255,255,.12)}
-
   /* FAQs */
   .faq-title{text-align:center;font-size:32px;font-weight:700;letter-spacing:-.015em;margin:56px 0 24px}
 
@@ -202,7 +186,6 @@
     <h1>Tu facturación, conectada con tu asesoría</h1>
     <p class="sub">Planes para empresas cuya asesoría trabaja con Kabilio. Factura, controla tus gastos y tu tesorería, y compártelo todo con tu asesor de forma automática.</p>
     <div class="herochecks">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>30 días de prueba gratis</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cancela cuando quieras</span>
     </div>
   </div>
@@ -254,7 +237,7 @@
         <thead>
           <tr>
             <th>Precios</th>
-            <th><span class="hname">Plus</span><span class="hprice">0 €</span></th>
+            <th><span class="hname">Colaborativo</span><span class="hprice">0 €</span></th>
             <th><span class="hname">Básico</span><span class="hprice" id="hpBasico">7 €/mes</span></th>
             <th><span class="hname">Estándar</span><span class="hprice" id="hpEstandar">12 €/mes</span></th>
           </tr>
@@ -262,17 +245,16 @@
         <tbody>
           <tr class="grp"><td colspan="4">Facturación</td></tr>
           <tr><td class="feat">Facturas al mes <span class="tip" data-tip="Facturas de venta que puedes emitir cada mes.">i</span></td><td>20</td><td>80</td><td>250</td></tr>
-          <tr><td class="feat">Verifactu <span class="tip" data-tip="Emisión de facturas conforme al sistema Verifactu de Hacienda.">i</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
           <tr><td class="feat">Facturas recurrentes <span class="tip" data-tip="Facturas que se generan y envían solas cada cierto periodo.">i</span></td><td><span class="no">—</span></td><td>10</td><td>75</td></tr>
-          <tr><td class="feat">Plantillas de factura <span class="tip" data-tip="Diseños de factura personalizables que puedes reutilizar.">i</span></td><td><span class="no">—</span></td><td>2</td><td>5</td></tr>
+          <tr><td class="feat">Plantillas de factura <span class="badge-soon">próximamente</span></td><td><span class="no">—</span></td><td>2</td><td>5</td></tr>
           <tr><td class="feat">Sin pie “Generado por Kabilio” <span class="tip" data-tip="Quita la marca de Kabilio del pie de tus facturas.">i</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
-          <tr><td class="feat">Presupuestos <span class="tip" data-tip="Crea presupuestos y conviértelos en factura con un clic.">i</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
+          <tr><td class="feat">Presupuestos <span class="badge-soon">próximamente</span></td><td><span class="no">—</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
 
           <tr class="grp"><td colspan="4">Gastos</td></tr>
           <tr><td class="feat">Procesado de facturas recibidas <span class="tip" data-tip="Digitalización y registro automático de facturas de proveedores.">i</span></td><td>Ilimitado</td><td>Ilimitado</td><td>Ilimitado</td></tr>
 
           <tr class="grp"><td colspan="4">Tesorería</td></tr>
-          <tr><td class="feat">Conexiones bancarias <span class="tip" data-tip="Cuentas de banco que puedes conectar para importar movimientos.">i</span></td><td>2</td><td>Ilimitadas</td><td>Ilimitadas</td></tr>
+          <tr><td class="feat">Conexiones bancarias <span class="tip" data-tip="Cuentas de banco que puedes conectar para importar movimientos.">i</span></td><td>2</td><td>5</td><td>Ilimitadas</td></tr>
           <tr><td class="feat">Conciliación automática <span class="tip" data-tip="Cruce automático de movimientos del banco con facturas y gastos.">i</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
           <tr><td class="feat">Dashboard básico <span class="tip" data-tip="Panel con la visión general de tu actividad y tesorería.">i</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
           <tr><td class="feat">IVA a pagar/cobrar (estimado) <span class="tip" data-tip="Estimación del IVA a liquidar según tus facturas y gastos.">i</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td><td><span class="yes">✓</span></td></tr>
@@ -297,19 +279,6 @@
     <button class="cmp-vertodo" id="cmpVerTodo">Ver todas las características</button>
     <p class="note">* El gestor documental está disponible; lo contrata la asesoría. · Pulsa cada bloque para minimizarlo.</p>
 
-    <div class="social">
-      <h2 class="social-title">Negocios y asesorías que ya facturan con Kabilio</h2>
-      <div class="stats">
-        <div class="stat"><span class="snum">+10.000</span><span class="slab">negocios facturan con Kabilio</span></div>
-        <div class="stat"><span class="snum">+500</span><span class="slab">asesorías conectadas a la plataforma</span></div>
-        <div class="stat"><span class="snum">4,8/5</span><span class="slab">valoración media de sus clientes</span></div>
-      </div>
-      <blockquote class="quote">
-        “Desde que nuestros clientes facturan con Kabilio recibimos toda la documentación a tiempo y dejamos de perseguir facturas a final de mes.”
-        <cite>— Asesoría fiscal · Valencia</cite>
-      </blockquote>
-    </div>
-
     <h2 class="faq-title">Preguntas frecuentes</h2>
     <div class="faq">
       <details open>
@@ -318,7 +287,7 @@
       </details>
       <details>
         <summary>¿Necesito una asesoría para usar Kabilio?</summary>
-        <div class="ans">Sí. Todos los planes (Plus, Básico y Estándar) son para empresas cuya asesoría trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos automáticamente. Si tu asesoría todavía no usa Kabilio, puedes recomendársela para empezar a trabajar juntos en la misma plataforma.</div>
+        <div class="ans">Sí. Todos los planes (Colaborativo, Básico y Estándar) son para empresas cuya asesoría trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos automáticamente. Si tu asesoría todavía no usa Kabilio, puedes recomendársela para empezar a trabajar juntos en la misma plataforma.</div>
       </details>
       <details>
         <summary>¿Cómo funciona el descuento de los 2 primeros meses?</summary>
@@ -338,36 +307,6 @@
       </details>
     </div>
 
-    <div class="ctaband">
-      <div class="cta-txt">
-        <h2>Empieza a facturar con tu asesoría hoy</h2>
-        <p>Crea tu cuenta gratis en minutos. Sin tarjeta, sin permanencia y con tu asesoría conectada desde el primer día.</p>
-        <div class="acts">
-          <a href="#" class="b1">Empieza gratis</a>
-          <a href="#" class="b2">Habla con nuestro equipo</a>
-        </div>
-      </div>
-      <div class="cta-img">
-        <svg viewBox="0 0 340 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Factura conectada con la asesoría">
-          <rect x="46" y="26" width="200" height="170" rx="14" fill="#ffffff"/>
-          <rect x="66" y="48" width="84" height="11" rx="5.5" fill="#111827"/>
-          <rect x="66" y="70" width="120" height="7" rx="3.5" fill="#d7dde6"/>
-          <rect x="66" y="86" width="100" height="7" rx="3.5" fill="#e4e9f0"/>
-          <rect x="66" y="112" width="160" height="7" rx="3.5" fill="#e4e9f0"/>
-          <rect x="66" y="128" width="160" height="7" rx="3.5" fill="#e4e9f0"/>
-          <rect x="66" y="144" width="120" height="7" rx="3.5" fill="#e4e9f0"/>
-          <rect x="66" y="168" width="62" height="13" rx="6.5" fill="#ddd5fd"/>
-          <circle cx="244" cy="176" r="34" fill="#f8d5e4"/>
-          <circle cx="244" cy="176" r="34" fill="none" stroke="#ffffff" stroke-width="4"/>
-          <path d="M230 176 l9 9 18 -19" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-          <g stroke="#ddd5fd" stroke-width="3" stroke-linecap="round">
-            <path d="M250 70 q40 6 40 50"/>
-          </g>
-          <circle cx="252" cy="66" r="6" fill="#ddd5fd"/>
-          <rect x="120" y="206" width="150" height="30" rx="15" fill="#ffffff" opacity="0.16"/>
-        </svg>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -398,14 +337,13 @@
 </aside>
 
 <script>
-const VF='<svg class="vflogo" viewBox="0 0 330 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Verifactu"><path d="M14 44 L40 74 L86 12" fill="none" stroke="#0b57b0" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 44 L40 74 L86 12" fill="none" stroke="#f4bf00" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><text x="88" y="64" font-family="Manrope,Arial,sans-serif" font-weight="800" font-style="italic" font-size="54" letter-spacing="-2"><tspan fill="#0b57b0">erif</tspan><tspan fill="#e02b1d">✳</tspan><tspan fill="#0b57b0">ctu</tspan></text></svg>';
 const PLANS=[
-  {name:'Plus', color:'#111827', free:true, desc:'Para empezar a facturar y compartir tus gastos con tu asesoría.', tag:'Lo esencial para facturar con Verifactu', inc:'Lo que incluye:',
+  {name:'Colaborativo', color:'#111827', free:true, desc:'El módulo esencial para gestionar tu negocio junto a tu asesoría.', tag:'Gestión colaborativa esencial', inc:'Lo que incluye:',
    feats:['<b>20</b> facturas al mes','2 conexiones bancarias','Procesado de gastos ilimitado','Conciliación automática y dashboard','IVA a pagar/cobrar estimado','Informes básicos','Comunicación con tu asesoría y gestor documental']},
-  {name:'Básico', color:'#2f6df0', mo:14, popular:true, desc:'Para negocios en marcha que facturan cada semana.', tag:'Más facturación y bancos sin límite', inc:'Todo lo de Plus, y además:',
-   feats:['<b>80</b> facturas al mes','Conexiones bancarias ilimitadas','2 plantillas de factura','10 facturas recurrentes','Presupuestos','Facturas sin pie “Generado por Kabilio”']},
-  {name:'Estándar', color:'#8b5cf6', mo:24, desc:'Para empresas con más volumen y tesorería que gestionar.', tag:'Máximo volumen y remesas bancarias', inc:'Todo lo de Básico, y además:',
-   feats:['<b>250</b> facturas al mes','5 plantillas de factura','75 facturas recurrentes','Remesas bancarias']},
+  {name:'Básico', color:'#2f6df0', mo:14, popular:true, desc:'Gestiona tus finanzas y optimiza tu rendimiento.', tag:'Más facturación y más bancos', inc:'Todo lo de Colaborativo, y además:',
+   feats:['<b>80</b> facturas al mes','5 conexiones bancarias','2 plantillas de factura (próximamente)','10 facturas recurrentes','Presupuestos (próximamente)','Facturas sin pie “Generado por Kabilio”']},
+  {name:'Estándar', color:'#8b5cf6', mo:24, desc:'Gestiona tu contabilidad y tus finanzas, todo en un mismo lugar.', tag:'Máximo volumen y remesas bancarias', inc:'Todo lo de Básico, y además:',
+   feats:['<b>250</b> facturas al mes','5 plantillas de factura (próximamente)','75 facturas recurrentes','Remesas bancarias']},
 ];
 
 function renderMode(mode){
@@ -429,7 +367,6 @@ function renderMode(mode){
       <div class="pprice"><span class="big">${big}</span>${mo}</div>
       <div class="psave">${save}</div>
       <div class="ptag2">${p.tag}</div>
-      <div class="pusers">Asesoría incluida ${VF}</div>
       <a href="#" class="pcta">Empieza ahora →</a>
       <hr class="pdiv">
       <div class="pinc">${p.inc}</div>
