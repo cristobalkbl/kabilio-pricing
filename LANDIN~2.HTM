@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kabilio para asesorías · Tu despacho a prueba de Verifactu 2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+  :root{
+    --bg:#f3f0ec;--surface:#ffffff;--surface-2:#ece7df;--ink:#111827;--muted:#6b7280;
+    --line:#e4ded5;--accent:#111827;--accent-soft:#e9e3fd;--accent-ink:#3a2f7a;
+    --lav:#ddd5fd;--pink:#f8d5e4;--peach:#fde9d6;--green:#15914b;
+    --radius:18px;--shadow:0 1px 2px rgba(17,24,39,.04),0 10px 28px rgba(17,24,39,.07);
+    --font:'Manrope','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  section{padding:38px 0}
+  a{color:inherit}
+  h1,h2,h3{letter-spacing:-.02em}
+  .kick{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:12px}
+  .btn{display:inline-block;font-weight:600;font-size:14.5px;border-radius:11px;padding:13px 26px;text-decoration:none;transition:.15s;cursor:pointer;border:none;font-family:inherit}
+  .btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-ink)}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}.btn-ghost:hover{background:var(--surface-2)}
+  .btn-light{background:#fff;color:var(--accent)}.btn-light:hover{background:var(--lav)}
+  .btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-outline:hover{background:rgba(255,255,255,.12)}
+
+  /* Topbar urgencia */
+  .topbar{background:var(--accent);color:#fff;text-align:center;font-size:13.5px;padding:10px 16px}
+  .topbar a{color:var(--lav);font-weight:600;text-decoration:none;margin-left:6px}
+
+  /* HERO */
+  .hero{text-align:center;max-width:800px;margin:0 auto;padding:58px 0 6px}
+  @media(max-width:860px){.hero{padding:40px 0 6px}}
+  .eyebrow{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:6px 13px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-size:clamp(32px,5vw,50px);line-height:1.06;font-weight:800;margin-bottom:16px}
+  .hero .lead{font-size:17.5px;color:var(--muted);line-height:1.6;max-width:620px;margin:0 auto 24px}
+  .hero .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .hero .rating{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:20px;font-size:13px;color:var(--muted)}
+  .hero .stars{color:#e8a33d;letter-spacing:2px;font-size:16px}
+  .heroimg{max-width:960px;margin:30px auto 0;padding:0 24px}
+  .heroimg .frame{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .heroimg .frame svg{width:100%;height:auto;display:block}
+
+  /* Section head centrado */
+  .shead{text-align:center;max-width:700px;margin:0 auto 36px}
+  .shead h2{font-size:clamp(26px,3.6vw,36px);font-weight:800;line-height:1.15;margin-bottom:12px}
+  .shead p{font-size:16px;color:var(--muted);line-height:1.6}
+
+  /* Beneficios (3 tarjetas) */
+  .bens{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.bens{grid-template-columns:1fr}}
+  .ben{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px}
+  .ben .bic{width:52px;height:52px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .ben .bic svg{width:26px;height:26px}
+  .ben:nth-child(1) .bic{background:var(--accent-soft);color:var(--accent-ink)}
+  .ben:nth-child(2) .bic{background:var(--peach);color:#8a5a1e}
+  .ben:nth-child(3) .bic{background:var(--pink);color:#a83a6b}
+  .ben h3{font-size:18px;font-weight:700;margin-bottom:8px}
+  .ben p{font-size:14px;color:var(--muted);line-height:1.6}
+
+  /* Funcionalidades (bloques agrupados por categoría) */
+  .fgroup{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;padding:26px 0}
+  @media(max-width:860px){.fgroup{grid-template-columns:1fr;gap:22px}}
+  .fgroup.rev .ftext{order:2}.fgroup.rev .fmedia{order:1}
+  @media(max-width:860px){.fgroup.rev .ftext{order:1}.fgroup.rev .fmedia{order:2}}
+  .fmedia{background:var(--surface-2);border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;align-items:center;justify-content:center}
+  .fmedia svg{width:100%;max-width:360px;height:auto}
+  .fgroup h3{font-size:23px;font-weight:800;margin:2px 0 12px}
+  .fgroup>.ftext>p{font-size:15.5px;color:var(--muted);line-height:1.65}
+  .subfeat{margin-top:18px;display:flex;flex-direction:column;gap:16px}
+  .subfeat .sf{border-left:3px solid var(--lav);padding-left:16px}
+  .subfeat .sf b{display:block;font-size:15.5px;margin-bottom:3px}
+  .subfeat .sf span{font-size:14px;color:var(--muted);line-height:1.55}
+  .flink{display:inline-block;margin-top:16px;font-size:14px;font-weight:600;color:var(--accent-ink);text-decoration:none}
+
+  /* Funcionalidades (dark cards, estilo Holded) */
+  .funcs{background:#141b2d;color:#fff;padding:58px 0;margin:38px 0}
+  .funcs .shead h2{color:#fff}
+  .funcs .shead .kick{color:#a99cf5}
+  .funcs .shead p{color:rgba(255,255,255,.68)}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:760px){.fgrid{grid-template-columns:1fr}}
+  .fcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:18px;padding:22px;display:flex;flex-direction:column}
+  .fcard.wide{grid-column:1 / -1}
+  .fcard .shot{background:#f3f0ec;border-radius:12px;overflow:hidden;margin-bottom:20px}
+  .fcard .shot svg{width:100%;height:auto;display:block}
+  .fcard .fk{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#a99cf5;margin-bottom:9px}
+  .fcard h3{font-size:19px;font-weight:700;margin-bottom:8px;color:#fff}
+  .fcard p{font-size:14px;color:rgba(255,255,255,.68);line-height:1.6}
+
+  /* Demo band */
+  .demo{background:#fff;border:1px solid var(--line);border-radius:22px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;box-shadow:var(--shadow)}
+  @media(max-width:820px){.demo{grid-template-columns:1fr;text-align:center}}
+  .demo h2{font-size:clamp(23px,3vw,30px);font-weight:800;line-height:1.18;margin-bottom:12px}
+  .demo p{font-size:15.5px;color:var(--muted);line-height:1.6;margin-bottom:22px}
+  .demo .player{position:relative;background:var(--accent);border-radius:16px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .demo .player .play{width:66px;height:66px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+  .demo .player .play svg{width:24px;height:24px;color:var(--accent);margin-left:3px}
+  .demo .player .lbl{position:absolute;bottom:14px;left:16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.8)}
+
+  /* Prueba social */
+  .logos{text-align:center}
+  .logos h2{font-size:clamp(22px,3vw,30px);font-weight:800;margin-bottom:26px}
+  .logorow{display:flex;flex-wrap:wrap;gap:14px 30px;justify-content:center;align-items:center}
+  .logochip{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 24px;font-weight:800;font-size:15px;color:#a9afb8;letter-spacing:.02em}
+
+  /* Panel único (split) */
+  .panel{display:grid;grid-template-columns:1fr 1.1fr;gap:44px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:24px;padding:42px;box-shadow:var(--shadow)}
+  @media(max-width:860px){.panel{grid-template-columns:1fr;text-align:center}}
+  .panel h2{font-size:clamp(24px,3.2vw,32px);font-weight:800;line-height:1.15;margin-bottom:14px}
+  .panel p{font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:20px}
+  .panel .pvis svg{width:100%;height:auto}
+
+  /* Servicios / integración */
+  .serv{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;background:var(--accent-soft);border:1px solid var(--lav);border-radius:24px;padding:42px}
+  @media(max-width:860px){.serv{grid-template-columns:1fr;text-align:center}}
+  .serv h2{font-size:clamp(24px,3.2vw,32px);font-weight:800;line-height:1.15;margin-bottom:12px}
+  .serv>.stext>p{font-size:15.5px;color:#4b4560;line-height:1.65;margin-bottom:20px}
+  .servlist{list-style:none;padding:0;margin:0 0 22px}
+  .servlist li{font-size:15px;font-weight:600;padding:9px 0 9px 32px;position:relative}
+  .servlist li:before{content:"\2713";position:absolute;left:0;top:9px;width:20px;height:20px;background:#fff;color:var(--accent-ink);border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  @media(max-width:860px){.servlist{display:inline-block;text-align:left;margin-left:auto;margin-right:auto}}
+  .serv .svis svg{width:100%;height:auto}
+
+  /* Testimonios */
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:860px){.tgrid{grid-template-columns:1fr}}
+  .tcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column}
+  .tcard p{font-size:14.5px;line-height:1.6;margin-bottom:18px}
+  .tcard .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .tcard .av{width:40px;height:40px;border-radius:50%;background:var(--lav);color:var(--accent-ink);font-weight:800;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+  .tcard .who b{display:block;font-size:13.5px}.tcard .who span{font-size:12.5px;color:var(--muted)}
+  .reviews{text-align:center;margin-top:26px;font-size:15px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .reviews b{font-weight:800}
+  .reviews .stars{color:#e8a33d;letter-spacing:2px;font-size:16px}
+  .socialproof{margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .avatars{display:flex}
+  .avatars img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 1px 4px rgba(17,24,39,.15);margin-left:-14px}
+  .avatars img:first-child{margin-left:0}
+  .socialproof p{font-size:15.5px;color:var(--ink)}
+  .socialproof b{font-weight:800}
+
+  /* Verifactu */
+  .vf{background:var(--accent);color:#fff;border-radius:24px;padding:46px 42px;text-align:center}
+  .vf .kick{color:var(--lav)}
+  .vf h2{font-size:clamp(24px,3.4vw,34px);font-weight:800;margin-bottom:12px}
+  .vf p{font-size:15.5px;color:rgba(255,255,255,.82);max-width:560px;margin:0 auto 32px;line-height:1.6}
+  .vdates{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:620px;margin:0 auto 30px}
+  @media(max-width:560px){.vdates{grid-template-columns:1fr}}
+  .vd{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:22px}
+  .vd b{display:block;font-size:22px;font-weight:800;margin-bottom:4px}
+  .vd span{font-size:14px;color:rgba(255,255,255,.8)}
+
+  /* Planes / CTA final */
+  .plans{background:#fff;border:1px solid var(--line);border-radius:24px;padding:52px 46px;text-align:center;box-shadow:var(--shadow)}
+  .plans h2{font-size:clamp(25px,3.6vw,34px);font-weight:800;margin-bottom:12px}
+  .plans p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 26px;line-height:1.6}
+  .plans .acts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+  /* Resumen */
+  .summary{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+  @media(max-width:820px){.summary{grid-template-columns:1fr;gap:26px}}
+  .summary .sumhead h2{font-size:clamp(26px,3.4vw,34px);font-weight:800;line-height:1.12;margin-bottom:14px}
+  .summary .sumhead p{font-size:16px;color:var(--muted);line-height:1.6}
+  .sumgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px 30px}
+  @media(max-width:620px){.sumgrid{grid-template-columns:1fr}}
+  .sumitem{padding-left:30px;position:relative}
+  .sumitem:before{content:"\2713";position:absolute;left:0;top:1px;color:var(--accent-ink);font-weight:800;font-size:15px}
+  .sumitem b{display:block;font-size:15.5px;margin-bottom:4px}
+  .sumitem span{font-size:13.5px;color:var(--muted);line-height:1.55}
+
+  /* FAQ */
+  .faq-title{text-align:center;font-size:clamp(24px,3.2vw,32px);font-weight:800;margin-bottom:28px}
+  .faq{max-width:760px;margin:0 auto}
+  .faq details{border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:12px;overflow:hidden}
+  .faq summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:700;font-size:15.5px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-size:22px;font-weight:400;color:var(--muted);transition:.2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq .ans{padding:0 22px 20px;font-size:14.5px;color:var(--muted);line-height:1.6}
+
+  /* Por qué elegir Kabilio (tarjetas con visual, estilo funcionalidades) */
+  .whygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.whygrid{grid-template-columns:1fr}}
+  .whycard{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column}
+  .whycard .shot{background:#f3f0ec;border-radius:12px;overflow:hidden;margin-bottom:20px}
+  .whycard .shot svg{width:100%;height:auto;display:block}
+  .whycard .fk{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:8px}
+  .whycard h3{font-size:19px;font-weight:800;margin-bottom:8px}
+  .whycard p{font-size:14px;color:var(--muted);line-height:1.6}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:30px}
+  .trust{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-bottom:18px}
+  .trust span{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--muted)}
+  .trust svg{width:15px;height:15px;color:var(--accent-ink)}
+  .draftnote{max-width:1080px;margin:22px auto 0;padding:14px 20px;background:var(--peach);border:1px solid #f0d9bf;border-radius:12px;font-size:12.5px;color:#7a5a2e;line-height:1.55}
+  /* Nav flotante de páginas (prototipo) */
+  .navfab{position:fixed;left:20px;bottom:20px;z-index:120;font-family:var(--font)}
+  .navfab-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;border:none;font-family:inherit;font-weight:700;font-size:13.5px;padding:11px 17px;border-radius:999px;cursor:pointer;box-shadow:0 6px 20px rgba(17,24,39,.22)}
+  .navfab-menu{position:absolute;left:0;bottom:54px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(17,24,39,.18);padding:8px;min-width:210px;display:none}
+  .navfab-menu.open{display:block}
+  .navfab-menu .nlabel{display:block;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:6px 14px 6px}
+  .navfab-menu a{display:block;padding:10px 14px;border-radius:9px;font-size:14px;font-weight:600;color:var(--ink);text-decoration:none}
+  .navfab-menu a:hover{background:var(--surface-2)}
+  .navfab-menu a.active{background:var(--accent-soft);color:var(--accent-ink)}
+</style>
+</head>
+<body>
+
+<!-- CHROME KABILIO -->
+<style>
+  .kh-urg{background:#3a2f7a;color:#fff;text-align:center;font-size:13px;font-weight:600;padding:10px 16px;line-height:1.45}
+  .kh-urg a{color:#fff;text-decoration:underline;font-weight:800;margin-left:4px;white-space:nowrap}
+  .kh-wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .kh-aud{border-bottom:1px solid #e4ded5;background:#fff}
+  .kh-aud .kh-wrap{display:flex;gap:4px;height:40px;align-items:flex-end}
+  .kh-aud a{font-size:13px;font-weight:700;color:#6b7280;padding:8px 15px;border-radius:9px 9px 0 0;text-decoration:none;border:1px solid transparent;border-bottom:none}
+  .kh-aud a:hover{color:#111827}
+  .kh-aud a.on{color:#3a2f7a;background:#e9e3fd;border-color:#ddd5fd}
+  .kh-top{position:sticky;top:0;z-index:120;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid #e4ded5}
+  .kh-top .kh-wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:20px}
+  .kh-brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;color:#111827;text-decoration:none}
+  .kh-brand svg{width:24px;height:24px}
+  .kh-nav{display:flex;align-items:center;gap:2px}
+  @media(max-width:1040px){.kh-nav{display:none}}
+  .kh-link{display:inline-flex;align-items:center;gap:5px;background:none;border:none;font-family:inherit;font-size:14px;font-weight:600;color:#6b7280;padding:8px 11px;border-radius:9px;cursor:pointer;text-decoration:none}
+  .kh-link:hover{color:#111827;background:#ece7df}
+  .kh-item{position:relative}
+  .kh-drop{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid #e4ded5;border-radius:12px;box-shadow:0 12px 32px rgba(17,24,39,.14);padding:6px;min-width:210px;display:none;z-index:130}
+  .kh-drop::before{content:"";position:absolute;top:-8px;left:0;right:0;height:8px}
+  .kh-item:hover .kh-drop,.kh-item:focus-within .kh-drop{display:block}
+  .kh-drop a{display:block;padding:9px 12px;border-radius:8px;font-size:14px;font-weight:600;color:#111827;text-decoration:none}
+  .kh-drop a:hover{background:#ece7df}
+  .kh-cta{display:flex;align-items:center;gap:6px}
+  .kh-tlink{font-size:14px;font-weight:600;color:#111827;padding:9px 12px;border-radius:9px;text-decoration:none;white-space:nowrap}
+  .kh-tlink:hover{background:#ece7df}
+  @media(max-width:1040px){.kh-tlink{display:none}}
+  .kh-btn{display:inline-flex;align-items:center;justify-content:center;background:#111827;color:#fff;font-weight:700;font-size:14px;border-radius:11px;padding:11px 20px;text-decoration:none}
+  .kh-btn:hover{background:#3a2f7a}
+  body{background:#fff}
+  .kf{border-top:1px solid #e4ded5;padding:48px 0 28px;color:#6b7280;font-size:14px;background:#fff;margin-top:44px}
+  .kf-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:32px}
+  @media(max-width:760px){.kf-grid{grid-template-columns:1fr;gap:26px}}
+  .kf-brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;color:#111827;margin-bottom:14px}
+  .kf-brand svg{width:22px;height:22px}
+  .kf-contact{line-height:1.75;font-size:13.5px}
+  .kf-contact a{color:#6b7280;text-decoration:none}.kf-contact a:hover{color:#111827}
+  .kf-col h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#111827;margin-bottom:12px}
+  .kf-col a{display:block;color:#6b7280;text-decoration:none;padding:5px 0;font-size:14px}
+  .kf-col a:hover{color:#111827}
+  .kf-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;border-top:1px solid #e4ded5;margin-top:34px;padding-top:20px;font-size:12.5px}
+  .kf-bar .kf-legal{display:flex;gap:16px;flex-wrap:wrap}
+  .kf-bar .kf-legal a{color:#6b7280;text-decoration:none}.kf-bar .kf-legal a:hover{color:#111827}
+</style>
+<div class="kh-urg">Verifactu llega en 2027: prepara tu despacho desde hoy. <a href="#demo">Cómo te ayuda Kabilio →</a></div>
+<div class="kh-aud"><div class="kh-wrap">
+  <a href="landing-empresas.html">Empresas</a>
+  <a class="on" href="landing-asesorias.html">Asesorías</a>
+</div></div>
+<div class="kh-top"><div class="kh-wrap">
+  <a class="kh-brand" href="landing-asesorias.html"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="#3a2f7a" stroke-width="8"/><path d="M38 28 V72M38 50 C52 50,62 41,66 27M38 50 C52 50,62 59,66 73" fill="none" stroke="#3a2f7a" stroke-width="8" stroke-linecap="round"/></svg>kabilio</a>
+  <nav class="kh-nav">
+    <div class="kh-item">
+      <button class="kh-link" type="button">Funcionalidades ▾</button>
+      <div class="kh-drop">
+        <a href="procesador.html">Procesador</a>
+        <a href="conciliador.html">Conciliador</a>
+      </div>
+    </div>
+    <a class="kh-link" href="#">Precios</a>
+    <div class="kh-item">
+      <button class="kh-link" type="button">Recursos ▾</button>
+      <div class="kh-drop">
+        <a href="#">Compañía</a>
+        <a href="https://help.kabilio.es/" target="_blank" rel="noopener">Centro de ayuda</a>
+        <a href="https://www.youtube.com/@Kabilio" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.linkedin.com/company/kabilio" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </nav>
+  <div class="kh-cta">
+    <a class="kh-tlink" href="#">Agendar demo</a>
+    <a class="kh-tlink" href="https://app.kabilio.ai/" target="_blank" rel="noopener">Iniciar sesión</a>
+    <a class="kh-btn" href="#">Pedir demo</a>
+  </div>
+</div></div>
+
+<!-- HERO -->
+<header>
+  <div class="wrap">
+    <div class="hero">
+      <span class="eyebrow">La plataforma de IA para tu despacho</span>
+      <h1>Automatiza la contabilidad de tu asesoría con IA</h1>
+      <p class="lead">Kabilio es la plataforma de IA que automatiza la contabilidad de tu despacho y trabaja conectada con tus clientes en tiempo real: procesa facturas, concilia movimientos bancarios y centraliza la documentación en una plataforma colaborativa.</p>
+      <div class="acts">
+        <a href="#" class="btn btn-primary">Pedir demo</a>
+        <a href="#demo" class="btn btn-ghost">Ver demo</a>
+      </div>
+      <div class="rating"><span class="stars">★★★★★</span> Asesorías de toda España ya trabajan con Kabilio</div>
+    </div>
+  </div>
+  <div class="heroimg">
+    <div class="frame">
+      <svg viewBox="0 0 960 500" xmlns="http://www.w3.org/2000/svg" aria-label="Panel de Kabilio">
+        <rect width="960" height="500" fill="#faf8f5"/>
+        <rect width="960" height="46" fill="#ffffff"/>
+        <circle cx="26" cy="23" r="5" fill="#f2b9d2"/><circle cx="44" cy="23" r="5" fill="#f0cfa6"/><circle cx="62" cy="23" r="5" fill="#c9bff0"/>
+        <text x="92" y="29" font-family="Manrope,sans-serif" font-size="14" font-weight="800" fill="#3a2f7a">Kabilio</text>
+        <rect x="800" y="13" width="138" height="20" rx="10" fill="#f3f0ec"/>
+        <rect x="0" y="45" width="960" height="1" fill="#e4ded5"/>
+        <rect x="0" y="46" width="176" height="454" fill="#ffffff"/>
+        <rect x="176" y="46" width="1" height="454" fill="#e4ded5"/>
+        <rect x="20" y="74" width="136" height="30" rx="8" fill="#e9e3fd"/>
+        <rect x="34" y="85" width="86" height="8" rx="4" fill="#3a2f7a"/>
+        <rect x="34" y="124" width="104" height="7" rx="3.5" fill="#d7dde6"/>
+        <rect x="34" y="152" width="88" height="7" rx="3.5" fill="#d7dde6"/>
+        <rect x="34" y="180" width="112" height="7" rx="3.5" fill="#d7dde6"/>
+        <rect x="34" y="208" width="78" height="7" rx="3.5" fill="#d7dde6"/>
+        <text x="208" y="92" font-family="Manrope,sans-serif" font-size="18" font-weight="800" fill="#111827">Facturas recibidas</text>
+        <rect x="208" y="116" width="470" height="44" rx="8" fill="#ffffff" stroke="#e4ded5"/>
+        <rect x="224" y="130" width="15" height="18" rx="2" fill="#ddd5fd"/>
+        <rect x="252" y="131" width="130" height="7" rx="3.5" fill="#111827"/>
+        <rect x="252" y="144" width="80" height="6" rx="3" fill="#d7dde6"/>
+        <text x="548" y="143" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#111827">1.512 €</text>
+        <rect x="612" y="128" width="54" height="20" rx="10" fill="#dff3e6"/>
+        <text x="639" y="142" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="700" fill="#15914b">Contab.</text>
+        <rect x="208" y="168" width="470" height="44" rx="8" fill="#ffffff" stroke="#e4ded5"/>
+        <rect x="224" y="182" width="15" height="18" rx="2" fill="#ddd5fd"/>
+        <rect x="252" y="183" width="104" height="7" rx="3.5" fill="#111827"/>
+        <rect x="252" y="196" width="70" height="6" rx="3" fill="#d7dde6"/>
+        <text x="546" y="195" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#111827">279,94 €</text>
+        <rect x="612" y="180" width="54" height="20" rx="10" fill="#fdeecd"/>
+        <text x="639" y="194" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="700" fill="#a5791b">Revisar</text>
+        <rect x="208" y="220" width="470" height="44" rx="8" fill="#ffffff" stroke="#e4ded5"/>
+        <rect x="224" y="234" width="15" height="18" rx="2" fill="#ddd5fd"/>
+        <rect x="252" y="235" width="120" height="7" rx="3.5" fill="#111827"/>
+        <rect x="252" y="248" width="86" height="6" rx="3" fill="#d7dde6"/>
+        <text x="552" y="247" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#111827">640,00 €</text>
+        <rect x="612" y="232" width="54" height="20" rx="10" fill="#dff3e6"/>
+        <text x="639" y="246" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="700" fill="#15914b">Contab.</text>
+        <rect x="704" y="116" width="232" height="252" rx="12" fill="#ffffff" stroke="#ddd5fd" stroke-width="2"/>
+        <text x="726" y="146" font-family="Manrope,sans-serif" font-size="13" font-weight="800" fill="#3a2f7a">Asiento propuesto</text>
+        <rect x="726" y="164" width="188" height="8" rx="4" fill="#e4e9f0"/>
+        <rect x="726" y="184" width="150" height="8" rx="4" fill="#e4e9f0"/>
+        <rect x="726" y="204" width="188" height="8" rx="4" fill="#e4e9f0"/>
+        <rect x="726" y="224" width="120" height="8" rx="4" fill="#e4e9f0"/>
+        <rect x="726" y="300" width="120" height="34" rx="9" fill="#111827"/>
+        <text x="786" y="322" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#ffffff">Validar</text>
+        <rect x="856" y="300" width="58" height="34" rx="9" fill="#e9e3fd"/>
+        <text x="885" y="322" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="800" fill="#3a2f7a">95%</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- BENEFICIOS -->
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <p class="kick">Beneficios</p>
+      <h2>Lo que consigue tu despacho con Kabilio</h2>
+      <p>Cumplimiento al día, cierres sin acumulación y horas de trabajo que recuperas cada mes.</p>
+    </div>
+    <div class="bens">
+      <div class="ben">
+        <span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></span>
+        <h3>Reduce los picos de trabajo</h3>
+        <p>Contabiliza la actividad de tus clientes a diario y llega a los cierres con el trabajo hecho, sin acumularlo para fin de trimestre.</p>
+      </div>
+      <div class="ben">
+        <span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg></span>
+        <h3>Ahorra tiempo con IA</h3>
+        <p>La IA generativa contabiliza las facturas, concilia los bancos y te deja el asiento propuesto para revisar, todo desde un único panel.</p>
+      </div>
+      <div class="ben">
+        <span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>
+        <h3>Normativa cubierta</h3>
+        <p>Tus clientes facturan con un facturador adaptado a Verifactu: cada factura se envía automáticamente a la AEAT y, al mismo tiempo, la recibes al momento en tu Kabilio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONALIDADES -->
+<section class="funcs">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kick">Funcionalidades</p>
+      <h2>Todo tu despacho, en una sola plataforma</h2>
+      <p>La IA se ocupa del trabajo repetitivo; tú controlas la cartera y colaboras con tus clientes.</p>
+    </div>
+    <div class="fgrid">
+
+      <!-- Procesamiento de facturas (wide) -->
+      <div class="fcard wide">
+        <div class="shot">
+          <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="46" y="30" width="150" height="182" rx="6" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+            <rect x="64" y="52" width="92" height="9" rx="4" fill="#111827"/>
+            <rect x="64" y="74" width="114" height="6" rx="3" fill="#e4e9f0"/>
+            <rect x="64" y="90" width="114" height="6" rx="3" fill="#e4e9f0"/>
+            <rect x="64" y="120" width="80" height="6" rx="3" fill="#e4e9f0"/>
+            <rect x="64" y="180" width="72" height="10" rx="3" fill="#111827"/>
+            <rect x="40" y="112" width="162" height="4" rx="2" fill="#3a2f7a"/>
+            <path d="M214 120 h58" stroke="#c9bff0" stroke-width="3" stroke-linecap="round"/>
+            <path d="M264 111 l10 9 -10 9" fill="none" stroke="#c9bff0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="300" y="34" width="340" height="172" rx="12" fill="#fff" stroke="#ddd5fd" stroke-width="2"/>
+            <text x="322" y="64" font-family="Manrope,sans-serif" font-size="14" font-weight="800" fill="#3a2f7a">Asiento propuesto</text>
+            <rect x="322" y="82" width="290" height="9" rx="4.5" fill="#e4e9f0"/>
+            <rect x="322" y="102" width="230" height="9" rx="4.5" fill="#e4e9f0"/>
+            <rect x="322" y="122" width="290" height="9" rx="4.5" fill="#e4e9f0"/>
+            <rect x="322" y="160" width="96" height="28" rx="8" fill="#111827"/>
+            <text x="370" y="179" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#fff">Validar</text>
+            <rect x="430" y="160" width="52" height="28" rx="8" fill="#e9e3fd"/>
+            <text x="456" y="179" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="800" fill="#3a2f7a">95%</text>
+          </svg>
+        </div>
+        <p class="fk">Procesamiento de facturas</p>
+        <h3>La IA procesa las facturas de tus clientes y las contabiliza</h3>
+        <p>Tus clientes te envían sus facturas y la IA generativa las procesa y genera el asiento contable completo con un 95% de fiabilidad. Es más que un OCR: usa la última tecnología de IA para entender e interpretar cada factura, no solo leer sus datos.</p>
+      </div>
+
+      <!-- Conciliación (half) -->
+      <div class="fcard">
+        <div class="shot">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="30" y="52" width="120" height="40" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+            <rect x="30" y="128" width="120" height="40" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+            <rect x="46" y="68" width="70" height="7" rx="3.5" fill="#d7dde6"/>
+            <rect x="46" y="144" width="70" height="7" rx="3.5" fill="#d7dde6"/>
+            <path d="M150 72 C176 72 176 108 200 108" fill="none" stroke="#ddd5fd" stroke-width="2.5"/>
+            <path d="M150 148 C176 148 176 112 200 112" fill="none" stroke="#ddd5fd" stroke-width="2.5"/>
+            <circle cx="216" cy="110" r="17" fill="#f8d5e4"/>
+            <path d="M208 110 l5 5 10 -11" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="248" y="90" width="82" height="40" rx="10" fill="#e9e3fd" stroke="#ddd5fd" stroke-width="2"/>
+            <rect x="262" y="106" width="54" height="7" rx="3.5" fill="#c9bff0"/>
+          </svg>
+        </div>
+        <p class="fk">Conciliación</p>
+        <h3>Conciliación bancaria</h3>
+        <p>Integra los movimientos bancarios automáticamente y utiliza reglas avanzadas e IA para recibir propuestas de emparejamiento, viendo todo de forma centralizada.</p>
+      </div>
+
+      <!-- Contabilidad colaborativa (half) -->
+      <div class="fcard">
+        <div class="shot">
+          <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="96" cy="106" r="28" fill="#e9e3fd" stroke="#ddd5fd" stroke-width="2"/>
+            <circle cx="96" cy="94" r="10" fill="#3a2f7a"/><path d="M80 124 a16 14 0 0 1 32 0" fill="#3a2f7a"/>
+            <circle cx="264" cy="106" r="28" fill="#f8d5e4" stroke="#f2b9d2" stroke-width="2"/>
+            <circle cx="264" cy="94" r="10" fill="#111827"/><path d="M248 124 a16 14 0 0 1 32 0" fill="#111827"/>
+            <path d="M128 106 h72" stroke="#ddd5fd" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+            <rect x="150" y="90" width="60" height="32" rx="8" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+            <path d="M162 106 l5 5 12 -12" fill="none" stroke="#15914b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="96" y="158" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#6b7280">Despacho</text>
+            <text x="264" y="158" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#6b7280">Cliente</text>
+          </svg>
+        </div>
+        <p class="fk">Contabilidad colaborativa</p>
+        <h3>Tú y tu cliente, sobre los mismos datos</h3>
+        <p>Trabajáis sobre la misma plataforma, con la documentación centralizada y la actividad al día para los dos.</p>
+      </div>
+
+      <!-- Facturador (wide) -->
+      <div class="fcard wide">
+        <div class="shot">
+          <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="180" y="22" width="320" height="196" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+            <rect x="206" y="46" width="120" height="12" rx="6" fill="#111827"/>
+            <rect x="410" y="48" width="64" height="10" rx="5" fill="#ddd5fd"/>
+            <rect x="206" y="80" width="268" height="7" rx="3.5" fill="#e4e9f0"/>
+            <rect x="206" y="98" width="268" height="7" rx="3.5" fill="#e4e9f0"/>
+            <rect x="206" y="128" width="200" height="7" rx="3.5" fill="#e4e9f0"/>
+            <rect x="206" y="146" width="200" height="7" rx="3.5" fill="#e4e9f0"/>
+            <rect x="206" y="180" width="92" height="16" rx="8" fill="#ddd5fd"/>
+            <circle cx="452" cy="188" r="18" fill="#f8d5e4"/>
+            <path d="M444 188 l6 6 10 -11" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="fk">Facturador</p>
+        <h3>Facturación electrónica para las pymes de tu despacho</h3>
+        <p>Facilita a tus clientes un facturador intuitivo que recibe y contabiliza automáticamente las facturas emitidas en Kabilio. Compatible con Verifactu.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section>
+  <div class="wrap">
+    <div class="demo">
+      <div class="dtext">
+        <h2>Tu despacho y tus clientes, en una misma plataforma</h2>
+        <p>Reúne la contabilidad, la conciliación y la facturación de toda tu cartera en un solo sitio, con tus clientes conectados en tiempo real. Te enseñamos cómo en una demo.</p>
+        <a href="#" class="btn btn-primary">Pedir demo</a>
+      </div>
+      <div class="player" role="img" aria-label="Vídeo demo de Kabilio">
+        <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="lbl">Kabilio en 90 segundos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS / INTEGRACIÓN -->
+<section>
+  <div class="wrap">
+    <div class="serv">
+      <div class="stext">
+        <p class="kick">Integración</p>
+        <h2>Integra Kabilio con A3 <span style="color:var(--muted);font-weight:600;font-size:.6em">(pronto Sage)</span></h2>
+        <p>Kabilio se conecta de raíz con A3ECO y A3CON: cada asiento se escribe solo en tu A3, en tiempo real. No migras datos ni cambias de programa.</p>
+        <ul class="servlist">
+          <li>Conexión nativa con A3ECO y A3CON</li>
+          <li>Importación asistida de datos iniciales</li>
+          <li>Formación personalizada para tu equipo</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Solicita más información</a>
+      </div>
+      <div class="svis">
+        <svg viewBox="0 0 380 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="20" y="52" width="90" height="66" rx="8" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+          <text x="34" y="79" font-family="Manrope,sans-serif" font-size="13" font-weight="800" fill="#111827">a3<tspan fill="#5aa02c">ASESOR</tspan></text>
+          <rect x="20" y="88" width="90" height="30" rx="8" fill="#5aa02c"/>
+          <rect x="20" y="88" width="90" height="12" fill="#5aa02c"/>
+          <text x="65" y="109" text-anchor="middle" font-family="Manrope,sans-serif" font-size="14" font-weight="800" fill="#fff">eco</text>
+          <circle cx="132" cy="85" r="3" fill="#111827"/><circle cx="146" cy="85" r="3" fill="#111827"/><circle cx="160" cy="85" r="3" fill="#111827"/>
+          <circle cx="190" cy="85" r="30" fill="none" stroke="#6b5cf0" stroke-width="4"/>
+          <path d="M192 73 l-11 12 11 12 M201 73 l-11 12 11 12" stroke="#6b5cf0" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="220" cy="85" r="3" fill="#c9cfd8"/><circle cx="234" cy="85" r="3" fill="#c9cfd8"/><circle cx="248" cy="85" r="3" fill="#c9cfd8"/>
+          <rect x="270" y="52" width="90" height="66" rx="8" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+          <text x="284" y="79" font-family="Manrope,sans-serif" font-size="13" font-weight="800" fill="#111827">a3<tspan fill="#5aa02c">ASESOR</tspan></text>
+          <rect x="270" y="88" width="90" height="30" rx="8" fill="#5aa02c"/>
+          <rect x="270" y="88" width="90" height="12" fill="#5aa02c"/>
+          <text x="315" y="109" text-anchor="middle" font-family="Manrope,sans-serif" font-size="14" font-weight="800" fill="#fff">con</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIR KABILIO -->
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <h2>Por qué elegir Kabilio</h2>
+    </div>
+    <div class="whygrid">
+      <div class="whycard">
+        <div class="shot">
+          <svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M180 40 l34 15 v22 c0 22 -15 35 -34 43 -19 -8 -34 -21 -34 -43 v-22 z" fill="#e9e3fd" stroke="#3a2f7a" stroke-width="2"/>
+            <text x="180" y="90" text-anchor="middle" font-family="Manrope,sans-serif" font-size="14" font-weight="800" fill="#3a2f7a">ISO</text>
+            <text x="180" y="106" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#3a2f7a">27001</text>
+            <rect x="94" y="146" width="76" height="20" rx="10" fill="#fff" stroke="#e4ded5"/><text x="132" y="160" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="700" fill="#6b7280">RGPD</text>
+            <rect x="190" y="146" width="76" height="20" rx="10" fill="#fff" stroke="#e4ded5"/><text x="228" y="160" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="700" fill="#6b7280">PSD2</text>
+          </svg>
+        </div>
+        <p class="fk">Seguro</p>
+        <h3>Tus datos, protegidos</h3>
+        <p>Protegemos los datos de tu despacho y los de tus clientes con los estándares que exige el sector.</p>
+      </div>
+      <div class="whycard">
+        <div class="shot">
+          <svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="40" y="30" width="280" height="34" rx="8" fill="#fff" stroke="#e4ded5"/>
+            <rect x="56" y="43" width="120" height="7" rx="3.5" fill="#d7dde6"/>
+            <rect x="250" y="38" width="56" height="18" rx="9" fill="#dff3e6"/><text x="278" y="51" text-anchor="middle" font-family="Manrope,sans-serif" font-size="9.5" font-weight="700" fill="#15914b">Nuevo</text>
+            <rect x="40" y="73" width="280" height="34" rx="8" fill="#fff" stroke="#e4ded5"/>
+            <rect x="56" y="86" width="150" height="7" rx="3.5" fill="#d7dde6"/>
+            <rect x="250" y="81" width="56" height="18" rx="9" fill="#e9e3fd"/><text x="278" y="94" text-anchor="middle" font-family="Manrope,sans-serif" font-size="9.5" font-weight="700" fill="#3a2f7a">Activo</text>
+            <rect x="40" y="116" width="280" height="34" rx="8" fill="#fff" stroke="#e4ded5"/>
+            <rect x="56" y="129" width="110" height="7" rx="3.5" fill="#d7dde6"/>
+            <rect x="250" y="124" width="56" height="18" rx="9" fill="#e9e3fd"/><text x="278" y="137" text-anchor="middle" font-family="Manrope,sans-serif" font-size="9.5" font-weight="700" fill="#3a2f7a">Activo</text>
+          </svg>
+        </div>
+        <p class="fk">Escalable</p>
+        <h3>Evoluciona contigo</h3>
+        <p>Más de 30 ingenieros evolucionando y mejorando Kabilio, con funciones nuevas cada mes.</p>
+      </div>
+      <div class="whycard">
+        <div class="shot">
+          <svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="40" y="66" width="76" height="48" rx="12" fill="#111827"/><text x="78" y="96" text-anchor="middle" font-family="Manrope,sans-serif" font-size="16" font-weight="800" fill="#fff">1</text>
+            <rect x="142" y="56" width="76" height="68" rx="12" fill="#3a2f7a"/><text x="180" y="97" text-anchor="middle" font-family="Manrope,sans-serif" font-size="18" font-weight="800" fill="#fff">50</text>
+            <rect x="244" y="46" width="86" height="88" rx="12" fill="#e9e3fd" stroke="#ddd5fd" stroke-width="2"/><text x="287" y="97" text-anchor="middle" font-family="Manrope,sans-serif" font-size="18" font-weight="800" fill="#3a2f7a">+500</text>
+            <text x="185" y="152" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#6b7280">clientes por despacho</text>
+          </svg>
+        </div>
+        <p class="fk">Adaptado</p>
+        <h3>A tu tamaño</h3>
+        <p>Desde despachos pequeños hasta grandes, se adapta a tu volumen de clientes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMEN -->
+<section>
+  <div class="wrap">
+    <div class="summary">
+      <div class="sumhead">
+        <h2>Todo lo que necesita tu despacho</h2>
+        <p>Una sola plataforma para automatizar el trabajo repetitivo y trabajar conectado con tus clientes.</p>
+      </div>
+      <div class="sumgrid">
+        <div class="sumitem"><b>Procesamiento de facturas con IA</b><span>La IA interpreta cada factura de tus clientes, mucho más que un OCR clásico.</span></div>
+        <div class="sumitem"><b>Contabilidad automatizada</b><span>Asientos contables completos con IA, listos para tu A3 con un 95% de fiabilidad.</span></div>
+        <div class="sumitem"><b>Conciliación bancaria</b><span>Conecta las cuentas y concilia los movimientos con reglas e IA.</span></div>
+        <div class="sumitem"><b>Contabilidad colaborativa</b><span>Trabaja con tus clientes en tiempo real sobre la misma plataforma.</span></div>
+        <div class="sumitem"><b>Facturación electrónica</b><span>Un facturador Verifactu para tus clientes; lo que emiten llega directo a tu contabilidad.</span></div>
+        <div class="sumitem"><b>Integración con A3</b><span>Conexión nativa con A3ECO y A3CON, sin migrar tus datos.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section>
+  <div class="wrap">
+    <div class="shead">
+      <h2>Testimonios de clientes</h2>
+      <p>Lo que dicen las asesorías que ya trabajan con Kabilio.</p>
+    </div>
+    <div class="tgrid">
+      <div class="tcard">
+        <p>“Con Kabilio hemos reducido el tiempo dedicado a lo más repetitivo, como contabilizar facturas, y centramos al equipo en lo de más valor para el cliente.”</p>
+        <div class="who"><span class="av">MC</span><div><b>Mar Castellà</b><span>Socia en Castellá</span></div></div>
+      </div>
+      <div class="tcard">
+        <p>“Gracias a la IA de Kabilio hemos cortado drásticamente las horas de introducir facturas y bajado los picos de trabajo.”</p>
+        <div class="who"><span class="av">GG</span><div><b>Guillem Gimeno</b><span>CEO en Deal Tax &amp; Legal</span></div></div>
+      </div>
+      <div class="tcard">
+        <p>“Queríamos liberar al equipo de tareas rutinarias para dar un servicio de valor. Kabilio nos permite hacerlo hoy.”</p>
+        <div class="who"><span class="av">AM</span><div><b>Alex Martínez Comín</b><span>CEO en Martínez Comín</span></div></div>
+      </div>
+    </div>
+    <div class="socialproof">
+      <div class="avatars">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="">
+        <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="">
+      </div>
+      <p>Más de <b>300 asesorías</b> confían en Kabilio</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES / CTA FINAL -->
+<section>
+  <div class="wrap">
+    <div class="plans">
+      <h2>Empieza a automatizar la contabilidad de tu despacho</h2>
+      <p>Te enseñamos en una demo cómo Kabilio automatiza tu precontabilidad y te conecta con tus clientes en tiempo real.</p>
+      <div class="acts">
+        <a href="#" class="btn btn-primary">Pedir demo</a>
+        <a href="#" class="btn btn-ghost">Ver planes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV FLOTANTE DE PÁGINAS -->
+<footer class="kf"><div class="kh-wrap">
+  <div class="kf-grid">
+    <div class="kf-col">
+      <div class="kf-brand"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="none" stroke="#3a2f7a" stroke-width="8"/><path d="M38 28 V72M38 50 C52 50,62 41,66 27M38 50 C52 50,62 59,66 73" fill="none" stroke="#3a2f7a" stroke-width="8" stroke-linecap="round"/></svg>kabilio</div>
+      <div class="kf-contact">
+        Automatización pre-contable con IA, conectada con tus clientes.<br>
+        <a href="#">Contáctanos</a><br>
+        Numància 164-168, planta 4 · 08029 Barcelona<br>
+        +34 932 20 27 35
+      </div>
+    </div>
+    <div class="kf-col">
+      <h4>Productos</h4>
+      <a href="procesador.html">Procesador</a>
+      <a href="conciliador.html">Conciliador</a>
+      <a href="facturacion-empresas.html">Facturación</a>
+      <a href="#">Precios</a>
+    </div>
+    <div class="kf-col">
+      <h4>Recursos</h4>
+      <a href="#">Compañía</a>
+      <a href="https://help.kabilio.es/" target="_blank" rel="noopener">Centro de ayuda</a>
+      <a href="https://www.youtube.com/@Kabilio" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.linkedin.com/company/kabilio" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <div class="kf-bar">
+    <span>© 2026 Kabilio</span>
+    <span class="kf-legal">
+      <a href="#">Política SGSI</a><a href="#">Privacidad</a><a href="#">Cookies</a><a href="#">Aviso legal</a><a href="#">Condiciones de venta</a>
+    </span>
+  </div>
+</div></footer>
+
+<div class="navfab">
+  <button class="navfab-btn" id="navToggle" aria-expanded="false">▤ Páginas</button>
+  <div class="navfab-menu" id="navMenu">
+    <span class="nlabel">Landings</span>
+    <a href="landing-asesorias.html" class="active">Asesorías</a>
+    <a href="landing-empresas.html">Empresas</a>
+    <a href="registro.html">Registro</a>
+    <span class="nlabel">Productos</span>
+    <a href="procesador.html">Procesador</a>
+    <a href="conciliador.html">Conciliador</a>
+    <a href="facturacion-empresas.html">Facturación</a>
+  </div>
+</div>
+<script>
+  (function(){
+    var t=document.getElementById('navToggle'), m=document.getElementById('navMenu');
+    t.addEventListener('click',function(e){e.stopPropagation();var o=m.classList.toggle('open');t.setAttribute('aria-expanded',o);});
+    document.addEventListener('click',function(e){ if(!e.target.closest('.navfab')) m.classList.remove('open'); });
+  })();
+</script>
+</body>
+</html>
