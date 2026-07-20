@@ -12,8 +12,6 @@ export const tesoreriaEmpresas: FeatureLandingData = {
       { lbl: "IVA estimado", val: "1.240 €" },
     ],
   },
-  trustText: "Miles de negocios controlan su tesorería con Kabilio",
-  logos: ["Nordia", "Cafeto", "Volara", "Mendia", "Talleres Sur", "Lumio"],
   benefits: {
     title: "Lo que gana tu empresa con la tesorería en Kabilio",
     text: "Tus bancos conectados, la conciliación resuelta por IA y tu caja e IVA siempre al día.",

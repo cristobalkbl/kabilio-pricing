@@ -12,8 +12,6 @@ export const facturacionEmpresas: FeatureLandingData = {
       { lbl: "Facturas", val: "142", delta: "+24" },
     ],
   },
-  trustText: "Miles de negocios ya facturan con Kabilio",
-  logos: ["Nordia", "Cafeto", "Volara", "Mendia", "Talleres Sur", "Lumio"],
   benefits: {
     title: "Lo que gana tu empresa al facturar con Kabilio",
     text: "Factura en dos clics, cumple con Verifactu y mantén a tu asesoría al día sin esfuerzo.",
@@ -55,7 +53,7 @@ export const facturacionEmpresas: FeatureLandingData = {
       },
     },
     {
-      k: "Presupuestos",
+      k: "Presupuestos · Próximamente",
       title: "Del presupuesto a la factura, sin rehacer nada",
       text: "Crea presupuestos con la misma plantilla, envíalos para firma y, cuando el cliente acepta, conviértelos en factura con un clic.",
       bullets: [
@@ -157,12 +155,8 @@ export const facturacionEmpresas: FeatureLandingData = {
       },
     ],
   },
-  stats: [
-    { n: "2 clics", l: "para crear una factura profesional" },
-    { n: "80%", l: "cobros más rápidos con automatización" },
-    { n: "Al día", l: "todo llega a tu asesoría en tiempo real" },
-  ],
   faqs: [
+    { q: "¿Kabilio es para cualquier empresa?", a: "No exactamente. Kabilio para empresas funciona cuando tu asesoría también usa Kabilio, para que tus facturas y gastos le lleguen conectados y al día. Si tu asesoría todavía no lo usa, puedes invitarla en un minuto desde tu cuenta y la acompañamos para que empiece." },
     { q: "¿Puedo empezar gratis?", a: "Sí. El plan Colaborativo te permite emitir y recibir facturas cumpliendo la normativa, sin coste. Hay planes de pago cuando necesitas más volumen o funciones avanzadas." },
     { q: "¿Cumple con Verifactu y la factura electrónica?", a: "Sí. Kabilio genera facturas conformes, con registro inalterable y envío a la AEAT, y se actualiza con cada cambio normativo." },
     { q: "¿Puedo conectar mi banco?", a: "Sí. Conecta tus cuentas y Kabilio concilia tus movimientos automáticamente, dándote una visión de tesorería en tiempo real." },

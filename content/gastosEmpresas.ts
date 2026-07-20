@@ -2,7 +2,7 @@ import type { FeatureLandingData } from "@/components/empresas/FeatureLanding";
 
 export const gastosEmpresas: FeatureLandingData = {
   eyebrow: "Gastos",
-  h1: "Registra los gastos de tu empresa sin teclear",
+  h1: "Lleva el control de todos los gastos de tu empresa",
   sub: "Sube tus facturas de gasto por email o archivo y la IA extrae los datos por ti. Sin límite, sin duplicados y con tu asesoría al día.",
   hero: {
     card: {
@@ -20,8 +20,6 @@ export const gastosEmpresas: FeatureLandingData = {
       { lbl: "Tecleado a mano", val: "0" },
     ],
   },
-  trustText: "Miles de negocios registran sus gastos con Kabilio",
-  logos: ["Nordia", "Cafeto", "Volara", "Mendia", "Talleres Sur", "Lumio"],
   benefits: {
     title: "Del ticket a tu contabilidad, sin teclear",
     text: "Kabilio captura, lee y ordena tus gastos —y los deja al día para tu asesoría.",

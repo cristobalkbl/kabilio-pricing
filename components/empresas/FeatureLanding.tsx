@@ -39,8 +39,8 @@ export type FeatureLandingData = {
     card?: Mock;
     kpis: { lbl: string; val: string; delta?: string }[];
   };
-  trustText: string;
-  logos: string[];
+  trustText?: string;
+  logos?: string[];
   benefits?: { title: string; text: string; items: { icon: string; h: string; p: string }[] };
   featuresHeading?: { title: string; text: string };
   features: Feature[];
@@ -314,16 +314,20 @@ export function FeatureLanding({ data }: { data: FeatureLandingData }) {
       </header>
 
       {/* TRUST */}
-      <div className="py-8 text-center">
-        <div className="container">
-          <p className="mb-4 text-[13px] font-bold uppercase tracking-wide text-ink-muted">{data.trustText}</p>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-            {data.logos.map((l) => (
-              <span key={l} className="text-[17px] font-extrabold tracking-tight text-[#c9c3d6]">{l}</span>
-            ))}
+      {(data.trustText || (data.logos && data.logos.length > 0)) && (
+        <div className="py-8 text-center">
+          <div className="container">
+            {data.trustText && (
+              <p className="mb-4 text-[13px] font-bold uppercase tracking-wide text-ink-muted">{data.trustText}</p>
+            )}
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+              {data.logos?.map((l) => (
+                <span key={l} className="text-[17px] font-extrabold tracking-tight text-[#c9c3d6]">{l}</span>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <main className="container">
         {/* BENEFICIOS (opcional) */}

@@ -12,8 +12,6 @@ export const colaboracionEmpresas: FeatureLandingData = {
       { lbl: "Estado", val: "Al día" },
     ],
   },
-  trustText: "Miles de negocios trabajan con su asesoría en Kabilio",
-  logos: ["Nordia", "Cafeto", "Volara", "Mendia", "Talleres Sur", "Lumio"],
   benefits: {
     title: "Lo que gana tu empresa trabajando con tu asesoría en Kabilio",
     text: "Un único espacio con tu asesor: la misma información, comunicación directa y nada que reenviar.",

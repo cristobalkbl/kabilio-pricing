@@ -12,8 +12,6 @@ export const verifactuEmpresas: FeatureLandingData = {
       { lbl: "Normativa", val: "Al día" },
     ],
   },
-  trustText: "Miles de negocios ya facturan en regla con Kabilio",
-  logos: ["Nordia", "Cafeto", "Volara", "Mendia", "Talleres Sur", "Lumio"],
   benefits: {
     title: "Qué significa Verifactu para tu empresa",
     text: "La Ley Antifraude cambia cómo se emiten las facturas. Con Kabilio no tienes que preocuparte por nada.",
