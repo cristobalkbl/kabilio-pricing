@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/Button";
+import { SupportCards } from "@/components/SupportCards";
 import { TestimonialsCarousel } from "./TestimonialsCarousel";
 import { PairedTestimonials, type TPair } from "./PairedTestimonials";
 
@@ -66,7 +67,6 @@ const DEFAULT_ALLFEATURES = [
   { title: "Gastos", text: "Sube tus facturas de gasto y la IA extrae los datos, sin teclear y sin duplicados.", href: "/empresas/gastos", icon: `<path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/>` },
   { title: "Tesorería", text: "Bancos conectados, conciliación automática, IVA y dashboard al día.", href: "/empresas/tesoreria", icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>` },
   { title: "Portal colaborativo", text: "Tú y tu asesoría, sobre los mismos datos y en tiempo real.", href: "/empresas/portal-colaborativo", icon: `<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 20a5 5 0 0 1 6-4.6"/>` },
-  { title: "Verifactu", text: "Facturas conformes con la Ley Antifraude y envío automático a la AEAT.", href: "/empresas/verifactu", icon: `<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/>` },
 ];
 
 /* ---------- Helpers de UI ---------- */
@@ -445,6 +445,9 @@ export function FeatureLanding({ data }: { data: FeatureLandingData }) {
             </div>
           </section>
         )}
+
+        {/* AYUDA */}
+        <SupportCards contained={false} />
 
         {/* CTA BAND */}
         <section className="my-5 mb-14">

@@ -1,7 +1,8 @@
 import { Button } from "@/components/Button";
 import { RawSvg } from "./RawSvg";
 import { HowItWorks } from "./HowItWorks";
-import { site } from "@/content/site";
+import { SupportCards } from "@/components/SupportCards";
+import { SageNotifyForm } from "@/components/SageNotifyForm";
 
 export type FeatureRow = { title: string; bullets: string[]; chips?: string[]; media: string };
 export type WhyCard = { kicker: string; title: string; text: string; shot: string };
@@ -176,25 +177,39 @@ function A3Integration({ data }: { data: ProductData["a3"] }) {
   return (
     <section className="py-14">
       <div className="container">
-        <div className="grid items-center gap-11 rounded-3xl border border-lav bg-brand-100 p-8 sm:p-11 md:grid-cols-[1.05fr_.95fr]">
-          <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Integración</p>
-            <h2 className="mb-3 text-[clamp(23px,3vw,30px)] font-bold">{data.title}</h2>
-            <ul className="mt-1.5 space-y-1">
-              {data.items.map((it) => (
-                <li key={it.bold} className="flex items-start gap-3 py-2.5 text-[15px] leading-snug text-[#4b4560]">
-                  <span className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-white text-xs font-extrabold text-brand">
-                    ✓
-                  </span>
-                  <span>
-                    <b className="font-bold text-ink">{it.bold}</b> — {it.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
+        <div className="rounded-3xl border border-lav bg-brand-100 p-8 sm:p-11">
+          <div className="grid items-center gap-11 md:grid-cols-[1.05fr_.95fr]">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Integración</p>
+              <h2 className="mb-3 text-[clamp(23px,3vw,30px)] font-bold">{data.title}</h2>
+              <ul className="mt-1.5 space-y-1">
+                {data.items.map((it) => (
+                  <li key={it.bold} className="flex items-start gap-3 py-2.5 text-[15px] leading-snug text-[#4b4560]">
+                    <span className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-white text-xs font-extrabold text-brand">
+                      ✓
+                    </span>
+                    <span>
+                      <b className="font-bold text-ink">{it.bold}</b> — {it.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-lav/70 bg-white/50 p-6 backdrop-blur-sm">
+              <RawSvg html={A3_SVG} />
+            </div>
           </div>
-          <div className="rounded-2xl border border-lav/70 bg-white/50 p-6 backdrop-blur-sm">
-            <RawSvg html={A3_SVG} />
+
+          {/* Sage · lista de espera, dentro del mismo bloque de integración */}
+          <div className="mt-9 grid gap-5 border-t border-lav/70 pt-8 sm:grid-cols-[1fr_auto] sm:items-center">
+            <div>
+              <h3 className="text-lg font-bold">¿Trabajas con Sage?</h3>
+              <p className="mt-1 max-w-[520px] text-[14.5px] leading-relaxed text-[#4b4560]">
+                Estamos preparando la integración con Sage. Déjanos tu email y te avisamos en cuanto
+                esté lista.
+              </p>
+            </div>
+            <SageNotifyForm />
           </div>
         </div>
       </div>
@@ -311,57 +326,6 @@ function ProductFaq({ faqs }: { faqs: Faq[] }) {
               <p className="pb-[18px] text-[14.5px] leading-relaxed text-ink-muted">{f.a}</p>
             </details>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SupportCards() {
-  return (
-    <section className="py-14">
-      <div className="container">
-        <div className="mx-auto mb-10 max-w-[700px] text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.06em] text-brand">Ayuda</p>
-          <h2 className="text-[clamp(26px,3.6vw,34px)] font-bold leading-tight">
-            Estamos para darte soporte cuando lo necesites
-          </h2>
-        </div>
-        <div className="mx-auto grid max-w-[820px] gap-4 sm:grid-cols-2">
-          <div className="rounded-[18px] border border-line bg-surface p-7">
-            <span className="mb-4 inline-flex h-[50px] w-[50px] items-center justify-center rounded-xl bg-brand-100 text-brand">
-              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg>
-            </span>
-            <h3 className="mb-2 text-lg font-bold">Chat o email</h3>
-            <p className="text-sm leading-relaxed text-ink-muted">
-              Pregunta lo que quieras a nuestro equipo o al agente IA vía chat.
-            </p>
-            <a className="mt-3 inline-block text-sm font-bold text-brand hover:underline" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>
-          </div>
-          <div className="rounded-[18px] border border-line bg-surface p-7">
-            <span className="mb-4 inline-flex h-[50px] w-[50px] items-center justify-center rounded-xl bg-brand-100 text-brand">
-              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-              </svg>
-            </span>
-            <h3 className="mb-2 text-lg font-bold">Centro de ayuda</h3>
-            <p className="text-sm leading-relaxed text-ink-muted">
-              Respuestas estructuradas y vídeos sobre los temas más consultados.
-            </p>
-            <a
-              className="mt-3 inline-block text-sm font-bold text-brand hover:underline"
-              href={site.social.helpCenter}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Visitar centro de ayuda →
-            </a>
-          </div>
         </div>
       </div>
     </section>
