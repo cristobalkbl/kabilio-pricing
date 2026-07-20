@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/Button";
+import { SageNotifyForm } from "@/components/SageNotifyForm";
 import { buildMetadata } from "@/lib/seo";
 import {
   HeroDashboard,
@@ -197,35 +198,49 @@ export default function HomePage() {
       {/* SERVICIOS / INTEGRACIÓN */}
       <section className="py-14">
         <div className="container">
-          <div className="grid items-center gap-10 rounded-3xl border border-lav bg-gradient-to-br from-brand-100 to-brand-50 p-8 sm:p-11 md:grid-cols-[1.05fr_.95fr]">
-            <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Integración</p>
-              <h2 className="mb-3 text-[clamp(24px,3.2vw,32px)] font-bold leading-tight">
-                Integra Kabilio con A3{" "}
-                <span className="text-[0.6em] font-semibold text-ink-muted">(pronto Sage)</span>
-              </h2>
-              <p className="mb-6 text-[15.5px] leading-relaxed text-[#4b4560]">
-                Kabilio se conecta de raíz con A3ECO y A3CON: cada asiento se escribe solo en tu A3,
-                en tiempo real. No migras datos ni cambias de programa.
-              </p>
-              <ul className="mb-7 space-y-2.5">
-                {[
-                  "Conexión nativa con A3ECO y A3CON",
-                  "Importación asistida de datos iniciales",
-                  "Formación personalizada para tu equipo",
-                ].map((li) => (
-                  <li key={li} className="flex items-center gap-3 text-[15px] font-semibold">
-                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-xs font-extrabold text-brand shadow-sm">
-                      ✓
-                    </span>
-                    {li}
-                  </li>
-                ))}
-              </ul>
-              <Button href="/contacto">Solicita más información</Button>
+          <div className="rounded-3xl border border-lav bg-gradient-to-br from-brand-100 to-brand-50 p-8 sm:p-11">
+            <div className="grid items-center gap-10 md:grid-cols-[1.05fr_.95fr]">
+              <div>
+                <p className="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Integración</p>
+                <h2 className="mb-3 text-[clamp(24px,3.2vw,32px)] font-bold leading-tight">
+                  Integra Kabilio con A3{" "}
+                  <span className="text-[0.6em] font-semibold text-ink-muted">(pronto Sage)</span>
+                </h2>
+                <p className="mb-6 text-[15.5px] leading-relaxed text-[#4b4560]">
+                  Kabilio se conecta de raíz con A3ECO y A3CON: cada asiento se escribe solo en tu A3,
+                  en tiempo real. No migras datos ni cambias de programa.
+                </p>
+                <ul className="mb-7 space-y-2.5">
+                  {[
+                    "Conexión nativa con A3ECO y A3CON",
+                    "Importación asistida de datos iniciales",
+                    "Formación personalizada para tu equipo",
+                  ].map((li) => (
+                    <li key={li} className="flex items-center gap-3 text-[15px] font-semibold">
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-xs font-extrabold text-brand shadow-sm">
+                        ✓
+                      </span>
+                      {li}
+                    </li>
+                  ))}
+                </ul>
+                <Button href="/contacto">Solicita más información</Button>
+              </div>
+              <div className="rounded-2xl border border-lav/70 bg-white/50 p-6 backdrop-blur-sm">
+                <ServViz />
+              </div>
             </div>
-            <div className="rounded-2xl border border-lav/70 bg-white/50 p-6 backdrop-blur-sm">
-              <ServViz />
+
+            {/* Sage · lista de espera, dentro del mismo bloque de integración */}
+            <div className="mt-9 grid gap-5 border-t border-lav/70 pt-8 sm:grid-cols-[1fr_auto] sm:items-center">
+              <div>
+                <h3 className="text-lg font-bold">¿Trabajas con Sage?</h3>
+                <p className="mt-1 max-w-[520px] text-[14.5px] leading-relaxed text-[#4b4560]">
+                  Estamos preparando la integración con Sage. Déjanos tu email y te avisamos en cuanto
+                  esté lista.
+                </p>
+              </div>
+              <SageNotifyForm />
             </div>
           </div>
         </div>
