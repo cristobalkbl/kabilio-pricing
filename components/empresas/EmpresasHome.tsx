@@ -37,14 +37,14 @@ const FUNCS = [
     href: "/empresas/facturacion",
     fk: "Facturación Verifactu",
     h: "Emite facturas Verifactu en segundos",
-    p: "Facturas con tu propio diseño, recurrentes que se envían solas y presupuestos que pasan a factura con un clic.",
+    p: "Crea facturas con tu propio diseño, programa facturas recurrentes que se envían automáticamente y transforma presupuestos en factura con un clic.",
     svg: `<svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="180" y="22" width="320" height="196" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="206" y="46" width="120" height="12" rx="6" fill="#111827"/><rect x="410" y="48" width="64" height="10" rx="5" fill="#ddd5fd"/><rect x="206" y="80" width="268" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="98" width="268" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="128" width="200" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="146" width="200" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="180" width="92" height="16" rx="8" fill="#ddd5fd"/><circle cx="452" cy="188" r="18" fill="#f8d5e4"/><path d="M444 188 l6 6 10 -11" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   },
   {
     href: "/empresas/gastos",
     fk: "Gastos",
     h: "Registra tus gastos sin teclear",
-    p: "Sube la factura por email o archivo y Kabilio la procesa, sin límite.",
+    p: "Sube tus facturas de gasto por email o fichero y Kabilio las procesa, sin límite de gastos.",
     svg: `<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="118" y="26" width="124" height="152" rx="6" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="138" y="46" width="84" height="9" rx="4" fill="#111827"/><rect x="138" y="70" width="60" height="5" rx="2.5" fill="#d7dde6"/><rect x="138" y="92" width="104" height="5" rx="2.5" fill="#e4e9f0"/><rect x="138" y="106" width="104" height="5" rx="2.5" fill="#e4e9f0"/><rect x="138" y="120" width="104" height="5" rx="2.5" fill="#e4e9f0"/><rect x="138" y="150" width="66" height="10" rx="3" fill="#111827"/><rect x="106" y="99" width="148" height="4" rx="2" fill="#3a2f7a"/><circle cx="256" cy="101" r="5" fill="#3a2f7a"/></svg>`,
   },
   {
@@ -86,6 +86,7 @@ const SUMMARY: [string, string][] = [
   ["Bancos y tesorería", "Conciliación automática y dashboard de tu caja."],
   ["IVA estimado", "Sabes cuánto pagar o cobrar en cada trimestre."],
   ["Portal con tu asesoría", "Compartís la documentación en tiempo real."],
+  ["Informes claros", "Tus ingresos, gastos y actividad para decidir a tiempo."],
 ];
 
 const PAIRS = [
@@ -297,7 +298,7 @@ export function EmpresasHome() {
           <div className="grid items-start gap-10 rounded-3xl border border-line bg-surface2 p-8 sm:p-11 md:grid-cols-[.85fr_1.15fr]">
             <div>
               <h2 className="mb-3.5 text-[clamp(26px,3.4vw,34px)] font-bold leading-tight">Todo lo que necesita tu empresa</h2>
-              <p className="text-base leading-relaxed text-ink-muted">Una sola plataforma para facturar, controlar tus gastos y compartirlo con tu asesoría.</p>
+              <p className="text-base leading-relaxed text-ink-muted">Una sola plataforma para facturar, controlar tus gastos y tu tesorería, y compartirlo todo con tu asesoría.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {SUMMARY.map(([b, s]) => (

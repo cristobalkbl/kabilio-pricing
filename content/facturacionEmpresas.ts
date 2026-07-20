@@ -18,29 +18,28 @@ export const facturacionEmpresas: FeatureLandingData = {
     items: [
       { icon: `<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>`, h: "Facturas en dos clics", p: "Crea y envía facturas con tu diseño al instante, sin plantillas de Word ni cálculos a mano." },
       { icon: `<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/>`, h: "Conforme a Verifactu", p: "Cada factura cumple la Ley Antifraude y se envía a la AEAT automáticamente." },
-      { icon: `<path d="M20 6 9 17l-5-5"/>`, h: "Al día con tu asesoría", p: "Lo que emites llega contabilizado a tu asesor en tiempo real, sin reenviar nada." },
+      { icon: `<path d="M20 6 9 17l-5-5"/>`, h: "Al día con tu asesoría", p: "Cada factura que emites le llega a tu asesor lista para contabilizar, en tiempo real y sin reenviar nada." },
     ],
   },
   features: [
     {
       k: "Plantillas",
       title: "Facturas con la cara de tu negocio",
-      text: "Monta una plantilla con tu logo y tus colores y reutilízala siempre. Kabilio numera, calcula los impuestos y te deja la factura lista para enviar.",
+      text: "Monta una plantilla con tu logo y tus colores y reutilízala siempre. Kabilio numera, calcula los impuestos y te deja la factura lista para enviar a tus clientes.",
       bullets: [
         "Plantillas reutilizables con tu identidad",
         "Numeración correlativa y series automáticas",
-        "IVA e IRPF calculados sin que pienses en ellos",
+        "IVA calculado sin que pienses en ello",
       ],
       mock: { kind: "invoice", head: "F-2026-0142 · Cliente Demo S.L.", lines: ["m", "s", "m"], total: { label: "Total", amount: "2.450,00 €" } },
     },
     {
       k: "Automatización",
       title: "Lo que se repite, que se haga solo",
-      text: "Programa las facturas que emites cada mes y deja que salgan —y se cobren— sin estar encima. Menos tareas manuales y menos olvidos a final de mes.",
+      text: "Programa las facturas que emites cada mes y deja que salgan sin estar encima. Menos tareas manuales y menos olvidos a final de mes.",
       bullets: [
         "Facturas recurrentes con la cadencia que tú marques",
         "Cliente, producto e impuestos autocompletados",
-        "Recordatorios de cobro que se envían solos",
       ],
       mock: {
         kind: "rows",
@@ -55,10 +54,9 @@ export const facturacionEmpresas: FeatureLandingData = {
     {
       k: "Presupuestos · Próximamente",
       title: "Del presupuesto a la factura, sin rehacer nada",
-      text: "Crea presupuestos con la misma plantilla, envíalos para firma y, cuando el cliente acepta, conviértelos en factura con un clic.",
+      text: "Crea presupuestos con la misma plantilla y, cuando el cliente acepta, conviértelos en factura con un clic.",
       bullets: [
         "Presupuestos con tu marca y validez configurable",
-        "Firma online y aviso en cuanto el cliente acepta",
         "Conversión a factura en un clic, sin volver a teclear",
       ],
       mock: {
@@ -94,8 +92,8 @@ export const facturacionEmpresas: FeatureLandingData = {
     {
       k: "Cumplimiento",
       title: "100% preparado para Verifactu",
-      text: "Facturas conformes desde el primer día. Registro inalterable y envío a la AEAT, al día con la Ley Antifraude y la factura electrónica.",
-      bullets: ["Envío automático a la AEAT", "Registro con hash inalterable", "Siempre al día con la normativa"],
+      text: "Facturas conformes desde el primer día. Registro inalterable y envío a la AEAT, al día con la Ley Antifraude.",
+      bullets: ["Envío automático a la AEAT", "Siempre al día con la normativa"],
       mock: { kind: "verifactu", title: "Factura electrónica", sub: "Sello Verifactu · válida ante la AEAT", badge: "Conforme" },
     },
     {
@@ -121,7 +119,7 @@ export const facturacionEmpresas: FeatureLandingData = {
     {
       k: "El diferencial de Kabilio",
       title: "Conectado con tu asesoría, en tiempo real",
-      text: "Todo lo que facturas le llega a tu asesoría al día. Se acabó reenviar PDFs o acumular papeles para el cierre: tú facturas, ella lo recibe todo procesado.",
+      text: "Todo lo que facturas le llega a tu asesoría al día. Se acabó reenviar PDFs o acumular papeles para el cierre: tú facturas, tu asesoría lo recibe todo procesado.",
       bullets: [
         "Tu información llega sola, sin envíos manuales",
         "Menos trabajo para ti y para tu asesor",

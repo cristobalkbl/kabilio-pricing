@@ -3,7 +3,7 @@ import type { FeatureLandingData } from "@/components/empresas/FeatureLanding";
 export const tesoreriaEmpresas: FeatureLandingData = {
   eyebrow: "Tesorería",
   h1: "Controla la tesorería de tu empresa en tiempo real",
-  sub: "Conecta tus bancos, concilia tus movimientos automáticamente con IA y ten tu caja y tu IVA siempre al día. Toma decisiones con datos de hoy y con tu asesoría conectada.",
+  sub: "Conecta tus bancos, la IA te sugiere los emparejamientos y ten tu caja y tu IVA siempre al día. Toma decisiones con datos de hoy y con tu asesoría conectada.",
   hero: {
     invoice: { title: "Tesorería", n: "Todas tus cuentas", badge: "En directo", total: { label: "Saldo total", amount: "28.640 €" } },
     kpis: [
@@ -17,7 +17,7 @@ export const tesoreriaEmpresas: FeatureLandingData = {
     text: "Tus bancos conectados, la conciliación resuelta por IA y tu caja e IVA siempre al día.",
     items: [
       { icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>`, h: "Bancos conectados", p: "Tus movimientos entran solos cada día; sin descargar extractos ni cuadrar a mano." },
-      { icon: `<path d="M13 2 3 14h7l-1 8 10-12h-7z"/>`, h: "Conciliación con IA", p: "Kabilio empareja cada movimiento con su factura; tú solo revisas y confirmas." },
+      { icon: `<path d="M13 2 3 14h7l-1 8 10-12h-7z"/>`, h: "Conciliación con IA", p: "Kabilio te sugiere emparejamientos entre cada movimiento y su factura; tú solo revisas y confirmas." },
       { icon: `<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>`, h: "Tu caja e IVA, al día", p: "Sabes cuánto tienes y cuánto IVA te toca en cualquier momento, sin esperar al cierre." },
     ],
   },
@@ -43,10 +43,10 @@ export const tesoreriaEmpresas: FeatureLandingData = {
     {
       k: "Conciliación",
       title: "Concilia tus movimientos con IA",
-      text: "Kabilio empareja cada movimiento con su factura. Olvídate de cuadrar a mano.",
+      text: "Kabilio te sugiere emparejamientos entre cada movimiento y su factura; tú solo revisas y confirmas. Olvídate de cuadrar a mano.",
       bullets: [
         { b: "Reglas a tu medida", d: "Define reglas para lo que se repite y concilia en bloque." },
-        { b: "Casos difíciles, resueltos", d: "Cobros parciales o agrupados, también." },
+        { b: "Casos difíciles, resueltos", d: "Cobros parciales o de varias facturas a la vez, también." },
       ],
       mock: {
         kind: "rows",

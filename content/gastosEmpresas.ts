@@ -26,7 +26,7 @@ export const gastosEmpresas: FeatureLandingData = {
     items: [
       { icon: `<path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/><path d="M12 3v11"/><path d="M8 7l4-4 4 4"/>`, h: "Sin teclear", p: "La IA extrae los datos de cada gasto por ti; tú solo revisas." },
       { icon: `<path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15l-1.8-4.2L5.5 9l4.7-1.3z"/>`, h: "Sin límite", p: "Procesa todos los gastos que necesites, incluido en tu plan." },
-      { icon: `<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>`, h: "Todo a tu asesoría", p: "Cada gasto llega contabilizado a tu asesor, sin reenvíos." },
+      { icon: `<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>`, h: "Todo a tu asesoría", p: "Cada gasto llega a tu asesoría listo para contabilizar; no tienes que reenviar nada a fin de mes." },
     ],
   },
   featuresHeading: { title: "Funcionalidades", text: "Todo lo que hace Kabilio con las facturas de gasto de tu empresa." },
@@ -70,7 +70,7 @@ export const gastosEmpresas: FeatureLandingData = {
     {
       k: "Orden",
       title: "Tus gastos, ordenados y sin duplicados",
-      text: "Cada gasto queda clasificado y disponible al momento. Kabilio detecta duplicados para que no cuentes dos veces lo mismo.",
+      text: "Marca cada gasto como pagado o por pagar y tenlo siempre a mano. Y Kabilio detecta duplicados para que no cuentes dos veces lo mismo.",
       bullets: [
         { b: "Detección de duplicados", d: "Si un gasto ya está subido, Kabilio te avisa." },
         { b: "Todo localizable", d: "Encuentra cualquier gasto por fecha o proveedor." },
@@ -79,16 +79,16 @@ export const gastosEmpresas: FeatureLandingData = {
         kind: "rows",
         head: "Control de gastos",
         rows: [
-          { label: "Servicios Lux · 1.240 €", tag: { text: "Registrado", variant: "ok" } },
+          { label: "Servicios Lux · 1.240 €", tag: { text: "Pagado", variant: "ok" } },
+          { label: "Combustible · 92,40 €", tag: { text: "Por pagar", variant: "wait" } },
           { label: "Servicios Lux · 1.240 €", tag: { text: "Duplicado", variant: "due" } },
-          { label: "Combustible · 92,40 €", tag: { text: "Registrado", variant: "ok" } },
         ],
       },
     },
     {
       k: "El diferencial de Kabilio",
       title: "Cada gasto, en tu asesoría al instante",
-      text: "Lo que subes llega a tu asesoría contabilizado, en tiempo real. Se acabó acumular tickets y facturas para el cierre.",
+      text: "Lo que subes llega a tu asesoría listo para contabilizar, en tiempo real. No tienes que reenviar nada a fin de mes: se acabó acumular tickets y facturas para el cierre.",
       bullets: [
         { b: "Llega solo", d: "Tu asesoría recibe el gasto en cuanto lo subes." },
         { b: "Sin fin de mes", d: "Nada de juntar papeles para enviarlos al cierre." },
@@ -109,7 +109,7 @@ export const gastosEmpresas: FeatureLandingData = {
     pairs: [
       {
         empresa: { quote: "Reenvío las facturas de gasto por email y aparecen listas. Dejé de teclear tickets uno a uno.", name: "Rubén Ortega", sub: "Ortega Servicios", avatar: "https://randomuser.me/api/portraits/men/22.jpg" },
-        asesoria: { quote: "Sus gastos nos llegan leídos y contabilizados; ya no perseguimos tickets a fin de mes.", name: "Asesoría Nexo", sub: "Valencia", avatar: "https://randomuser.me/api/portraits/women/26.jpg" },
+        asesoria: { quote: "Sus gastos nos llegan leídos y listos para contabilizar; ya no perseguimos tickets a fin de mes.", name: "Asesoría Nexo", sub: "Valencia", avatar: "https://randomuser.me/api/portraits/women/26.jpg" },
       },
       {
         empresa: { quote: "Subo el gasto y mi asesoría lo tiene al momento, sin esperar al cierre del trimestre.", name: "Beatriz Cano", sub: "Cano Comercio", avatar: "https://randomuser.me/api/portraits/women/57.jpg" },
@@ -126,7 +126,7 @@ export const gastosEmpresas: FeatureLandingData = {
     { q: "¿Hay límite de gastos?", a: "No. El procesado de gastos es ilimitado y está incluido en tu plan." },
     { q: "¿Qué datos extrae la IA?", a: "Reconoce el importe, el IVA y el proveedor de cada documento. Tú revisas y validas antes de contabilizar." },
     { q: "¿Detecta gastos duplicados?", a: "Sí. Si un gasto ya está subido, Kabilio te avisa para que no lo registres dos veces." },
-    { q: "¿Mis gastos llegan a mi asesoría?", a: "Sí. Cada gasto que subes llega a tu asesoría contabilizado y al instante, sin que reenvíes nada." },
+    { q: "¿Mis gastos llegan a mi asesoría?", a: "Sí. Cada gasto que subes llega a tu asesoría listo para contabilizar y al instante; no tienes que reenviar nada a fin de mes." },
     { q: "¿Es seguro?", a: "Sí. Los datos se guardan cifrados en la nube, cumpliendo el RGPD y la norma ISO 27001." },
   ],
   cta: {
