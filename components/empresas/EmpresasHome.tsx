@@ -152,7 +152,6 @@ export function EmpresasHome() {
               <Button href="/solicita-una-demo">Empieza gratis</Button>
               <Button href="#demo" variant="ghost">Ver demo de 2 min</Button>
             </div>
-            <p className="mt-4 text-[12.5px] text-ink-muted">Plan gratuito · Sin tarjeta · Registro en 2 minutos</p>
           </div>
         </div>
         <div className="container mt-8" id="demo">
