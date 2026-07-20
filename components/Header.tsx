@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
-import { site, topbar, audiences, navByAudience } from "@/content/site";
+import { site, topbar, primaryCta, audiences, navByAudience } from "@/content/site";
 
-// CTA principal del header según la audiencia.
-function ctaLabel(audience: "asesores" | "empresas") {
-  return audience === "empresas" ? "Empezar ahora" : "Reserva demo";
+// CTA principal del header: mismo texto y destino (demo) en ambas audiencias.
+function ctaLabel() {
+  return "Contáctanos";
 }
 
-// Empresas → alta self-service; asesores → solicitud de demo.
-function ctaHref(audience: "asesores" | "empresas") {
-  return audience === "empresas" ? "/empresas/registro" : "/asesores/registro";
+function ctaHref() {
+  return primaryCta.href;
 }
 
 export function Header() {
@@ -116,10 +115,10 @@ export function Header() {
           {/* CTA principal */}
           <div className="flex items-center gap-1.5">
             <Link
-              href={ctaHref(audience)}
+              href={ctaHref()}
               className="hidden rounded-xl bg-ink px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand lg:inline-flex"
             >
-              {ctaLabel(audience)}
+              {ctaLabel()}
             </Link>
 
             {/* Menú móvil */}
@@ -155,10 +154,10 @@ function MobileMenu({ audience }: { audience: "asesores" | "empresas" }) {
         ))}
         <div className="mt-1 border-t border-line p-1.5">
           <Link
-            href={ctaHref(audience)}
+            href={ctaHref()}
             className="block rounded-xl bg-ink px-4 py-2.5 text-center text-sm font-bold text-white"
           >
-            {ctaLabel(audience)}
+            {ctaLabel()}
           </Link>
           <a
             href={site.loginUrl}
