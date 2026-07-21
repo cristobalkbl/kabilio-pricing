@@ -45,14 +45,8 @@ export default function SolicitaDemoPage() {
           </ul>
 
           <div className="mt-10 rounded-2xl border border-line bg-surface2 p-6">
-            <p className="text-sm font-semibold text-ink">¿Prefieres escribirnos?</p>
-            <p className="mt-2 text-sm text-ink-soft">
-              Email:{" "}
-              <a href={`mailto:${site.email}`} className="font-medium text-brand hover:underline">
-                {site.email}
-              </a>
-            </p>
-            <p className="mt-1 text-sm text-ink-soft">Teléfono: {site.phone}</p>
+            <p className="text-sm font-semibold text-ink">¿Prefieres llamarnos?</p>
+            <p className="mt-2 text-sm text-ink-soft">Teléfono: {site.phone}</p>
           </div>
         </div>
 

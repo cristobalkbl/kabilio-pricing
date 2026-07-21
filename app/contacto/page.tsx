@@ -12,7 +12,6 @@ export const metadata = buildMetadata({
 });
 
 const channels: { icon: IconName; title: string; value: string; href?: string }[] = [
-  { icon: "invoice", title: "Email", value: site.email, href: `mailto:${site.email}` },
   { icon: "bell", title: "Teléfono", value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
   { icon: "folder", title: "Oficina", value: site.address },
 ];

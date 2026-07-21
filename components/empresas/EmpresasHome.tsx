@@ -37,7 +37,7 @@ const FUNCS = [
     href: "/empresas/facturacion",
     fk: "Facturación Verifactu",
     h: "Emite facturas Verifactu en segundos",
-    p: "Crea facturas con tu propio diseño, programa facturas recurrentes que se envían automáticamente y transforma presupuestos en factura con un clic.",
+    p: "Crea facturas con tu propio diseño, programa facturas recurrentes que se emiten automáticamente y reutiliza tu catálogo de clientes y productos.",
     svg: `<svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="180" y="22" width="320" height="196" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="206" y="46" width="120" height="12" rx="6" fill="#111827"/><rect x="410" y="48" width="64" height="10" rx="5" fill="#ddd5fd"/><rect x="206" y="80" width="268" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="98" width="268" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="128" width="200" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="146" width="200" height="7" rx="3.5" fill="#e4e9f0"/><rect x="206" y="180" width="92" height="16" rx="8" fill="#ddd5fd"/><circle cx="452" cy="188" r="18" fill="#f8d5e4"/><path d="M444 188 l6 6 10 -11" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   },
   {
@@ -76,13 +76,13 @@ const TABS = [
 
 const WHY = [
   { fk: "Flujo de trabajo", h: "Todo le llega a tu asesor", p: "Cada factura y gasto llega solo a tu asesoría en tiempo real. Sin documentos perdidos ni carreras a fin de mes.", svg: `<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="40" y="70" width="90" height="40" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/><text x="85" y="95" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#6b7280">Tu factura</text><path d="M132 90 h60" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round"/><path d="M184 83 l9 7 -9 7" fill="none" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="230" y="62" width="90" height="56" rx="10" fill="#e9e3fd" stroke="#ddd5fd" stroke-width="2"/><circle cx="252" cy="90" r="8" fill="#3a2f7a"/><path d="M240 108 a12 10 0 0 1 24 0" fill="#3a2f7a"/><text x="290" y="86" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="800" fill="#3a2f7a">Tu</text><text x="290" y="100" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="800" fill="#3a2f7a">asesor</text></svg>` },
-  { fk: "Precio", h: "Desde 0 €, sin sorpresas", p: "Empiezas gratis, sin permanencia. 100% español e independiente, con soporte cercano y agente IA 24/7.", svg: `<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="180" y="102" text-anchor="middle" font-family="Manrope,sans-serif" font-size="52" font-weight="800" fill="#3a2f7a">0€</text><rect x="120" y="126" width="120" height="22" rx="11" fill="#fff" stroke="#e4ded5"/><text x="180" y="141" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#6b7280">Sin permanencia</text></svg>` },
+  { fk: "Precio", h: "Desde 0 €, sin sorpresas", p: "Empiezas gratis y sin permanencia. Software 100% español.", svg: `<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="180" y="102" text-anchor="middle" font-family="Manrope,sans-serif" font-size="52" font-weight="800" fill="#3a2f7a">0€</text><rect x="120" y="126" width="120" height="22" rx="11" fill="#fff" stroke="#e4ded5"/><text x="180" y="141" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#6b7280">Sin permanencia</text></svg>` },
   { fk: "Informes", h: "Tus números, claros", p: "Informes de tu actividad, ingresos y gastos para decidir con datos al día.", svg: `<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="92" y="30" width="176" height="120" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="110" y="46" width="70" height="8" rx="4" fill="#3a2f7a"/><rect x="110" y="118" width="28" height="20" rx="2" fill="#ddd5fd"/><rect x="146" y="100" width="28" height="38" rx="2" fill="#c9bff0"/><rect x="182" y="82" width="28" height="56" rx="2" fill="#3a2f7a"/><rect x="218" y="106" width="28" height="32" rx="2" fill="#ddd5fd"/></svg>` },
 ];
 
 const SUMMARY: [string, string][] = [
-  ["Facturación Verifactu", "Facturas, recurrentes y plantillas personalizables."],
-  ["Gastos", "Procesado ilimitado de facturas recibidas."],
+  ["Homologado con Verifactu", "Facturas, recurrentes y plantillas personalizables."],
+  ["Gastos", "Procesado ilimitado de facturas y tickets de gasto."],
   ["Bancos y tesorería", "Conciliación automática y dashboard de tu caja."],
   ["IVA estimado", "Sabes cuánto pagar o cobrar en cada trimestre."],
   ["Portal con tu asesoría", "Compartís la documentación en tiempo real."],

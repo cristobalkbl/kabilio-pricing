@@ -102,7 +102,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   },
   {
     group: "Soporte",
-    rows: [{ feat: "Canales de atención", tip: "Canales de atención disponibles.", span: "Email + chat" }],
+    rows: [{ feat: "Canales de atención", tip: "Canales de atención disponibles.", span: "Chat y teléfono" }],
   },
 ];
 

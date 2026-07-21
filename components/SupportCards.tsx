@@ -1,6 +1,6 @@
 import { site } from "@/content/site";
 
-// Bloque de "Ayuda" (chat/email + centro de ayuda), compartido por las páginas
+// Bloque de "Ayuda" (chat + centro de ayuda), compartido por las páginas
 // de funcionalidades de asesorías (ProductoLanding) y de empresas (FeatureLanding).
 // `contained`: envuelve en .container (ProductoLanding). En FeatureLanding, que ya
 // va dentro de un <main className="container">, se pasa `contained={false}`.
@@ -20,12 +20,12 @@ export function SupportCards({ contained = true }: { contained?: boolean }) {
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
           </span>
-          <h3 className="mb-2 text-lg font-bold">Chat o email</h3>
+          <h3 className="mb-2 text-lg font-bold">Chat con el equipo</h3>
           <p className="text-sm leading-relaxed text-ink-muted">
-            Pregunta lo que quieras a nuestro equipo o al agente IA vía chat.
+            Pregunta lo que quieras a nuestro equipo o al agente IA, sin salir de la plataforma.
           </p>
-          <a className="mt-3 inline-block text-sm font-bold text-brand hover:underline" href={`mailto:${site.email}`}>
-            {site.email}
+          <a className="mt-3 inline-block text-sm font-bold text-brand hover:underline" href="/contacto">
+            Habla con el equipo →
           </a>
         </div>
         <div className="rounded-[18px] border border-line bg-surface p-7">

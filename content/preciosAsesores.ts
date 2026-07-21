@@ -53,7 +53,7 @@ export const includedAll: { label: string; group: string; tip: string; value?: s
   { label: "Usuarios ilimitados", group: "Servicio y soporte", tip: "Añade a todo tu equipo sin coste por usuario." },
   { label: "Instalación y formación", group: "Servicio y soporte", tip: "Puesta en marcha y formación inicial del equipo, incluidas." },
   { label: "Responsable de cuenta", group: "Servicio y soporte", tip: "Una persona de Kabilio asignada a tu despacho como punto de contacto." },
-  { label: "Soporte", group: "Servicio y soporte", tip: "Soporte por email, chat y teléfono." },
+  { label: "Soporte", group: "Servicio y soporte", tip: "Soporte por chat y teléfono." },
 ];
 
 export const conditions: { icon: string; title: string; text: string }[] = [
@@ -84,5 +84,5 @@ export const pricingFaqs: { q: string; a: string }[] = [
   { q: "¿Qué medios de pago aceptáis?", a: "SEPA y transferencia bancaria." },
   { q: "¿Qué pasa si llego al límite de créditos de mi plan?", a: "Puedes contratar a tiempo un nuevo plan para mantener tus condiciones. Mientras tanto, cada crédito de sobreconsumo se factura a 0,20 € a final de cada mes vencido." },
   { q: "¿Puedo contratar un plan antes del vencimiento?", a: "Por supuesto. El nuevo plan empezará a consumirse en cuanto acabes el vigente, y su validez comienza en la fecha de contratación." },
-  { q: "¿Y si los planes predefinidos no se adaptan a mis necesidades?", a: "Contacta con nuestro equipo en sales@kabilio.ai y vemos cómo trabajar juntos con un plan Enterprise a medida." },
+  { q: "¿Y si los planes predefinidos no se adaptan a mis necesidades?", a: "Contacta con nuestro equipo y vemos cómo trabajar juntos con un plan Enterprise a medida." },
 ];

@@ -3,7 +3,6 @@ import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/Button";
 import { Icon, type IconName } from "@/components/Icon";
 import { buildMetadata } from "@/lib/seo";
-import { site } from "@/content/site";
 
 export const metadata = buildMetadata({
   title: "Centro de ayuda",
@@ -70,11 +69,7 @@ export default function CentroAyudaPage() {
           <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-line bg-surface2 p-8 text-center">
             <h2 className="text-xl font-semibold text-ink">¿No encuentras la respuesta?</h2>
             <p className="mt-2 text-ink-soft">
-              Escríbenos a{" "}
-              <a href={`mailto:${site.email}`} className="font-medium text-brand hover:underline">
-                {site.email}
-              </a>{" "}
-              o desde la página de contacto.
+              Escríbenos desde la página de contacto y te ayudamos.
             </p>
             <div className="mt-6 flex justify-center">
               <Button href="/contacto">Contactar con soporte</Button>
