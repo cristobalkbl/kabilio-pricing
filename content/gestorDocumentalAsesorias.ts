@@ -10,7 +10,7 @@ const ASESOR_CTAS = {
 const PLATAFORMA = [
   { title: "Procesador", text: "La IA contabiliza las facturas de tus clientes, mucho más que un OCR.", href: "/asesores/procesador-de-facturas", icon: `<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>` },
   { title: "Conciliador", text: "Concilia los movimientos bancarios con IA y reglas avanzadas.", href: "/asesores/conciliacion-bancaria", icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>` },
-  { title: "Portal del cliente", text: "Tus clientes facturan, suben gastos y colaboran contigo en el mismo sitio.", href: "/asesores/portal-cliente", icon: `<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 20a5 5 0 0 1 6-4.6"/>` },
+  { title: "Suite del cliente", text: "Tus clientes facturan, suben gastos y colaboran contigo en el mismo sitio.", href: "/asesores/suite-cliente", icon: `<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 20a5 5 0 0 1 6-4.6"/>` },
 ];
 
 export const gestorDocumental: FeatureLandingData = {

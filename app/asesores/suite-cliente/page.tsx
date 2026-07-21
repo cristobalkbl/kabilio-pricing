@@ -3,12 +3,12 @@ import { buildMetadata } from "@/lib/seo";
 import { portalCliente } from "@/content/portalClienteAsesorias";
 
 export const metadata = buildMetadata({
-  title: "Portal del cliente para asesorías",
+  title: "Suite del cliente para asesorías",
   description:
-    "Tus clientes facturan, suben gastos y consultan su información desde su portal, y a tu despacho le llega todo contabilizado al instante. Sin reenvíos.",
-  path: "/asesores/portal-cliente",
+    "Tus clientes facturan, suben gastos y consultan su información desde su suite, y a tu despacho le llega todo contabilizado al instante. Sin reenvíos.",
+  path: "/asesores/suite-cliente",
 });
 
-export default function PortalClientePage() {
+export default function SuiteClientePage() {
   return <FeatureLanding data={portalCliente} />;
 }

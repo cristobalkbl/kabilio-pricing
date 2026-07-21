@@ -144,7 +144,7 @@ export default function HomePage() {
               title="Tú y tu cliente, sobre los mismos datos"
               text="Trabajáis sobre la misma plataforma, con la documentación centralizada y la actividad al día para los dos."
               shot={<ShotColaborativa />}
-              href="/asesores/portal-cliente"
+              href="/asesores/suite-cliente"
             />
             <FuncCard
               wide
@@ -152,7 +152,7 @@ export default function HomePage() {
               title="Facturación electrónica para las pymes de tu despacho"
               text="Facilita a tus clientes un facturador intuitivo que recibe y contabiliza automáticamente las facturas emitidas en Kabilio. Compatible con Verifactu."
               shot={<ShotFacturador />}
-              href="/asesores/portal-cliente"
+              href="/asesores/suite-cliente"
             />
           </div>
         </div>
