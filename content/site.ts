@@ -22,7 +22,7 @@ export const site = {
 // Banda de urgencia superior.
 // Banda de urgencia (solo se muestra en el segmento Empresas).
 export const topbar = {
-  text: "Verifactu ya está en marcha: factura conforme a la Ley Antifraude desde el primer día.",
+  text: "Verifactu obligatorio: 1 de enero de 2027 para pymes · 1 de julio para autónomos.",
   linkLabel: "Cómo te ayuda Kabilio →",
   linkHref: "/empresas/verifactu",
 } as const;

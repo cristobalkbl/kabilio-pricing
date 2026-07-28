@@ -33,7 +33,7 @@ export const empresaPlans: EmpresaPlan[] = [
     mo: 14,
     popular: true,
     desc: "Gestiona tus finanzas y optimiza tu rendimiento.",
-    tag: "Más facturación y más bancos",
+    tag: "Límites mayores y funcionalidades clave",
     inc: "Todo lo de Colaborativo, y además:",
     feats: [
       "80 facturas al mes",

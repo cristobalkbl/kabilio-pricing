@@ -65,19 +65,12 @@ const FUNCS = [
 ];
 
 const TABS = [
-  { key: "dsh", label: "Dashboard", ic: `<path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/>`, h: "Dashboard", p: "Un panel con tu actividad, ingresos, gastos y tesorería de un vistazo. Siempre al día.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="50" y="30" width="240" height="140" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="50" y="30" width="240" height="32" rx="12" fill="#e9e3fd"/><rect x="68" y="42" width="80" height="8" rx="4" fill="#3a2f7a"/><path d="M70 140 L110 112 L146 124 L188 92 L228 104 L280 74" fill="none" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="280" cy="74" r="5" fill="#3a2f7a"/><rect x="68" y="150" width="60" height="8" rx="4" fill="#d7dde6"/><rect x="214" y="150" width="60" height="8" rx="4" fill="#dff3e6"/></svg>` },
-  { key: "plt", label: "Plantillas", ic: `<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>`, h: "Plantillas de factura", p: "Diseña plantillas con tu logo y tus colores y reutilízalas en un clic. Tu factura, siempre con tu marca.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="52" y="34" width="110" height="132" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="70" y="52" width="50" height="8" rx="4" fill="#111827"/><rect x="70" y="74" width="74" height="6" rx="3" fill="#e4e9f0"/><rect x="70" y="88" width="74" height="6" rx="3" fill="#e4e9f0"/><rect x="70" y="140" width="40" height="12" rx="6" fill="#ddd5fd"/><rect x="182" y="34" width="110" height="132" rx="10" fill="#fff" stroke="#ddd5fd" stroke-width="2"/><rect x="200" y="52" width="50" height="8" rx="4" fill="#3a2f7a"/><rect x="200" y="74" width="74" height="6" rx="3" fill="#e9e3fd"/><rect x="200" y="88" width="74" height="6" rx="3" fill="#e9e3fd"/><circle cx="210" cy="146" r="7" fill="#f8d5e4"/><circle cx="230" cy="146" r="7" fill="#ddd5fd"/><circle cx="250" cy="146" r="7" fill="#fde9d6"/></svg>` },
-  { key: "rec", label: "Recurrentes", ic: `<path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>`, h: "Facturas recurrentes", p: "Programa las facturas que se repiten y déjalas en automático: se emiten y se envían solas cada periodo.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="60" y="28" width="220" height="150" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="60" y="28" width="220" height="32" rx="12" fill="#e9e3fd"/><rect x="80" y="40" width="90" height="8" rx="4" fill="#3a2f7a"/><rect x="80" y="78" width="180" height="26" rx="7" fill="#f5f3ef"/><rect x="94" y="87" width="90" height="7" rx="3.5" fill="#d7dde6"/><rect x="214" y="83" width="46" height="16" rx="8" fill="#ddd5fd"/><rect x="80" y="112" width="180" height="26" rx="7" fill="#f5f3ef"/><rect x="94" y="121" width="120" height="7" rx="3.5" fill="#d7dde6"/><rect x="214" y="117" width="46" height="16" rx="8" fill="#ddd5fd"/></svg>` },
+  { key: "dsh", label: "Panel de control", ic: `<path d="M3 3h7v9H3zM14 3h7v5h-7zM14 12h7v9h-7zM3 16h7v5H3z"/>`, h: "Panel de control", p: "Un panel con tu actividad, ingresos, gastos y tesorería de un vistazo. Siempre al día.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="50" y="30" width="240" height="140" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="50" y="30" width="240" height="32" rx="12" fill="#e9e3fd"/><rect x="68" y="42" width="80" height="8" rx="4" fill="#3a2f7a"/><path d="M70 140 L110 112 L146 124 L188 92 L228 104 L280 74" fill="none" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="280" cy="74" r="5" fill="#3a2f7a"/><rect x="68" y="150" width="60" height="8" rx="4" fill="#d7dde6"/><rect x="214" y="150" width="60" height="8" rx="4" fill="#dff3e6"/></svg>` },
+  { key: "fac", label: "Facturas", ic: `<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>`, h: "Facturas y recurrentes", p: "Emite facturas con tu plantilla y tu marca, y programa las recurrentes para que se emitan y se envíen solas cada periodo.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="52" y="34" width="110" height="132" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="70" y="52" width="50" height="8" rx="4" fill="#111827"/><rect x="70" y="74" width="74" height="6" rx="3" fill="#e4e9f0"/><rect x="70" y="88" width="74" height="6" rx="3" fill="#e4e9f0"/><rect x="70" y="140" width="40" height="12" rx="6" fill="#ddd5fd"/><rect x="182" y="34" width="110" height="132" rx="10" fill="#fff" stroke="#ddd5fd" stroke-width="2"/><rect x="200" y="52" width="50" height="8" rx="4" fill="#3a2f7a"/><rect x="200" y="74" width="74" height="6" rx="3" fill="#e9e3fd"/><rect x="200" y="88" width="74" height="6" rx="3" fill="#e9e3fd"/><circle cx="210" cy="146" r="7" fill="#f8d5e4"/><circle cx="230" cy="146" r="7" fill="#ddd5fd"/><circle cx="250" cy="146" r="7" fill="#fde9d6"/></svg>` },
   { key: "gas", label: "Gastos", ic: `<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/>`, h: "Facturas recibidas (gastos)", p: "Sube tus facturas de gasto por email o archivo. Procesado ilimitado y sin duplicados.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="108" y="24" width="124" height="140" rx="6" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="128" y="44" width="84" height="9" rx="4" fill="#111827"/><rect x="128" y="68" width="104" height="5" rx="2.5" fill="#e4e9f0"/><rect x="128" y="82" width="104" height="5" rx="2.5" fill="#e4e9f0"/><rect x="128" y="120" width="66" height="10" rx="3" fill="#111827"/><rect x="96" y="92" width="148" height="4" rx="2" fill="#3a2f7a"/><circle cx="246" cy="94" r="5" fill="#3a2f7a"/></svg>` },
   { key: "ban", label: "Bancos", ic: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>`, h: "Conexiones bancarias", p: "Conecta tus cuentas y trae los movimientos al día automáticamente, sin pedir extractos.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="60" y="40" width="220" height="40" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/><circle cx="84" cy="60" r="10" fill="#e9e3fd"/><rect x="104" y="56" width="90" height="8" rx="4" fill="#d7dde6"/><rect x="220" y="55" width="46" height="10" rx="5" fill="#111827"/><rect x="60" y="92" width="220" height="40" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/><circle cx="84" cy="112" r="10" fill="#f8d5e4"/><rect x="104" y="108" width="70" height="8" rx="4" fill="#d7dde6"/><rect x="220" y="107" width="46" height="10" rx="5" fill="#111827"/></svg>` },
   { key: "con", label: "Conciliación", ic: `<path d="M20 6 9 17l-5-5"/>`, h: "Conciliación automática", p: "Kabilio cruza los movimientos del banco con tus facturas y concilia por ti, incluidos casos complejos.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="40" y="48" width="110" height="36" rx="9" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="40" y="116" width="110" height="36" rx="9" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="56" y="62" width="64" height="7" rx="3.5" fill="#d7dde6"/><rect x="56" y="130" width="64" height="7" rx="3.5" fill="#d7dde6"/><path d="M150 66 C176 66 176 100 196 100" fill="none" stroke="#ddd5fd" stroke-width="2.5"/><path d="M150 134 C176 134 176 100 196 100" fill="none" stroke="#ddd5fd" stroke-width="2.5"/><circle cx="214" cy="100" r="18" fill="#dff3e6"/><path d="M206 100 l5 5 11 -12" fill="none" stroke="#15914b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>` },
   { key: "iva", label: "IVA", ic: `<path d="M19 5 5 19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>`, h: "IVA a pagar o cobrar", p: "Sabes en cada momento cuánto IVA te toca pagar o cobrar en el trimestre. Sin sustos en el cierre.", svg: `<svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="70" y="40" width="200" height="120" rx="14" fill="#fff" stroke="#e4ded5" stroke-width="2"/><text x="100" y="90" font-family="Manrope,sans-serif" font-size="13" font-weight="700" fill="#6b7280">IVA estimado</text><text x="100" y="128" font-family="Manrope,sans-serif" font-size="30" font-weight="800" fill="#111827">1.240 €</text><rect x="196" y="66" width="56" height="22" rx="11" fill="#e9e3fd"/><text x="224" y="81" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="800" fill="#3a2f7a">21%</text></svg>` },
-];
-
-const WHY = [
-  { fk: "Flujo de trabajo", h: "Todo le llega a tu asesor", p: "Cada factura y gasto llega solo a tu asesoría en tiempo real. Sin documentos perdidos ni carreras a fin de mes.", svg: `<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="40" y="70" width="90" height="40" rx="10" fill="#fff" stroke="#e4ded5" stroke-width="2"/><text x="85" y="95" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" font-weight="700" fill="#6b7280">Tu factura</text><path d="M132 90 h60" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round"/><path d="M184 83 l9 7 -9 7" fill="none" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="230" y="62" width="90" height="56" rx="10" fill="#e9e3fd" stroke="#ddd5fd" stroke-width="2"/><circle cx="252" cy="90" r="8" fill="#3a2f7a"/><path d="M240 108 a12 10 0 0 1 24 0" fill="#3a2f7a"/><text x="290" y="86" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="800" fill="#3a2f7a">Tu</text><text x="290" y="100" text-anchor="middle" font-family="Manrope,sans-serif" font-size="10" font-weight="800" fill="#3a2f7a">asesor</text></svg>` },
-  { fk: "Precio", h: "Desde 0 €, sin sorpresas", p: "Empiezas gratis y sin permanencia. Software 100% español.", svg: `<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><text x="180" y="102" text-anchor="middle" font-family="Manrope,sans-serif" font-size="52" font-weight="800" fill="#3a2f7a">0€</text><rect x="120" y="126" width="120" height="22" rx="11" fill="#fff" stroke="#e4ded5"/><text x="180" y="141" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#6b7280">Sin permanencia</text></svg>` },
-  { fk: "Informes", h: "Tus números, claros", p: "Informes de tu actividad, ingresos y gastos para decidir con datos al día.", svg: `<svg viewBox="0 0 360 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="92" y="30" width="176" height="120" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/><rect x="110" y="46" width="70" height="8" rx="4" fill="#3a2f7a"/><rect x="110" y="118" width="28" height="20" rx="2" fill="#ddd5fd"/><rect x="146" y="100" width="28" height="38" rx="2" fill="#c9bff0"/><rect x="182" y="82" width="28" height="56" rx="2" fill="#3a2f7a"/><rect x="218" y="106" width="28" height="32" rx="2" fill="#ddd5fd"/></svg>` },
 ];
 
 const SUMMARY: [string, string][] = [
@@ -113,7 +106,7 @@ const PLANS = [
 const FAQS = [
   { q: "¿Necesito que mi asesoría use Kabilio?", a: "Puedes empezar a facturar hoy con tu cuenta. Para que tu asesor reciba todo en tiempo real, tu asesoría debe estar conectada a Kabilio; si aún no lo está, puedes recomendársela en un minuto desde tu cuenta." },
   { q: "¿Qué pasa si mi asesoría todavía no usa Kabilio?", a: "Le enviamos una recomendación de tu parte y la acompañamos para que empiece. Mientras tanto, tú ya facturas y llevas tus gastos y tesorería al día." },
-  { q: "¿Cuándo es obligatorio Verifactu?", a: "En enero de 2027 para empresas y en julio de 2027 para autónomos. Con Kabilio ya emites conforme a Verifactu hoy." },
+  { q: "¿Cuándo es obligatorio Verifactu?", a: "El 1 de enero de 2027 para pymes y el 1 de julio de 2027 para autónomos. Con Kabilio ya emites conforme a Verifactu hoy." },
   { q: "¿Qué incluye el plan gratuito?", a: "Hasta 20 facturas al mes con Verifactu, procesado de gastos, conciliación básica y la conexión con tu asesoría. Sin tarjeta y sin permanencia." },
   { q: "¿Mis datos están seguros?", a: "Sí. Cumplimos el RGPD y aplicamos medidas de seguridad alineadas con la ISO 27001. Tú decides qué información compartes con tu asesoría." },
 ];
@@ -147,7 +140,7 @@ export function EmpresasHome() {
             <h1 className="text-[clamp(32px,5vw,50px)] font-extrabold leading-[1.05]">Controla las finanzas de tu empresa</h1>
             <p className="mx-auto mt-4 max-w-[620px] text-[17.5px] leading-relaxed text-ink-muted">
               Kabilio es la plataforma que centraliza la gestión de tu empresa y trabaja conectada con tu asesoría en
-              tiempo real: factura, controla tus gastos y tu tesorería, y colabora con tu asesor en el mismo sitio.
+              tiempo real: controla tus gastos, tu tesorería y colabora con tu asesor en el mismo sitio.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button href="/solicita-una-demo">Empieza gratis</Button>
@@ -171,9 +164,9 @@ export function EmpresasHome() {
           </div>
           <div className="grid gap-[18px] md:grid-cols-3">
             {[
-              { ic: `<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>`, h: "Conectado con tu asesoría", p: "Cada factura y gasto llega inmediatamente a tu asesor. Sin emails, sin carpetas, sin fin de mes." },
-              { ic: `<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>`, h: "Visibilidad de tus finanzas", p: "Bancos conectados, conciliación automática y estimación del IVA a pagar o cobrar." },
+              { ic: `<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>`, h: "Tus números, claros", p: "Informes de tu actividad, ingresos y gastos para decidir con datos al día." },
               { ic: `<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/>`, h: "Cumples con Verifactu", p: "Facturas que cumplen Verifactu y se envían automáticamente a Hacienda. Deja atrás Excel y Word." },
+              { ic: `<path d="M18 7a6 6 0 1 0 0 10"/><path d="M4 10h9M4 14h9"/>`, h: "Desde 0 €, sin sorpresas", p: "Empiezas gratis y sin permanencia. Software 100% español." },
             ].map((b) => (
               <div key={b.h} className="rounded-2xl border border-line bg-surface p-7 transition duration-200 hover:-translate-y-1 hover:shadow-card">
                 <span className="mb-4 inline-flex h-[50px] w-[50px] items-center justify-center rounded-xl bg-brand-100 text-brand">
@@ -260,34 +253,12 @@ export function EmpresasHome() {
           <div className="rounded-[22px] bg-ink px-10 py-9 text-center text-white">
             <h2 className="mb-2.5 text-[clamp(22px,3vw,28px)] font-bold">Verifactu ya es cuestión de fecha</h2>
             <p className="text-[15px] leading-relaxed text-white/80">
-              <b className="text-white">Enero 2027</b>: obligatorio para empresas · <b className="text-white">Julio 2027</b>: obligatorio para autónomos.
+              <b className="text-white">1 de enero de 2027</b>: obligatorio para pymes · <b className="text-white">1 de julio de 2027</b>: obligatorio para autónomos.
             </p>
             <p className="mt-1 text-[15px] text-white/80">
               Con Kabilio ya cumples hoy.{" "}
               <Link href="/solicita-una-demo" className="font-bold text-brand-200 hover:underline">Más sobre Verifactu →</Link>
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* POR QUÉ ELEGIR */}
-      <section className="py-12">
-        <div className="container">
-          <div className="mx-auto mb-9 max-w-[720px] text-center">
-            <Kicker>Ventajas</Kicker>
-            <h2 className="text-[clamp(26px,3.6vw,34px)] font-bold leading-tight">Por qué elegir Kabilio</h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {WHY.map((w) => (
-              <div key={w.h} className="group flex flex-col rounded-3xl border border-line bg-surface p-[22px] transition duration-200 hover:-translate-y-1 hover:shadow-card">
-                <div className="mb-5 overflow-hidden rounded-xl bg-surface2 ring-1 ring-black/[0.03]">
-                  <RawSvg html={w.svg} />
-                </div>
-                <p className="mb-2 text-[11.5px] font-bold uppercase tracking-[0.06em] text-brand">{w.fk}</p>
-                <h3 className="mb-2 text-[19px] font-bold">{w.h}</h3>
-                <p className="text-sm leading-relaxed text-ink-muted">{w.p}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -368,7 +339,7 @@ export function EmpresasHome() {
                     {mo && <span className="text-[13px] text-ink-muted">{mo}</span>}
                   </div>
                   <div className="mb-4 mt-1.5 min-h-[40px] text-[12.5px] leading-snug">{save}</div>
-                  <Link href="/solicita-una-demo" className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand">Empieza gratis</Link>
+                  <Link href="/solicita-una-demo" className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand">{p.free ? "Empieza gratis" : "Empieza ahora"}</Link>
                   <hr className="my-5 border-line" />
                   <div className="mb-3.5 text-[11px] font-bold uppercase tracking-wide text-ink-muted">{p.inc}</div>
                   <ul>

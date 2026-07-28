@@ -146,7 +146,7 @@ export function PricingEmpresas() {
                     href="/solicita-una-demo"
                     className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand"
                   >
-                    Empieza gratis
+                    {p.free ? "Empieza gratis" : "Empieza ahora"}
                   </Link>
                   <hr className="my-5 border-line" />
                   <div className="mb-3.5 text-[11px] font-bold uppercase tracking-wide text-ink-muted">{p.inc}</div>
