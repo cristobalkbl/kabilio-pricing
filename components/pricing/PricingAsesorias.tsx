@@ -101,7 +101,7 @@ export function PricingAsesorias() {
                   <p className="mt-2 min-h-[60px] text-[13.5px] leading-snug text-ink-muted">{p.desc}</p>
                   <div className="text-[30px] font-bold leading-none tracking-tight">{eur(t)}</div>
                   <div className="mt-1.5 min-h-[18px] text-[13px] text-ink-muted">{billed(t)}</div>
-                  <div className="mt-4 text-sm text-ink-muted">
+                  <div className="mb-7 mt-4 text-sm text-ink-muted">
                     <b className="font-bold text-ink">{fmtInt(p.credits)}</b> créditos
                     <Tip
                       text={`Equivale a ~${fmtInt(p.credits / cost.invoice)} facturas, ~${fmtInt(
@@ -110,7 +110,7 @@ export function PricingAsesorias() {
                         p.credits / cost.doc
                       )} documentos gestionados, si usaras todo el saldo en una sola función.`}
                     />
-                    <div className="mt-1 text-[12.5px] font-semibold text-brand">{eur3(p.unit)} / crédito</div>
+                    <div className="mt-1 text-[12.5px] font-semibold text-brand">{eur3(p.unit * mult)} / crédito</div>
                   </div>
                   <Link
                     href="/solicita-una-demo"
