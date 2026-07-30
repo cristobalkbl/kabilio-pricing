@@ -20,7 +20,6 @@ const eur3 = (n: number) => `${n.toFixed(3).replace(".", ",")} €`;
 const BILLING: { splits: number; mult: number; label: string; badge?: string }[] = [
   { splits: 1, mult: 1, label: "Pago único", badge: "ahorra ~17%" },
   { splits: 2, mult: 1.1, label: "2 pagos" },
-  { splits: 4, mult: 1.2, label: "4 pagos" },
 ];
 
 function Tip({ text }: { text: string }) {

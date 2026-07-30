@@ -70,7 +70,7 @@ export const conditions: { icon: string; title: string; text: string }[] = [
   {
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>`,
     title: "Formas de pago",
-    text: "Pago por adelantado al mejor precio. En 2 pagos: +10%. En 4 pagos: +20%.",
+    text: "Pago por adelantado al mejor precio. En 2 pagos: +10%.",
   },
   {
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>`,
