@@ -42,10 +42,10 @@ export const colaboracionEmpresas: FeatureLandingData = {
     {
       k: "Gestor documental",
       title: "Toda la documentación, centralizada",
-      text: "Comparte con tu asesoría documentos como modelos, contratos y nóminas en un solo lugar. Encuentras lo que buscas en segundos y nada se pierde por el camino.",
+      text: "Tu asesoría deja en un solo lugar los documentos de tu empresa —modelos, contratos y nóminas— para que los encuentres en segundos, sin que nada se pierda por el camino.",
       bullets: [
         { b: "Documentos organizados", d: "Modelos, contratos y nóminas, siempre a mano." },
-        { b: "Compartido con tu asesor", d: "Lo subes tú y tu asesoría lo tiene al momento." },
+        { b: "Lo sube tu asesoría", d: "Y tú lo consultas cuando quieras, al momento." },
       ],
       mock: {
         kind: "rows",

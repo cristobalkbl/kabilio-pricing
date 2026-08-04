@@ -38,10 +38,10 @@ export const empresaPlans: EmpresaPlan[] = [
     feats: [
       "80 facturas al mes",
       "5 conexiones bancarias",
-      "2 plantillas de factura (próximamente)",
       "10 facturas recurrentes",
-      "Presupuestos (próximamente)",
       "Facturas sin pie “Generado por Kabilio”",
+      "2 plantillas de factura (próximamente)",
+      "Presupuestos (próximamente)",
     ],
   },
   {
@@ -54,16 +54,16 @@ export const empresaPlans: EmpresaPlan[] = [
   },
 ];
 
-export type CmpRow = { feat: string; tip?: string; badge?: string; vals?: string[]; span?: string };
+export type CmpRow = { feat: string; tip?: string; badge?: string; vals?: string[]; span?: string; expandedOnly?: boolean };
 export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   {
     group: "Facturación",
     rows: [
       { feat: "Facturas al mes", tip: "Facturas de venta que puedes emitir cada mes.", vals: ["20", "80", "250"] },
       { feat: "Facturas recurrentes", tip: "Facturas que se generan y envían solas cada cierto periodo.", vals: ["—", "10", "75"] },
-      { feat: "Plantillas de factura", badge: "próximamente", vals: ["—", "2", "5"] },
       { feat: "Sin pie “Generado por Kabilio”", tip: "Quita la marca de Kabilio del pie de tus facturas.", vals: ["—", "✓", "✓"] },
-      { feat: "Presupuestos", badge: "próximamente", vals: ["—", "✓", "✓"] },
+      { feat: "Plantillas de factura", badge: "próximamente", vals: ["—", "2", "5"], expandedOnly: true },
+      { feat: "Presupuestos", badge: "próximamente", vals: ["—", "✓", "✓"], expandedOnly: true },
     ],
   },
   {

@@ -15,7 +15,7 @@ export function Footer() {
           <div>
             <Logo dark />
             <div className="mt-3.5 space-y-1 text-[13.5px] leading-relaxed text-white/60">
-              <p>Automatización pre-contable con IA, conectada con tus clientes.</p>
+              <p>Kabilio automatiza tu contabilidad con IA: procesa facturas, concilia bancos y simplifica la facturación de tus clientes.</p>
               <p>
                 <Link href="/contacto" className="hover:text-white">
                   Contáctanos

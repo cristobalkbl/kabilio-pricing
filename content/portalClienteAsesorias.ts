@@ -2,7 +2,6 @@ import type { FeatureLandingData } from "@/components/empresas/FeatureLanding";
 
 const ASESOR_CTAS = {
   heroPrimary: { label: "Pedir demo", href: "/solicita-una-demo" },
-  heroSecondary: { label: "Ver funcionalidades", href: "#features" },
   ctaPrimary: { label: "Pedir demo", href: "/solicita-una-demo" },
   ctaSecondary: { label: "Habla con nuestro equipo", href: "/contacto" },
 };
@@ -14,8 +13,8 @@ const PLATAFORMA = [
 
 export const portalCliente: FeatureLandingData = {
   eyebrow: "Suite del cliente",
-  h1: "La suite de tus clientes, conectada con tu despacho",
-  sub: "Tus clientes facturan, suben sus gastos y consultan su información financiera desde un mismo sitio. Tú recibes todo contabilizado al instante, sin perseguir documentos ni reenvíos.",
+  h1: "La suite para los clientes que quieras conectar",
+  sub: "Conecta opcionalmente a los clientes que necesites: facturan, suben sus gastos y consultan su información desde un mismo sitio, y tú recibes todo contabilizado al instante, sin perseguir documentos ni reenvíos.",
   ctas: ASESOR_CTAS,
   hero: {
     invoice: { title: "Suite del cliente", n: "Cliente Demo S.L.", badge: "Conectado", total: { label: "Llega a tu contabilidad", amount: "Al instante" } },
@@ -25,7 +24,6 @@ export const portalCliente: FeatureLandingData = {
       { lbl: "Estado", val: "Al día" },
     ],
   },
-  trustText: "Despachos de toda España trabajan con sus clientes en Kabilio",
   logos: ["Castellá", "Deal Tax", "Martínez Comín", "Nexo", "Audalia", "Gesfor"],
   benefits: {
     title: "Lo que gana tu despacho",
@@ -115,11 +113,12 @@ export const portalCliente: FeatureLandingData = {
     },
     {
       k: "El diferencial de Kabilio",
-      title: "Tu cliente y tú, en el mismo espacio",
-      text: "El cliente entra al mismo entorno que ya usa tu despacho. Documentos, comunicación y datos en un solo sitio, sin sistemas paralelos ni correos de fin de mes.",
+      title: "Un espacio de trabajo colaborativo",
+      text: "Tu cliente y tú trabajáis en el mismo entorno que ya usa tu despacho. Tareas, documentos, comunicación y datos en un solo sitio, sin sistemas paralelos ni correos de fin de mes.",
       bullets: [
-        { b: "Un único entorno", d: "Tu cliente entra al mismo Kabilio que ya usa tu despacho, sin instalar nada." },
-        { b: "Comunicación y documentos", d: "Todo junto, sin perseguir papeles por email." },
+        { b: "Visión global por cliente", d: "Las tareas por realizar de cada cliente y el estado de su documentación, de un vistazo." },
+        { b: "Documentación centralizada", d: "Toda la documentación y su estado en un mismo espacio seguro." },
+        { b: "Acceso opcional para tu cliente", d: "Das acceso a tus clientes al mismo espacio de trabajo cuando quieras." },
       ],
       mock: {
         kind: "flow",
@@ -141,9 +140,9 @@ export const portalCliente: FeatureLandingData = {
     ],
   },
   faqs: [
-    { q: "¿Mi cliente tiene que cambiar de sistema?", a: "No. Tu cliente entra al mismo entorno que ya usa tu despacho; no instala nada nuevo ni aprende otra herramienta." },
+    { q: "¿Mi cliente usa la misma plataforma que mi despacho?", a: "No. Tu cliente tiene su propia suite, pensada para su empresa —facturación, gastos y tesorería—. Si decides conectarla con tu despacho, la información fluye entre ambos; cada uno trabaja en su entorno." },
     { q: "¿Qué puede hacer el cliente en su suite?", a: "Emitir facturas conforme a Verifactu, subir sus gastos y consultar su información financiera. Tú decides qué acceso le das." },
-    { q: "¿Lo que hace el cliente me llega automáticamente?", a: "Sí. Cada factura y cada gasto entra a tu contabilidad al instante, sin que tengas que pedir ni reenviar nada." },
+    { q: "¿Lo que hace el cliente me llega automáticamente?", a: "Sí. Las facturas que emite tu cliente te llegan al instante y quedan listas para que las apruebes. Y si sube sus gastos y conecta sus bancos, también entran sus gastos y movimientos, sin que tengas que pedir ni reenviar nada." },
     { q: "¿Las facturas de mis clientes cumplen Verifactu?", a: "Sí. Se emiten conforme a Verifactu y con envío automático a la AEAT." },
     { q: "¿Puedo dar acceso solo a algunos clientes?", a: "Sí. Habilitas la suite a los clientes que quieras y con el alcance que decidas." },
     { q: "¿Es seguro para mis datos y los de mis clientes?", a: "Sí. Ciframos los datos y cumplimos con el RGPD y la norma ISO 27001." },

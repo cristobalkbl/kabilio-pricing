@@ -104,25 +104,6 @@ export const procesador: ProductData = {
           <rect x="156" y="178" width="96" height="26" rx="8" fill="#fff" stroke="#e4ded5"/><text x="204" y="195" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#3a2f7a">Editar</text>
         </svg>`,
       },
-      {
-        title: "Espacio de trabajo colaborativo",
-        bullets: [
-          "Visión global de las tareas por realizar para cada cliente.",
-          "Toda la documentación y su estado, centralizada y segura.",
-          "Das acceso opcional a tus clientes al mismo espacio.",
-        ],
-        media: `<svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="20" y="24" width="380" height="192" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
-          <rect x="20" y="24" width="130" height="192" rx="12" fill="#f3f0ec"/>
-          <rect x="38" y="48" width="80" height="8" rx="4" fill="#3a2f7a"/>
-          <rect x="38" y="78" width="94" height="7" rx="3.5" fill="#d7dde6"/><rect x="38" y="100" width="80" height="7" rx="3.5" fill="#d7dde6"/><rect x="38" y="122" width="94" height="7" rx="3.5" fill="#d7dde6"/>
-          <g font-family="Manrope,sans-serif" font-size="10" font-weight="700">
-            <rect x="170" y="60" width="210" height="30" rx="7" fill="#f3f0ec"/><circle cx="188" cy="75" r="7" fill="#15914b"/><rect x="204" y="71" width="110" height="7" rx="3.5" fill="#d7dde6"/>
-            <rect x="170" y="98" width="210" height="30" rx="7" fill="#f3f0ec"/><circle cx="188" cy="113" r="7" fill="#e8a33d"/><rect x="204" y="109" width="130" height="7" rx="3.5" fill="#d7dde6"/>
-            <rect x="170" y="136" width="210" height="30" rx="7" fill="#f3f0ec"/><circle cx="188" cy="151" r="7" fill="#15914b"/><rect x="204" y="147" width="96" height="7" rx="3.5" fill="#d7dde6"/>
-          </g>
-        </svg>`,
-      },
     ],
   },
   a3: {

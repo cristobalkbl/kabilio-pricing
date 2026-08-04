@@ -34,7 +34,7 @@ export type FeatureLandingData = {
   eyebrow: string;
   h1: string;
   sub: string;
-  ctas?: { heroPrimary: CardCta; heroSecondary: CardCta; ctaPrimary: CardCta; ctaSecondary: CardCta };
+  ctas?: { heroPrimary: CardCta; heroSecondary?: CardCta; ctaPrimary: CardCta; ctaSecondary: CardCta };
   hero: {
     invoice?: { title: string; n: string; badge: string; total: { label: string; amount: string } };
     card?: Mock;
@@ -56,10 +56,10 @@ export type FeatureLandingData = {
 };
 
 const DEFAULT_CTAS = {
-  heroPrimary: { label: "Empieza gratis", href: "/solicita-una-demo" },
+  heroPrimary: { label: "Empieza gratis", href: "/empresas/contacto" },
   heroSecondary: { label: "Ver planes", href: "/empresas/precios" },
-  ctaPrimary: { label: "Empieza gratis", href: "/solicita-una-demo" },
-  ctaSecondary: { label: "Habla con nuestro equipo", href: "/contacto" },
+  ctaPrimary: { label: "Empieza gratis", href: "/empresas/contacto" },
+  ctaSecondary: { label: "Habla con nuestro equipo", href: "/empresas/contacto" },
 };
 
 const DEFAULT_ALLFEATURES = [
@@ -265,7 +265,9 @@ export function FeatureLanding({ data }: { data: FeatureLandingData }) {
               <p className="mt-4 max-w-[560px] text-[17.5px] leading-relaxed text-ink-muted">{data.sub}</p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button href={ctas.heroPrimary.href}>{ctas.heroPrimary.label}</Button>
-                <Button href={ctas.heroSecondary.href} variant="ghost">{ctas.heroSecondary.label}</Button>
+                {ctas.heroSecondary && (
+                  <Button href={ctas.heroSecondary.href} variant="ghost">{ctas.heroSecondary.label}</Button>
+                )}
               </div>
             </div>
 
@@ -447,7 +449,7 @@ export function FeatureLanding({ data }: { data: FeatureLandingData }) {
         )}
 
         {/* AYUDA */}
-        <SupportCards contained={false} />
+        <SupportCards contained={false} chatHref="/empresas/contacto" />
 
         {/* CTA BAND */}
         <section className="my-5 mb-14">

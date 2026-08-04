@@ -22,6 +22,16 @@ const BILLING: { splits: number; mult: number; label: string; badge?: string }[]
   { splits: 2, mult: 1.1, label: "2 pagos" },
 ];
 
+// Acciones y su coste en créditos. El coste en € por acción se calcula
+// multiplicando estos créditos por el precio por crédito de cada plan.
+const ACTION_COSTS: { key: keyof typeof cost; label: string }[] = [
+  { key: "invoice", label: "Contabilizar factura" },
+  { key: "reconcile", label: "Conciliar movimiento" },
+  { key: "bankConn", label: "Conexión bancaria" },
+  { key: "agentAction", label: "Acción del Agente Kabi" },
+  { key: "doc", label: "Documento gestionado" },
+];
+
 function Tip({ text }: { text: string }) {
   return (
     <span
@@ -130,7 +140,7 @@ export function PricingAsesorias() {
               </p>
               <div className="text-2xl font-bold leading-none">A consultar</div>
               <div className="mt-1.5 min-h-[18px] text-[13px] text-ink-muted">Plan a medida</div>
-              <div className="mt-4 text-sm text-ink-muted">+48.000 créditos</div>
+              <div className="mt-4 text-sm text-ink-muted">+100.000 créditos</div>
               <Link
                 href="/contacto"
                 className="mt-auto block rounded-[10px] bg-ink py-3 text-center text-[13.5px] font-semibold text-white transition-colors hover:bg-brand"
@@ -147,7 +157,7 @@ export function PricingAsesorias() {
                 Para todos los planes
               </span>
               <h3 className="text-[25px] font-bold tracking-tight">
-                Productos en los que usar los créditos
+                Productos en los que puedes usar los créditos
               </h3>
             </div>
             <div className="grid overflow-hidden rounded-[18px] border border-line bg-surface sm:grid-cols-2 lg:grid-cols-4">
@@ -199,7 +209,7 @@ export function PricingAsesorias() {
         <section className="py-16">
           <div className="container">
             <h2 className="mb-7 text-center text-[26px] font-bold tracking-tight">Condiciones</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-4 sm:grid-cols-3">
               {conditions.map((c) => (
                 <div key={c.title} className="rounded-2xl border border-line bg-surface p-5">
                   <span className="mb-3.5 inline-flex h-[38px] w-[38px] items-center justify-center rounded-xl bg-brand-100 text-brand [&_svg]:h-5 [&_svg]:w-5">
@@ -243,7 +253,7 @@ function ComparisonTable({
   billed: (t: number) => string;
 }) {
   const yes = <span className="font-bold text-brand">✓</span>;
-  const groups = Array.from(new Set(includedAll.map((x) => x.group)));
+  const groups = Array.from(new Set(includedAll.map((x) => x.group))).filter((g) => g !== "Productos");
 
   return (
     <table className="w-full border-collapse bg-surface text-sm">
@@ -380,8 +390,10 @@ function Configurator() {
   const [conn, setConn] = useState(1);
 
   const annual = Math.round((invoices * cost.invoice + recon * cost.reconcile + conn * cost.bankConn) * clients * 12);
-  const match = packs.find((p) => p.credits >= annual);
-  const enterprise = !match;
+  // Enterprise (y "el mejor precio") solo a partir de 100.000 créditos/año.
+  // Por debajo, recomendamos el pack que encaje o el mayor disponible.
+  const enterprise = annual > 100000;
+  const match = enterprise ? undefined : packs.find((p) => p.credits >= annual) ?? packs[packs.length - 1];
   const pct = match ? Math.min(100, Math.round((annual / match.credits) * 100)) : 100;
 
   const sliders = [
@@ -453,6 +465,29 @@ function Configurator() {
                 {enterprise ? "El mejor precio" : eur3(match!.price / match!.credits)}
               </span>
             </div>
+            {!enterprise && (
+              <details className="group border-t border-line">
+                <summary className="flex cursor-pointer list-none items-center justify-between py-2.5 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                  Coste por acción
+                  <span className="text-lg font-bold text-brand transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <div className="pb-1.5">
+                  {ACTION_COSTS.map((a) => (
+                    <div key={a.key} className="flex items-center justify-between py-1.5 text-[13px]">
+                      <span className="text-ink-muted">
+                        {a.label}
+                        <Tip
+                          text={`${String(cost[a.key]).replace(".", ",")} ${
+                            cost[a.key] === 1 ? "crédito" : "créditos"
+                          } × ${eur3(match!.unit)} por crédito`}
+                        />
+                      </span>
+                      <span className="font-semibold">{eur3(cost[a.key] * match!.unit)}</span>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            )}
             <Link
               href={enterprise ? "/contacto" : "/solicita-una-demo"}
               className="mt-[18px] block rounded-[10px] bg-ink py-3.5 text-center font-semibold text-white transition-colors hover:bg-brand"
@@ -461,7 +496,7 @@ function Configurator() {
             </Link>
             <p className="mt-3.5 text-[12.5px] leading-snug text-ink-muted">
               {enterprise
-                ? "Tu consumo supera los 48.000 créditos/año: plan Enterprise a medida."
+                ? "Tu consumo supera los 100.000 créditos/año: Enterprise a medida."
                 : `${fmtInt(clients)} clientes · ${invoices} facturas, ${recon} conciliaciones/mes y ${conn} conexiones vivas por cliente.${
                     pct > 90 ? " Vas justo de saldo." : ""
                   }`}

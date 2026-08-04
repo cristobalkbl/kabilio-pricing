@@ -1,4 +1,4 @@
-import { ContactForm } from "@/components/ContactForm";
+import { DemoForm } from "@/components/DemoForm";
 import { Icon } from "@/components/Icon";
 import { buildMetadata } from "@/lib/seo";
 import { site } from "@/content/site";
@@ -11,10 +11,9 @@ export const metadata = buildMetadata({
 });
 
 const benefits = [
-  "Demo adaptada a tu tipo de negocio",
-  "Resolvemos tus dudas sobre integraciones y bancos",
-  "Te decimos qué plan encaja mejor contigo",
-  "Sin compromiso ni permanencia",
+  "Ahorra tiempo con IA",
+  "Reduce los picos de trabajo",
+  "Mejora la calidad del servicio",
 ];
 
 export default function SolicitaDemoPage() {
@@ -30,11 +29,6 @@ export default function SolicitaDemoPage() {
           <h1 className="mt-5 text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             Descubre Kabilio en una demo personalizada
           </h1>
-          <p className="mt-5 text-lg text-ink-soft">
-            Déjanos tus datos y un especialista te enseñará cómo Kabilio automatiza la conciliación
-            bancaria y el procesamiento de facturas con IA en negocios como el tuyo.
-          </p>
-
           <ul className="mt-8 space-y-3">
             {benefits.map((b) => (
               <li key={b} className="flex items-center gap-3 text-ink-soft">
@@ -55,7 +49,7 @@ export default function SolicitaDemoPage() {
           <h2 className="text-xl font-semibold text-ink">Solicita tu demo</h2>
           <p className="mt-1 text-sm text-ink-muted">Te respondemos en menos de 24 h laborables.</p>
           <div className="mt-6">
-            <ContactForm />
+            <DemoForm />
           </div>
         </div>
       </div>

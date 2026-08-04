@@ -5,13 +5,14 @@ import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 import { site, topbar, primaryCta, audiences, navByAudience } from "@/content/site";
 
-// CTA principal del header: mismo texto y destino (demo) en ambas audiencias.
+// CTA principal del header: mismo texto en ambas audiencias; en empresas
+// lleva al contacto de empresas y en asesorías al formulario de demo.
 function ctaLabel() {
   return "Contáctanos";
 }
 
-function ctaHref() {
-  return primaryCta.href;
+function ctaHref(isEmpresas: boolean) {
+  return isEmpresas ? "/empresas/contacto" : primaryCta.href;
 }
 
 export function Header() {
@@ -115,7 +116,7 @@ export function Header() {
           {/* CTA principal */}
           <div className="flex items-center gap-1.5">
             <Link
-              href={ctaHref()}
+              href={ctaHref(isEmpresas)}
               className="hidden rounded-xl bg-ink px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand lg:inline-flex"
             >
               {ctaLabel()}
@@ -154,7 +155,7 @@ function MobileMenu({ audience }: { audience: "asesores" | "empresas" }) {
         ))}
         <div className="mt-1 border-t border-line p-1.5">
           <Link
-            href={ctaHref()}
+            href={ctaHref(audience === "empresas")}
             className="block rounded-xl bg-ink px-4 py-2.5 text-center text-sm font-bold text-white"
           >
             {ctaLabel()}

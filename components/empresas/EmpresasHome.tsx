@@ -84,7 +84,7 @@ const SUMMARY: [string, string][] = [
 
 const PAIRS = [
   {
-    empresa: { quote: "Emito la factura y me olvido. No he vuelto a enviar nada a fin de mes.", name: "Javier Ruiz", sub: "Nova Muebles S.L.", avatar: "https://randomuser.me/api/portraits/men/54.jpg" },
+    empresa: { quote: "Emito la factura y me olvido. No he vuelto a enviar nada a fin de mes.", name: "Javier Ruiz", sub: "Nova Muebles S.L.", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
     asesoria: { quote: "Recibimos toda la documentación a tiempo y dejamos de perseguir facturas a final de mes.", name: "Asesoría Nexo", sub: "Valencia", avatar: "https://randomuser.me/api/portraits/women/26.jpg" },
   },
   {
@@ -135,7 +135,7 @@ export function EmpresasHome() {
         <div className="container">
           <div className="mx-auto max-w-[800px] pb-1.5 pt-14 text-center">
             <span className="mb-[18px] inline-block rounded-full bg-brand-100 px-3.5 py-1.5 text-[12.5px] font-bold uppercase tracking-wide text-brand">
-              Facturación · Gastos · Tesorería · Con tu asesoría
+              Facturación · Gastos · Tesorería · Portal colaborativo
             </span>
             <h1 className="text-[clamp(32px,5vw,50px)] font-extrabold leading-[1.05]">Controla las finanzas de tu empresa</h1>
             <p className="mx-auto mt-4 max-w-[620px] text-[17.5px] leading-relaxed text-ink-muted">
@@ -143,7 +143,7 @@ export function EmpresasHome() {
               tiempo real: controla tus gastos, tu tesorería y colabora con tu asesor en el mismo sitio.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button href="/solicita-una-demo">Empieza gratis</Button>
+              <Button href="/empresas/contacto">Empieza gratis</Button>
               <Button href="#demo" variant="ghost">Ver demo de 2 min</Button>
             </div>
           </div>
@@ -166,7 +166,7 @@ export function EmpresasHome() {
             {[
               { ic: `<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>`, h: "Tus números, claros", p: "Informes de tu actividad, ingresos y gastos para decidir con datos al día." },
               { ic: `<path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/>`, h: "Cumples con Verifactu", p: "Facturas que cumplen Verifactu y se envían automáticamente a Hacienda. Deja atrás Excel y Word." },
-              { ic: `<path d="M18 7a6 6 0 1 0 0 10"/><path d="M4 10h9M4 14h9"/>`, h: "Desde 0 €, sin sorpresas", p: "Empiezas gratis y sin permanencia. Software 100% español." },
+              { ic: `<path d="M18 7a6 6 0 1 0 0 10"/><path d="M4 10h9M4 14h9"/>`, h: "Desde 0 €, sin sorpresas", p: "Empiezas gratis y sin permanencia." },
             ].map((b) => (
               <div key={b.h} className="rounded-2xl border border-line bg-surface p-7 transition duration-200 hover:-translate-y-1 hover:shadow-card">
                 <span className="mb-4 inline-flex h-[50px] w-[50px] items-center justify-center rounded-xl bg-brand-100 text-brand">
@@ -339,7 +339,7 @@ export function EmpresasHome() {
                     {mo && <span className="text-[13px] text-ink-muted">{mo}</span>}
                   </div>
                   <div className="mb-4 mt-1.5 min-h-[40px] text-[12.5px] leading-snug">{save}</div>
-                  <Link href="/solicita-una-demo" className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand">{p.free ? "Empieza gratis" : "Empieza ahora"}</Link>
+                  <Link href="/empresas/contacto" className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand">{p.free ? "Empieza gratis" : "Empieza ahora"}</Link>
                   <hr className="my-5 border-line" />
                   <div className="mb-3.5 text-[11px] font-bold uppercase tracking-wide text-ink-muted">{p.inc}</div>
                   <ul>
@@ -399,7 +399,7 @@ export function EmpresasHome() {
               Tu dashboard, tu tesorería y tu IVA estimado siempre actualizados: sabes cómo va tu empresa hoy, no cuando cierra el trimestre. Empieza gratis, sin tarjeta.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Button href="/solicita-una-demo" variant="light">Empieza gratis</Button>
+              <Button href="/empresas/contacto" variant="light">Empieza gratis</Button>
               <button onClick={() => setReferOpen(true)} className="inline-flex items-center justify-center rounded-xl border border-white/40 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10">
                 Recomendar a mi asesoría
               </button>

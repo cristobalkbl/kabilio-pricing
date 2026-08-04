@@ -38,8 +38,7 @@ export const includedProducts: { label: string; desc: string; value?: string; ic
   },
   {
     label: "Gestor Documental",
-    desc: "Almacena y organiza la documentación de tus clientes, con 20 GB de almacenamiento incluido.",
-    value: "20 GB",
+    desc: "Almacena y organiza la documentación de tus clientes.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>`,
   },
 ];
@@ -49,7 +48,7 @@ export const includedAll: { label: string; group: string; tip: string; value?: s
   { label: "Procesador", group: "Productos", tip: "Procesa y digitaliza automáticamente las facturas de tus clientes." },
   { label: "Conciliador", group: "Productos", tip: "Concilia los movimientos bancarios de tus clientes." },
   { label: "Conexiones bancarias", group: "Productos", tip: "Conecta las cuentas de tus clientes para importar sus movimientos automáticamente." },
-  { label: "Gestor Documental", group: "Productos", tip: "Almacena y organiza la documentación de tus clientes, con 20 GB de almacenamiento incluido.", value: "20 GB" },
+  { label: "Gestor Documental", group: "Productos", tip: "Almacena y organiza la documentación de tus clientes." },
   { label: "Usuarios ilimitados", group: "Servicio y soporte", tip: "Añade a todo tu equipo sin coste por usuario." },
   { label: "Instalación y formación", group: "Servicio y soporte", tip: "Puesta en marcha y formación inicial del equipo, incluidas." },
   { label: "Responsable de cuenta", group: "Servicio y soporte", tip: "Una persona de Kabilio asignada a tu despacho como punto de contacto." },
@@ -72,17 +71,12 @@ export const conditions: { icon: string; title: string; text: string }[] = [
     title: "Formas de pago",
     text: "Pago por adelantado al mejor precio. En 2 pagos: +10%.",
   },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>`,
-    title: "Sobreconsumo",
-    text: "Si superas tu saldo, cada crédito extra se factura a 0,20 €.",
-  },
 ];
 
 export const pricingFaqs: { q: string; a: string }[] = [
   { q: "¿Cuándo se realiza el pago de cada plan?", a: "El pago se realiza al principio del periodo de facturación." },
   { q: "¿Qué medios de pago aceptáis?", a: "SEPA y transferencia bancaria." },
-  { q: "¿Qué pasa si llego al límite de créditos de mi plan?", a: "Puedes contratar a tiempo un nuevo plan para mantener tus condiciones. Mientras tanto, cada crédito de sobreconsumo se factura a 0,20 € a final de cada mes vencido." },
+  { q: "¿Qué pasa si se me agotan los créditos?", a: "Puedes comprar cualquiera de nuestros paquetes en cualquier momento para seguir trabajando. Y si te quedas sin créditos y no tienes un paquete activo, cada crédito adicional se factura a 0,20 €." },
   { q: "¿Puedo contratar un plan antes del vencimiento?", a: "Por supuesto. El nuevo plan empezará a consumirse en cuanto acabes el vigente, y su validez comienza en la fecha de contratación." },
   { q: "¿Y si los planes predefinidos no se adaptan a mis necesidades?", a: "Contacta con nuestro equipo y vemos cómo trabajar juntos con un plan Enterprise a medida." },
 ];

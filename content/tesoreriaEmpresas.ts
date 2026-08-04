@@ -16,7 +16,7 @@ export const tesoreriaEmpresas: FeatureLandingData = {
     title: "Lo que gana tu empresa con la tesorería en Kabilio",
     text: "Tus bancos conectados, la conciliación resuelta por IA y tu caja e IVA siempre al día.",
     items: [
-      { icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>`, h: "Bancos conectados", p: "Tus movimientos entran solos cada día; sin descargar extractos ni cuadrar a mano." },
+      { icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>`, h: "Bancos conectados", p: "Tus movimientos entran solos cada día, o sube tus extractos manualmente. Sin cuadrar a mano." },
       { icon: `<path d="M13 2 3 14h7l-1 8 10-12h-7z"/>`, h: "Conciliación con IA", p: "Kabilio te sugiere emparejamientos entre cada movimiento y su factura; tú solo revisas y confirmas." },
       { icon: `<path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/>`, h: "Tu caja e IVA, al día", p: "Sabes cuánto tienes y cuánto IVA te toca en cualquier momento, sin esperar al cierre." },
     ],
@@ -27,8 +27,9 @@ export const tesoreriaEmpresas: FeatureLandingData = {
       title: "Conecta tus bancos en minutos",
       text: "Vincula tus cuentas de forma segura y trae los movimientos al día automáticamente. Sin pedir extractos ni hojas de cálculo.",
       bullets: [
-        { b: "Sincronización automática", d: "Tus movimientos entran cada día, sin descargar extractos del banco." },
+        { b: "Sincronización automática", d: "Tus movimientos entran cada día, de forma automática." },
         { b: "Todos tus bancos", d: "Conecta con tus bancos y míralos en un solo sitio." },
+        { b: "O sube tus extractos", d: "¿Prefieres no conectar el banco? Sube tus extractos manualmente y Kabilio los procesa igual." },
       ],
       mock: {
         kind: "rows",

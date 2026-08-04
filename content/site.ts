@@ -72,11 +72,11 @@ export const navByAudience: Record<"asesores" | "empresas", NavGroup[]> = {
         { label: "Portal colaborativo", href: "/empresas/portal-colaborativo" },
       ],
     },
-    { label: "Verifactu", href: "/empresas/verifactu" },
     { label: "Precios", href: "/empresas/precios" },
     {
       label: "Recursos",
       items: [
+        { label: "Verifactu", href: "/empresas/verifactu" },
         { label: "Blog", href: "/blog" },
         { label: "Centro de ayuda", href: "/centro-de-ayuda" },
       ],

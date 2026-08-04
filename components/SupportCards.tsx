@@ -4,7 +4,13 @@ import { site } from "@/content/site";
 // de funcionalidades de asesorías (ProductoLanding) y de empresas (FeatureLanding).
 // `contained`: envuelve en .container (ProductoLanding). En FeatureLanding, que ya
 // va dentro de un <main className="container">, se pasa `contained={false}`.
-export function SupportCards({ contained = true }: { contained?: boolean }) {
+export function SupportCards({
+  contained = true,
+  chatHref = "/contacto",
+}: {
+  contained?: boolean;
+  chatHref?: string;
+}) {
   const inner = (
     <>
       <div className="mx-auto mb-10 max-w-[700px] text-center">
@@ -24,7 +30,7 @@ export function SupportCards({ contained = true }: { contained?: boolean }) {
           <p className="text-sm leading-relaxed text-ink-muted">
             Pregunta lo que quieras a nuestro equipo o al agente IA, sin salir de la plataforma.
           </p>
-          <a className="mt-3 inline-block text-sm font-bold text-brand hover:underline" href="/contacto">
+          <a className="mt-3 inline-block text-sm font-bold text-brand hover:underline" href={chatHref}>
             Habla con el equipo →
           </a>
         </div>

@@ -143,7 +143,7 @@ export function PricingEmpresas() {
                   <div className="mb-4 mt-1.5 min-h-[40px] text-[12.5px] leading-snug">{save}</div>
                   <div className="mb-3 min-h-[20px] text-[13.5px] font-bold">{p.tag}</div>
                   <Link
-                    href="/solicita-una-demo"
+                    href="/empresas/contacto"
                     className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand"
                   >
                     {p.free ? "Empieza gratis" : "Empieza ahora"}
@@ -229,13 +229,16 @@ export function PricingEmpresas() {
               <tbody>
                 {cmpGroups.map((g) => {
                   const isClosed = closedGroups[g.group];
+                  // Las filas "expandedOnly" (p. ej. próximamente) solo se muestran
+                  // cuando la tabla está desplegada por completo.
+                  const rows = collapsed ? g.rows.filter((r) => !r.expandedOnly) : g.rows;
                   return (
                     <GroupBlock
                       key={g.group}
                       group={g.group}
                       closed={!!isClosed}
                       onToggle={() => toggleGroup(g.group)}
-                      rows={g.rows}
+                      rows={rows}
                     />
                   );
                 })}

@@ -41,9 +41,9 @@ export default function HomePage() {
               Automatiza la contabilidad de tu asesoría con IA
             </h1>
             <p className="mx-auto mt-5 max-w-[640px] text-pretty text-[17.5px] leading-relaxed text-ink-muted">
-              Kabilio es la plataforma de IA que automatiza la contabilidad de tu despacho y trabaja
-              conectada con tus clientes en tiempo real: procesa facturas, concilia movimientos
-              bancarios y centraliza la documentación en una plataforma colaborativa.
+              Kabilio es la plataforma de IA que automatiza la contabilidad de tu despacho: procesa
+              facturas, concilia movimientos bancarios y centraliza la documentación y, si quieres, la
+              conectas con tus clientes para trabajar en tiempo real.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Button href="/solicita-una-demo" className="shadow-card">
@@ -52,10 +52,6 @@ export default function HomePage() {
               <Button href="#demo" variant="ghost">
                 <PlayGlyph /> Ver demo
               </Button>
-            </div>
-            <div className="mt-6 flex items-center justify-center gap-2.5 text-[13px] text-ink-muted">
-              <span className="tracking-[2px] text-gold">★★★★★</span>
-              Asesorías de toda España ya trabajan con Kabilio
             </div>
           </div>
         </div>
@@ -83,6 +79,12 @@ export default function HomePage() {
           />
           <div className="grid gap-5 md:grid-cols-3">
             <Benefit
+              tint="bg-peach text-[#8a5a1e] ring-[#f0d9bf]"
+              title="Ahorra tiempo con IA"
+              text="La IA generativa contabiliza las facturas, concilia los bancos y te deja el asiento propuesto para revisar, todo desde un único panel."
+              icon={<path d="M13 2 3 14h7l-1 8 10-12h-7z" />}
+            />
+            <Benefit
               tint="bg-brand-100 text-brand ring-brand-200"
               title="Reduce los picos de trabajo"
               text="Contabiliza la actividad de tus clientes a diario y llega a los cierres con el trabajo hecho, sin acumularlo para fin de trimestre."
@@ -94,20 +96,11 @@ export default function HomePage() {
               }
             />
             <Benefit
-              tint="bg-peach text-[#8a5a1e] ring-[#f0d9bf]"
-              title="Ahorra tiempo con IA"
-              text="La IA generativa contabiliza las facturas, concilia los bancos y te deja el asiento propuesto para revisar, todo desde un único panel."
-              icon={<path d="M13 2 3 14h7l-1 8 10-12h-7z" />}
-            />
-            <Benefit
               tint="bg-pink text-[#a83a6b] ring-[#f2b9d2]"
-              title="Normativa cubierta"
-              text="Tus clientes facturan con un facturador adaptado a Verifactu: cada factura se envía automáticamente a la AEAT y, al mismo tiempo, la recibes al momento en tu Kabilio."
+              title="Mejora la calidad del servicio"
+              text="Mayor rapidez, menos errores y más tiempo para tus clientes: al automatizar el trabajo repetitivo, entregas antes y con menos fallos, y dedicas esas horas a asesorar mejor."
               icon={
-                <>
-                  <path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z" />
-                  <path d="M9 12l2 2 4-4" />
-                </>
+                <path d="M12 3l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" />
               }
             />
           </div>
@@ -134,7 +127,7 @@ export default function HomePage() {
             />
             <FuncCard
               kicker="Conciliación"
-              title="Conciliación bancaria"
+              title="Conciliación bancaria avanzada"
               text="Integra los movimientos bancarios automáticamente y utiliza reglas avanzadas e IA para recibir propuestas de emparejamiento, viendo todo de forma centralizada."
               shot={<ShotConciliacion />}
               href="/asesores/conciliacion-bancaria"
@@ -148,9 +141,9 @@ export default function HomePage() {
             />
             <FuncCard
               wide
-              kicker="Facturador"
-              title="Facturación electrónica para las pymes de tu despacho"
-              text="Facilita a tus clientes un facturador intuitivo que recibe y contabiliza automáticamente las facturas emitidas en Kabilio. Compatible con Verifactu."
+              kicker="Suite del cliente"
+              title="Una plataforma completa para los clientes de tu despacho"
+              text="Más que un facturador: tus clientes facturan con Verifactu, controlan sus gastos y su tesorería y colaboran contigo en tiempo real. Todo lo que emiten y registran llega directo a tu contabilidad."
               shot={<ShotFacturador />}
               href="/asesores/suite-cliente"
             />
@@ -203,28 +196,12 @@ export default function HomePage() {
               <div>
                 <p className="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Integración</p>
                 <h2 className="mb-3 text-[clamp(24px,3.2vw,32px)] font-bold leading-tight">
-                  Integra Kabilio con A3{" "}
-                  <span className="text-[0.6em] font-semibold text-ink-muted">(pronto Sage)</span>
+                  Totalmente integrado con tu software contable
                 </h2>
-                <p className="mb-6 text-[15.5px] leading-relaxed text-[#4b4560]">
-                  Kabilio se conecta de raíz con A3ECO y A3CON: cada asiento se escribe solo en tu A3,
-                  en tiempo real. No migras datos ni cambias de programa.
+                <p className="text-[15.5px] leading-relaxed text-[#4b4560]">
+                  Sincroniza en tiempo real con A3ECO y A3CON para una contabilidad automática y sin
+                  esfuerzo.
                 </p>
-                <ul className="mb-7 space-y-2.5">
-                  {[
-                    "Conexión nativa con A3ECO y A3CON",
-                    "Importación asistida de datos iniciales",
-                    "Formación personalizada para tu equipo",
-                  ].map((li) => (
-                    <li key={li} className="flex items-center gap-3 text-[15px] font-semibold">
-                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-xs font-extrabold text-brand shadow-sm">
-                        ✓
-                      </span>
-                      {li}
-                    </li>
-                  ))}
-                </ul>
-                <Button href="/contacto">Solicita más información</Button>
               </div>
               <div className="rounded-2xl border border-lav/70 bg-white/50 p-6 backdrop-blur-sm">
                 <ServViz />
@@ -291,8 +268,7 @@ export default function HomePage() {
                 ["Procesamiento de facturas con IA", "La IA interpreta cada factura de tus clientes, mucho más que un OCR clásico."],
                 ["Contabilidad automatizada", "Asientos contables completos con IA, listos para tu A3 con un 95% de fiabilidad."],
                 ["Conciliación bancaria", "Conecta las cuentas y concilia los movimientos con reglas e IA."],
-                ["Contabilidad colaborativa", "Trabaja con tus clientes en tiempo real sobre la misma plataforma."],
-                ["Facturación electrónica", "Un facturador Verifactu para tus clientes; lo que emiten llega directo a tu contabilidad."],
+                ["Factura con Verifactu", "Un facturador Verifactu para tus clientes; lo que emiten llega directo a tu contabilidad."],
                 ["Integración con A3", "Conexión nativa con A3ECO y A3CON, sin migrar tus datos."],
               ].map(([b, s]) => (
                 <div
@@ -375,7 +351,7 @@ export default function HomePage() {
             />
             <div className="relative mx-auto max-w-[560px]">
               <h2 className="mb-3 text-[clamp(25px,3.6vw,34px)] font-bold">
-                Empieza a automatizar la contabilidad de tu despacho
+                La plataforma de IA para asesorías y sus clientes
               </h2>
               <p className="mb-7 text-base leading-relaxed text-ink-muted">
                 Te enseñamos en una demo cómo Kabilio automatiza tu precontabilidad y te conecta con
