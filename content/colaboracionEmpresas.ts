@@ -16,36 +16,36 @@ export const colaboracionEmpresas: FeatureLandingData = {
     title: "Lo que gana tu empresa trabajando con tu asesoría en Kabilio",
     text: "Un único espacio con tu asesoría: la documentación ordenada, la misma para los dos y nada que reenviar.",
     items: [
-      { icon: `<path d="M4 5a2 2 0 0 1 2-2h5l2 3h5a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>`, h: "Todo en un sitio", p: "Modelos, contratos y otros documentos compartidos con tu asesoría, sin emails ni carpetas sueltas." },
-      { icon: `<circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>`, h: "Documentación organizada", p: "Todo clasificado y localizable en segundos; nada se pierde por el camino." },
-      { icon: `<path d="M20 6 9 17l-5-5"/>`, h: "Sin reenviar nada", p: "Subes un documento y tu asesoría lo tiene al instante, sin correos a fin de mes." },
+      { icon: `<path d="M4 5a2 2 0 0 1 2-2h5l2 3h5a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>`, h: "Le llega solo a tu asesor", p: "Facturas, gastos, cobros: todo lo que haces en Kabilio, tu asesoría lo tiene al instante. Se acabaron los emails con adjuntos a fin de mes." },
+      { icon: `<circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>`, h: "Estado real, no solo papeles", p: "Tu asesor no ve solo el PDF: ve si la factura está cobrada, si el gasto está pagado y cómo va tu caja. Contabiliza sin preguntarte." },
+      { icon: `<path d="M20 6 9 17l-5-5"/>`, h: "Funciona en los dos sentidos", p: "Tu asesoría también sube lo suyo: impuestos presentados, nóminas, contratos. Lo tienes localizado sin pedirlo por email." },
     ],
   },
   features: [
     {
       k: "Un mismo espacio",
-      title: "Tú y tu asesoría, sobre los mismos datos",
-      text: "Toda tu documentación vive en un único sitio que tu asesoría también ve, al día. Se acabaron las versiones distintas y los documentos duplicados.",
+      title: "Tu asesor sabe cómo va cada cosa",
+      text: "Las facturas de tus clientes las tiene tu asesoría en cuanto las emites, y sabe cuáles están cobradas y cuáles pendientes. Los gastos, igual: pagados o por pagar. Nadie tiene que preguntar.",
       bullets: [
-        { b: "La misma información", d: "Ves lo mismo que tu asesor, actualizado en tiempo real." },
-        { b: "Sin sistemas paralelos", d: "Ni Excel por un lado ni correos por otro." },
+        { b: "Facturas con su estado", d: "Emitida, cobrada, vencida. Tu asesor lo ve igual que tú, en el momento." },
+        { b: "Gastos y caja, a la vista", d: "Subes tus gastos y tu asesoría los tiene al momento, con su estado de pago y su reflejo en la tesorería." },
       ],
       mock: {
         kind: "flow",
         nodes: [
-          { title: "Tú", small: "tu empresa" },
-          { title: "Kabilio", small: "en común", highlight: true },
-          { title: "Tu asesoría", small: "al día" },
+          { title: "Emites o pagas", small: "" },
+          { title: "Kabilio lo registra", small: "con su estado", highlight: true },
+          { title: "Tu asesoría", small: "lo ve al momento" },
         ],
       },
     },
     {
       k: "Gestor documental",
-      title: "Toda la documentación, centralizada",
+      title: "Lo tuyo y lo de tu asesoría, en el mismo archivo",
       text: "Tu asesoría deja en un solo lugar los documentos de tu empresa —modelos, contratos y nóminas— para que los encuentres en segundos, sin que nada se pierda por el camino.",
       bullets: [
-        { b: "Documentos organizados", d: "Modelos, contratos y nóminas, siempre a mano." },
-        { b: "Lo sube tu asesoría", d: "Y tú lo consultas cuando quieras, al momento." },
+        { b: "Encuéntralo en dos clics", d: "Un impuesto, una nómina o un contrato: lo tienes localizado al momento, sin buscar en cadenas de email." },
+        { b: "Lo sube tu asesoría", d: "Los modelos presentados, las nóminas o los contratos: tu asesoría los deja en el espacio compartido según los gestiona." },
       ],
       mock: {
         kind: "rows",
@@ -59,11 +59,11 @@ export const colaboracionEmpresas: FeatureLandingData = {
     },
     {
       k: "El diferencial de Kabilio",
-      title: "Todo llega solo a tu asesoría",
-      text: "Lo que subes aparece en el espacio de tu asesoría en tiempo real. Sin reenviar nada a final de mes.",
+      title: "Compartir es automático",
+      text: "Facturas, subes gastos, cobras. Lo que ya hacías. Compartirlo con tu asesoría no es una tarea más: es automático.",
       bullets: [
-        { b: "Sin reenviar nada", d: "Ni documentos ni archivos que enviar a fin de mes." },
-        { b: "Sin aprender nada nuevo", d: "Es el mismo entorno que ya usa tu asesoría." },
+        { b: "Preguntas que desaparecen", d: "«¿Me pasas las facturas del trimestre?» «¿Esta ya está cobrada?» «¿Me reenvías ese ticket?» — Tu asesor ya no necesita hacerlas." },
+        { b: "Cierres sin sustos", d: "Como tu asesoría trabaja con tus datos al día, no aparece todo en la última semana del trimestre. Menos prisas, menos errores, menos sorpresas." },
       ],
       mock: {
         kind: "flow",
