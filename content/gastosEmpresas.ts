@@ -34,9 +34,9 @@ export const gastosEmpresas: FeatureLandingData = {
     {
       k: "Captura",
       title: "Sube el gasto y olvídate del papel",
-      text: "Manda tus facturas y tickets de gasto por email o súbelos al portal. Nada de registrar a mano y sin límite de documentos.",
+      text: "Manda tus facturas y tickets de gasto por email, súbelos como archivo o conéctalos desde Dropbox. Nada de registrar a mano y sin límite de documentos.",
       bullets: [
-        { b: "Por email o archivo", d: "Reenvía la factura a tu buzón de Kabilio o sube el archivo." },
+        { b: "Por email, archivo o Dropbox", d: "Reenvía la factura a tu buzón de Kabilio, sube el archivo o conéctalo desde Dropbox." },
         { b: "Sin límite", d: "Procesa todos los gastos que necesites, sin topes." },
       ],
       mock: {
@@ -45,7 +45,7 @@ export const gastosEmpresas: FeatureLandingData = {
         rows: [
           { avatar: "@", label: "Por email", tag: { text: "Procesado", variant: "ok" } },
           { avatar: "↑", label: "Archivo subido", tag: { text: "Procesado", variant: "ok" } },
-          { avatar: "@", label: "Por email", tag: { text: "Nuevo", variant: "wait" } },
+          { avatar: "▽", label: "Desde Dropbox", tag: { text: "Nuevo", variant: "wait" } },
         ],
       },
     },
@@ -122,11 +122,12 @@ export const gastosEmpresas: FeatureLandingData = {
     ],
   },
   faqs: [
-    { q: "¿Cómo subo mis gastos?", a: "Reenvía la factura a tu buzón de Kabilio o sube el archivo (PDF o imagen) al portal. Kabilio lo procesa automáticamente." },
+    { q: "¿Cómo subo mis gastos?", a: "Reenvía la factura a tu buzón de Kabilio, sube el archivo (PDF o imagen) al portal o conéctalo desde Dropbox. Kabilio lo procesa automáticamente." },
     { q: "¿Hay límite de gastos?", a: "No. El procesado de gastos es ilimitado y está incluido en tu plan." },
     { q: "¿Qué datos extrae la IA?", a: "Reconoce el importe, el IVA y el proveedor de cada documento. Tú revisas y validas antes de contabilizar." },
     { q: "¿Detecta gastos duplicados?", a: "Sí. Si un gasto ya está subido, Kabilio te avisa para que no lo registres dos veces." },
     { q: "¿Mis gastos llegan a mi asesoría?", a: "Sí. Cada gasto que subes llega a tu asesoría listo para contabilizar y al instante; no tienes que reenviar nada a fin de mes." },
+    { q: "¿Necesito que mi asesoría use Kabilio?", a: "Sí. Para usar Kabilio debe invitarte tu asesoría. Si la tuya todavía no trabaja con Kabilio, pídele que empiece y así podrás usarlo." },
     { q: "¿Es seguro?", a: "Sí. Los datos se guardan cifrados en la nube, cumpliendo el RGPD y la norma ISO 27001." },
   ],
   cta: {

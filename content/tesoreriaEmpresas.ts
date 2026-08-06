@@ -3,7 +3,7 @@ import type { FeatureLandingData } from "@/components/empresas/FeatureLanding";
 export const tesoreriaEmpresas: FeatureLandingData = {
   eyebrow: "Tesorería",
   h1: "Controla la tesorería de tu empresa en tiempo real",
-  sub: "Conecta tus bancos, la IA te sugiere los emparejamientos y ten tu caja y tu IVA siempre al día. Toma decisiones con datos de hoy y con tu asesoría conectada.",
+  sub: "Conecta tus bancos o sube tus extractos, y deja que la IA te sugiera los emparejamientos: tendrás tu caja e IVA siempre al día. Toma decisiones con datos de hoy y con tu asesoría conectada.",
   hero: {
     invoice: { title: "Tesorería", n: "Todas tus cuentas", badge: "En directo", total: { label: "Saldo total", amount: "28.640 €" } },
     kpis: [
@@ -156,8 +156,8 @@ export const tesoreriaEmpresas: FeatureLandingData = {
   faqs: [
     { q: "¿Puedo conectar cualquier banco?", a: "Kabilio se conecta con casi todos los bancos españoles. La conexión es segura y los movimientos se actualizan automáticamente cada día." },
     { q: "¿Es segura la conexión bancaria?", a: "Sí. Usamos proveedores certificados y conexiones cifradas, y Kabilio nunca guarda las claves de acceso a tus bancos." },
-    { q: "¿Qué es la conciliación automática?", a: "Es el cruce de los movimientos del banco con tus facturas y asientos. Kabilio propone las coincidencias con IA y reglas —incluidos cobros parciales o agrupados— y tú solo confirmas." },
-    { q: "¿Qué son las remesas bancarias?", a: "Permiten agrupar varios pagos o cobros en una sola orden. Kabilio genera el fichero SEPA para enviarlo a tu banco, ahorrándote tiempo y evitando errores." },
+    { q: "¿Qué es la conciliación automática?", a: "Es el cruce de los movimientos del banco con tus facturas. Kabilio propone las coincidencias con IA y reglas, y tú solo confirmas." },
+    { q: "¿Qué son las remesas bancarias?", a: "Permiten agrupar varios pagos o cobros en una sola orden. Kabilio genera el fichero SEPA (un XML con el formato estándar de la banca) para que lo subas a tu banco, ahorrándote tiempo y evitando errores." },
     { q: "¿Cómo se conecta con mi asesoría?", a: "Tu asesoría accede a los mismos movimientos, conciliaciones y saldos, al día. No tienes que enviar extractos ni exportar nada a final de mes." },
     { q: "¿Necesito instalar algo?", a: "No. Kabilio está en la nube; conectas tus bancos en minutos y empiezas a ver tu tesorería al instante." },
   ],

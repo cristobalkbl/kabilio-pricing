@@ -32,7 +32,7 @@ export const facturacionEmpresas: FeatureLandingData = {
     {
       k: "Catálogo",
       title: "Tu catálogo de clientes y productos, siempre a mano",
-      text: "Guarda clientes, productos y servicios una vez y reutilízalos en cada factura o presupuesto. Impórtalos desde Excel y empieza en minutos.",
+      text: "Guarda clientes, productos y servicios una vez y reutilízalos en cada factura —y, próximamente, también en tus presupuestos—. Impórtalos desde Excel y empieza en minutos.",
       bullets: [
         "Clientes y productos guardados y reutilizables",
         "Importa tu catálogo desde Excel o CSV",
@@ -157,9 +157,9 @@ export const facturacionEmpresas: FeatureLandingData = {
     { q: "¿Kabilio es para cualquier empresa?", a: "Kabilio para empresas funciona cuando tu asesoría también usa Kabilio: es tu asesoría quien te invita y te da de alta para que puedas usarlo, y así tus facturas y gastos le llegan conectados y al día. Si la tuya todavía no lo usa, puedes recomendarle que empiece con Kabilio y la acompañamos para ponerla en marcha." },
     { q: "¿Puedo empezar gratis?", a: "Sí, pero para usar Kabilio debe invitarte tu asesoría. Si la tuya todavía no trabaja con Kabilio, pídele que empiece y así podrás usarlo. El plan gratuito te permite facturar cumpliendo la normativa sin coste, y hay planes de pago cuando necesitas más volumen o funciones avanzadas." },
     { q: "¿Cumple con Verifactu?", a: "Sí. Kabilio genera facturas conformes, con registro inalterable y envío a la AEAT, y se actualiza con cada cambio normativo." },
-    { q: "¿Puedo conectar mi banco?", a: "Sí. Conecta tus cuentas y Kabilio concilia tus movimientos automáticamente, dándote una visión de tesorería en tiempo real." },
+    { q: "¿Puedo conectar mi banco?", a: "Sí. Conecta tus cuentas y Kabilio te propone la conciliación de tus movimientos con IA; tú revisas y das el visto bueno final. Así tienes una visión de tu tesorería en tiempo real." },
     { q: "¿Cómo se conecta con mi asesoría?", a: "Es tu asesoría quien te da de alta en Kabilio para que puedas usarlo. Una vez dentro, tus facturas y gastos le llegan de forma automática y al día, sin que tengas que reenviar nada a final de mes." },
-    { q: "¿Puedo programar facturas recurrentes?", a: "Sí. Las facturas recurrentes están disponibles en los planes de pago; consulta los límites de cada plan en la página de precios. Kabilio las crea, numera y emite solas con la frecuencia que elijas: semanal, mensual o personalizada." },
+    { q: "¿Puedo programar facturas recurrentes?", a: "Sí. Las facturas recurrentes están disponibles en los planes de pago; consulta los límites de cada plan en la página de precios. Kabilio las crea, numera y emite solas con la frecuencia que elijas: semanal, mensual, bimensual, trimestral, anual o personalizada." },
   ],
   cta: {
     title: "Empieza a facturar con Kabilio hoy",

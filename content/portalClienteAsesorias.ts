@@ -12,12 +12,12 @@ const PLATAFORMA = [
 ];
 
 export const portalCliente: FeatureLandingData = {
-  eyebrow: "Suite del cliente",
-  h1: "La suite para los clientes que quieras conectar",
-  sub: "Conecta opcionalmente a los clientes que necesites: facturan, suben sus gastos y consultan su información desde un mismo sitio, y tú recibes todo contabilizado al instante, sin perseguir documentos ni reenvíos.",
+  eyebrow: "Portal colaborativo",
+  h1: "El portal colaborativo para los clientes que quieras conectar",
+  sub: "Conecta a los clientes que necesites: facturan, suben sus gastos, conectan sus bancos y consultan su información desde un mismo sitio, y tú lo recibes todo al instante, listo para validar, sin perseguir documentos ni reenvíos.",
   ctas: ASESOR_CTAS,
   hero: {
-    invoice: { title: "Suite del cliente", n: "Cliente Demo S.L.", badge: "Conectado", total: { label: "Llega a tu contabilidad", amount: "Al instante" } },
+    invoice: { title: "Portal colaborativo", n: "Cliente Demo S.L.", badge: "Conectado", total: { label: "Llega a tu contabilidad", amount: "Al instante" } },
     kpis: [
       { lbl: "Facturas del cliente", val: "142" },
       { lbl: "Gastos subidos", val: "88" },
@@ -26,22 +26,22 @@ export const portalCliente: FeatureLandingData = {
   },
   benefits: {
     title: "Lo que gana tu despacho",
-    text: "La suite facilita el día a día a tus clientes y te devuelve tiempo a ti.",
+    text: "El portal colaborativo facilita el día a día a tus clientes y te devuelve tiempo a ti.",
     items: [
-      { icon: `<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>`, h: "Colaboración sin fricción", p: "Toda la información de tus clientes en una sola suite, sin emails ni carpetas sueltas." },
-      { icon: `<path d="M13 2 3 14h7l-1 8 10-12h-7z"/>`, h: "Todo llega al instante", p: "Lo que tus clientes facturan y gastan entra contabilizado a tu despacho, sin reenvíos." },
+      { icon: `<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>`, h: "Colaboración sin fricción", p: "Toda la información de tus clientes en un mismo portal, sin emails ni carpetas sueltas." },
+      { icon: `<path d="M13 2 3 14h7l-1 8 10-12h-7z"/>`, h: "Todo llega al instante", p: "Lo que tus clientes facturan y gastan te llega al instante, listo para que lo valides, sin reenvíos." },
       { icon: `<path d="M20 6 9 17l-5-5"/>`, h: "Menos trabajo manual", p: "Tu equipo revisa y asesora; deja de perseguir documentos a fin de mes." },
     ],
   },
-  featuresHeading: { title: "Funcionalidades", text: "Todo lo que tu cliente hace desde su suite, y que a ti te llega listo." },
+  featuresHeading: { title: "Funcionalidades", text: "Todo lo que tu cliente hace desde su portal, y que a ti te llega listo." },
   features: [
     {
       k: "Facturación para tus clientes",
-      title: "Tus clientes facturan; a ti te llega contabilizado",
-      text: "Ofréceles un facturador sencillo y conforme a Verifactu. Lo que emiten entra directo a tu contabilidad, sin que tengas que perseguir ni revisar factura a factura.",
+      title: "Tus clientes facturan; a ti te llega listo para contabilizar",
+      text: "Ofréceles un facturador conforme a Verifactu. Lo que emiten entra directo para que lo apruebes, sin perseguir ni revisar factura a factura.",
       bullets: [
-        { b: "Facturas correctas desde el origen", d: "Tus clientes emiten conforme a Verifactu, así te llegan listas y no tienes que corregirlas." },
-        { b: "Facturas recurrentes", d: "Las que se repiten cada periodo se emiten y se envían solas, sin retrasos en el cobro." },
+        { b: "Conformes desde el origen", d: "Tus clientes emiten conforme a Verifactu, así te llegan válidas y listas para contabilizar." },
+        { b: "Facturas recurrentes", d: "Las que se repiten cada periodo se emiten solas y a tiempo: cuanto antes se emite la factura, antes se cobra." },
       ],
       mock: {
         kind: "rows",
@@ -55,11 +55,11 @@ export const portalCliente: FeatureLandingData = {
     },
     {
       k: "Gastos",
-      title: "Que suban sus gastos y tú los recibas listos",
-      text: "Tus clientes suben tickets y facturas de gasto desde su suite, y la IA de Kabilio extrae los datos. Tú solo revisas y contabilizas, sin teclear.",
+      title: "Que tus clientes suban sus gastos y tú los recibas listos",
+      text: "Tus clientes suben tickets y facturas de gasto desde su portal, y la IA de Kabilio extrae los datos. Tú solo revisas y contabilizas, sin teclear.",
       bullets: [
-        { b: "Suben el gasto y listo", d: "El ticket o la factura, por email o desde el portal." },
-        { b: "La IA lee los datos por ellos", d: "Importe, IVA y proveedor se extraen automáticamente; tú solo revisas." },
+        { b: "Suben el gasto y listo", d: "El ticket o la factura, por email, desde el portal o conectando Dropbox." },
+        { b: "La IA lee los datos por tus clientes", d: "Importe, IVA y proveedor se extraen automáticamente; tú solo revisas." },
         { b: "Listo para cualquier revisión", d: "Los gastos quedan organizados y disponibles al momento." },
       ],
       mock: {
@@ -75,7 +75,7 @@ export const portalCliente: FeatureLandingData = {
     {
       k: "Información financiera",
       title: "Tu cliente ve su negocio claro, tú asesoras mejor",
-      text: "El cliente consulta sus ingresos, gastos e IVA estimado en su suite. Menos preguntas repetidas para tu equipo y conversaciones de más valor.",
+      text: "El cliente consulta sus ingresos, gastos e IVA estimado en su portal. Menos preguntas repetidas para tu equipo y conversaciones de más valor.",
       bullets: [
         { b: "Ve cómo va su negocio", d: "Sus ventas, sus gastos y su evolución, de un vistazo." },
         { b: "Cobros pendientes", d: "Qué facturas están por cobrar y cuáles vencidas." },
@@ -94,7 +94,7 @@ export const portalCliente: FeatureLandingData = {
     {
       k: "Gestor documental",
       title: "Toda la documentación de tus clientes, centralizada",
-      text: "Declaraciones, requerimientos, expedientes, documentación mercantil y cualquier otro documento de tus clientes, organizados en la nube. Se acabaron los archivadores y los adjuntos perdidos.",
+      text: "Declaraciones, requerimientos, expedientes, documentación mercantil y cualquier otro documento de tus clientes, organizados en la nube. Se acabaron los adjuntos perdidos.",
       bullets: [
         { b: "Todo tipo de documento", d: "Declaraciones, requerimientos, expedientes, documentación mercantil y más." },
         { b: "Organizado por cliente", d: "Cada documento en su sitio y asociado a su cliente." },
@@ -117,7 +117,7 @@ export const portalCliente: FeatureLandingData = {
       bullets: [
         { b: "Visión global por cliente", d: "Las tareas por realizar de cada cliente y el estado de su documentación, de un vistazo." },
         { b: "Documentación centralizada", d: "Toda la documentación y su estado en un mismo espacio seguro." },
-        { b: "Acceso opcional para tu cliente", d: "Das acceso a tus clientes al mismo espacio de trabajo cuando quieras." },
+        { b: "Acceso opcional para tu cliente", d: "Das a tus clientes acceso a su propio portal, conectado con tu despacho, cuando quieras." },
       ],
       mock: {
         kind: "flow",
@@ -130,7 +130,7 @@ export const portalCliente: FeatureLandingData = {
     },
   ],
   testimonials: {
-    title: "Despachos que ya dan su suite a sus clientes",
+    title: "Despachos que ya dan su portal a sus clientes",
     text: "Asesorías que reciben la información al instante y dejan de perseguir documentos.",
     items: [
       { initials: "MC", quote: "“Mis clientes facturan y suben gastos en Kabilio; a mí me llega todo contabilizado, sin perseguir nada a fin de mes.”", name: "Socia", role: "Asesoría · Barcelona" },
@@ -139,17 +139,17 @@ export const portalCliente: FeatureLandingData = {
     ],
   },
   faqs: [
-    { q: "¿Mi cliente usa la misma plataforma que mi despacho?", a: "No. Tu cliente tiene su propia suite, pensada para su empresa —facturación, gastos y tesorería—. Si decides conectarla con tu despacho, la información fluye entre ambos; cada uno trabaja en su entorno." },
-    { q: "¿Qué puede hacer el cliente en su suite?", a: "Emitir facturas conforme a Verifactu, subir sus gastos, conectar sus bancos y consultar su información financiera. Tú decides qué acceso le das." },
+    { q: "¿Mi cliente usa la misma plataforma que mi despacho?", a: "No. Tu cliente tiene su propio portal, pensado para su empresa —facturación, gastos y tesorería—. Si decides conectarlo con tu despacho, la información fluye entre ambos; cada uno trabaja en su entorno." },
+    { q: "¿Qué puede hacer el cliente en su portal?", a: "Emitir facturas conforme a Verifactu, subir sus gastos, conectar sus bancos y consultar su información financiera. Tú decides si le das acceso o no." },
     { q: "¿Lo que hace el cliente me llega automáticamente?", a: "Sí. Las facturas que emite te llegan al instante, listas para que las revises y apruebes. Y cuando tu cliente sube sus gastos o conecta sus bancos, tú recibes esos gastos y movimientos sin tener que pedírselos ni reenviar nada." },
     { q: "¿Las facturas de mis clientes cumplen Verifactu?", a: "Sí. Se emiten conforme a Verifactu y con envío automático a la AEAT." },
-    { q: "¿Puedo dar acceso solo a algunos clientes?", a: "Sí. Habilitas la suite a los clientes que quieras y con el alcance que decidas." },
+    { q: "¿Puedo dar acceso solo a algunos clientes?", a: "Sí. Tú eliges a qué clientes les habilitas el portal: puedes empezar con los que mejor encajen y sumar más cuando lo veas oportuno, a tu ritmo. Con el resto de clientes sigues trabajando en Kabilio con normalidad." },
     { q: "¿Es seguro para mis datos y los de mis clientes?", a: "Sí. Ciframos los datos y cumplimos con el RGPD y la norma ISO 27001." },
   ],
   cta: {
-    title: "Da a tus clientes su suite en Kabilio",
+    title: "Da a tus clientes su portal en Kabilio",
     text: "Tus clientes gestionan su día a día y tú recibes su información contable al instante, en el mismo sitio donde ya trabajas. Te lo enseñamos en una demo.",
   },
-  allFeaturesHeading: { title: "Toda la plataforma para tu despacho", text: "La suite del cliente, junto al resto de la precontabilidad automatizada con IA." },
+  allFeaturesHeading: { title: "Toda la plataforma para tu despacho", text: "El portal colaborativo, junto al resto de la precontabilidad automatizada con IA." },
   allFeatures: PLATAFORMA,
 };

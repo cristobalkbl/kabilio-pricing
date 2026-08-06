@@ -137,15 +137,15 @@ export default function HomePage() {
               title="Tú y tu cliente, sobre los mismos datos"
               text="Trabajáis sobre la misma plataforma, con la documentación centralizada y la actividad al día para los dos."
               shot={<ShotColaborativa />}
-              href="/asesores/suite-cliente"
+              href="/asesores/portal-colaborativo"
             />
             <FuncCard
               wide
-              kicker="Suite del cliente"
+              kicker="Portal colaborativo"
               title="Una plataforma completa para los clientes de tu despacho"
               text="Más que un facturador: tus clientes facturan con Verifactu, controlan sus gastos y su tesorería y colaboran contigo en tiempo real. Todo lo que emiten y registran llega directo a tu contabilidad."
               shot={<ShotFacturador />}
-              href="/asesores/suite-cliente"
+              href="/asesores/portal-colaborativo"
             />
           </div>
         </div>
