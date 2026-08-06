@@ -141,7 +141,7 @@ export const portalCliente: FeatureLandingData = {
   faqs: [
     { q: "¿Mi cliente usa la misma plataforma que mi despacho?", a: "No. Tu cliente tiene su propia suite, pensada para su empresa —facturación, gastos y tesorería—. Si decides conectarla con tu despacho, la información fluye entre ambos; cada uno trabaja en su entorno." },
     { q: "¿Qué puede hacer el cliente en su suite?", a: "Emitir facturas conforme a Verifactu, subir sus gastos, conectar sus bancos y consultar su información financiera. Tú decides qué acceso le das." },
-    { q: "¿Lo que hace el cliente me llega automáticamente?", a: "Sí. Las facturas que emite tu cliente te llegan al instante, listas para que las revises y apruebes. Y cuando sube sus gastos o conecta sus bancos, también recibes sus gastos y movimientos, sin pedir ni reenviar nada." },
+    { q: "¿Lo que hace el cliente me llega automáticamente?", a: "Sí. Las facturas que emite te llegan al instante, listas para que las revises y apruebes. Y cuando tu cliente sube sus gastos o conecta sus bancos, tú recibes esos gastos y movimientos sin tener que pedírselos ni reenviar nada." },
     { q: "¿Las facturas de mis clientes cumplen Verifactu?", a: "Sí. Se emiten conforme a Verifactu y con envío automático a la AEAT." },
     { q: "¿Puedo dar acceso solo a algunos clientes?", a: "Sí. Habilitas la suite a los clientes que quieras y con el alcance que decidas." },
     { q: "¿Es seguro para mis datos y los de mis clientes?", a: "Sí. Ciframos los datos y cumplimos con el RGPD y la norma ISO 27001." },
