@@ -65,7 +65,7 @@ const DEFAULT_CTAS = {
 const DEFAULT_ALLFEATURES = [
   { title: "Facturación", text: "Facturas Verifactu con tu diseño, recurrentes y presupuestos que pasan a factura.", href: "/empresas/facturacion", icon: `<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>` },
   { title: "Gastos", text: "Sube tus facturas de gasto y la IA extrae los datos, sin teclear y sin duplicados.", href: "/empresas/gastos", icon: `<path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/>` },
-  { title: "Tesorería", text: "Bancos conectados, conciliación automática, IVA y dashboard al día.", href: "/empresas/tesoreria", icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>` },
+  { title: "Tesorería", text: "Bancos conectados, conciliación automática, IVA y panel de control al día.", href: "/empresas/tesoreria", icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>` },
   { title: "Portal colaborativo", text: "Tú y tu asesoría, sobre los mismos datos y en tiempo real.", href: "/empresas/portal-colaborativo", icon: `<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 20a5 5 0 0 1 6-4.6"/>` },
 ];
 

@@ -22,7 +22,7 @@ export const empresaPlans: EmpresaPlan[] = [
       "20 facturas al mes",
       "2 conexiones bancarias",
       "Procesado de gastos ilimitado",
-      "Conciliación automática y dashboard",
+      "Conciliación automática y panel de control",
       "IVA a pagar/cobrar estimado",
       "Informes básicos",
       "Comunicación con tu asesoría y gestor documental",
@@ -77,7 +77,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
     rows: [
       { feat: "Conexiones bancarias", tip: "Cuentas de banco que puedes conectar para importar movimientos.", vals: ["2", "5", "Ilimitadas"] },
       { feat: "Conciliación automática", tip: "Cruce automático de movimientos del banco con facturas y gastos.", vals: ["✓", "✓", "✓"] },
-      { feat: "Dashboard básico", tip: "Panel con la visión general de tu actividad y tesorería.", vals: ["✓", "✓", "✓"] },
+      { feat: "Panel de control básico", tip: "Panel con la visión general de tu actividad y tesorería.", vals: ["✓", "✓", "✓"] },
       { feat: "IVA a pagar/cobrar (estimado)", tip: "Estimación del IVA a liquidar según tus facturas y gastos.", vals: ["✓", "✓", "✓"] },
       { feat: "Remesas", tip: "Cobros y pagos en lote mediante ficheros SEPA.", vals: ["—", "—", "✓"] },
     ],

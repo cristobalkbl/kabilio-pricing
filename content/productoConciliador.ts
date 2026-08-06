@@ -129,12 +129,8 @@ export const conciliador: ProductData = {
     ],
   },
   a3: {
-    title: "Integración absoluta con A3",
-    items: [
-      { bold: "Sincroniza bidireccionalmente", text: "asocia automáticamente cada cuenta bancaria a su cuenta contable en el plan de cuentas del cliente." },
-      { bold: "Exporta automáticamente", text: "envía los asientos conciliados directamente a A3, con trazabilidad de punta a punta." },
-      { bold: "Evita duplicados", text: "sin registros duplicados ni errores de traspaso manual." },
-    ],
+    title: "Totalmente integrado con tu software contable",
+    text: "Sincroniza en tiempo real con A3ECO y A3CON para una contabilidad automática y sin esfuerzo.",
   },
   why: {
     eyebrow: "Por qué Kabilio",
@@ -174,11 +170,12 @@ export const conciliador: ProductData = {
     text: "Sigue un movimiento bancario: entra, la IA propone el emparejamiento y tú validas.",
   },
   faqs: [
-    { q: "¿En qué se diferencia de otras herramientas de conciliación?", a: "Propone las conciliaciones de forma automática usando IA y reglas sofisticadas. Además, toda la información —facturas, asientos y movimientos— está en el mismo entorno, y puedes usar tanto conexiones bancarias como importadores avanzados." },
-    { q: "¿Kabilio se conecta con todos los bancos?", a: "Kabilio usa un agregador bancario certificado que permite conectar con el 99% de las entidades financieras en España." },
-    { q: "¿Es seguro conectar cuentas bancarias a Kabilio?", a: "Sí. Trabajamos con proveedores certificados bajo la directiva europea PSD2, que garantizan un acceso seguro y cifrado. Kabilio no almacena ni guarda las credenciales de acceso a los bancos." },
-    { q: "¿El Conciliador es independiente del resto?", a: "No. Para que este módulo funcione es necesario tener también el módulo de Procesador de facturas." },
-    { q: "¿Es compatible con mi software de contabilidad?", a: "Kabilio tiene integración completa con A3ECO/A3CON: toda la información sincronizada en tiempo real. Si usas otro software, escríbenos y te avisamos en cuanto tengamos la integración." },
+    { q: "¿En qué se diferencia este programa de otras herramientas de conciliación bancaria?", a: "Nuestra herramienta es muy potente ya que propone conciliaciones de forma automática utilizando IA y reglas sofisticadas. Además, toda la información como facturas, asientos y movimientos bancarios está en el mismo entorno, ahorrando tiempo. Adicionalmente, se puede utilizar tanto conexiones bancarias como importadores sofisticados, que facilitan la subida de datos." },
+    { q: "¿Kabilio se conecta con todos los bancos?", a: "Kabilio usa un agregador bancario certificado que permite conectar con el 99 % de las entidades financieras en España." },
+    { q: "¿Es seguro conectar cuentas bancarias a Kabilio?", a: "Sí. Trabajamos con proveedores certificados bajo la directiva europea PSD2, que garantizan un acceso seguro y cifrado a las cuentas. Además, Kabilio no almacena ni guarda las credenciales de acceso a los bancos. Todo el proceso está diseñado para cumplir los más altos estándares de seguridad y protección de datos." },
+    { q: "¿Es el módulo de Conciliador Bancario independiente del resto?", a: "Con Kabilio no compras módulos por separado: contratas un saldo de créditos que puedes usar donde quieras —Procesador, Conciliador y el resto de productos—. Los créditos se descuentan solo cuando usas cada función." },
+    { q: "¿Es Kabilio compatible con mi software de contabilidad?", a: "Kabilio tiene una integración completa con A3ECO/CON: toda tu información sincronizada en tiempo real. Si trabajas con otro software contable, por ahora no podemos ayudarte, pero escríbenos y te llamamos en cuanto tengamos la integración con tu programa." },
+    { q: "¿Cómo se implementa Kabilio?", a: "Hacemos una sesión de 15 minutos con tu informático para crear el conector con A3ECO/CON, y otra de 60 minutos de formación con la persona de contabilidad que vaya a usar el producto." },
   ],
   cta: {
     title: "Deja que la IA de Kabilio concilie los movimientos por ti",

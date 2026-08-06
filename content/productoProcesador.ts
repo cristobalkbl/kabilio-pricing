@@ -107,12 +107,8 @@ export const procesador: ProductData = {
     ],
   },
   a3: {
-    title: "Integración absoluta con A3",
-    items: [
-      { bold: "Sincroniza bidireccionalmente", text: "proveedores, clientes y cuentas contables siempre íntegros y actualizados." },
-      { bold: "Exporta automáticamente", text: "transferencia en tiempo real; las facturas se añaden al asiento de tu software contable." },
-      { bold: "Sin exportaciones manuales", text: "que restan productividad a tu equipo." },
-    ],
+    title: "Totalmente integrado con tu software contable",
+    text: "Sincroniza en tiempo real con A3ECO y A3CON para una contabilidad automática y sin esfuerzo.",
   },
   why: {
     eyebrow: "Por qué Kabilio",
@@ -156,7 +152,7 @@ export const procesador: ProductData = {
     { q: "¿Es compatible con mi software de contabilidad?", a: "Kabilio tiene integración completa con A3ECO/A3CON: toda la información sincronizada en tiempo real. Si usas otro software, escríbenos y te avisamos en cuanto tengamos la integración." },
     { q: "¿Cómo se implementa Kabilio?", a: "Una sesión de 15 min con tu informático para crear el conector con A3ECO/A3CON, y otra de 60 min de formación con el contable que vaya a usar el producto." },
     { q: "¿Mi cliente tiene que cambiar su forma de trabajar?", a: "No. Y, si quieres, puedes darle acceso al espacio colaborativo para que comparta y consulte la información contigo más fácilmente." },
-    { q: "¿Cómo protegéis mis datos?", a: "La información se aloja en la nube de AWS y cumplimos con el RGPD; todos los modelos de IA que usamos están bajo ese marco." },
+    { q: "¿Cómo protegéis mis datos?", a: "Almacenamos la información en la nube de Amazon Web Services (AWS), uno de los entornos más seguros de la web, y cumplimos con toda la normativa europea de protección de datos (RGPD). Todos los modelos de IA que utilizamos operan bajo ese mismo marco." },
   ],
   cta: {
     title: "Deja que la IA de Kabilio procese las facturas por ti",

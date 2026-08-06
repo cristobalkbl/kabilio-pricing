@@ -1,4 +1,5 @@
 import { EmpresasContactForm } from "@/components/empresas/EmpresasContactForm";
+import { WebinarSection } from "@/components/empresas/WebinarSection";
 import { Button } from "@/components/Button";
 import { buildMetadata } from "@/lib/seo";
 
@@ -63,6 +64,9 @@ export default function ContactoEmpresasPage() {
             <EmpresasContactForm />
           </div>
         </div>
+
+        {/* Próximos webinars */}
+        <WebinarSection />
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ export type ProductData = {
   statement?: { pre: string; em: string; post: string; text: string };
   how: { eyebrow: string; title: string; subtitle?: string; steps: StepItem[] };
   features: { eyebrow: string; title: string; rows: FeatureRow[] };
-  a3: { title: string; items: { bold: string; text: string }[] };
+  a3: { title: string; text: string };
   why: { eyebrow: string; title: string; cards: WhyCard[] };
   testimonials: { eyebrow: string; title: string; items: Testi[] };
   demo: { title: string; text: string };
@@ -67,10 +67,6 @@ function ProductHero({ data }: { data: ProductData }) {
               <Button href="#demo" variant="ghost">
                 Ver vídeo
               </Button>
-            </div>
-            <div className="mt-5 flex items-center gap-2.5 text-[13px] text-ink-muted">
-              <span className="tracking-[2px] text-gold">★★★★★</span>
-              Asesorías de toda España ya lo usan
             </div>
           </div>
           <div className="overflow-hidden rounded-[20px] border border-line bg-surface p-[22px] shadow-card">
@@ -182,18 +178,9 @@ function A3Integration({ data }: { data: ProductData["a3"] }) {
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-wide text-brand">Integración</p>
               <h2 className="mb-3 text-[clamp(23px,3vw,30px)] font-bold">{data.title}</h2>
-              <ul className="mt-1.5 space-y-1">
-                {data.items.map((it) => (
-                  <li key={it.bold} className="flex items-start gap-3 py-2.5 text-[15px] leading-snug text-[#4b4560]">
-                    <span className="mt-0.5 grid h-[22px] w-[22px] shrink-0 place-items-center rounded-full bg-white text-xs font-extrabold text-brand">
-                      ✓
-                    </span>
-                    <span>
-                      <b className="font-bold text-ink">{it.bold}</b> — {it.text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-1.5 max-w-[520px] text-[15.5px] leading-relaxed text-[#4b4560]">
+                {data.text}
+              </p>
             </div>
             <div className="rounded-2xl border border-lav/70 bg-white/50 p-6 backdrop-blur-sm">
               <RawSvg html={A3_SVG} />
