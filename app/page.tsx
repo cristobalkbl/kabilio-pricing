@@ -38,7 +38,7 @@ export default function HomePage() {
               La plataforma de IA para tu despacho
             </span>
             <h1 className="text-balance text-[clamp(33px,5.2vw,52px)] font-extrabold leading-[1.05]">
-              Automatiza la contabilidad de tu asesoría con IA
+              Automatiza los procesos contables de tu asesoría con IA
             </h1>
             <p className="mx-auto mt-5 max-w-[640px] text-pretty text-[17.5px] leading-relaxed text-ink-muted">
               Kabilio es la plataforma de IA que automatiza la contabilidad de tu despacho: procesa
