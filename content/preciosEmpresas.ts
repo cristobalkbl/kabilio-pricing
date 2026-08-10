@@ -69,7 +69,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   {
     group: "Gastos",
     rows: [
-      { feat: "Procesado de facturas recibidas", tip: "Digitalización y registro automático de facturas de proveedores.", vals: ["Ilimitado", "Ilimitado", "Ilimitado"] },
+      { feat: "Procesado de facturas recibidas", tip: "Digitalización y registro automático de facturas de proveedores. Ilimitado con un uso razonable: si más del 10 % de los documentos subidos no son facturas ni gastos, tu asesoría puede pausar el acceso.", vals: ["Ilimitado", "Ilimitado", "Ilimitado"] },
     ],
   },
   {
@@ -91,7 +91,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   },
   {
     group: "Equipo",
-    rows: [{ feat: "Usuario adicional / mes", tip: "Precio por cada usuario extra sobre el incluido.", vals: ["2 €", "4 €", "7 €"] }],
+    rows: [{ feat: "Usuario adicional / mes", tip: "Precio por cada usuario extra sobre el incluido.", vals: ["0 €", "4 €", "7 €"] }],
   },
   {
     group: "Automatización e informes",
@@ -102,12 +102,17 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   },
   {
     group: "Soporte",
-    rows: [{ feat: "Canales de atención", tip: "Canales de atención disponibles.", span: "Chat y teléfono" }],
+    rows: [
+      { feat: "Email", tip: "Atención por email.", vals: ["✓", "✓", "✓"] },
+      { feat: "Chat con IA", tip: "Atención por chat con el asistente de IA de Kabilio.", vals: ["✓", "✓", "✓"] },
+      { feat: "Chat con el equipo de Kabilio", tip: "Habla por chat con una persona del equipo de Kabilio.", vals: ["—", "✓", "✓"] },
+    ],
   },
 ];
 
 export const empresaPricingFaqs: { q: string; a: string }[] = [
   { q: "¿Qué pasa cuando supero el límite de facturas de mi plan?", a: "Te avisamos antes de llegar al límite anual. Puedes subir de plan en cualquier momento y solo pagas la diferencia prorrateada; no se interrumpe tu facturación." },
+  { q: "¿El procesado de gastos es realmente ilimitado?", a: "Sí, el procesado de facturas y tickets de gasto es ilimitado con un uso razonable. Solo pedimos que subas documentos que sean gastos o facturas: si más del 10 % de lo que subes no lo es, tu asesoría puede pausar el acceso al procesado." },
   { q: "¿Necesito una asesoría para usar Kabilio?", a: "Sí. Todos los planes (Colaborativo, Básico y Estándar) son para empresas cuya asesoría trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos automáticamente. Si tu asesoría todavía no usa Kabilio, puedes recomendársela para empezar a trabajar juntos en la misma plataforma." },
   { q: "¿Cómo funciona el descuento de los 2 primeros meses?", a: "En el plan mensual aplicamos un 50 % de descuento sobre la cuota durante los dos primeros meses; a partir del tercero se cobra la tarifa estándar. El plan anual es exactamente ese mismo importe (los 12 meses, con los 2 primeros al 50 %) cobrado en un único pago, sin coste adicional." },
   { q: "¿Puedo cambiar de plan o cancelar cuando quiera?", a: "Sí. Puedes subir, bajar o cancelar tu plan desde tu cuenta en cualquier momento, sin permanencia. Los cambios se aplican en el siguiente ciclo de facturación." },

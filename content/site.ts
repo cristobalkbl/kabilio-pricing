@@ -24,7 +24,7 @@ export const site = {
 export const topbar = {
   text: "Verifactu obligatorio: 1 de enero de 2027 para pymes · 1 de julio para autónomos.",
   linkLabel: "Cómo te ayuda Kabilio →",
-  linkHref: "/empresas/verifactu",
+  linkHref: "/empresas/facturacion",
 } as const;
 
 export const primaryCta = {
@@ -76,7 +76,6 @@ export const navByAudience: Record<"asesores" | "empresas", NavGroup[]> = {
     {
       label: "Recursos",
       items: [
-        { label: "Verifactu", href: "/empresas/verifactu" },
         { label: "Blog", href: "/blog" },
         { label: "Centro de ayuda", href: "/centro-de-ayuda" },
       ],
@@ -103,7 +102,6 @@ export const footerNav: { title: string; links: { label: string; href: string; e
       { label: "Gastos", href: "/empresas/gastos" },
       { label: "Tesorería", href: "/empresas/tesoreria" },
       { label: "Portal colaborativo", href: "/empresas/portal-colaborativo" },
-      { label: "Verifactu", href: "/empresas/verifactu" },
       { label: "Precios pymes", href: "/empresas/precios" },
     ],
   },

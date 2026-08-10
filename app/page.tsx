@@ -42,8 +42,8 @@ export default function HomePage() {
             </h1>
             <p className="mx-auto mt-5 max-w-[640px] text-pretty text-[17.5px] leading-relaxed text-ink-muted">
               Kabilio es la plataforma de IA que automatiza la contabilidad de tu despacho: procesa
-              facturas, concilia movimientos bancarios y centraliza la documentación y, si quieres, la
-              conectas con tus clientes para trabajar en tiempo real.
+              facturas, concilia movimientos bancarios y centraliza la documentación. Opcionalmente
+              puedes conectar Kabilio con tus clientes para trabajar en un mismo entorno colaborativo.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Button href="/solicita-una-demo" className="shadow-card">
@@ -79,12 +79,6 @@ export default function HomePage() {
           />
           <div className="grid gap-5 md:grid-cols-3">
             <Benefit
-              tint="bg-peach text-[#8a5a1e] ring-[#f0d9bf]"
-              title="Ahorra tiempo con IA"
-              text="La IA generativa contabiliza las facturas, concilia los bancos y te deja el asiento propuesto para revisar, todo desde un único panel."
-              icon={<path d="M13 2 3 14h7l-1 8 10-12h-7z" />}
-            />
-            <Benefit
               tint="bg-brand-100 text-brand ring-brand-200"
               title="Reduce los picos de trabajo"
               text="Contabiliza la actividad de tus clientes a diario y llega a los cierres con el trabajo hecho, sin acumularlo para fin de trimestre."
@@ -94,6 +88,12 @@ export default function HomePage() {
                   <circle cx="12" cy="12" r="9" />
                 </>
               }
+            />
+            <Benefit
+              tint="bg-peach text-[#8a5a1e] ring-[#f0d9bf]"
+              title="Ahorra tiempo con IA"
+              text="La IA generativa contabiliza las facturas, concilia los bancos y te deja el asiento propuesto para validar, todo desde un único panel."
+              icon={<path d="M13 2 3 14h7l-1 8 10-12h-7z" />}
             />
             <Benefit
               tint="bg-pink text-[#a83a6b] ring-[#f2b9d2]"
@@ -365,17 +365,6 @@ export default function HomePage() {
                   Ver planes
                 </Button>
               </div>
-              <p className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-[13px] text-ink-muted">
-                <span className="inline-flex items-center gap-1.5">
-                  <Check /> Sin permanencia
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Check /> Puesta en marcha en 48 h
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Check /> Soporte en español
-                </span>
-              </p>
             </div>
           </div>
         </div>

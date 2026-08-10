@@ -148,7 +148,7 @@ export const portalCliente: FeatureLandingData = {
   ],
   cta: {
     title: "Da a tus clientes su portal en Kabilio",
-    text: "Tus clientes gestionan su día a día y tú recibes su información contable al instante, en el mismo sitio donde ya trabajas. Te lo enseñamos en una demo.",
+    text: "Tus clientes gestionan su día a día y tú recibes sus facturas emitidas y gastos al instante, en el mismo sitio donde ya trabajas. Te lo enseñamos en una demo.",
   },
   allFeaturesHeading: { title: "Toda la plataforma para tu despacho", text: "El portal colaborativo, junto al resto de la precontabilidad automatizada con IA." },
   allFeatures: PLATAFORMA,

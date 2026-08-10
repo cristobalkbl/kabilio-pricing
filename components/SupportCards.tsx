@@ -28,7 +28,7 @@ export function SupportCards({
           </span>
           <h3 className="mb-2 text-lg font-bold">Chat con el equipo</h3>
           <p className="text-sm leading-relaxed text-ink-muted">
-            Pregunta lo que quieras a nuestro equipo o al agente IA, sin salir de la plataforma.
+            Pregunta lo que quieras a nuestro equipo o al agente IA.
           </p>
           <a className="mt-3 inline-block text-sm font-bold text-brand hover:underline" href={chatHref}>
             Habla con el equipo →

@@ -104,11 +104,12 @@ const PLANS = [
 ];
 
 const FAQS = [
-  { q: "¿Necesito que mi asesoría use Kabilio?", a: "Puedes empezar a facturar hoy con tu cuenta. Para que tu asesor reciba todo en tiempo real, tu asesoría debe estar conectada a Kabilio; si aún no lo está, puedes recomendársela en un minuto desde tu cuenta." },
-  { q: "¿Qué pasa si mi asesoría todavía no usa Kabilio?", a: "Le enviamos una recomendación de tu parte y la acompañamos para que empiece. Mientras tanto, tú ya facturas y llevas tus gastos y tesorería al día." },
+  { q: "¿Qué es Kabilio?", a: "Kabilio es el software con IA para llevar tu empresa desde un solo sitio: emites facturas conforme a Verifactu, controlas tus gastos, tu tesorería, y trabajas de forma colaborativa con tu asesoría. Ya no tienes que enviarle tus facturas ni tus gastos manualmente: tu asesor lo ve todo en tiempo real." },
+  { q: "¿Necesito que mi asesoría use Kabilio?", a: "Sí. Kabilio para empresas funciona cuando tu asesoría también está en Kabilio: es ella quien te invita y te da acceso. Si la tuya todavía no lo usa, puedes recomendársela para empezar a trabajar juntos en la misma plataforma." },
+  { q: "¿Qué pasa si mi asesoría todavía no usa Kabilio?", a: "Le enviamos una recomendación de tu parte y la acompañamos para que empiece a usar Kabilio; cuando esté dentro, podrás usarlo tú." },
   { q: "¿Cuándo es obligatorio Verifactu?", a: "El 1 de enero de 2027 para pymes y el 1 de julio de 2027 para autónomos. Con Kabilio ya emites conforme a Verifactu hoy." },
-  { q: "¿Qué incluye el plan gratuito?", a: "Hasta 20 facturas al mes con Verifactu, procesado de gastos, conciliación básica y la conexión con tu asesoría. Sin tarjeta y sin permanencia." },
-  { q: "¿Mis datos están seguros?", a: "Sí. Cumplimos el RGPD y aplicamos medidas de seguridad alineadas con la ISO 27001. Tú decides qué información compartes con tu asesoría." },
+  { q: "¿Qué incluye el plan gratuito?", a: "El plan gratuito incluye 20 facturas al mes, 2 conexiones bancarias, procesado de gastos ilimitado, conciliación automática y panel de control, IVA a pagar/cobrar estimado, informes básicos y gestor documental." },
+  { q: "¿Mis datos están seguros?", a: "Sí. Cumplimos el RGPD y aplicamos medidas de seguridad alineadas con la ISO 27001." },
 ];
 
 /* ---------- Componentes locales ---------- */
@@ -140,7 +141,7 @@ export function EmpresasHome() {
             <h1 className="text-[clamp(32px,5vw,50px)] font-extrabold leading-[1.05]">Controla las finanzas de tu empresa</h1>
             <p className="mx-auto mt-4 max-w-[620px] text-[17.5px] leading-relaxed text-ink-muted">
               Kabilio es la plataforma que centraliza la gestión de tu empresa y trabaja conectada con tu asesoría en
-              tiempo real: controla tus gastos, tu tesorería y colabora con tu asesor en el mismo sitio.
+              tiempo real: emite facturas conforme a Verifactu, controla tus gastos, tu tesorería, y colabora con tu asesor desde el mismo sitio.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button href="/empresas/contacto">Empieza gratis</Button>
@@ -352,14 +353,14 @@ export function EmpresasHome() {
             })}
           </div>
           <p className="mt-[18px] text-center text-[13px] text-ink-muted">
-            Sin tarjeta · <Link href="/empresas/precios" className="font-bold text-brand hover:underline">Ver todos los planes y características →</Link>
+            <Link href="/empresas/precios" className="font-bold text-brand hover:underline">Ver todos los planes y características →</Link>
           </p>
 
           <div className="mt-5 flex flex-wrap items-center gap-6 rounded-[18px] border border-lav bg-brand-100 p-8">
             <div className="min-w-[260px] flex-1">
-              <h3 className="mb-2 text-xl font-bold">Solo trabajamos con pymes cuya asesoría ya usa Kabilio</h3>
+              <h3 className="mb-2 text-xl font-bold">Solo trabajamos con empresas cuya asesoría ya usa Kabilio</h3>
               <p className="text-[14.5px] leading-relaxed text-[#4b4560]">
-                ¿La tuya todavía no? Invítala en un minuto: la acompañamos para empezar y, cuando esté dentro, tú facturas y ella lo recibe todo en tiempo real.
+                ¿La tuya todavía no? Invítala en un minuto: la acompañamos para empezar y, cuando esté dentro, tú facturas y tu asesoría lo recibe todo en tiempo real.
               </p>
             </div>
             <button onClick={() => setReferOpen(true)} className="shrink-0 rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand">
@@ -396,7 +397,7 @@ export function EmpresasHome() {
           <div className="rounded-3xl bg-ink px-8 py-14 text-center text-white sm:px-12">
             <h2 className="mb-2.5 text-[clamp(25px,3.6vw,34px)] font-bold">Decide con tus números al día, no a fin de mes</h2>
             <p className="mx-auto mb-6 max-w-[540px] text-[15.5px] leading-relaxed text-white/80">
-              Tu panel de control, tu tesorería y tu IVA estimado siempre actualizados: sabes cómo va tu empresa hoy, no cuando cierra el trimestre. Empieza gratis, sin tarjeta.
+              Tu panel de control, tu tesorería y tu IVA estimado siempre actualizados: sabes cómo va tu empresa hoy, no cuando cierra el trimestre. Empieza gratis.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button href="/empresas/contacto" variant="light">Empieza gratis</Button>

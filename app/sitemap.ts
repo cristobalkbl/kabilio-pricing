@@ -13,7 +13,6 @@ const routes = [
   "/empresas/gastos",
   "/empresas/tesoreria",
   "/empresas/portal-colaborativo",
-  "/empresas/verifactu",
   "/empresas/precios",
   "/empresas/registro",
   "/recursos",

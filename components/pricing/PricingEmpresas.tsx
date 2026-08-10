@@ -54,11 +54,11 @@ export function PricingEmpresas() {
             Precios
           </span>
           <h1 className="mx-auto text-[clamp(32px,5vw,46px)] font-extrabold leading-[1.1] tracking-tight">
-            Tu facturación, conectada con tu asesoría
+            El mejor precio para tu gestión colaborativa
           </h1>
           <p className="mx-auto mt-4 max-w-[620px] text-lg text-ink-muted">
-            Planes para empresas cuya asesoría trabaja con Kabilio. Factura, controla tus gastos y tu
-            tesorería, y compártelo todo con tu asesor de forma automática.
+            Planes para empresas cuya asesoría trabaja con Kabilio: controla tus gastos y tu tesorería,
+            factura y compártelo todo con tu asesor de forma automática.
           </p>
           <div className="mt-[18px] flex justify-center">
             <span className="inline-flex items-center gap-2 text-[13.5px] font-semibold">
@@ -164,7 +164,7 @@ export function PricingEmpresas() {
           </div>
 
           <p className="mt-[18px] text-center text-[13px] text-ink-muted">
-            Sin tarjeta · <span className="font-bold text-brand">todos los planes incluyen la conexión con tu asesoría</span>
+            <span className="font-bold text-brand">Todos los planes incluyen la conexión con tu asesoría</span>
           </p>
 
           {/* Banda recomendar */}
@@ -257,7 +257,7 @@ export function PricingEmpresas() {
             </button>
           )}
           <p className="mt-4 text-center text-[12.5px] text-ink-muted">
-            * El gestor documental está disponible; lo contrata la asesoría. · Pulsa cada bloque para minimizarlo.
+            Pulsa cada bloque para minimizarlo.
           </p>
 
           {/* FAQ */}

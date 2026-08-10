@@ -36,7 +36,7 @@ export const procesador: ProductData = {
     title: "El procesador de facturas más fiable, con IA",
     subtitle: "De la factura al asiento, sin picar datos.",
     steps: [
-      { icon: ICO_UPLOAD, title: "Sube o recibe la factura", text: "Por email dedicado, carpetas, subida o foto. Lee PDF e imágenes y separa multipágina." },
+      { icon: ICO_UPLOAD, title: "Importa tus documentos", text: "Importa documentos en PDF o imagen a través de email, carpetas o manualmente." },
       { icon: ICO_SPARK, title: "La IA la entiende y propone el asiento", text: "Interpreta y clasifica: contrapartida, tipo de operación y modelos, con 95% de fiabilidad." },
       { icon: ICO_CHECK, title: "Tú tienes la última palabra", text: "Validas en un clic —de una en una o en masa— y el asiento va directo a tu A3." },
     ],
@@ -63,13 +63,12 @@ export const procesador: ProductData = {
         </svg>`,
       },
       {
-        title: "Detección de duplicados",
+        title: "Captura automática con detección de duplicados",
         bullets: [
-          "Varios canales para asesor y cliente: email dedicado, carpetas virtuales, subida de ficheros.",
-          "Lee fotos y PDF, y separa los multipágina de forma automática.",
+          "Habilita múltiples canales al asesor y/o al cliente: dirección de correo dedicada, carpetas virtuales, subida de ficheros…",
+          "Lee fotos y documentos PDF, separando los multipágina de forma automática.",
           "Valida automáticamente si hay facturas duplicadas.",
         ],
-        chips: ["Foto (JPG/PNG)", "PDF", "Multipágina"],
         media: `<svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="40" y="40" width="120" height="160" rx="8" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
           <rect x="58" y="60" width="70" height="8" rx="4" fill="#111827"/>
@@ -86,11 +85,11 @@ export const procesador: ProductData = {
         </svg>`,
       },
       {
-        title: "Asignación de cuentas contables",
+        title: "Contabilidad inteligente, control humano",
         bullets: [
-          "Propone el asiento completo: contrapartida, tipo de operación y modelos.",
-          "Crea automáticamente perfiles y cuentas de proveedores y clientes.",
-          "El asesor revisa las clasificaciones y contabiliza de forma masiva. Siempre decides tú.",
+          "Propone el asiento completo a realizar, incluyendo la contrapartida, el tipo de operación y los modelos.",
+          "Crea automáticamente perfiles y cuentas de proveedores/clientes al contabilizar las facturas.",
+          "El asesor siempre tiene el control y puede revisar todas las clasificaciones, así como contabilizar de forma masiva.",
         ],
         media: `<svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="30" y="26" width="360" height="188" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/>

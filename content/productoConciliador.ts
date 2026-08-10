@@ -6,8 +6,8 @@ const ICO_CHECK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 export const conciliador: ProductData = {
   eyebrow: "Conciliador para asesorías",
-  h1: "Conciliación bancaria con IA y reglas que entienden cada movimiento",
-  lead: "Kabilio empareja automáticamente cada movimiento con su factura y su asiento, y resuelve casos complejos como cobros parciales o agrupados.",
+  h1: "Conciliación bancaria avanzada con IA que entienden cada movimiento",
+  lead: "Integra los movimientos bancarios automáticamente y utiliza reglas avanzadas e IA para recibir propuestas de emparejamiento, viendo todo de forma centralizada.",
   heroMedia: `<svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg" aria-label="Movimiento bancario conciliado con su factura">
     <rect x="18" y="46" width="172" height="228" rx="12" fill="#f3f0ec" stroke="#e4ded5" stroke-width="2"/>
     <text x="36" y="72" font-family="Manrope,sans-serif" font-size="12" font-weight="800" fill="#3a2f7a">Movimientos</text>
@@ -37,8 +37,8 @@ export const conciliador: ProductData = {
     subtitle: "Integra, empareja con IA y contabiliza en tres pasos.",
     steps: [
       { icon: ICO_BANK, title: "Integra los movimientos", text: "Conecta las cuentas de tus clientes de forma automática o, si lo prefieres, importa los movimientos desde un Excel." },
-      { icon: ICO_SPARK, title: "La IA propone el emparejamiento", text: "Con qué asiento y factura corresponde cada movimiento, con reglas avanzadas e IA. Incluso cobros parciales o agrupados." },
-      { icon: ICO_CHECK, title: "Validas y se contabiliza", text: "Revisas la propuesta y, al validar, el asiento va directo a tu software contable con trazabilidad completa." },
+      { icon: ICO_SPARK, title: "La IA propone la conciliación", text: "Empareja cada movimiento con su factura y sugiere las contrapartidas contables, con reglas avanzadas e IA." },
+      { icon: ICO_CHECK, title: "Validas y contabilizas", text: "Primero revisas y validas la propuesta; después, al contabilizar, el asiento se envía a tu software contable con trazabilidad completa." },
     ],
   },
   features: {
@@ -53,7 +53,6 @@ export const conciliador: ProductData = {
           "Cobertura del 99% de los bancos españoles.",
           "¿Prefieres Excel? Un importador identifica las columnas automáticamente.",
         ],
-        chips: ["Conexión bancaria", "Importador Excel", "99% bancos"],
         media: `<svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="20" y="20" width="380" height="200" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
           <rect x="20" y="20" width="380" height="34" rx="12" fill="#e9e3fd"/><rect x="40" y="33" width="120" height="8" rx="4" fill="#3a2f7a"/>
@@ -137,12 +136,6 @@ export const conciliador: ProductData = {
     title: "Lo que gana tu despacho",
     cards: [
       {
-        kicker: "Seguridad y cumplimiento",
-        title: "Conexión bancaria segura",
-        text: "Agregador certificado bajo PSD2 e ISO 27001. Kabilio nunca almacena las credenciales de tus clientes.",
-        shot: `<svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M180 28l27 12v21c0 17-13 27-27 33-14-6-27-16-27-33V40z" fill="#e9e3fd" stroke="#3a2f7a" stroke-width="3" stroke-linejoin="round"/><path d="M167 70l9 9 19-21" fill="none" stroke="#3a2f7a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><text x="180" y="132" text-anchor="middle" font-family="Manrope,sans-serif" font-size="16" font-weight="800" fill="#3a2f7a">PSD2 · ISO 27001</text></svg>`,
-      },
-      {
         kicker: "Ahorro de tiempo",
         title: "Ahorra horas cada mes",
         text: "Automatizas el emparejamiento y dejas de conciliar movimiento a movimiento.",
@@ -153,6 +146,12 @@ export const conciliador: ProductData = {
         title: "Adiós a los errores manuales",
         text: "Trazabilidad completa, del movimiento bancario hasta el asiento final.",
         shot: `<svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="128" cy="75" r="16" fill="#e9e3fd" stroke="#3a2f7a" stroke-width="3"/><circle cx="232" cy="75" r="16" fill="#e9e3fd" stroke="#3a2f7a" stroke-width="3"/><path d="M144 75 h72" stroke="#3a2f7a" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/><path d="M120 75 l6 6 12 -13" fill="none" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M224 75 l6 6 12 -13" fill="none" stroke="#3a2f7a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+      },
+      {
+        kicker: "Seguridad y cumplimiento",
+        title: "Conexión bancaria segura",
+        text: "Agregador certificado bajo PSD2 e ISO 27001. Kabilio nunca almacena las credenciales de tus clientes.",
+        shot: `<svg viewBox="0 0 360 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M180 28l27 12v21c0 17-13 27-27 33-14-6-27-16-27-33V40z" fill="#e9e3fd" stroke="#3a2f7a" stroke-width="3" stroke-linejoin="round"/><path d="M167 70l9 9 19-21" fill="none" stroke="#3a2f7a" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><text x="180" y="132" text-anchor="middle" font-family="Manrope,sans-serif" font-size="16" font-weight="800" fill="#3a2f7a">PSD2 · ISO 27001</text></svg>`,
       },
     ],
   },
