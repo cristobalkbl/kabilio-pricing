@@ -27,7 +27,7 @@ const BILLING: { splits: number; mult: number; label: string; badge?: string }[]
 const ACTION_COSTS: { key: keyof typeof cost; label: string }[] = [
   { key: "invoice", label: "Contabilizar factura" },
   { key: "reconcile", label: "Conciliar movimiento" },
-  { key: "bankConn", label: "Conexión bancaria" },
+  { key: "bankConn", label: "Conexión bancaria (al mes)" },
 ];
 
 function Tip({ text }: { text: string }) {
