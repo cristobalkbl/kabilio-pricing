@@ -28,8 +28,6 @@ const ACTION_COSTS: { key: keyof typeof cost; label: string }[] = [
   { key: "invoice", label: "Contabilizar factura" },
   { key: "reconcile", label: "Conciliar movimiento" },
   { key: "bankConn", label: "Conexión bancaria" },
-  { key: "agentAction", label: "Acción del Agente Kabi" },
-  { key: "doc", label: "Documento gestionado" },
 ];
 
 function Tip({ text }: { text: string }) {
@@ -114,11 +112,9 @@ export function PricingAsesorias() {
                   <div className="mb-7 mt-4 text-sm text-ink-muted">
                     <b className="font-bold text-ink">{fmtInt(p.credits)}</b> créditos
                     <Tip
-                      text={`Equivale a ~${fmtInt(p.credits / cost.invoice)} facturas, ~${fmtInt(
+                      text={`Equivale a ~${fmtInt(p.credits / cost.invoice)} facturas o ~${fmtInt(
                         p.credits / cost.reconcile
-                      )} transacciones conciliadas o ~${fmtInt(
-                        p.credits / cost.doc
-                      )} documentos gestionados, si usaras todo el saldo en una sola función.`}
+                      )} transacciones conciliadas, si usaras todo el saldo en una sola función.`}
                     />
                     <div className="mt-1 text-[12.5px] font-semibold text-brand">{eur3(p.unit * mult)} / crédito</div>
                   </div>
@@ -309,16 +305,6 @@ function ComparisonTable({
           label="Transacciones que podrías conciliar"
           tip="Movimientos bancarios conciliados con todo el saldo. Cuesta 0,5 créditos por movimiento."
           values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.reconcile)}</span>)}
-        />
-        <Row
-          label="Documentos que podrías gestionar"
-          tip="Documentos subidos al gestor documental con todo el saldo. Cuesta 0,4 créditos por documento."
-          values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.doc)}</span>)}
-        />
-        <Row
-          label="Acciones del Agente Kabi"
-          tip="Acciones automatizadas por el Agente Kabi con todo el saldo. Cuesta 5 créditos por acción."
-          values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.agentAction)}</span>)}
         />
       </tbody>
     </table>

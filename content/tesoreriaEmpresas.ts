@@ -2,7 +2,7 @@ import type { FeatureLandingData } from "@/components/empresas/FeatureLanding";
 
 export const tesoreriaEmpresas: FeatureLandingData = {
   eyebrow: "Tesorería",
-  h1: "Controla la tesorería de tu empresa en tiempo real",
+  h1: "La tesorería de tu empresa en tiempo real",
   sub: "Conecta tus bancos o sube tus extractos, y deja que la IA te sugiera los emparejamientos: tendrás tu caja e IVA siempre al día. Toma decisiones con datos de hoy y con tu asesoría conectada.",
   hero: {
     invoice: { title: "Tesorería", n: "Todas tus cuentas", badge: "En directo", total: { label: "Saldo total", amount: "28.640 €" } },
