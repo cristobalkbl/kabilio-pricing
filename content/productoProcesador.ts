@@ -157,4 +157,12 @@ export const procesador: ProductData = {
     title: "Deja que la IA de Kabilio procese las facturas por ti",
     text: "Te enseñamos en una demo cómo el Procesador interpreta, propone y contabiliza las facturas de tus clientes en tu software contable.",
   },
+  platform: {
+    title: "Toda la plataforma para tu despacho",
+    text: "El procesador, junto al resto de la precontabilidad automatizada con IA.",
+    items: [
+      { title: "Conciliador", text: "Concilia los movimientos bancarios con IA y reglas avanzadas.", href: "/asesores/conciliacion-bancaria", icon: `<path d="M3 21h18M4 10h16M5 10l7-6 7 6M6 10v8M10 10v8M14 10v8M18 10v8"/>` },
+      { title: "Portal colaborativo", text: "Tus clientes facturan, suben gastos y colaboran contigo en el mismo sitio.", href: "/asesores/portal-colaborativo", icon: `<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 20a5 5 0 0 1 6-4.6"/>` },
+    ],
+  },
 };

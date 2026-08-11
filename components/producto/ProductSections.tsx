@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/Button";
 import { RawSvg } from "./RawSvg";
 import { HowItWorks } from "./HowItWorks";
@@ -24,6 +25,7 @@ export type ProductData = {
   demo: { title: string; text: string };
   faqs: Faq[];
   cta: { title: string; text: string };
+  platform?: { title: string; text: string; items: { icon: string; title: string; text: string; href: string }[] };
 };
 
 const A3_SVG = `<svg viewBox="0 0 380 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -340,6 +342,41 @@ function ProductCTA({ data }: { data: ProductData["cta"] }) {
   );
 }
 
+// Cross-sell: "Toda la plataforma para tu despacho".
+function PlatformGrid({ data }: { data: NonNullable<ProductData["platform"]> }) {
+  return (
+    <section className="py-8 pb-16">
+      <div className="container">
+        <div className="mx-auto mb-9 max-w-[720px] text-center">
+          <h2 className="text-[clamp(24px,3.2vw,32px)] font-bold leading-tight">{data.title}</h2>
+          <p className="mt-3 text-base text-ink-muted">{data.text}</p>
+        </div>
+        <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+          {data.items.map((a) => (
+            <Link
+              key={a.title}
+              href={a.href}
+              className="group flex flex-col rounded-[14px] border border-line bg-surface p-5 transition duration-200 hover:-translate-y-1 hover:shadow-card"
+            >
+              <span className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100 text-brand [&_svg]:h-5 [&_svg]:w-5">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: a.icon }} />
+              </span>
+              <h3 className="mb-1.5 text-base font-bold group-hover:text-brand">{a.title}</h3>
+              <p className="mb-3 text-[13.5px] leading-snug text-ink-muted">{a.text}</p>
+              <span className="mt-auto inline-flex items-center gap-1 text-[13px] font-bold text-brand">
+                Ver más
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2}>
+                  <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Ensambla la landing de producto a partir de un objeto de datos.
 export function ProductoLanding({ data }: { data: ProductData }) {
   return (
@@ -365,6 +402,7 @@ export function ProductoLanding({ data }: { data: ProductData }) {
       <ProductTestimonials data={data.testimonials} />
       <DemoBand data={data.demo} />
       <ProductFaq faqs={data.faqs} />
+      {data.platform && <PlatformGrid data={data.platform} />}
       <SupportCards />
       <ProductCTA data={data.cta} />
     </>

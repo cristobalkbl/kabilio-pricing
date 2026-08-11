@@ -180,4 +180,12 @@ export const conciliador: ProductData = {
     title: "Deja que la IA de Kabilio concilie los movimientos por ti",
     text: "Te enseñamos en una demo cómo Kabilio integra los movimientos, propone el emparejamiento con IA y contabiliza en tu software.",
   },
+  platform: {
+    title: "Toda la plataforma para tu despacho",
+    text: "El conciliador, junto al resto de la precontabilidad automatizada con IA.",
+    items: [
+      { title: "Procesador", text: "La IA contabiliza las facturas de tus clientes, mucho más que un OCR.", href: "/asesores/procesador-de-facturas", icon: `<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>` },
+      { title: "Portal colaborativo", text: "Tus clientes facturan, suben gastos y colaboran contigo en el mismo sitio.", href: "/asesores/portal-colaborativo", icon: `<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 20a5 5 0 0 1 6-4.6"/>` },
+    ],
+  },
 };
