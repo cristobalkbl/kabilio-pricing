@@ -18,7 +18,7 @@ const eur = (n: number) => `${fmtInt(n)} €`;
 const eur3 = (n: number) => `${n.toFixed(3).replace(".", ",")} €`;
 
 const BILLING: { splits: number; mult: number; label: string; badge?: string }[] = [
-  { splits: 1, mult: 1, label: "Pago único", badge: "ahorra ~17%" },
+  { splits: 1, mult: 1, label: "Pago único", badge: "Ahorro" },
   { splits: 2, mult: 1.1, label: "2 pagos" },
 ];
 
