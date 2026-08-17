@@ -162,7 +162,7 @@ export default function HomePage() {
               </h2>
               <p className="mb-6 text-[15.5px] leading-relaxed text-ink-muted">
                 Reúne la contabilidad, la conciliación y la facturación de toda tu cartera en un solo
-                sitio, con tus clientes conectados en tiempo real. Te enseñamos cómo en una demo.
+                sitio. Te enseñamos cómo en una demo.
               </p>
               <Button href="/solicita-una-demo">Pedir demo</Button>
             </div>
