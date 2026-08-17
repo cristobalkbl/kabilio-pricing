@@ -266,7 +266,7 @@ export default function HomePage() {
             <div className="grid gap-3 sm:grid-cols-2">
               {[
                 ["Procesamiento de facturas con IA", "La IA interpreta cada factura de tus clientes, mucho más que un OCR clásico."],
-                ["Contabilidad automatizada", "Asientos contables completos con IA, listos para tu A3 con un 95% de fiabilidad."],
+                ["Precontabilidad automatizada", "Asientos contables completos con IA, listos para tu A3 con un 95% de fiabilidad."],
                 ["Conciliación bancaria", "Conecta las cuentas y concilia los movimientos con reglas e IA."],
                 ["Factura con Verifactu", "Un facturador Verifactu para tus clientes; lo que emiten llega directo a tu contabilidad."],
                 ["Integración con A3", "Conexión nativa con A3ECO y A3CON, sin migrar tus datos."],
