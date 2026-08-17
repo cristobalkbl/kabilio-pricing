@@ -341,6 +341,41 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-14">
+        <div className="container">
+          <SectionHead kick="FAQ" title="Preguntas frecuentes" />
+          <div className="mx-auto max-w-[760px]">
+            {[
+              {
+                q: "¿Para quién está pensada la solución?",
+                a: "Kabilio es una solución pensada para asesorías enfocadas en contabilidad y fiscalidad en España con alta carga de trabajo repetitivo.",
+              },
+              {
+                q: "¿Es Kabilio un programa contable?",
+                a: "Kabilio no es un programa contable, sino una capa de automatización basada en IA conectada con él. Ayudamos a los profesionales de tu despacho a hacer menos tareas manuales.",
+              },
+              {
+                q: "¿Qué es la IA generativa?",
+                a: "La IA generativa es un tipo de inteligencia artificial que crea o transforma datos basándose en patrones aprendidos, utilizando modelos avanzados para comprender, predecir y generar información relevante.",
+              },
+              {
+                q: "¿Por qué es la IA generativa de interés en la contabilidad?",
+                a: "Porque entiende datos, identifica patrones y aplica lógica para generar respuestas o automatizar tareas. Aprende de ejemplos y se adapta, permitiendo mayor eficiencia en procesos como la clasificación de facturas, la conciliación bancaria o la propuesta de asientos.",
+              },
+            ].map((f, i) => (
+              <details key={f.q} open={i === 0} className="group border-b border-line">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-base font-bold [&::-webkit-details-marker]:hidden">
+                  {f.q}
+                  <span className="text-xl font-bold text-brand transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="pb-[18px] text-[14.5px] leading-relaxed text-ink-muted">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* PLANES / CTA FINAL */}
       <section className="py-14">
         <div className="container">
