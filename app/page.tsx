@@ -69,6 +69,30 @@ export default function HomePage() {
         </div>
       </header>
 
+      {/* TRANSFORMA */}
+      <section className="py-14">
+        <div className="container">
+          <div className="grid items-center gap-10 md:grid-cols-2">
+            <div>
+              <h2 className="text-[clamp(26px,3.6vw,36px)] font-bold leading-tight">
+                Transforma tu asesoría contable y fiscal
+              </h2>
+              <p className="mt-4 text-[17px] leading-relaxed text-ink-muted">
+                Kabilio es una plataforma de IA que facilita el intercambio de información con tus
+                clientes y automatiza su procesamiento, generando asientos contables completos y
+                enviándolos directamente a tu software contable.
+              </p>
+              <div className="mt-6">
+                <Button href="/solicita-una-demo">Empezar ahora</Button>
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-line bg-surface p-[22px] shadow-card">
+              <ShotProcesador />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* BENEFICIOS */}
       <section className="py-14">
         <div className="container">
