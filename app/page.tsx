@@ -6,7 +6,6 @@ import {
   HeroDashboard,
   ShotProcesador,
   ShotConciliacion,
-  ShotColaborativa,
   ShotFacturador,
   ServViz,
   WhySecure,
@@ -47,10 +46,7 @@ export default function HomePage() {
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Button href="/solicita-una-demo" className="shadow-card">
-                Pedir demo
-              </Button>
-              <Button href="#demo" variant="ghost">
-                <PlayGlyph /> Ver demo
+                Empezar ahora
               </Button>
             </div>
           </div>
@@ -140,9 +136,8 @@ export default function HomePage() {
             title="Todo tu despacho, en una sola plataforma"
             subtitle="La IA se ocupa del trabajo repetitivo; tú controlas la cartera y colaboras con tus clientes."
           />
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-3">
             <FuncCard
-              wide
               kicker="Procesamiento de facturas"
               title="La IA procesa las facturas de tus clientes y las contabiliza"
               text="Tus clientes te envían sus facturas y la IA generativa las procesa y genera el asiento contable completo con un 95% de fiabilidad. Es más que un OCR: usa la última tecnología de IA para entender e interpretar cada factura, no solo leer sus datos."
@@ -157,14 +152,6 @@ export default function HomePage() {
               href="/asesores/conciliacion-bancaria"
             />
             <FuncCard
-              kicker="Contabilidad colaborativa"
-              title="Tú y tu cliente, sobre los mismos datos"
-              text="Trabajáis sobre la misma plataforma, con la documentación centralizada y la actividad al día para los dos."
-              shot={<ShotColaborativa />}
-              href="/asesores/portal-colaborativo"
-            />
-            <FuncCard
-              wide
               kicker="Portal colaborativo"
               title="Una plataforma completa para los clientes de tu despacho"
               text="Más que un facturador: tus clientes facturan con Verifactu, controlan sus gastos y su tesorería y colaboran contigo en tiempo real. Todo lo que emiten y registran llega directo a tu contabilidad."
@@ -188,26 +175,13 @@ export default function HomePage() {
                 Reúne la contabilidad, la conciliación y la facturación de toda tu cartera en un solo
                 sitio. Te enseñamos cómo en una demo.
               </p>
-              <Button href="/solicita-una-demo">Pedir demo</Button>
+              <Button href="/solicita-una-demo">Empezar ahora</Button>
             </div>
-            <button
-              type="button"
-              aria-label="Ver vídeo demo de Kabilio"
-              className="group relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-ink to-brand-800"
-            >
-              <span
-                aria-hidden="true"
-                className="absolute h-24 w-24 rounded-full bg-white/10 transition-transform duration-500 group-hover:scale-125"
-              />
-              <span className="relative grid h-16 w-16 place-items-center rounded-full bg-white shadow-card transition-transform duration-200 group-hover:scale-110">
-                <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 text-ink" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+            <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-ink to-brand-800">
+              <span className="px-8 text-center text-lg font-semibold leading-snug text-white/90">
+                Tu despacho y tus clientes, en una misma plataforma
               </span>
-              <span className="absolute bottom-4 left-4 text-xs font-semibold text-white/80">
-                Kabilio en 90 segundos
-              </span>
-            </button>
+            </div>
           </div>
         </div>
       </section>
@@ -418,7 +392,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <Button href="/solicita-una-demo" className="shadow-card">
-                  Pedir demo
+                  Empezar ahora
                 </Button>
                 <Button href="/asesores/precios" variant="ghost">
                   Ver planes
@@ -575,21 +549,5 @@ function Testimonial({
         </span>
       </figcaption>
     </figure>
-  );
-}
-
-function PlayGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-
-function Check() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4 text-green" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="m20 6-11 11-5-5" />
-    </svg>
   );
 }

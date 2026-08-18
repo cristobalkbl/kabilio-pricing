@@ -145,7 +145,6 @@ export function EmpresasHome() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button href="/empresas/contacto">Empieza gratis</Button>
-              <Button href="#demo" variant="ghost">Ver demo de 2 min</Button>
             </div>
           </div>
         </div>
