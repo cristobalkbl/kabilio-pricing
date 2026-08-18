@@ -34,7 +34,7 @@ export type FeatureLandingData = {
   eyebrow: string;
   h1: string;
   sub: string;
-  ctas?: { heroPrimary: CardCta; heroSecondary?: CardCta; ctaPrimary: CardCta; ctaSecondary: CardCta };
+  ctas?: { heroPrimary: CardCta; heroSecondary?: CardCta; ctaPrimary: CardCta; ctaSecondary?: CardCta };
   hero: {
     invoice?: { title: string; n: string; badge: string; total: { label: string; amount: string } };
     card?: Mock;
@@ -59,7 +59,6 @@ const DEFAULT_CTAS = {
   heroPrimary: { label: "Empieza gratis", href: "/empresas/contacto" },
   heroSecondary: { label: "Ver planes", href: "/empresas/precios" },
   ctaPrimary: { label: "Empieza gratis", href: "/empresas/contacto" },
-  ctaSecondary: { label: "Habla con nuestro equipo", href: "/empresas/contacto" },
 };
 
 const DEFAULT_ALLFEATURES = [
@@ -458,7 +457,9 @@ export function FeatureLanding({ data }: { data: FeatureLandingData }) {
             <p className="mx-auto mb-6 max-w-[560px] text-base text-ink-muted">{data.cta.text}</p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button href={ctas.ctaPrimary.href}>{ctas.ctaPrimary.label}</Button>
-              <Button href={ctas.ctaSecondary.href} variant="ghost">{ctas.ctaSecondary.label}</Button>
+              {ctas.ctaSecondary && (
+                <Button href={ctas.ctaSecondary.href} variant="ghost">{ctas.ctaSecondary.label}</Button>
+              )}
             </div>
           </div>
         </section>
