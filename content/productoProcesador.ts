@@ -143,8 +143,8 @@ export const procesador: ProductData = {
     ],
   },
   demo: {
-    title: "Mira el procesador de Kabilio en acción",
-    text: "Sigue una factura de principio a fin: entra, la IA propone el asiento y tú validas.",
+    title: "Sigue una factura de principio a fin: entra, la IA propone el asiento y tú validas.",
+    text: "La IA de Kabilio interpreta, clasifica y te propone para cada factura el asiento completo con un 95% de fiabilidad. Tú solo revisas y validas.",
   },
   faqs: [
     { q: "¿En qué se diferencia de un OCR?", a: "Un OCR usa plantillas para extraer datos sin comprenderlos. Kabilio los entiende e interpreta, y por eso el acierto en la propuesta contable completa es mucho mayor, incluso en los casos más complejos." },

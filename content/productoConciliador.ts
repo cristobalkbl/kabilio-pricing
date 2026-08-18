@@ -166,7 +166,7 @@ export const conciliador: ProductData = {
   },
   demo: {
     title: "Mira el Conciliador de Kabilio en acción",
-    text: "Sigue un movimiento bancario: entra, la IA propone el emparejamiento y tú validas.",
+    text: "El conciliador de Kabilio integra los movimientos bancarios automáticamente y utiliza reglas avanzadas e IA para recibir propuestas de emparejamiento.",
   },
   faqs: [
     { q: "¿En qué se diferencia este programa de otras herramientas de conciliación bancaria?", a: "Nuestra herramienta es muy potente ya que propone conciliaciones de forma automática utilizando IA y reglas sofisticadas. Además, toda la información como facturas, asientos y movimientos bancarios está en el mismo entorno, ahorrando tiempo. Adicionalmente, se puede utilizar tanto conexiones bancarias como importadores sofisticados, que facilitan la subida de datos." },

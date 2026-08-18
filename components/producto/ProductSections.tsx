@@ -279,18 +279,9 @@ function DemoBand({ data }: { data: ProductData["demo"] }) {
             <p className="mb-6 text-[15.5px] leading-relaxed text-ink-muted">{data.text}</p>
             <Button href="/solicita-una-demo">Pedir demo</Button>
           </div>
-          <button
-            type="button"
-            aria-label="Ver vídeo"
-            className="group relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-ink to-brand-800"
-          >
-            <span className="absolute h-24 w-24 rounded-full bg-white/10 transition-transform duration-500 group-hover:scale-125" />
-            <span className="relative grid h-16 w-16 place-items-center rounded-full bg-white shadow-card transition-transform duration-200 group-hover:scale-110">
-              <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6 text-ink" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-          </button>
+          <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-navy via-ink to-brand-800">
+            <span className="text-2xl font-extrabold tracking-tight text-white/90">Kabilio</span>
+          </div>
         </div>
       </div>
     </section>
