@@ -55,7 +55,7 @@ export type FeatureLandingData = {
   allFeatures?: { icon: string; title: string; text: string; href?: string }[];
 };
 
-const DEFAULT_CTAS = {
+const DEFAULT_CTAS: { heroPrimary: CardCta; heroSecondary?: CardCta; ctaPrimary: CardCta; ctaSecondary?: CardCta } = {
   heroPrimary: { label: "Empieza gratis", href: "/empresas/contacto" },
   heroSecondary: { label: "Ver planes", href: "/empresas/precios" },
   ctaPrimary: { label: "Empieza gratis", href: "/empresas/contacto" },
