@@ -50,7 +50,7 @@ export const navByAudience: Record<"asesores" | "empresas", NavGroup[]> = {
       items: [
         { label: "Procesador", href: "/asesores/procesador-de-facturas" },
         { label: "Conciliador", href: "/asesores/conciliacion-bancaria" },
-        { label: "Portal colaborativo", href: "/asesores/portal-colaborativo" },
+        { label: "Kabilio Empresas", href: "/asesores/kabilio-empresas" },
       ],
     },
     { label: "Precios", href: "/asesores/precios" },
@@ -90,7 +90,7 @@ export const footerNav: { title: string; links: { label: string; href: string; e
       { label: "Kabilio para asesorías", href: "/" },
       { label: "Procesador", href: "/asesores/procesador-de-facturas" },
       { label: "Conciliador", href: "/asesores/conciliacion-bancaria" },
-      { label: "Portal colaborativo", href: "/asesores/portal-colaborativo" },
+      { label: "Kabilio Empresas", href: "/asesores/kabilio-empresas" },
       { label: "Precios asesorías", href: "/asesores/precios" },
     ],
   },

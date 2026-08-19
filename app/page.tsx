@@ -152,11 +152,11 @@ export default function HomePage() {
               href="/asesores/conciliacion-bancaria"
             />
             <FuncCard
-              kicker="Portal colaborativo"
+              kicker="Kabilio Empresas"
               title="Una plataforma completa para los clientes de tu despacho"
               text="Más que un facturador: tus clientes facturan con Verifactu, controlan sus gastos y su tesorería y colaboran contigo en tiempo real. Todo lo que emiten y registran llega directo a tu contabilidad."
               shot={<ShotFacturador />}
-              href="/asesores/portal-colaborativo"
+              href="/asesores/kabilio-empresas"
             />
           </div>
         </div>

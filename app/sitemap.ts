@@ -5,7 +5,7 @@ const routes = [
   "/",
   "/asesores/procesador-de-facturas",
   "/asesores/conciliacion-bancaria",
-  "/asesores/portal-colaborativo",
+  "/asesores/kabilio-empresas",
   "/asesores/precios",
   "/asesores/registro",
   "/empresas",

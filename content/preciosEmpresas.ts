@@ -13,7 +13,7 @@ export type EmpresaPlan = {
 
 export const empresaPlans: EmpresaPlan[] = [
   {
-    name: "Colaborativo",
+    name: "Inicia",
     free: true,
     desc: "El módulo esencial para gestionar tu negocio junto a tu asesoría.",
     tag: "Gestión colaborativa esencial",
@@ -29,12 +29,12 @@ export const empresaPlans: EmpresaPlan[] = [
     ],
   },
   {
-    name: "Básico",
+    name: "Avanza",
     mo: 14,
     popular: true,
     desc: "Gestiona tus finanzas y optimiza tu rendimiento.",
     tag: "Límites mayores y funcionalidades clave",
-    inc: "Todo lo de Colaborativo, y además:",
+    inc: "Todo lo de Inicia, y además:",
     feats: [
       "80 facturas al mes",
       "5 conexiones bancarias",
@@ -45,11 +45,11 @@ export const empresaPlans: EmpresaPlan[] = [
     ],
   },
   {
-    name: "Estándar",
+    name: "Impulsa",
     mo: 24,
     desc: "Gestiona tu contabilidad y tus finanzas, todo en un mismo lugar.",
     tag: "Máximo volumen y remesas bancarias",
-    inc: "Todo lo de Básico, y además:",
+    inc: "Todo lo de Avanza, y además:",
     feats: ["250 facturas al mes", "5 plantillas de factura (próximamente)", "75 facturas recurrentes", "Remesas bancarias"],
   },
 ];
@@ -113,7 +113,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
 export const empresaPricingFaqs: { q: string; a: string }[] = [
   { q: "¿Qué pasa cuando supero el límite de facturas de mi plan?", a: "Te avisamos antes de llegar al límite anual. Puedes subir de plan en cualquier momento y solo pagas la diferencia prorrateada; no se interrumpe tu facturación." },
   { q: "¿El procesado de gastos es realmente ilimitado?", a: "Sí, el procesado de facturas y tickets de gasto es ilimitado con un uso razonable. Solo pedimos que subas documentos que sean gastos o facturas: si más del 10 % de lo que subes no lo es, tu asesoría puede pausar el acceso al procesado." },
-  { q: "¿Necesito una asesoría para usar Kabilio?", a: "Sí. Todos los planes (Colaborativo, Básico y Estándar) son para empresas cuya asesoría trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos automáticamente. Si tu asesoría todavía no usa Kabilio, puedes recomendársela para empezar a trabajar juntos en la misma plataforma." },
+  { q: "¿Necesito una asesoría para usar Kabilio?", a: "Sí. Todos los planes (Inicia, Avanza e Impulsa) son para empresas cuya asesoría trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos automáticamente. Si tu asesoría todavía no usa Kabilio, puedes recomendársela para empezar a trabajar juntos en la misma plataforma." },
   { q: "¿Cómo funciona el descuento de los 2 primeros meses?", a: "En el plan mensual aplicamos un 50 % de descuento sobre la cuota durante los dos primeros meses; a partir del tercero se cobra la tarifa estándar. El plan anual es exactamente ese mismo importe (los 12 meses, con los 2 primeros al 50 %) cobrado en un único pago, sin coste adicional." },
   { q: "¿Puedo cambiar de plan o cancelar cuando quiera?", a: "Sí. Puedes subir, bajar o cancelar tu plan desde tu cuenta en cualquier momento, sin permanencia. Los cambios se aplican en el siguiente ciclo de facturación." },
   { q: "¿Está incluida la comunicación con mi asesoría?", a: "Sí, en todos los planes. Tu asesor recibe tus facturas y gastos de forma automática, sin que tengas que enviárselos a final de mes." },

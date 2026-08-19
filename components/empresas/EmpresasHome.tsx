@@ -98,9 +98,9 @@ const PAIRS = [
 ];
 
 const PLANS = [
-  { name: "Colaborativo", free: true, desc: "Para empezar a facturar y compartir tus gastos con tu asesoría.", inc: "Lo que incluye:", feats: ["20 facturas al mes", "2 conexiones bancarias", "Procesado de gastos ilimitado", "Conciliación automática y panel de control", "IVA a pagar/cobrar estimado", "Comunicación con tu asesoría"] },
-  { name: "Básico", mo: 14, popular: true, desc: "Para negocios en marcha que facturan cada semana.", inc: "Todo lo de Colaborativo, y además:", feats: ["80 facturas al mes", "5 conexiones bancarias", "2 plantillas de factura", "10 facturas recurrentes", "Presupuestos", "Sin pie “Generado por Kabilio”"] },
-  { name: "Estándar", mo: 24, desc: "Para empresas con más volumen y tesorería que gestionar.", inc: "Todo lo de Básico, y además:", feats: ["250 facturas al mes", "5 plantillas de factura", "75 facturas recurrentes", "Remesas bancarias"] },
+  { name: "Inicia", free: true, desc: "Para empezar a facturar y compartir tus gastos con tu asesoría.", inc: "Lo que incluye:", feats: ["20 facturas al mes", "2 conexiones bancarias", "Procesado de gastos ilimitado", "Conciliación automática y panel de control", "IVA a pagar/cobrar estimado", "Comunicación con tu asesoría"] },
+  { name: "Avanza", mo: 14, popular: true, desc: "Para negocios en marcha que facturan cada semana.", inc: "Todo lo de Inicia, y además:", feats: ["80 facturas al mes", "5 conexiones bancarias", "2 plantillas de factura", "10 facturas recurrentes", "Presupuestos", "Sin pie “Generado por Kabilio”"] },
+  { name: "Impulsa", mo: 24, desc: "Para empresas con más volumen y tesorería que gestionar.", inc: "Todo lo de Avanza, y además:", feats: ["250 facturas al mes", "5 plantillas de factura", "75 facturas recurrentes", "Remesas bancarias"] },
 ];
 
 const FAQS = [
