@@ -15,7 +15,7 @@ export const empresaPlans: EmpresaPlan[] = [
   {
     name: "Inicia",
     free: true,
-    desc: "El módulo esencial para gestionar tu negocio junto a tu asesoría.",
+    desc: "Para autónomos y empresas que necesitan lo esencial para facturar y controlar sus gastos.",
     tag: "Gestión colaborativa esencial",
     inc: "Lo que incluye:",
     feats: [
@@ -32,7 +32,7 @@ export const empresaPlans: EmpresaPlan[] = [
     name: "Avanza",
     mo: 14,
     popular: true,
-    desc: "Gestiona tus finanzas y optimiza tu rendimiento.",
+    desc: "Para quien presupuesta antes de facturar y emite las mismas facturas cada mes.",
     tag: "Límites mayores y funcionalidades clave",
     inc: "Todo lo de Inicia, y además:",
     feats: [
@@ -47,7 +47,7 @@ export const empresaPlans: EmpresaPlan[] = [
   {
     name: "Impulsa",
     mo: 24,
-    desc: "Gestiona tu contabilidad y tus finanzas, todo en un mismo lugar.",
+    desc: "Para quien tiene muchos pagos y cobros y necesita agruparlos en remesas.",
     tag: "Máximo volumen y remesas bancarias",
     inc: "Todo lo de Avanza, y además:",
     feats: ["250 facturas al mes", "5 plantillas de factura (próximamente)", "75 facturas recurrentes", "Remesas bancarias"],

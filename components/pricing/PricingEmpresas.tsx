@@ -54,11 +54,14 @@ export function PricingEmpresas() {
             Precios
           </span>
           <h1 className="mx-auto text-[clamp(32px,5vw,46px)] font-extrabold leading-[1.1] tracking-tight">
-            El mejor precio para tu gestión colaborativa
+            Planes para autónomos y empresas
           </h1>
           <p className="mx-auto mt-4 max-w-[620px] text-lg text-ink-muted">
-            Planes para empresas cuya asesoría trabaja con Kabilio: controla tus gastos y tu tesorería,
-            factura y compártelo todo con tu asesor de forma automática.
+            Factura, controla tus gastos y lleva tu tesorería al día.
+          </p>
+          <p className="mx-auto mt-3 max-w-[620px] text-[15px] text-ink-muted">
+            Si tu asesoría trabaja con Kabilio, estos son tus precios — y ella ve tus facturas y gastos
+            en cuanto los creas.
           </p>
           <div className="mt-[18px] flex justify-center">
             <span className="inline-flex items-center gap-2 text-[13.5px] font-semibold">
