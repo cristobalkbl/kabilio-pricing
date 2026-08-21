@@ -85,14 +85,14 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
       { feat: "Conexiones bancarias", tip: "Cuentas de banco que puedes conectar para importar movimientos.", vals: ["2", "5", "12"] },
       { feat: "Conciliación automática", tip: "Cruce automático de movimientos del banco con facturas y gastos.", vals: ["✓", "✓", "✓"] },
       { feat: "Panel de control básico", tip: "Panel con la visión general de tu actividad y tesorería.", vals: ["✓", "✓", "✓"] },
-      { feat: "IVA a pagar/cobrar (estimado)", tip: "Estimación del IVA a liquidar según tus facturas y gastos.", vals: ["✓", "✓", "✓"] },
-      { feat: "Remesas", tip: "Cobros y pagos en lote mediante ficheros SEPA.", vals: ["—", "—", "✓"] },
+      { feat: "IVA a pagar/cobrar estimado", tip: "Estimación del IVA a liquidar según tus facturas y gastos.", vals: ["✓", "✓", "✓"] },
+      { feat: "Remesas bancarias", tip: "Cobros y pagos en lote mediante ficheros SEPA.", vals: ["—", "—", "✓"] },
     ],
   },
   {
     group: "Colaboración con tu asesoría",
     rows: [
-      { feat: "Envío automático de facturas y gastos", tip: "Tu asesoría recibe tus facturas y gastos en cuanto los creas.", vals: ["En directo", "En directo", "En directo"] },
+      { feat: "Envío automático de facturas y gastos, en directo", tip: "Tu asesoría recibe tus facturas y gastos en cuanto los creas.", vals: ["✓", "✓", "✓"] },
       { feat: "Comunicación asesor / cliente", tip: "Canal directo con tu asesoría dentro de Kabilio.", vals: ["✓", "✓", "✓"] },
       { feat: "Gestor documental", tip: "Almacena y comparte documentos con tu asesoría.", vals: ["✓", "✓", "✓"] },
     ],
@@ -120,6 +120,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
 ];
 
 export const empresaPricingFaqs: { q: string; a: string }[] = [
+  { q: "¿Por qué estos precios son más bajos?", a: "Son las tarifas para clientes de asesorías que trabajan con Kabilio. Al estar tu asesoría conectada accedes a estos precios en cualquier plan, y el plan Inicia no tiene coste para ti." },
   { q: "¿El plan Inicia es realmente gratis?", a: "Sí, si tu asesoría trabaja con Kabilio. No hay periodo de prueba ni caducidad: es la tarifa que te corresponde como cliente de una asesoría conectada." },
   { q: "¿Necesito una asesoría para usar Kabilio?", a: "Hoy sí. Todos los planes se activan a través de una asesoría que trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos en tiempo real. Si la tuya todavía no lo usa, puedes recomendársela y empezáis juntos en la misma plataforma." },
   { q: "¿En qué se diferencia Inicia de Impulsa y Avanza?", a: "Inicia es el plan esencial para facturar, controlar gastos y trabajar conectado con tu asesoría. Impulsa añade más volumen, presupuestos y facturas recurrentes. Avanza añade mucho más volumen y remesas bancarias. Los tres se ofrecen a tarifa de cliente de asesoría Kabilio." },

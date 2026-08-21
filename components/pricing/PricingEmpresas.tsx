@@ -51,15 +51,23 @@ export function PricingEmpresas() {
   const toggleGroup = (g: string) => setClosedGroups((s) => ({ ...s, [g]: !s[g] }));
 
   const headerPrice = (mo?: number, free?: boolean) => {
-    if (free) return <span className="text-[13px] font-semibold text-brand">0 €</span>;
+    const unit = mode === "mensual" ? "/mes" : "/año";
+    if (free)
+      return (
+        <span className="block text-[13px] font-semibold text-brand">
+          0 €<span className="text-[11px] font-normal text-ink-muted">{unit}</span>
+        </span>
+      );
     if (!mo) return null;
     const promo = mode === "mensual" ? mo / 2 : mo * 11;
     const full = mode === "mensual" ? mo : mo * 12;
-    const unit = mode === "mensual" ? "/mes" : "/año";
     return (
-      <span className="text-[13px] font-semibold text-brand">
-        <b>{promo} €</b> <s className="font-normal text-ink-muted">{full} €</s>
-        <span className="ml-0.5 text-[11px] font-normal text-ink-muted">{unit}</span>
+      <span className="block text-[13px] font-semibold text-brand">
+        <b>{promo} €</b>
+        <span className="text-[11px] font-normal text-ink-muted">{unit}</span>
+        <span className="mt-0.5 block text-[11px] font-normal text-ink-muted">
+          después {full} €{unit}
+        </span>
       </span>
     );
   };
@@ -185,11 +193,7 @@ export function PricingEmpresas() {
             })}
           </div>
 
-          <p className="mt-[18px] text-center text-[13px] text-ink-muted">
-            <span className="font-bold text-brand">Todos los planes incluyen la conexión con tu asesoría</span>
-          </p>
-
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-2xl border border-line bg-surface2 px-6 py-5 text-center">
+          <div className="mt-[18px] flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-2xl border border-line bg-surface2 px-6 py-5 text-center">
             <span className="text-[15px] font-semibold text-ink">
               ¿Necesitas más volumen, varias sociedades o usuarios adicionales?
             </span>
