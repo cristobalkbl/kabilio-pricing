@@ -25,32 +25,39 @@ export const empresaPlans: EmpresaPlan[] = [
       "Conciliación automática y panel de control",
       "IVA a pagar/cobrar estimado",
       "Informes básicos",
-      "Comunicación con tu asesoría y gestor documental",
+      "Tu asesoría lo recibe todo en directo",
+      "Soporte con chat IA y email",
     ],
   },
   {
-    name: "Avanza",
+    name: "Impulsa",
     mo: 14,
-    popular: true,
     desc: "Para quien presupuesta antes de facturar y emite las mismas facturas cada mes.",
     tag: "Límites mayores y funcionalidades clave",
     inc: "Todo lo de Inicia, y además:",
     feats: [
-      "80 facturas al mes",
+      "100 facturas al mes",
       "5 conexiones bancarias",
       "10 facturas recurrentes",
       "Facturas sin pie “Generado por Kabilio”",
       "2 plantillas de factura (próximamente)",
       "Presupuestos (próximamente)",
+      "Te atiende una persona por email y chat",
     ],
   },
   {
-    name: "Impulsa",
-    mo: 24,
+    name: "Avanza",
+    mo: 28,
     desc: "Para quien tiene muchos pagos y cobros y necesita agruparlos en remesas.",
     tag: "Máximo volumen y remesas bancarias",
-    inc: "Todo lo de Avanza, y además:",
-    feats: ["250 facturas al mes", "5 plantillas de factura (próximamente)", "75 facturas recurrentes", "Remesas bancarias"],
+    inc: "Todo lo de Impulsa, y además:",
+    feats: [
+      "250 facturas al mes",
+      "12 conexiones bancarias",
+      "75 facturas recurrentes",
+      "Remesas bancarias",
+      "5 plantillas de factura (próximamente)",
+    ],
   },
 ];
 
@@ -59,7 +66,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   {
     group: "Facturación",
     rows: [
-      { feat: "Facturas al mes", tip: "Facturas de venta que puedes emitir cada mes.", vals: ["20", "80", "250"] },
+      { feat: "Facturas al mes", tip: "Facturas de venta que puedes emitir cada mes.", vals: ["20", "100", "250"] },
       { feat: "Facturas recurrentes", tip: "Facturas que se generan y envían solas cada cierto periodo.", vals: ["—", "10", "75"] },
       { feat: "Sin pie “Generado por Kabilio”", tip: "Quita la marca de Kabilio del pie de tus facturas.", vals: ["—", "✓", "✓"] },
       { feat: "Plantillas de factura", badge: "próximamente", vals: ["—", "2", "5"], expandedOnly: true },
@@ -75,7 +82,7 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   {
     group: "Tesorería",
     rows: [
-      { feat: "Conexiones bancarias", tip: "Cuentas de banco que puedes conectar para importar movimientos.", vals: ["2", "5", "Ilimitadas"] },
+      { feat: "Conexiones bancarias", tip: "Cuentas de banco que puedes conectar para importar movimientos.", vals: ["2", "5", "12"] },
       { feat: "Conciliación automática", tip: "Cruce automático de movimientos del banco con facturas y gastos.", vals: ["✓", "✓", "✓"] },
       { feat: "Panel de control básico", tip: "Panel con la visión general de tu actividad y tesorería.", vals: ["✓", "✓", "✓"] },
       { feat: "IVA a pagar/cobrar (estimado)", tip: "Estimación del IVA a liquidar según tus facturas y gastos.", vals: ["✓", "✓", "✓"] },
@@ -111,11 +118,12 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
 ];
 
 export const empresaPricingFaqs: { q: string; a: string }[] = [
-  { q: "¿Qué pasa cuando supero el límite de facturas de mi plan?", a: "Te avisamos antes de llegar al límite anual. Puedes subir de plan en cualquier momento y solo pagas la diferencia prorrateada; no se interrumpe tu facturación." },
-  { q: "¿El procesado de gastos es realmente ilimitado?", a: "Sí, el procesado de facturas y tickets de gasto es ilimitado con un uso razonable. Solo pedimos que subas documentos que sean gastos o facturas: si más del 10 % de lo que subes no lo es, tu asesoría puede pausar el acceso al procesado." },
-  { q: "¿Necesito una asesoría para usar Kabilio?", a: "Sí. Todos los planes (Inicia, Avanza e Impulsa) son para empresas cuya asesoría trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos automáticamente. Si tu asesoría todavía no usa Kabilio, puedes recomendársela para empezar a trabajar juntos en la misma plataforma." },
-  { q: "¿Cómo funciona el descuento de los 2 primeros meses?", a: "En el plan mensual aplicamos un 50 % de descuento sobre la cuota durante los dos primeros meses; a partir del tercero se cobra la tarifa estándar. El plan anual es exactamente ese mismo importe (los 12 meses, con los 2 primeros al 50 %) cobrado en un único pago, sin coste adicional." },
-  { q: "¿Puedo cambiar de plan o cancelar cuando quiera?", a: "Sí. Puedes subir, bajar o cancelar tu plan desde tu cuenta en cualquier momento, sin permanencia. Los cambios se aplican en el siguiente ciclo de facturación." },
-  { q: "¿Está incluida la comunicación con mi asesoría?", a: "Sí, en todos los planes. Tu asesor recibe tus facturas y gastos de forma automática, sin que tengas que enviárselos a final de mes." },
+  { q: "¿El plan Inicia es realmente gratis?", a: "Sí, si tu asesoría trabaja con Kabilio. No hay periodo de prueba ni caducidad: es la tarifa que te corresponde como cliente de una asesoría conectada." },
+  { q: "¿Necesito una asesoría para usar Kabilio?", a: "Hoy sí. Todos los planes se activan a través de una asesoría que trabaja con Kabilio, de modo que tu asesor recibe tus facturas y gastos en tiempo real. Si la tuya todavía no lo usa, puedes recomendársela y empezáis juntos en la misma plataforma." },
+  { q: "¿En qué se diferencia Inicia de Impulsa y Avanza?", a: "Inicia es el plan esencial para facturar, controlar gastos y trabajar conectado con tu asesoría. Impulsa añade más volumen, presupuestos y facturas recurrentes. Avanza añade mucho más volumen y remesas bancarias. Los tres se ofrecen a tarifa de cliente de asesoría Kabilio." },
+  { q: "¿Qué pasa cuando supero el límite de facturas de mi plan?", a: "Te avisamos antes de llegar al límite. Puedes subir de plan en cualquier momento y solo pagas la diferencia prorrateada; tu facturación no se interrumpe y no pierdes datos." },
+  { q: "¿Puedo cambiar de plan o cancelar cuando quiera?", a: "Sí. Puedes subir, bajar o cancelar tu plan desde tu cuenta en cualquier momento. Los cambios se aplican en el siguiente ciclo de facturación." },
+  { q: "¿Cómo funciona el descuento de los 2 primeros meses?", a: "En el plan mensual aplicamos un 50 % de descuento sobre la cuota durante los dos primeros meses; a partir del tercero se cobra la tarifa habitual de tu plan. Es un descuento de bienvenida y se aplica sobre la tarifa de cliente de asesoría Kabilio." },
+  { q: "¿Cómo funciona el pago anual?", a: "Es el mismo importe que doce meses del plan mensual —con los dos primeros al 50 %— cobrado en un único pago y sin coste adicional. Puedes cambiar de mensual a anual cuando quieras." },
   { q: "¿Mis datos están seguros?", a: "Tratamos tus datos conforme al RGPD y aplicamos medidas de seguridad alineadas con la norma ISO 27001. Tú decides qué información compartes con tu asesoría." },
 ];

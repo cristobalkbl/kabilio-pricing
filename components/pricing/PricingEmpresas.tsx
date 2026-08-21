@@ -59,10 +59,16 @@ export function PricingEmpresas() {
           <p className="mx-auto mt-4 max-w-[620px] text-lg text-ink-muted">
             Factura, controla tus gastos y lleva tu tesorería al día.
           </p>
-          <p className="mx-auto mt-3 max-w-[620px] text-[15px] text-ink-muted">
-            Si tu asesoría trabaja con Kabilio, estos son tus precios — y ella ve tus facturas y gastos
-            en cuanto los creas.
-          </p>
+          <div className="mx-auto mt-6 flex max-w-[640px] items-start gap-3 rounded-2xl border border-lav bg-brand-100 px-5 py-4 text-left">
+            <svg viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-brand" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 8h.01M11 12h1v4h1" />
+            </svg>
+            <p className="text-[14.5px] font-semibold leading-relaxed text-ink">
+              Si tu asesoría trabaja con Kabilio, estos son tus precios — y ella ve tus facturas y gastos
+              en cuanto los creas.
+            </p>
+          </div>
           <div className="mt-[18px] flex justify-center">
             <span className="inline-flex items-center gap-2 text-[13.5px] font-semibold">
               <svg viewBox="0 0 24 24" className="h-4 w-4 text-green" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
@@ -101,8 +107,8 @@ export function PricingEmpresas() {
           <div className="grid overflow-hidden rounded-[20px] border border-line bg-surface shadow-card md:grid-cols-3">
             {empresaPlans.map((p, i) => {
               let big = "0 €";
-              let mo = "";
-              let save: React.ReactNode = <span className="font-semibold text-green">Gratis para siempre</span>;
+              let mo = p.free ? "para ti · siempre" : "";
+              let save: React.ReactNode = <span className="font-semibold text-green">Gratis, sin límite de tiempo</span>;
               if (!p.free && p.mo) {
                 if (mode === "mensual") {
                   big = `${p.mo / 2} €`;
@@ -132,24 +138,18 @@ export function PricingEmpresas() {
                 >
                   <div className="flex items-center gap-2.5 text-[19px] font-bold">
                     {p.name}
-                    {p.popular && (
-                      <span className="ml-auto rounded-full bg-brand-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-brand">
-                        Popular
-                      </span>
-                    )}
                   </div>
                   <p className="mb-4 mt-2 min-h-[46px] text-[13px] text-ink-muted">{p.desc}</p>
                   <div className="flex items-baseline gap-1.5">
                     <span className="text-[34px] font-bold leading-none tracking-tight">{big}</span>
                     {mo && <span className="text-[13px] text-ink-muted">{mo}</span>}
                   </div>
-                  <div className="mb-4 mt-1.5 min-h-[40px] text-[12.5px] leading-snug">{save}</div>
-                  <div className="mb-3 min-h-[20px] text-[13.5px] font-bold">{p.tag}</div>
+                  <div className="mb-5 mt-1.5 min-h-[40px] text-[12.5px] leading-snug">{save}</div>
                   <Link
                     href="/empresas/contacto"
                     className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand"
                   >
-                    {p.free ? "Empieza gratis" : "Empieza ahora"}
+                    Actívalo con tu asesoría
                   </Link>
                   <hr className="my-5 border-line" />
                   <div className="mb-3.5 text-[11px] font-bold uppercase tracking-wide text-ink-muted">{p.inc}</div>
@@ -262,6 +262,15 @@ export function PricingEmpresas() {
           <p className="mt-4 text-center text-[12.5px] text-ink-muted">
             Pulsa cada bloque para minimizarlo.
           </p>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-2xl border border-line bg-surface2 px-6 py-5 text-center">
+            <span className="text-[15px] font-semibold text-ink">
+              ¿Necesitas más volumen, varias sociedades o usuarios adicionales?
+            </span>
+            <Link href="/empresas/contacto" className="text-[15px] font-bold text-brand hover:underline">
+              Habla con nosotros →
+            </Link>
+          </div>
 
           {/* FAQ */}
           <h2 className="mb-6 mt-14 text-center text-[32px] font-bold tracking-tight">Preguntas frecuentes</h2>

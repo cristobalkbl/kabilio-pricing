@@ -98,9 +98,9 @@ const PAIRS = [
 ];
 
 const PLANS = [
-  { name: "Inicia", free: true, desc: "Para empezar a facturar y compartir tus gastos con tu asesoría.", inc: "Lo que incluye:", feats: ["20 facturas al mes", "2 conexiones bancarias", "Procesado de gastos ilimitado", "Conciliación automática y panel de control", "IVA a pagar/cobrar estimado", "Comunicación con tu asesoría"] },
-  { name: "Avanza", mo: 14, popular: true, desc: "Para negocios en marcha que facturan cada semana.", inc: "Todo lo de Inicia, y además:", feats: ["80 facturas al mes", "5 conexiones bancarias", "2 plantillas de factura", "10 facturas recurrentes", "Presupuestos", "Sin pie “Generado por Kabilio”"] },
-  { name: "Impulsa", mo: 24, desc: "Para empresas con más volumen y tesorería que gestionar.", inc: "Todo lo de Avanza, y además:", feats: ["250 facturas al mes", "5 plantillas de factura", "75 facturas recurrentes", "Remesas bancarias"] },
+  { name: "Inicia", free: true, desc: "Para autónomos y empresas que necesitan lo esencial para facturar y controlar sus gastos.", inc: "Lo que incluye:", feats: ["20 facturas al mes", "2 conexiones bancarias", "Procesado de gastos ilimitado", "Conciliación automática y panel de control", "IVA a pagar/cobrar estimado", "Informes básicos", "Tu asesoría lo recibe todo en directo", "Soporte con chat IA y email"] },
+  { name: "Impulsa", mo: 14, desc: "Para quien presupuesta antes de facturar y emite las mismas facturas cada mes.", inc: "Todo lo de Inicia, y además:", feats: ["100 facturas al mes", "5 conexiones bancarias", "10 facturas recurrentes", "Facturas sin pie “Generado por Kabilio”", "2 plantillas de factura (próximamente)", "Presupuestos (próximamente)", "Te atiende una persona por email y chat"] },
+  { name: "Avanza", mo: 28, desc: "Para quien tiene muchos pagos y cobros y necesita agruparlos en remesas.", inc: "Todo lo de Impulsa, y además:", feats: ["250 facturas al mes", "12 conexiones bancarias", "75 facturas recurrentes", "Remesas bancarias", "5 plantillas de factura (próximamente)"] },
 ];
 
 const FAQS = [
@@ -314,8 +314,8 @@ export function EmpresasHome() {
           <div className="grid overflow-hidden rounded-[20px] border border-line bg-surface shadow-card md:grid-cols-3">
             {PLANS.map((p, i) => {
               let big = "0 €";
-              let mo = "";
-              let save: React.ReactNode = <span className="font-semibold text-green">Gratis para siempre</span>;
+              let mo = p.free ? "para ti · siempre" : "";
+              let save: React.ReactNode = <span className="font-semibold text-green">Gratis, sin límite de tiempo</span>;
               if (!p.free && p.mo) {
                 if (mode === "mensual") {
                   big = `${p.mo / 2} €`;
@@ -331,7 +331,6 @@ export function EmpresasHome() {
                 <div key={p.name} className={`flex flex-col p-8 ${i < PLANS.length - 1 ? "border-b md:border-b-0 md:border-r border-line" : ""}`}>
                   <div className="flex items-center gap-2.5 text-[19px] font-bold">
                     {p.name}
-                    {p.popular && <span className="ml-auto rounded-full bg-brand-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-brand">Popular</span>}
                   </div>
                   <p className="mb-4 mt-2 min-h-[46px] text-[13px] text-ink-muted">{p.desc}</p>
                   <div className="flex items-baseline gap-1.5">
@@ -339,7 +338,7 @@ export function EmpresasHome() {
                     {mo && <span className="text-[13px] text-ink-muted">{mo}</span>}
                   </div>
                   <div className="mb-4 mt-1.5 min-h-[40px] text-[12.5px] leading-snug">{save}</div>
-                  <Link href="/empresas/contacto" className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand">{p.free ? "Empieza gratis" : "Empieza ahora"}</Link>
+                  <Link href="/empresas/contacto" className="block rounded-[10px] bg-ink py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-brand">Actívalo con tu asesoría</Link>
                   <hr className="my-5 border-line" />
                   <div className="mb-3.5 text-[11px] font-bold uppercase tracking-wide text-ink-muted">{p.inc}</div>
                   <ul>
