@@ -23,6 +23,25 @@ function Cell({ v }: { v: string }) {
   return <span>{v}</span>;
 }
 
+function SoonTag() {
+  return (
+    <span className="ml-1.5 inline-block whitespace-nowrap rounded-full bg-pink px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-ink align-middle">
+      Próximamente
+    </span>
+  );
+}
+
+function FeatText({ f }: { f: string }) {
+  const soon = f.includes("(próximamente)");
+  const label = soon ? f.replace(/\s*\(próximamente\)\s*/, "").trim() : f;
+  return (
+    <>
+      {label}
+      {soon && <SoonTag />}
+    </>
+  );
+}
+
 export function PricingEmpresas() {
   const [mode, setMode] = useState<"mensual" | "anual">("mensual");
   const [collapsed, setCollapsed] = useState(true);
@@ -157,7 +176,7 @@ export function PricingEmpresas() {
                     {p.feats.map((f) => (
                       <li key={f} className="relative py-1.5 pl-6 text-[13.5px]">
                         <span className="absolute left-0 top-1.5 font-bold text-brand">✓</span>
-                        {f}
+                        <FeatText f={f} />
                       </li>
                     ))}
                   </ul>
@@ -169,6 +188,15 @@ export function PricingEmpresas() {
           <p className="mt-[18px] text-center text-[13px] text-ink-muted">
             <span className="font-bold text-brand">Todos los planes incluyen la conexión con tu asesoría</span>
           </p>
+
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-2xl border border-line bg-surface2 px-6 py-5 text-center">
+            <span className="text-[15px] font-semibold text-ink">
+              ¿Necesitas más volumen, varias sociedades o usuarios adicionales?
+            </span>
+            <Link href="/empresas/contacto" className="text-[15px] font-bold text-brand hover:underline">
+              Habla con nosotros →
+            </Link>
+          </div>
 
           {/* Banda recomendar */}
           <div className="mt-5 flex flex-wrap items-center gap-4 rounded-[18px] border border-line bg-surface p-6">
@@ -263,15 +291,6 @@ export function PricingEmpresas() {
             Pulsa cada bloque para minimizarlo.
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-2xl border border-line bg-surface2 px-6 py-5 text-center">
-            <span className="text-[15px] font-semibold text-ink">
-              ¿Necesitas más volumen, varias sociedades o usuarios adicionales?
-            </span>
-            <Link href="/empresas/contacto" className="text-[15px] font-bold text-brand hover:underline">
-              Habla con nosotros →
-            </Link>
-          </div>
-
           {/* FAQ */}
           <h2 className="mb-6 mt-14 text-center text-[32px] font-bold tracking-tight">Preguntas frecuentes</h2>
           <div className="mx-auto max-w-[760px]">
@@ -324,7 +343,7 @@ function GroupBlock({
               {r.feat}
               {r.tip && <Tip text={r.tip} />}
               {r.badge && (
-                <span className="ml-1.5 rounded-full bg-brand-100 px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-wide text-brand align-middle">
+                <span className="ml-1.5 rounded-full bg-pink px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-wide text-ink align-middle">
                   {r.badge}
                 </span>
               )}

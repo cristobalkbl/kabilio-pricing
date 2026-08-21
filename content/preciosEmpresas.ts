@@ -68,9 +68,9 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
     rows: [
       { feat: "Facturas al mes", tip: "Facturas de venta que puedes emitir cada mes.", vals: ["20", "100", "250"] },
       { feat: "Facturas recurrentes", tip: "Facturas que se generan y envían solas cada cierto periodo.", vals: ["—", "10", "75"] },
-      { feat: "Sin pie “Generado por Kabilio”", tip: "Quita la marca de Kabilio del pie de tus facturas.", vals: ["—", "✓", "✓"] },
       { feat: "Plantillas de factura", badge: "próximamente", vals: ["—", "2", "5"], expandedOnly: true },
       { feat: "Presupuestos", badge: "próximamente", vals: ["—", "✓", "✓"], expandedOnly: true },
+      { feat: "Sin pie “Generado por Kabilio”", tip: "Quita la marca de Kabilio del pie de tus facturas.", vals: ["—", "✓", "✓"] },
     ],
   },
   {
@@ -92,27 +92,29 @@ export const cmpGroups: { group: string; rows: CmpRow[] }[] = [
   {
     group: "Colaboración con tu asesoría",
     rows: [
+      { feat: "Envío automático de facturas y gastos", tip: "Tu asesoría recibe tus facturas y gastos en cuanto los creas.", vals: ["En directo", "En directo", "En directo"] },
       { feat: "Comunicación asesor / cliente", tip: "Canal directo con tu asesoría dentro de Kabilio.", vals: ["✓", "✓", "✓"] },
       { feat: "Gestor documental", tip: "Almacena y comparte documentos con tu asesoría.", vals: ["✓", "✓", "✓"] },
     ],
   },
   {
     group: "Equipo",
-    rows: [{ feat: "Usuario adicional / mes", tip: "Precio por cada usuario extra sobre el incluido.", vals: ["0 €", "4 €", "7 €"] }],
+    rows: [
+      { feat: "Usuarios incluidos", tip: "Usuarios de tu equipo incluidos en el plan.", vals: ["1", "1", "1"] },
+      { feat: "Usuario adicional / mes", tip: "Precio por cada usuario extra sobre el incluido.", vals: ["Gratis", "4 €", "7 €"] },
+    ],
   },
   {
     group: "Automatización e informes",
     rows: [
-      { feat: "Agente Kabi", tip: "Asistente de IA de Kabilio para tareas del día a día.", vals: ["✓", "✓", "✓"] },
       { feat: "Informes básicos", tip: "Informes básicos de tu actividad, ingresos y gastos.", vals: ["✓", "✓", "✓"] },
     ],
   },
   {
     group: "Soporte",
     rows: [
-      { feat: "Email", tip: "Atención por email.", vals: ["✓", "✓", "✓"] },
-      { feat: "Chat con IA", tip: "Atención por chat con el asistente de IA de Kabilio.", vals: ["✓", "✓", "✓"] },
-      { feat: "Chat con el equipo de Kabilio", tip: "Habla por chat con una persona del equipo de Kabilio.", vals: ["—", "✓", "✓"] },
+      { feat: "Soporte con chat IA", tip: "Atención por chat con el asistente de IA de Kabilio.", vals: ["✓", "✓", "✓"] },
+      { feat: "Te atiende una persona", tip: "Habla por email o chat con una persona del equipo de Kabilio.", vals: ["Email", "Email y chat", "Email y chat"] },
     ],
   },
 ];

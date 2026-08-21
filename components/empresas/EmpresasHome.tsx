@@ -123,6 +123,21 @@ function Ico({ paths, className }: { paths: string; className?: string }) {
   );
 }
 
+function FeatText({ f }: { f: string }) {
+  const soon = f.includes("(próximamente)");
+  const label = soon ? f.replace(/\s*\(próximamente\)\s*/, "").trim() : f;
+  return (
+    <>
+      {label}
+      {soon && (
+        <span className="ml-1.5 inline-block whitespace-nowrap rounded-full bg-pink px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-ink align-middle">
+          Próximamente
+        </span>
+      )}
+    </>
+  );
+}
+
 export function EmpresasHome() {
   const [tab, setTab] = useState("dsh");
   const [mode, setMode] = useState<"mensual" | "anual">("mensual");
@@ -343,7 +358,7 @@ export function EmpresasHome() {
                   <div className="mb-3.5 text-[11px] font-bold uppercase tracking-wide text-ink-muted">{p.inc}</div>
                   <ul>
                     {p.feats.map((f) => (
-                      <li key={f} className="relative py-1.5 pl-6 text-[13.5px]"><span className="absolute left-0 top-1.5 font-bold text-brand">✓</span>{f}</li>
+                      <li key={f} className="relative py-1.5 pl-6 text-[13.5px]"><span className="absolute left-0 top-1.5 font-bold text-brand">✓</span><FeatText f={f} /></li>
                     ))}
                   </ul>
                 </div>
