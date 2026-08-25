@@ -16,7 +16,7 @@ export const colaboracionEmpresas: FeatureLandingData = {
     title: "Lo que gana tu empresa trabajando con tu asesoría en Kabilio",
     text: "Un único espacio con tu asesoría: la documentación ordenada, la misma para los dos y nada que reenviar.",
     items: [
-      { icon: `<path d="M4 5a2 2 0 0 1 2-2h5l2 3h5a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>`, h: "Le llega solo a tu asesor", p: "Facturas, gastos, cobros: todo lo que haces en Kabilio, tu asesoría lo tiene al instante. Se acabaron los emails con adjuntos a fin de mes." },
+      { icon: `<path d="M4 5a2 2 0 0 1 2-2h5l2 3h5a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>`, h: "Le llega directamente a tu asesoría", p: "Facturas, gastos, cobros: todo lo que haces en Kabilio, tu asesoría lo tiene al instante. Se acabaron los emails con adjuntos a fin de mes." },
       { icon: `<circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>`, h: "Estado real, no solo papeles", p: "Tu asesor no ve solo el PDF: ve si la factura está cobrada, si el gasto está pagado y cómo va tu caja. Contabiliza sin preguntarte." },
       { icon: `<path d="M20 6 9 17l-5-5"/>`, h: "Funciona en los dos sentidos", p: "Tu asesoría también sube lo suyo: impuestos presentados, nóminas, contratos. Lo tienes localizado sin pedirlo por email." },
     ],
