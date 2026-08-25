@@ -10,10 +10,11 @@ export type Pack = {
 };
 
 export const packs: Pack[] = [
-  { name: "Starter", price: 540, credits: 3000, unit: 0.18, desc: "Para despachos que empiezan con Kabilio.", soft: true },
-  { name: "Básico", price: 1560, credits: 12000, unit: 0.13, desc: "Para despachos pequeños ya en marcha." },
-  { name: "Avanzado", price: 2640, credits: 24000, unit: 0.11, desc: "Para despachos en crecimiento que escalan volumen." },
-  { name: "Pro", price: 4080, credits: 48000, unit: 0.09, desc: "Para despachos consolidados y gran volumen." },
+  { name: "Starter", price: 540, credits: 3000, unit: 0.18, desc: "Para despachos que empiezan con Kabilio." },
+  { name: "Básico", price: 1548, credits: 12000, unit: 0.129, desc: "Para despachos pequeños ya en marcha." },
+  { name: "Avanzado", price: 2748, credits: 24000, unit: 0.115, desc: "Para despachos en crecimiento que escalan volumen." },
+  { name: "Pro", price: 4308, credits: 48000, unit: 0.09, desc: "Para despachos consolidados y gran volumen." },
+  { name: "Corporate", price: 7900, credits: 100000, unit: 0.079, desc: "Para grandes despachos con un volumen muy alto." },
 ];
 
 // Coste en créditos por acción.

@@ -16,6 +16,7 @@ import {
 const fmtInt = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const eur = (n: number) => `${fmtInt(n)} €`;
 const eur3 = (n: number) => `${n.toFixed(3).replace(".", ",")} €`;
+const eur2 = (n: number) => `${n.toFixed(2).replace(".", ",")} €`;
 
 const BILLING: { splits: number; mult: number; label: string; badge?: string }[] = [
   { splits: 1, mult: 1, label: "Pago único", badge: "Ahorro" },
@@ -116,7 +117,7 @@ export function PricingAsesorias() {
                         p.credits / cost.reconcile
                       )} transacciones conciliadas, si usaras todo el saldo en una sola función.`}
                     />
-                    <div className="mt-1 text-[12.5px] font-semibold text-brand">{eur3(p.unit * mult)} / crédito</div>
+                    <div className="mt-1 text-[12.5px] font-semibold text-brand">{eur2(p.unit * mult)} / crédito</div>
                   </div>
                   <Link
                     href="/solicita-una-demo"
@@ -128,22 +129,28 @@ export function PricingAsesorias() {
               );
             })}
 
-            {/* Enterprise */}
-            <div className="flex flex-col rounded-[18px] border border-dashed border-lav bg-brand-100 p-6">
-              <h2 className="text-xl font-bold">Enterprise</h2>
-              <p className="mt-2 min-h-[60px] text-[13.5px] leading-snug text-ink-muted">
-                Para grandes volúmenes de trabajo.
+          </div>
+
+          {/* Enterprise (debajo de los planes) */}
+          <div className="mt-4 flex flex-wrap items-center gap-5 rounded-[18px] border border-dashed border-lav bg-brand-100 p-6 sm:p-7">
+            <div className="min-w-[220px] flex-1">
+              <h2 className="text-xl font-bold">
+                Enterprise <span className="text-base font-semibold text-ink-muted">· +250.000 créditos</span>
+              </h2>
+              <p className="mt-1.5 text-[14px] leading-snug text-ink-muted">
+                Para grandes volúmenes de trabajo. Plan a medida, con el mejor precio por crédito.
               </p>
-              <div className="text-2xl font-bold leading-none">A consultar</div>
-              <div className="mt-1.5 min-h-[18px] text-[13px] text-ink-muted">Plan a medida</div>
-              <div className="mt-4 text-sm text-ink-muted">+100.000 créditos</div>
-              <Link
-                href="/contacto"
-                className="mt-auto block rounded-[10px] bg-ink py-3 text-center text-[13.5px] font-semibold text-white transition-colors hover:bg-brand"
-              >
-                Contáctanos
-              </Link>
             </div>
+            <div className="text-right">
+              <div className="text-2xl font-bold leading-none">A consultar</div>
+              <div className="text-[13px] text-ink-muted">Plan a medida</div>
+            </div>
+            <Link
+              href="/contacto"
+              className="shrink-0 rounded-[10px] bg-ink px-6 py-3 text-center text-[13.5px] font-semibold text-white transition-colors hover:bg-brand"
+            >
+              Contáctanos
+            </Link>
           </div>
 
           {/* Productos incluidos (grid) */}
@@ -288,7 +295,7 @@ function ComparisonTable({
         <Row
           label="Precio por crédito"
           tip="Coste medio de cada crédito: el precio del plan dividido entre los créditos incluidos."
-          values={packs.map((p) => <span key={p.name}>{eur3(p.unit)}</span>)}
+          values={packs.map((p) => <span key={p.name}>{eur2(p.unit)}</span>)}
         />
 
         {groups.map((g) => (
@@ -381,9 +388,9 @@ function Configurator() {
   const [conn, setConn] = useState(1);
 
   const annual = Math.round((invoices * cost.invoice + recon * cost.reconcile + conn * cost.bankConn) * clients * 12);
-  // Enterprise (y "el mejor precio") solo a partir de 100.000 créditos/año.
+  // Enterprise (y "el mejor precio") solo a partir de 250.000 créditos/año.
   // Por debajo, recomendamos el pack que encaje o el mayor disponible.
-  const enterprise = annual > 100000;
+  const enterprise = annual > 250000;
   const match = enterprise ? undefined : packs.find((p) => p.credits >= annual) ?? packs[packs.length - 1];
   const pct = match ? Math.min(100, Math.round((annual / match.credits) * 100)) : 100;
 
@@ -453,7 +460,7 @@ function Configurator() {
             <div className="flex justify-between border-t border-line py-2.5 text-sm">
               <span>Precio efectivo / crédito</span>
               <span className="font-semibold">
-                {enterprise ? "El mejor precio" : eur3(match!.price / match!.credits)}
+                {enterprise ? "El mejor precio" : eur2(match!.price / match!.credits)}
               </span>
             </div>
             {!enterprise && (
@@ -487,7 +494,7 @@ function Configurator() {
             </Link>
             <p className="mt-3.5 text-[12.5px] leading-snug text-ink-muted">
               {enterprise
-                ? "Tu consumo supera los 100.000 créditos/año: Enterprise a medida."
+                ? "Tu consumo supera los 250.000 créditos/año: Enterprise a medida."
                 : `${fmtInt(clients)} clientes · ${invoices} facturas, ${recon} conciliaciones/mes y ${conn} conexiones vivas por cliente.${
                     pct > 90 ? " Vas justo de saldo." : ""
                   }`}
