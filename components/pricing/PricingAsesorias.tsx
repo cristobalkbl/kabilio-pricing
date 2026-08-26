@@ -6,6 +6,7 @@ import { RawSvg } from "@/components/producto/RawSvg";
 import {
   packs,
   cost,
+  creditActions,
   includedProducts,
   includedAll,
   conditions,
@@ -17,6 +18,22 @@ const fmtInt = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!
 const eur = (n: number) => `${fmtInt(n)} €`;
 const eur3 = (n: number) => `${n.toFixed(3).replace(".", ",")} €`;
 const eur2 = (n: number) => `${n.toFixed(2).replace(".", ",")} €`;
+// Coste en € de una acción para un plan, con redondeo comercial a 3 decimales
+// (calculado desde precio/créditos para evitar errores de coma flotante).
+const actionEuro = (credits: number, price: number, included: number) =>
+  Math.round((credits * price * 1000) / included) / 1000;
+// Céntimos enteros (redondeo comercial) a partir del importe en euros.
+const centsInt = (n: number) => Math.round(Math.round(n * 1000) / 10);
+// 1 € o más en euros; por debajo, en céntimos con el símbolo pequeño.
+const actionMoney = (n: number): React.ReactNode =>
+  n >= 1 ? (
+    eur2(n)
+  ) : (
+    <>
+      {centsInt(n)}
+      <span className="ml-1 text-[0.62em] font-medium text-ink-muted">céntimos</span>
+    </>
+  );
 
 const BILLING: { splits: number; mult: number; label: string; badge?: string }[] = [
   { splits: 1, mult: 1, label: "Pago único", badge: "Ahorro" },
@@ -202,6 +219,37 @@ export function PricingAsesorias() {
             </p>
           </div>
 
+          {/* Créditos consumidos por acción */}
+          <div className="mt-14">
+            <div className="mb-6 text-center">
+              <span className="mb-3.5 inline-block rounded-full bg-brand-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand">
+                Modelo de créditos
+              </span>
+              <h3 className="text-[25px] font-bold tracking-tight">Créditos que consume cada acción</h3>
+              <p className="mx-auto mt-2 max-w-[560px] text-sm text-ink-muted">
+                El consumo es el mismo en todos los planes; solo cambia el precio por crédito.
+              </p>
+            </div>
+            <div className="mx-auto max-w-[620px] overflow-hidden rounded-[18px] border border-line bg-surface">
+              {creditActions.map((a, i) => (
+                <div
+                  key={a.label}
+                  className={`flex items-center justify-between gap-4 px-6 py-3.5 ${
+                    i < creditActions.length - 1 ? "border-b border-line" : ""
+                  }`}
+                >
+                  <span className="text-sm">{a.label}</span>
+                  <span className="whitespace-nowrap font-bold [font-variant-numeric:tabular-nums]">
+                    {a.credits}
+                    <span className="ml-1 text-[0.62em] font-medium text-ink-muted">
+                      {a.credits === "1" ? "crédito" : "créditos"}
+                    </span>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Configurador */}
           <Configurator />
         </div>
@@ -301,6 +349,28 @@ function ComparisonTable({
         {groups.map((g) => (
           <GroupInclusion key={g} group={g} yes={yes} />
         ))}
+
+        <GroupRow label="Coste por acción" />
+        <Row
+          label="Por documento contabilizado en el procesador"
+          tip="Coste de contabilizar un documento en el procesador. Cuesta 1 crédito."
+          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(cost.invoice, p.price, p.credits))}</span>)}
+        />
+        <Row
+          label="Por transacción reconciliada"
+          tip="Coste de conciliar un movimiento bancario. Cuesta 0,4 créditos."
+          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(cost.reconcile, p.price, p.credits))}</span>)}
+        />
+        <Row
+          label="Por conexión bancaria al mes"
+          tip="Coste de mantener una conexión bancaria durante un mes. Cuesta 14 créditos."
+          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(cost.bankConn, p.price, p.credits))}</span>)}
+        />
+        <Row
+          label="Por documento escaneado en gestor"
+          tip="Coste de escanear un documento en el gestor documental. Cuesta 1 crédito."
+          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(1, p.price, p.credits))}</span>)}
+        />
 
         <GroupRow label="Equivalencia orientativa · si gastaras todo el saldo en una sola función" />
         <Row

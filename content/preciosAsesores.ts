@@ -20,6 +20,15 @@ export const packs: Pack[] = [
 // Coste en créditos por acción.
 export const cost = { invoice: 1, reconcile: 0.4, bankConn: 14, agentAction: 5, doc: 0.4 };
 
+// Créditos que consume cada acción (iguales en todos los planes).
+export const creditActions: { label: string; credits: string }[] = [
+  { label: "Por documento contabilizado en el procesador", credits: "1" },
+  { label: "Por transacción reconciliada", credits: "0,40" },
+  { label: "Por conexión bancaria al mes", credits: "14" },
+  { label: "Por documento subido al gestor documental", credits: "0" },
+  { label: "Por documento escaneado en gestor", credits: "1" },
+];
+
 // Productos donde gastar los créditos (grid "Incluido en todos los planes").
 export const includedProducts: { label: string; desc: string; value?: string; icon: string }[] = [
   {
