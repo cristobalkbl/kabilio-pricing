@@ -310,12 +310,12 @@ function ComparisonTable({
         />
         <Row
           label="Transacciones que podrías conciliar"
-          tip="Movimientos bancarios conciliados con todo el saldo. Cuesta 0,5 créditos por movimiento."
+          tip="Movimientos bancarios conciliados con todo el saldo. Cuesta 0,4 créditos por movimiento."
           values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.reconcile)}</span>)}
         />
         <Row
           label="Conexiones bancarias durante un mes"
-          tip="Conexiones bancarias que podrías mantener un mes con todo el saldo. Cada conexión cuesta 15 créditos al mes."
+          tip="Conexiones bancarias que podrías mantener un mes con todo el saldo. Cada conexión cuesta 14 créditos al mes."
           values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.bankConn)}</span>)}
         />
       </tbody>

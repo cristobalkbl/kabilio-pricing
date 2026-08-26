@@ -12,13 +12,13 @@ export type Pack = {
 export const packs: Pack[] = [
   { name: "Starter", price: 540, credits: 3000, unit: 0.18, desc: "Para despachos que empiezan con Kabilio." },
   { name: "Básico", price: 1548, credits: 12000, unit: 0.129, desc: "Para despachos pequeños ya en marcha." },
-  { name: "Avanzado", price: 2748, credits: 24000, unit: 0.115, desc: "Para despachos en crecimiento que escalan volumen." },
-  { name: "Pro", price: 4308, credits: 48000, unit: 0.09, desc: "Para despachos consolidados y gran volumen." },
-  { name: "Corporate", price: 7900, credits: 100000, unit: 0.079, desc: "Para grandes despachos con un volumen muy alto." },
+  { name: "Avanzado", price: 2748, credits: 24000, unit: 0.1145, desc: "Para despachos en crecimiento que escalan volumen." },
+  { name: "Pro", price: 4308, credits: 48000, unit: 0.08975, desc: "Para despachos consolidados y gran volumen." },
+  { name: "Corporativo", price: 7998, credits: 100000, unit: 0.07998, desc: "Para grandes despachos con un volumen muy alto." },
 ];
 
 // Coste en créditos por acción.
-export const cost = { invoice: 1, reconcile: 0.5, bankConn: 15, agentAction: 5, doc: 0.4 };
+export const cost = { invoice: 1, reconcile: 0.4, bankConn: 14, agentAction: 5, doc: 0.4 };
 
 // Productos donde gastar los créditos (grid "Incluido en todos los planes").
 export const includedProducts: { label: string; desc: string; value?: string; icon: string }[] = [
