@@ -105,7 +105,7 @@ export const gastosEmpresas: FeatureLandingData = {
   ],
   testimonials: {
     title: "Negocios que ya no teclean sus gastos",
-    text: "Autónomos y pymes que suben la factura y dejan que la IA haga el resto.",
+    text: "Autónomos y pymes que suben sus gastos y dejan que la IA haga el resto.",
     pairs: [
       {
         empresa: { quote: "Reenvío las facturas de gasto por email y aparecen listas. Dejé de teclear tickets uno a uno.", name: "Rubén Ortega", sub: "Ortega Servicios", avatar: "https://randomuser.me/api/portraits/men/22.jpg" },
