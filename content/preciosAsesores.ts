@@ -84,9 +84,9 @@ export const conditions: { icon: string; title: string; text: string }[] = [
 ];
 
 export const pricingFaqs: { q: string; a: string }[] = [
-  { q: "¿Cuándo se realiza el pago de cada plan?", a: "El pago se realiza al principio del periodo de facturación." },
+  { q: "¿Cuándo se realiza el pago?", a: "Al principio del periodo de facturación, por domiciliación SEPA o transferencia. Si lo prefieres, puedes dividirlo en 2 pagos con un recargo del 10%: el primero al comprar el pack y el segundo a los 6 meses." },
   { q: "¿Qué medios de pago aceptáis?", a: "SEPA y transferencia bancaria." },
-  { q: "¿Qué pasa si se me agotan los créditos?", a: "Puedes comprar cualquiera de nuestros paquetes en cualquier momento para seguir trabajando. Y si te quedas sin créditos y no tienes un paquete activo, cada crédito adicional se factura a 0,20 €." },
-  { q: "¿Puedo contratar un plan antes del vencimiento?", a: "Por supuesto. El nuevo plan empezará a consumirse en cuanto acabes el vigente, y su validez comienza en la fecha de contratación." },
+  { q: "¿Qué pasa si llego al límite de créditos?", a: "Puedes comprar un nuevo paquete de créditos en cualquier momento para seguir trabajando. Y si te quedas sin créditos y no tienes un paquete activo, cada crédito adicional se factura a 0,20 €." },
+  { q: "¿Puedo contratar un pack antes del vencimiento?", a: "Sí. El nuevo pack empieza a consumirse en cuanto acabes tu plan vigente, y su validez arranca en la fecha de contratación." },
   { q: "¿Y si los planes predefinidos no se adaptan a mis necesidades?", a: "Contacta con nuestro equipo y vemos cómo trabajar juntos con un plan a medida." },
 ];
