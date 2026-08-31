@@ -410,7 +410,7 @@ export function EmpresasHome() {
           <div className="rounded-3xl bg-ink px-8 py-14 text-center text-white sm:px-12">
             <h2 className="mb-2.5 text-[clamp(25px,3.6vw,34px)] font-bold">Decide con tus números al día, no a fin de mes</h2>
             <p className="mx-auto mb-6 max-w-[540px] text-[15.5px] leading-relaxed text-white/80">
-              Tu panel de control, tu tesorería y tu IVA estimado siempre actualizados: sabes cómo va tu empresa hoy, no cuando cierra el trimestre. Empieza gratis.
+              Tu panel de control, tu tesorería y tu IVA estimado siempre actualizados: sabes cómo va tu empresa hoy, no a final de mes. Empieza gratis.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Button href="/empresas/contacto" variant="light">Empieza gratis</Button>
