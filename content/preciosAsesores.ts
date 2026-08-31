@@ -10,7 +10,7 @@ export type Pack = {
 };
 
 export const packs: Pack[] = [
-  { name: "Starter", price: 540, credits: 3000, unit: 0.18, desc: "Para despachos que empiezan con Kabilio." },
+  { name: "Esencial", price: 540, credits: 3000, unit: 0.18, desc: "Para despachos que empiezan con Kabilio." },
   { name: "Básico", price: 1548, credits: 12000, unit: 0.129, desc: "Para despachos pequeños ya en marcha." },
   { name: "Avanzado", price: 2748, credits: 24000, unit: 0.1145, desc: "Para despachos en crecimiento que escalan volumen." },
   { name: "Pro", price: 4308, credits: 48000, unit: 0.08975, desc: "Para despachos consolidados y gran volumen." },
@@ -88,5 +88,5 @@ export const pricingFaqs: { q: string; a: string }[] = [
   { q: "¿Qué medios de pago aceptáis?", a: "SEPA y transferencia bancaria." },
   { q: "¿Qué pasa si se me agotan los créditos?", a: "Puedes comprar cualquiera de nuestros paquetes en cualquier momento para seguir trabajando. Y si te quedas sin créditos y no tienes un paquete activo, cada crédito adicional se factura a 0,20 €." },
   { q: "¿Puedo contratar un plan antes del vencimiento?", a: "Por supuesto. El nuevo plan empezará a consumirse en cuanto acabes el vigente, y su validez comienza en la fecha de contratación." },
-  { q: "¿Y si los planes predefinidos no se adaptan a mis necesidades?", a: "Contacta con nuestro equipo y vemos cómo trabajar juntos con un plan Enterprise a medida." },
+  { q: "¿Y si los planes predefinidos no se adaptan a mis necesidades?", a: "Contacta con nuestro equipo y vemos cómo trabajar juntos con un plan a medida." },
 ];

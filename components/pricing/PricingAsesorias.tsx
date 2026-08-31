@@ -18,12 +18,13 @@ const fmtInt = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!
 const eur = (n: number) => `${fmtInt(n)} €`;
 const eur3 = (n: number) => `${n.toFixed(3).replace(".", ",")} €`;
 const eur2 = (n: number) => `${n.toFixed(2).replace(".", ",")} €`;
-// Coste en € de una acción para un plan, con redondeo comercial a 3 decimales
-// (calculado desde precio/créditos para evitar errores de coma flotante).
+// Coste en € de una acción para un plan (créditos × precio por crédito del plan).
+// Se devuelve sin redondear: el redondeo lo hace el formateador, una sola vez.
 const actionEuro = (credits: number, price: number, included: number) =>
-  Math.round((credits * price * 1000) / included) / 1000;
-// Céntimos enteros (redondeo comercial) a partir del importe en euros.
-const centsInt = (n: number) => Math.round(Math.round(n * 1000) / 10);
+  (credits * price) / included;
+// Céntimos enteros a partir del importe en euros. Un único redondeo: redondear
+// antes a milésimas empujaba 11,45 cént. a 11,5 y de ahí a 12.
+const centsInt = (n: number) => Math.round(n * 100);
 // 1 € o más en euros; por debajo, en céntimos con el símbolo pequeño.
 const actionMoney = (n: number): React.ReactNode =>
   n >= 1 ? (
@@ -37,6 +38,10 @@ const actionMoney = (n: number): React.ReactNode =>
 
 // Servicio y soporte: se muestra como apartado ligero, no en la tabla comparativa.
 const serviceItems = includedAll.filter((x) => x.group === "Servicio y soporte");
+
+// Etiqueta de precio unitario: "18 céntimos / crédito" (en € si llegara a 1 € o más).
+const creditLabel = (unit: number) =>
+  unit >= 1 ? `${eur2(unit)} / crédito` : `${centsInt(unit)} céntimos / crédito`;
 
 const BILLING: { splits: number; mult: number; label: string; badge?: string }[] = [
   { splits: 1, mult: 1, label: "Pago único", badge: "Ahorro" },
@@ -137,7 +142,11 @@ export function PricingAsesorias() {
                         p.credits / cost.reconcile
                       )} transacciones conciliadas, si usaras todo el saldo en una sola función.`}
                     />
-                    <div className="mt-1 text-[12.5px] font-semibold text-brand">{eur2(p.unit * mult)} / crédito</div>
+                    <div className="mt-2.5">
+                      <span className="inline-flex items-center rounded-full bg-brand-100 px-2.5 py-1 text-[12px] font-bold text-brand">
+                        {creditLabel(p.unit * mult)}
+                      </span>
+                    </div>
                   </div>
                   <Link
                     href="/solicita-una-demo"
@@ -151,27 +160,19 @@ export function PricingAsesorias() {
 
           </div>
 
-          {/* Enterprise (debajo de los planes) */}
-          <div className="mt-4 flex flex-wrap items-center gap-5 rounded-[18px] border border-dashed border-lav bg-brand-100 p-6 sm:p-7">
+          {/* Plan a medida para grandes volúmenes (debajo de los planes) */}
+          <Link
+            href="/contacto"
+            className="mt-3.5 flex flex-wrap items-center gap-5 rounded-[18px] border border-lav bg-surface p-6 transition-colors hover:border-brand hover:bg-brand-100 sm:p-7"
+          >
             <div className="min-w-[220px] flex-1">
-              <h2 className="text-xl font-bold">
-                Enterprise <span className="text-base font-semibold text-ink-muted">· +250.000 créditos</span>
-              </h2>
+              <h2 className="text-xl font-bold">¿Necesitas más de 250.000 créditos?</h2>
               <p className="mt-1.5 text-[14px] leading-snug text-ink-muted">
-                Para grandes volúmenes de trabajo. Plan a medida, con el mejor precio por crédito.
+                Contacta con ventas para ampliar tu saldo.
               </p>
             </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold leading-none">A consultar</div>
-              <div className="text-[13px] text-ink-muted">Plan a medida</div>
-            </div>
-            <Link
-              href="/contacto"
-              className="shrink-0 rounded-[10px] bg-ink px-6 py-3 text-center text-[13.5px] font-semibold text-white transition-colors hover:bg-brand"
-            >
-              Contáctanos
-            </Link>
-          </div>
+            <div className="shrink-0 text-xl font-bold">A consultar</div>
+          </Link>
 
           {/* Productos incluidos (grid) */}
           <div className="mt-6">
@@ -435,7 +436,7 @@ function Configurator() {
   const [conn, setConn] = useState(1);
 
   const annual = Math.round((invoices * cost.invoice + recon * cost.reconcile + conn * cost.bankConn) * clients * 12);
-  // Enterprise (y "el mejor precio") solo a partir de 250.000 créditos/año.
+  // El plan a medida (y "el mejor precio") solo a partir de 250.000 créditos/año.
   // Por debajo, recomendamos el pack que encaje o el mayor disponible.
   const enterprise = annual > 250000;
   const match = enterprise ? undefined : packs.find((p) => p.credits >= annual) ?? packs[packs.length - 1];
@@ -485,11 +486,11 @@ function Configurator() {
               Tu plan recomendado
             </div>
             <div className="mb-0.5 mt-1 text-[32px] font-bold tracking-tight text-brand">
-              {enterprise ? "Enterprise" : match!.name}
+              {enterprise ? "Plan a medida" : match!.name}
             </div>
             <div className="mb-[18px] text-[15px] text-ink-muted">
               {enterprise ? (
-                "A medida"
+                "Más de 250.000 créditos al año"
               ) : (
                 <>
                   <b className="text-lg text-ink">{eur(match!.price)}</b> / año ·{" "}
@@ -541,7 +542,7 @@ function Configurator() {
             </Link>
             <p className="mt-3.5 text-[12.5px] leading-snug text-ink-muted">
               {enterprise
-                ? "Tu consumo supera los 250.000 créditos/año: Enterprise a medida."
+                ? "Tu consumo supera los 250.000 créditos/año: te preparamos un plan a medida."
                 : `${fmtInt(clients)} clientes · ${invoices} facturas, ${recon} conciliaciones/mes y ${conn} conexiones vivas por cliente.${
                     pct > 90 ? " Vas justo de saldo." : ""
                   }`}
