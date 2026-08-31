@@ -35,6 +35,9 @@ const actionMoney = (n: number): React.ReactNode =>
     </>
   );
 
+// Servicio y soporte: se muestra como apartado ligero, no en la tabla comparativa.
+const serviceItems = includedAll.filter((x) => x.group === "Servicio y soporte");
+
 const BILLING: { splits: number; mult: number; label: string; badge?: string }[] = [
   { splits: 1, mult: 1, label: "Pago único", badge: "Ahorro" },
   { splits: 2, mult: 1.1, label: "2 pagos" },
@@ -180,19 +183,39 @@ export function PricingAsesorias() {
                 Productos en los que puedes usar los créditos
               </h3>
             </div>
-            <div className="grid overflow-hidden rounded-[18px] border border-line bg-surface sm:grid-cols-2 lg:grid-cols-4">
-              {includedProducts.map((it) => (
-                <div key={it.label} className="border-b border-r border-line p-7 last:border-r-0">
-                  <span className="mb-[18px] inline-flex h-[46px] w-[46px] items-center justify-center rounded-xl bg-brand-100 text-brand [&_svg]:h-[23px] [&_svg]:w-[23px]">
-                    <RawSvg html={it.icon} />
-                  </span>
-                  <h4 className="mb-2 text-base font-bold">
-                    {it.label}
-                    {it.value ? ` · ${it.value}` : ""}
-                  </h4>
-                  <p className="text-[13px] leading-relaxed text-ink-muted">{it.desc}</p>
-                </div>
-              ))}
+            <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+                {includedProducts.map((it) => (
+                  <div key={it.label} className="border-b border-r border-line p-7 last:border-r-0">
+                    <span className="mb-[18px] inline-flex h-[46px] w-[46px] items-center justify-center rounded-xl bg-brand-100 text-brand [&_svg]:h-[23px] [&_svg]:w-[23px]">
+                      <RawSvg html={it.icon} />
+                    </span>
+                    <h4 className="mb-2 text-base font-bold">
+                      {it.label}
+                      {it.value ? ` · ${it.value}` : ""}
+                    </h4>
+                    <p className="text-[13px] leading-relaxed text-ink-muted">{it.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Servicio y soporte: pie del mismo bloque, con menos peso */}
+              <div className="bg-surface2 px-7 py-5">
+                <p className="text-[11.5px] font-bold uppercase tracking-wider text-ink-muted">
+                  Servicio y soporte, incluido en todos los planes
+                </p>
+                <ul className="mt-2.5 grid gap-x-7 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
+                  {serviceItems.map((it) => (
+                    <li key={it.label} className="flex items-start gap-2 text-[13px] text-ink-muted">
+                      <span className="mt-[1px] font-bold text-brand">✓</span>
+                      <span>
+                        {it.label}
+                        <Tip text={it.tip} />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -213,10 +236,6 @@ export function PricingAsesorias() {
                 Ver todo
               </button>
             )}
-            <p className="mt-3.5 text-center text-[12.5px] text-ink-muted">
-              Cifras de capacidad orientativas: muestran cuánto podrías hacer si dedicaras todo el
-              saldo a una sola acción.
-            </p>
           </div>
 
           {/* Créditos consumidos por acción */}
@@ -303,9 +322,6 @@ function ComparisonTable({
   total: (price: number) => number;
   billed: (t: number) => string;
 }) {
-  const yes = <span className="font-bold text-brand">✓</span>;
-  const groups = Array.from(new Set(includedAll.map((x) => x.group))).filter((g) => g !== "Productos");
-
   return (
     <table className="w-full border-collapse bg-surface text-sm">
       <thead>
@@ -343,12 +359,10 @@ function ComparisonTable({
         <Row
           label="Precio por crédito"
           tip="Coste medio de cada crédito: el precio del plan dividido entre los créditos incluidos."
-          values={packs.map((p) => <span key={p.name}>{eur2(p.unit)}</span>)}
+          values={packs.map((p) => (
+            <span key={p.name}>{actionMoney(actionEuro(1, p.price, p.credits))}</span>
+          ))}
         />
-
-        {groups.map((g) => (
-          <GroupInclusion key={g} group={g} yes={yes} />
-        ))}
 
         <GroupRow label="Coste por acción" />
         <Row
@@ -370,23 +384,6 @@ function ComparisonTable({
           label="Por documento escaneado en gestor"
           tip="Coste de escanear un documento en el gestor documental. Cuesta 1 crédito."
           values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(1, p.price, p.credits))}</span>)}
-        />
-
-        <GroupRow label="Equivalencia orientativa · si gastaras todo el saldo en una sola función" />
-        <Row
-          label="Facturas que podrías procesar"
-          tip="Facturas que procesarías si dedicaras todo el saldo a esto. Cuesta 1 crédito por factura."
-          values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.invoice)}</span>)}
-        />
-        <Row
-          label="Transacciones que podrías conciliar"
-          tip="Movimientos bancarios conciliados con todo el saldo. Cuesta 0,4 créditos por movimiento."
-          values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.reconcile)}</span>)}
-        />
-        <Row
-          label="Conexiones bancarias durante un mes"
-          tip="Conexiones bancarias que podrías mantener un mes con todo el saldo. Cada conexión cuesta 14 créditos al mes."
-          values={packs.map((p) => <span key={p.name}>{fmtInt(p.credits / cost.bankConn)}</span>)}
         />
       </tbody>
     </table>
@@ -427,26 +424,6 @@ function Row({
         </td>
       ))}
     </tr>
-  );
-}
-
-function GroupInclusion({ group, yes }: { group: string; yes: React.ReactNode }) {
-  const items = includedAll.filter((x) => x.group === group);
-  return (
-    <>
-      <GroupRow label={group} />
-      {items.map((x) => (
-        <tr key={x.label}>
-          <td className="border-b border-line px-4 py-3.5 text-left">
-            <span className="underline decoration-line underline-offset-2">{x.label}</span>
-            <Tip text={x.tip} />
-          </td>
-          <td colSpan={packs.length} className="border-b border-line px-4 py-3.5 text-center text-[13px] font-semibold text-ink">
-            {x.value ? x.value : <>{yes} Incluido</>}
-          </td>
-        </tr>
-      ))}
-    </>
   );
 }
 
