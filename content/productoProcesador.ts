@@ -103,6 +103,66 @@ export const procesador: ProductData = {
           <rect x="156" y="178" width="96" height="26" rx="8" fill="#fff" stroke="#e4ded5"/><text x="204" y="195" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#3a2f7a">Editar</text>
         </svg>`,
       },
+      {
+        title: "Espacio de trabajo colaborativo",
+        bullets: [
+          "El asesor obtiene una visión global de las tareas por realizar para cada cliente.",
+          "Accede fácilmente a toda la documentación y su estado en un lugar centralizado y seguro.",
+          "El asesor puede, opcionalmente, dar acceso a dicho espacio a sus clientes.",
+        ],
+        media: `<svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="20" y="20" width="380" height="200" rx="12" fill="#fff" stroke="#e4ded5" stroke-width="2"/>
+          <rect x="20" y="20" width="380" height="36" rx="12" fill="#f3f0ec"/>
+          <g font-family="Manrope,sans-serif" font-size="9" font-weight="700">
+            <rect x="32" y="28" width="60" height="20" rx="10" fill="#e9e3fd"/>
+            <text x="62" y="42" text-anchor="middle" fill="#3a2f7a">Todas 32</text>
+            <g fill="#6b7280">
+              <text x="104" y="42">Borrador 2</text>
+              <text x="162" y="42">Rechazada 12</text>
+              <text x="234" y="42">Próxima 3</text>
+              <text x="294" y="42">Vencida 4</text>
+            </g>
+          </g>
+          <g font-family="Manrope,sans-serif" font-size="9" font-weight="700" fill="#6b7280">
+            <text x="48" y="72">Estatus</text>
+            <text x="196" y="72">Enviado</text>
+            <text x="256" y="72">Fecha</text>
+            <text x="314" y="72">Vencimiento</text>
+          </g>
+          <rect x="20" y="78" width="380" height="1.5" fill="#e4ded5"/>
+          <g font-family="Manrope,sans-serif" font-size="8.5" font-weight="600">
+            <rect x="20" y="84" width="380" height="28" fill="#f3f0ec"/>
+            <rect x="32" y="93" width="10" height="10" rx="2.5" fill="#fff" stroke="#d7dde6" stroke-width="1.5"/>
+            <rect x="48" y="90" width="52" height="16" rx="8" fill="#f3f0ec" stroke="#d7dde6"/>
+            <text x="74" y="101" text-anchor="middle" font-weight="700" fill="#6b7280">Borrador</text>
+            <rect x="200" y="94" width="13" height="9" rx="2" fill="#d7dde6"/>
+            <text x="256" y="101" fill="#6b7280">19/06/2024</text>
+            <text x="314" y="101" fill="#6b7280">19/06/2024</text>
+
+            <rect x="32" y="121" width="10" height="10" rx="2.5" fill="#fff" stroke="#d7dde6" stroke-width="1.5"/>
+            <rect x="48" y="118" width="52" height="16" rx="8" fill="#e9e3fd"/>
+            <text x="74" y="129" text-anchor="middle" font-weight="700" fill="#3a2f7a">Próxima</text>
+            <rect x="200" y="122" width="13" height="9" rx="2" fill="#d7dde6"/>
+            <text x="256" y="129" fill="#6b7280">19/06/2024</text>
+            <text x="314" y="129" fill="#6b7280">19/06/2024</text>
+
+            <rect x="20" y="140" width="380" height="28" fill="#f3f0ec"/>
+            <rect x="32" y="149" width="10" height="10" rx="2.5" fill="#fff" stroke="#d7dde6" stroke-width="1.5"/>
+            <rect x="48" y="146" width="58" height="16" rx="8" fill="#f8d5e4"/>
+            <text x="77" y="157" text-anchor="middle" font-weight="700" fill="#111827">Rechazada</text>
+            <rect x="200" y="150" width="13" height="9" rx="2" fill="#d7dde6"/>
+            <text x="256" y="157" fill="#6b7280">19/06/2024</text>
+            <text x="314" y="157" fill="#6b7280">19/06/2024</text>
+
+            <rect x="32" y="177" width="10" height="10" rx="2.5" fill="#fff" stroke="#d7dde6" stroke-width="1.5"/>
+            <rect x="48" y="174" width="52" height="16" rx="8" fill="#e9e3fd"/>
+            <text x="74" y="185" text-anchor="middle" font-weight="700" fill="#3a2f7a">Próxima</text>
+            <path d="M199 182.5 l14-4.5 -5 4.5 5 4.5z" fill="#15914b"/>
+            <text x="256" y="185" fill="#6b7280">19/06/2024</text>
+            <text x="314" y="185" fill="#6b7280">19/06/2024</text>
+          </g>
+        </svg>`,
+      },
     ],
   },
   a3: {
