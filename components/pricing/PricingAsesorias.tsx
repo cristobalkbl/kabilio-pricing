@@ -166,7 +166,7 @@ export function PricingAsesorias() {
             className="mt-3.5 flex flex-wrap items-center gap-5 rounded-[18px] border border-lav bg-surface p-6 transition-colors hover:border-brand hover:bg-brand-100 sm:p-7"
           >
             <div className="min-w-[220px] flex-1">
-              <h2 className="text-xl font-bold">¿Necesitas más de 250.000 créditos?</h2>
+              <h2 className="text-xl font-bold">¿Necesitas más créditos?</h2>
               <p className="mt-1.5 text-[14px] leading-snug text-ink-muted">
                 Contacta con ventas para ampliar tu saldo.
               </p>
@@ -220,8 +220,34 @@ export function PricingAsesorias() {
             </div>
           </div>
 
+          {/* Créditos que consume cada acción */}
+          <div className="mt-14 overflow-hidden rounded-[18px] border border-line bg-surface">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1.5 border-b border-line bg-surface2 px-6 py-4">
+              <h3 className="text-xl font-bold">Créditos que consume cada acción</h3>
+              <p className="text-[13px] text-ink-muted">
+                El consumo es el mismo en todos los planes; solo cambia el precio por crédito.
+              </p>
+            </div>
+            {creditActions.map((a, i) => (
+              <div
+                key={a.label}
+                className={`flex items-center justify-between gap-4 px-6 py-3.5 text-sm ${
+                  i < creditActions.length - 1 ? "border-b border-line" : ""
+                }`}
+              >
+                <span>{a.label}</span>
+                <span className="whitespace-nowrap font-bold [font-variant-numeric:tabular-nums]">
+                  {a.credits}
+                  <span className="ml-1 text-[0.62em] font-medium text-ink-muted">
+                    {a.credits === "1" ? "crédito" : "créditos"}
+                  </span>
+                </span>
+              </div>
+            ))}
+          </div>
+
           {/* Comparativa plegable */}
-          <div className="mt-16">
+          <div className="mt-14">
             <div className={`relative ${collapsed ? "max-h-[540px] overflow-hidden" : ""}`}>
               <ComparisonTable total={total} billed={billed} />
               {collapsed && (
@@ -237,37 +263,6 @@ export function PricingAsesorias() {
                 Ver todo
               </button>
             )}
-          </div>
-
-          {/* Créditos consumidos por acción */}
-          <div className="mt-14">
-            <div className="mb-6 text-center">
-              <span className="mb-3.5 inline-block rounded-full bg-brand-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-brand">
-                Modelo de créditos
-              </span>
-              <h3 className="text-[25px] font-bold tracking-tight">Créditos que consume cada acción</h3>
-              <p className="mx-auto mt-2 max-w-[560px] text-sm text-ink-muted">
-                El consumo es el mismo en todos los planes; solo cambia el precio por crédito.
-              </p>
-            </div>
-            <div className="mx-auto max-w-[620px] overflow-hidden rounded-[18px] border border-line bg-surface">
-              {creditActions.map((a, i) => (
-                <div
-                  key={a.label}
-                  className={`flex items-center justify-between gap-4 px-6 py-3.5 ${
-                    i < creditActions.length - 1 ? "border-b border-line" : ""
-                  }`}
-                >
-                  <span className="text-sm">{a.label}</span>
-                  <span className="whitespace-nowrap font-bold [font-variant-numeric:tabular-nums]">
-                    {a.credits}
-                    <span className="ml-1 text-[0.62em] font-medium text-ink-muted">
-                      {a.credits === "1" ? "crédito" : "créditos"}
-                    </span>
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Configurador */}
@@ -490,7 +485,7 @@ function Configurator() {
             </div>
             <div className="mb-[18px] text-[15px] text-ink-muted">
               {enterprise ? (
-                "Más de 250.000 créditos al año"
+                "Para grandes volúmenes"
               ) : (
                 <>
                   <b className="text-lg text-ink">{eur(match!.price)}</b> / año ·{" "}
