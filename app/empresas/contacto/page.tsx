@@ -1,5 +1,5 @@
 import { EmpresasContactForm } from "@/components/empresas/EmpresasContactForm";
-import { WebinarSection } from "@/components/empresas/WebinarSection";
+import { ContactAsideBlocks } from "@/components/empresas/ContactAsideBlocks";
 import { Button } from "@/components/Button";
 import { buildMetadata } from "@/lib/seo";
 
@@ -46,6 +46,9 @@ export default function ContactoEmpresasPage() {
               </p>
             </div>
 
+            {/* Video academy + próximos webinars */}
+            <ContactAsideBlocks />
+
             <div className="mt-4 rounded-2xl border border-line bg-surface p-6">
               <p className="text-sm font-semibold text-ink">¿Necesitas ayuda?</p>
               <p className="mt-1 text-sm text-ink-soft">
@@ -64,9 +67,6 @@ export default function ContactoEmpresasPage() {
             <EmpresasContactForm />
           </div>
         </div>
-
-        {/* Próximos webinars */}
-        <WebinarSection />
       </div>
     </section>
   );
