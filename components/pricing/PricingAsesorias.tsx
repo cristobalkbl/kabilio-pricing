@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { RawSvg } from "@/components/producto/RawSvg";
 import {
+  type Pack,
   packs,
   cost,
   creditActions,
@@ -39,9 +40,93 @@ const actionMoney = (n: number): React.ReactNode =>
 // Servicio y soporte: se muestra como apartado ligero, no en la tabla comparativa.
 const serviceItems = includedAll.filter((x) => x.group === "Servicio y soporte");
 
-// Etiqueta de precio unitario: "18 céntimos / crédito" (en € si llegara a 1 € o más).
-const creditLabel = (unit: number) =>
-  unit >= 1 ? `${eur2(unit)} / crédito` : `${centsInt(unit)} céntimos / crédito`;
+// Precio por crédito destacado: la cifra grande y la unidad al lado, sin píldora
+// (en € si el crédito llegara a costar 1 € o más).
+function CreditPrice({ unit, tone }: { unit: number; tone: Tone }) {
+  const euros = unit >= 1;
+  return (
+    <div className="mt-4 flex items-baseline gap-1.5">
+      <span className={`text-[26px] font-bold leading-none tracking-tight ${tone.accent}`}>
+        {euros ? eur2(unit) : centsInt(unit)}
+      </span>
+      {!euros && <span className={`text-[13.5px] font-bold ${tone.accent}`}>céntimos</span>}
+      <span className={`text-[13px] ${tone.soft}`}>/ crédito</span>
+    </div>
+  );
+}
+
+// Crédito adicional cuando te pasas del saldo del pack (mismo importe que la FAQ).
+const EXTRA_UNIT = 0.2;
+// Tramo a medida por encima del pack mayor: el precio por crédito baja de forma
+// lineal desde el del pack mayor hasta CUSTOM_UNIT a partir de CUSTOM_FROM créditos.
+const CUSTOM_FROM = 250000;
+const CUSTOM_UNIT = 0.07;
+
+// Coste anual de cubrir `annual` créditos con un pack, contando los extra a 0,20 €.
+const packCost = (p: Pack, annual: number) => p.price + Math.max(0, annual - p.credits) * EXTRA_UNIT;
+
+// Precio por crédito orientativo de un plan a medida.
+const customUnit = (annual: number) => {
+  const top = packs[packs.length - 1];
+  if (annual >= CUSTOM_FROM) return CUSTOM_UNIT;
+  const t = (annual - top.credits) / (CUSTOM_FROM - top.credits);
+  return top.unit + t * (CUSTOM_UNIT - top.unit);
+};
+
+// Escala de color de las tarjetas, del plan más pequeño al más grande.
+type Tone = {
+  card: string;
+  name: string;
+  soft: string;
+  rule: string;
+  accent: string;
+  cta: string;
+  light?: boolean;
+};
+
+const TONES: Tone[] = [
+  {
+    card: "border-line bg-surface",
+    name: "text-ink-muted",
+    accent: "text-brand",
+    soft: "text-ink-muted",
+    rule: "border-line",
+    cta: "bg-ink text-white hover:bg-brand",
+  },
+  {
+    card: "border-line bg-surface2",
+    name: "text-ink-muted",
+    accent: "text-brand",
+    soft: "text-ink-muted",
+    rule: "border-line",
+    cta: "bg-ink text-white hover:bg-brand",
+  },
+  {
+    card: "border-lav bg-brand-100",
+    name: "text-brand",
+    accent: "text-brand",
+    soft: "text-ink-muted",
+    rule: "border-lav",
+    cta: "bg-ink text-white hover:bg-brand",
+  },
+  {
+    card: "border-brand bg-lav",
+    name: "text-brand",
+    accent: "text-brand",
+    soft: "text-brand",
+    rule: "border-brand/25",
+    cta: "bg-ink text-white hover:bg-brand",
+  },
+  {
+    card: "border-ink bg-ink text-white",
+    light: true,
+    accent: "text-white",
+    name: "text-white/70",
+    soft: "text-white/70",
+    rule: "border-white/20",
+    cta: "bg-white text-ink hover:bg-brand-100",
+  },
+];
 
 const BILLING: { splits: number; mult: number; label: string; badge?: string }[] = [
   { splits: 1, mult: 1, label: "Pago único", badge: "Ahorro" },
@@ -56,12 +141,14 @@ const ACTION_COSTS: { key: keyof typeof cost; label: string }[] = [
   { key: "bankConn", label: "Conexión bancaria (al mes)" },
 ];
 
-function Tip({ text }: { text: string }) {
+function Tip({ text, light }: { text: string; light?: boolean }) {
   return (
     <span
       tabIndex={0}
       title={text}
-      className="ml-1.5 inline-flex h-[15px] w-[15px] cursor-help items-center justify-center rounded-full border border-ink-muted align-middle text-[9px] font-bold not-italic text-ink-muted"
+      className={`ml-1.5 inline-flex h-[15px] w-[15px] cursor-help items-center justify-center rounded-full border align-middle text-[9px] font-bold not-italic ${
+        light ? "border-white/60 text-white/80" : "border-ink-muted text-ink-muted"
+      }`}
     >
       i
     </span>
@@ -70,7 +157,7 @@ function Tip({ text }: { text: string }) {
 
 export function PricingAsesorias() {
   const [splits, setSplits] = useState<number>(1);
-  const [collapsed, setCollapsed] = useState(true);
+  const [showActions, setShowActions] = useState(false);
   const bill = BILLING.find((b) => b.splits === splits)!;
   const mult = bill.mult;
 
@@ -86,11 +173,10 @@ export function PricingAsesorias() {
             Tarifas
           </span>
           <h1 className="mx-auto text-[clamp(32px,5vw,46px)] font-extrabold leading-[1.1]">
-            La tecnología más avanzada a un precio asequible
+            Planes y precios para asesorías
           </h1>
           <p className="mx-auto mt-4 max-w-[620px] text-lg text-ink-muted">
-            Un único saldo de créditos compartido entre todos los productos Kabilio. Sin licencias
-            por usuario, sin módulos cerrados: los créditos se descuentan solo cuando se utilizan.
+            Un único saldo de créditos compartido para todos tus productos en Kabilio.
           </p>
         </div>
       </header>
@@ -122,42 +208,38 @@ export function PricingAsesorias() {
 
           {/* Tarjetas de plan */}
           <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-5">
-            {packs.map((p) => {
+            {packs.map((p, i) => {
               const t = total(p.price);
+              const tone = TONES[Math.min(i, TONES.length - 1)];
               return (
-                <div
-                  key={p.name}
-                  className={`flex flex-col rounded-[18px] border border-line p-6 ${
-                    p.soft ? "bg-surface2" : "bg-surface"
-                  }`}
-                >
-                  <h2 className={`text-xl font-bold ${p.soft ? "text-ink-muted" : ""}`}>{p.name}</h2>
-                  <p className="mt-2 min-h-[60px] text-[13.5px] leading-snug text-ink-muted">{p.desc}</p>
-                  <div className="text-[30px] font-bold leading-none tracking-tight">{eur(t)}</div>
-                  <div className="mt-1.5 min-h-[18px] text-[13px] text-ink-muted">{billed(t)}</div>
-                  <div className="mb-7 mt-4 text-sm text-ink-muted">
-                    <b className="font-bold text-ink">{fmtInt(p.credits)}</b> créditos
+                <div key={p.name} className={`flex flex-col rounded-[18px] border p-6 ${tone.card}`}>
+                  <h2 className={`text-[15px] font-bold uppercase tracking-wide ${tone.name}`}>{p.name}</h2>
+                  <div className="mt-3.5 text-[30px] font-bold leading-none tracking-tight">
+                    {fmtInt(p.credits)}
+                  </div>
+                  <div className={`mt-1 text-[13px] font-semibold ${tone.soft}`}>
+                    créditos
                     <Tip
+                      light={tone.light}
                       text={`Equivale a ~${fmtInt(p.credits / cost.invoice)} facturas o ~${fmtInt(
                         p.credits / cost.reconcile
                       )} transacciones conciliadas, si usaras todo el saldo en una sola función.`}
                     />
-                    <div className="mt-2.5">
-                      <span className="inline-flex items-center rounded-full bg-brand-100 px-2.5 py-1 text-[12px] font-bold text-brand">
-                        {creditLabel(p.unit * mult)}
-                      </span>
-                    </div>
+                  </div>
+                  <CreditPrice unit={p.unit * mult} tone={tone} />
+                  <div className={`mb-6 mt-5 border-t pt-3.5 ${tone.rule}`}>
+                    <div className="text-[21px] font-bold leading-none tracking-tight">{eur(t)}</div>
+                    <div className={`mt-1.5 text-[12.5px] ${tone.soft}`}>{billed(t)}</div>
                   </div>
                   <Link
                     href="/solicita-una-demo"
-                    className="mt-auto block rounded-[10px] bg-ink py-3 text-center text-[13.5px] font-semibold text-white transition-colors hover:bg-brand"
+                    className={`mt-auto block rounded-[10px] py-3 text-center text-[13.5px] font-semibold transition-colors ${tone.cta}`}
                   >
                     Empezar ahora
                   </Link>
                 </div>
               );
             })}
-
           </div>
 
           {/* Plan a medida para grandes volúmenes (debajo de los planes) */}
@@ -185,34 +267,43 @@ export function PricingAsesorias() {
               </h3>
             </div>
             <div className="overflow-hidden rounded-[18px] border border-line bg-surface">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+              <div className="grid sm:grid-cols-2">
                 {includedProducts.map((it) => (
                   <div key={it.label} className="border-b border-r border-line p-7 last:border-r-0">
                     <span className="mb-[18px] inline-flex h-[46px] w-[46px] items-center justify-center rounded-xl bg-brand-100 text-brand [&_svg]:h-[23px] [&_svg]:w-[23px]">
                       <RawSvg html={it.icon} />
                     </span>
-                    <h4 className="mb-2 text-base font-bold">
-                      {it.label}
-                      {it.value ? ` · ${it.value}` : ""}
+                    <h4 className="mb-2 flex flex-wrap items-center gap-2 text-base font-bold">
+                      <span>
+                        {it.label}
+                        {it.value ? ` · ${it.value}` : ""}
+                      </span>
+                      {it.soon && (
+                        <span className="rounded-full bg-pink px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-ink">
+                          Próximamente
+                        </span>
+                      )}
                     </h4>
                     <p className="text-[13px] leading-relaxed text-ink-muted">{it.desc}</p>
                   </div>
                 ))}
               </div>
 
-              {/* Servicio y soporte: pie del mismo bloque, con menos peso */}
-              <div className="bg-surface2 px-7 py-5">
-                <p className="text-[11.5px] font-bold uppercase tracking-wider text-ink-muted">
+              {/* Servicio y soporte: pie del mismo bloque */}
+              <div className="bg-surface2 px-7 py-8">
+                <h4 className="text-[19px] font-bold tracking-tight">
                   Servicio y soporte, incluido en todos los planes
-                </p>
-                <ul className="mt-2.5 grid gap-x-7 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
+                </h4>
+                <ul className="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2">
                   {serviceItems.map((it) => (
-                    <li key={it.label} className="flex items-start gap-2 text-[13px] text-ink-muted">
-                      <span className="mt-[1px] font-bold text-brand">✓</span>
-                      <span>
-                        {it.label}
-                        <Tip text={it.tip} />
+                    <li key={it.label} className="flex items-start gap-3">
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-100 text-[12px] font-extrabold text-brand">
+                        ✓
                       </span>
+                      <div>
+                        <p className="text-[15px] font-bold leading-snug">{it.label}</p>
+                        <p className="mt-1 text-[13.5px] leading-relaxed text-ink-muted">{it.tip}</p>
+                      </div>
                     </li>
                   ))}
                 </ul>
@@ -246,21 +337,35 @@ export function PricingAsesorias() {
             ))}
           </div>
 
-          {/* Comparativa plegable */}
+          {/* Condiciones del saldo de créditos */}
+          <h3 className="mb-6 mt-12 text-center text-[26px] font-bold tracking-tight">Condiciones</h3>
+          <div className="grid gap-3.5 sm:grid-cols-3">
+            {conditions.map((c) => (
+              <div key={c.title} className="rounded-[18px] border border-line bg-surface p-5">
+                <span className="mb-3.5 inline-flex h-[38px] w-[38px] items-center justify-center rounded-xl bg-brand-100 text-brand [&_svg]:h-5 [&_svg]:w-5">
+                  <RawSvg html={c.icon} />
+                </span>
+                <h4 className="mb-1.5 text-[15px] font-bold">{c.title}</h4>
+                <p className="text-sm text-ink-muted">{c.text}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Comparativa: el coste por acción queda a medias hasta desplegarlo */}
           <div className="mt-14">
-            <div className={`relative ${collapsed ? "max-h-[540px] overflow-hidden" : ""}`}>
-              <ComparisonTable total={total} billed={billed} />
-              {collapsed && (
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[170px] bg-gradient-to-b from-transparent to-bg" />
+            <div className={`relative ${showActions ? "" : "max-h-[290px] overflow-hidden"}`}>
+              <ComparisonTable />
+              {!showActions && (
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-b from-transparent to-bg" />
               )}
             </div>
-            {collapsed && (
+            {!showActions && (
               <button
                 type="button"
-                onClick={() => setCollapsed(false)}
+                onClick={() => setShowActions(true)}
                 className="mx-auto mt-[18px] block rounded-[10px] bg-ink px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand"
               >
-                Ver todo
+                Ver coste por acción
               </button>
             )}
           </div>
@@ -270,26 +375,9 @@ export function PricingAsesorias() {
         </div>
       </section>
 
-      {/* Condiciones + FAQ */}
+      {/* FAQ */}
       <div className="mt-2 border-t border-line bg-surface">
         <section className="py-16">
-          <div className="container">
-            <h2 className="mb-7 text-center text-[26px] font-bold tracking-tight">Condiciones</h2>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {conditions.map((c) => (
-                <div key={c.title} className="rounded-2xl border border-line bg-surface p-5">
-                  <span className="mb-3.5 inline-flex h-[38px] w-[38px] items-center justify-center rounded-xl bg-brand-100 text-brand [&_svg]:h-5 [&_svg]:w-5">
-                    <RawSvg html={c.icon} />
-                  </span>
-                  <h3 className="mb-1.5 text-[15px] font-bold">{c.title}</h3>
-                  <p className="text-sm text-ink-muted">{c.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="pb-16">
           <div className="container max-w-[760px]">
             <h2 className="mb-7 text-center text-[26px] font-bold tracking-tight">Preguntas frecuentes</h2>
             <div className="mx-auto max-w-[760px]">
@@ -297,7 +385,9 @@ export function PricingAsesorias() {
                 <details key={f.q} className="group border-b border-line">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-[18px] text-base font-bold [&::-webkit-details-marker]:hidden">
                     {f.q}
-                    <span className="text-xl font-bold text-brand transition-transform group-open:rotate-45">+</span>
+                    <span className="text-xl font-bold text-brand transition-transform group-open:rotate-45">
+                      +
+                    </span>
                   </summary>
                   <p className="pb-[18px] text-[14.5px] leading-relaxed text-ink-muted">{f.a}</p>
                 </details>
@@ -311,13 +401,7 @@ export function PricingAsesorias() {
 }
 
 /* ---------- Tabla comparativa ---------- */
-function ComparisonTable({
-  total,
-  billed,
-}: {
-  total: (price: number) => number;
-  billed: (t: number) => string;
-}) {
+function ComparisonTable() {
   return (
     <table className="w-full border-collapse bg-surface text-sm">
       <thead>
@@ -325,20 +409,14 @@ function ComparisonTable({
           <th className="sticky top-0 z-10 w-[38%] bg-surface px-4 pb-4 pt-[18px] text-left align-bottom shadow-[inset_0_-2px_0_theme(colors.line)]">
             <span className="text-xl font-bold">Compara los planes</span>
           </th>
-          {packs.map((p) => {
-            const t = total(p.price);
-            return (
-              <th
-                key={p.name}
-                className="sticky top-0 z-10 border-l border-line bg-surface px-4 pb-4 pt-[18px] align-bottom shadow-[inset_0_-2px_0_theme(colors.line)]"
-              >
-                <span className="block text-[15px] font-bold">{p.name}</span>
-                <span className="mt-1 block text-xs font-medium text-ink-muted">
-                  {eur(t)} · {billed(t)}
-                </span>
-              </th>
-            );
-          })}
+          {packs.map((p) => (
+            <th
+              key={p.name}
+              className="sticky top-0 z-10 border-l border-line bg-surface px-4 pb-4 pt-[18px] align-bottom shadow-[inset_0_-2px_0_theme(colors.line)]"
+            >
+              <span className="block text-[15px] font-bold">{p.name}</span>
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
@@ -362,24 +440,25 @@ function ComparisonTable({
 
         <GroupRow label="Coste por acción" />
         <Row
-          label="Por documento contabilizado en el procesador"
+          label="Por documento procesado"
           tip="Coste de contabilizar un documento en el procesador. Cuesta 1 crédito."
-          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(cost.invoice, p.price, p.credits))}</span>)}
+          values={packs.map((p) => (
+            <span key={p.name}>{actionMoney(actionEuro(cost.invoice, p.price, p.credits))}</span>
+          ))}
         />
         <Row
           label="Por transacción reconciliada"
           tip="Coste de conciliar un movimiento bancario. Cuesta 0,4 créditos."
-          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(cost.reconcile, p.price, p.credits))}</span>)}
+          values={packs.map((p) => (
+            <span key={p.name}>{actionMoney(actionEuro(cost.reconcile, p.price, p.credits))}</span>
+          ))}
         />
         <Row
           label="Por conexión bancaria al mes"
           tip="Coste de mantener una conexión bancaria durante un mes. Cuesta 14 créditos."
-          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(cost.bankConn, p.price, p.credits))}</span>)}
-        />
-        <Row
-          label="Por documento escaneado en gestor"
-          tip="Coste de escanear un documento en el gestor documental. Cuesta 1 crédito."
-          values={packs.map((p) => <span key={p.name}>{actionMoney(actionEuro(1, p.price, p.credits))}</span>)}
+          values={packs.map((p) => (
+            <span key={p.name}>{actionMoney(actionEuro(cost.bankConn, p.price, p.credits))}</span>
+          ))}
         />
       </tbody>
     </table>
@@ -430,18 +509,55 @@ function Configurator() {
   const [recon, setRecon] = useState(25);
   const [conn, setConn] = useState(1);
 
-  const annual = Math.round((invoices * cost.invoice + recon * cost.reconcile + conn * cost.bankConn) * clients * 12);
-  // El plan a medida (y "el mejor precio") solo a partir de 250.000 créditos/año.
-  // Por debajo, recomendamos el pack que encaje o el mayor disponible.
-  const enterprise = annual > 250000;
-  const match = enterprise ? undefined : packs.find((p) => p.credits >= annual) ?? packs[packs.length - 1];
+  const annual = Math.round(
+    (invoices * cost.invoice + recon * cost.reconcile + conn * cost.bankConn) * clients * 12
+  );
+  const top = packs[packs.length - 1];
+  // Por encima del pack mayor no hay pack que llegue: plan a medida.
+  const custom = annual > top.credits;
+  // Si no, gana el pack más barato contando los créditos extra a 0,20 €: así, si
+  // te pasas un poco del saldo, no te empujamos al pack siguiente.
+  const match = custom
+    ? undefined
+    : packs.reduce((a, b) => (packCost(b, annual) < packCost(a, annual) ? b : a));
+  const extra = match ? Math.max(0, annual - match.credits) : 0;
+  const yearCost = match ? packCost(match, annual) : Math.round(annual * customUnit(annual));
+  const unit = match ? match.unit : customUnit(annual);
   const pct = match ? Math.min(100, Math.round((annual / match.credits) * 100)) : 100;
 
   const sliders = [
-    { label: "Clientes en cartera", value: clients, set: setClients, min: 1, max: 300, step: 1 },
-    { label: "Facturas al mes por cliente", value: invoices, set: setInvoices, min: 1, max: 150, step: 1 },
-    { label: "Movimientos conciliados por cliente / mes", value: recon, set: setRecon, min: 0, max: 200, step: 5 },
-    { label: "Conexiones vivas por cliente", value: conn, set: setConn, min: 0, max: 10, step: 1 },
+    {
+      label: "Clientes en cartera",
+      value: clients,
+      set: setClients,
+      min: 1,
+      max: 300,
+      step: 1,
+    },
+    {
+      label: "Facturas al mes por cliente",
+      value: invoices,
+      set: setInvoices,
+      min: 1,
+      max: 150,
+      step: 1,
+    },
+    {
+      label: "Movimientos conciliados por cliente / mes",
+      value: recon,
+      set: setRecon,
+      min: 0,
+      max: 200,
+      step: 5,
+    },
+    {
+      label: "Conexiones vivas por cliente",
+      value: conn,
+      set: setConn,
+      min: 0,
+      max: 10,
+      step: 1,
+    },
   ];
 
   return (
@@ -481,66 +597,98 @@ function Configurator() {
               Tu plan recomendado
             </div>
             <div className="mb-0.5 mt-1 text-[32px] font-bold tracking-tight text-brand">
-              {enterprise ? "Plan a medida" : match!.name}
+              {custom ? "Plan a medida" : match!.name}
             </div>
             <div className="mb-[18px] text-[15px] text-ink-muted">
-              {enterprise ? (
-                "Para grandes volúmenes"
+              {custom ? (
+                <>Más de {fmtInt(top.credits)} créditos al año</>
               ) : (
                 <>
-                  <b className="text-lg text-ink">{eur(match!.price)}</b> / año ·{" "}
-                  {fmtInt(match!.credits)} créditos
+                  <b className="text-lg text-ink">{eur(match!.price)}</b> / año · {fmtInt(match!.credits)}{" "}
+                  créditos
                 </>
               )}
             </div>
             <div className="my-1.5 h-2 overflow-hidden rounded-full bg-surface2">
-              <span className="block h-full rounded-full bg-ink transition-[width] duration-500" style={{ width: `${pct}%` }} />
+              <span
+                className="block h-full rounded-full bg-ink transition-[width] duration-500"
+                style={{ width: `${pct}%` }}
+              />
             </div>
             <div className="flex justify-between border-t border-line py-2.5 text-sm">
               <span>Consumo anual estimado</span>
               <span className="font-semibold">{fmtInt(annual)} créditos</span>
             </div>
+            {extra > 0 && (
+              <div className="flex justify-between border-t border-line py-2.5 text-sm">
+                <span>
+                  Créditos extra
+                  <Tip
+                    text={`Los créditos que se pasan del saldo del pack se facturan a ${eur2(
+                      EXTRA_UNIT
+                    )} cada uno.`}
+                  />
+                </span>
+                <span className="font-semibold">
+                  {fmtInt(extra)} · {eur(extra * EXTRA_UNIT)}
+                </span>
+              </div>
+            )}
             <div className="flex justify-between border-t border-line py-2.5 text-sm">
-              <span>Precio efectivo / crédito</span>
+              <span>Coste anual estimado</span>
               <span className="font-semibold">
-                {enterprise ? "El mejor precio" : eur2(match!.price / match!.credits)}
+                {custom ? "~" : ""}
+                {eur(yearCost)}
               </span>
             </div>
-            {!enterprise && (
-              <details className="group border-t border-line">
-                <summary className="flex cursor-pointer list-none items-center justify-between py-2.5 text-sm font-medium [&::-webkit-details-marker]:hidden">
-                  Coste por acción
-                  <span className="text-lg font-bold text-brand transition-transform group-open:rotate-45">+</span>
-                </summary>
-                <div className="pb-1.5">
-                  {ACTION_COSTS.map((a) => (
-                    <div key={a.key} className="flex items-center justify-between py-1.5 text-[13px]">
-                      <span className="text-ink-muted">
-                        {a.label}
-                        <Tip
-                          text={`${String(cost[a.key]).replace(".", ",")} ${
-                            cost[a.key] === 1 ? "crédito" : "créditos"
-                          } × ${eur3(match!.unit)} por crédito`}
-                        />
-                      </span>
-                      <span className="font-semibold">{eur3(cost[a.key] * match!.unit)}</span>
-                    </div>
-                  ))}
-                </div>
-              </details>
-            )}
+            <div className="flex justify-between border-t border-line py-2.5 text-sm">
+              <span>Precio por crédito</span>
+              <span className="font-semibold">
+                {custom ? "~" : ""}
+                {centsInt(unit)} céntimos
+              </span>
+            </div>
+            <details className="group border-t border-line">
+              <summary className="flex cursor-pointer list-none items-center justify-between py-2.5 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                Coste por acción
+                <span className="text-lg font-bold text-brand transition-transform group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <div className="pb-1.5">
+                {ACTION_COSTS.map((a) => (
+                  <div key={a.key} className="flex items-center justify-between py-1.5 text-[13px]">
+                    <span className="text-ink-muted">
+                      {a.label}
+                      <Tip
+                        text={`${String(cost[a.key]).replace(".", ",")} ${
+                          cost[a.key] === 1 ? "crédito" : "créditos"
+                        } × ${eur3(unit)} por crédito`}
+                      />
+                    </span>
+                    <span className="font-semibold">{eur3(cost[a.key] * unit)}</span>
+                  </div>
+                ))}
+              </div>
+            </details>
             <Link
-              href={enterprise ? "/contacto" : "/solicita-una-demo"}
+              href={custom ? "/contacto" : "/solicita-una-demo"}
               className="mt-[18px] block rounded-[10px] bg-ink py-3.5 text-center font-semibold text-white transition-colors hover:bg-brand"
             >
-              {enterprise ? "Contáctanos" : `Empezar con ${match!.name}`}
+              {custom ? "Contáctanos" : `Empezar con ${match!.name}`}
             </Link>
             <p className="mt-3.5 text-[12.5px] leading-snug text-ink-muted">
-              {enterprise
-                ? "Tu consumo supera los 250.000 créditos/año: te preparamos un plan a medida."
-                : `${fmtInt(clients)} clientes · ${invoices} facturas, ${recon} conciliaciones/mes y ${conn} conexiones vivas por cliente.${
-                    pct > 90 ? " Vas justo de saldo." : ""
-                  }`}
+              {custom
+                ? `Tu consumo supera el pack mayor: te preparamos un plan a medida, con el precio por crédito bajando hasta ${centsInt(
+                    CUSTOM_UNIT
+                  )} céntimos desde ${fmtInt(CUSTOM_FROM)} créditos al año. Precio orientativo.`
+                : extra > 0
+                  ? `Te pasas ${fmtInt(extra)} créditos del saldo: se facturan a ${eur2(
+                      EXTRA_UNIT
+                    )} y aún así sale más barato que el pack siguiente.`
+                  : `${fmtInt(clients)} clientes · ${invoices} facturas, ${recon} conciliaciones/mes y ${conn} conexiones vivas por cliente.${
+                      pct > 90 ? " Vas justo de saldo." : ""
+                    }`}
             </p>
           </div>
         </div>

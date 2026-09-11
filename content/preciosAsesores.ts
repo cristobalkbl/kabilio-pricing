@@ -5,16 +5,14 @@ export type Pack = {
   price: number; // precio anual base (pago único)
   credits: number;
   unit: number; // precio por crédito
-  desc: string;
-  soft?: boolean;
 };
 
 export const packs: Pack[] = [
-  { name: "Esencial", price: 540, credits: 3000, unit: 0.18, desc: "Para despachos que empiezan con Kabilio." },
-  { name: "Básico", price: 1548, credits: 12000, unit: 0.129, desc: "Para despachos pequeños ya en marcha." },
-  { name: "Avanzado", price: 2748, credits: 24000, unit: 0.1145, desc: "Para despachos en crecimiento que escalan volumen." },
-  { name: "Pro", price: 4308, credits: 48000, unit: 0.08975, desc: "Para despachos consolidados y gran volumen." },
-  { name: "Corporativo", price: 7998, credits: 100000, unit: 0.07998, desc: "Para grandes despachos con un volumen muy alto." },
+  { name: "Esencial", price: 540, credits: 3000, unit: 0.18 },
+  { name: "Básico", price: 1548, credits: 12000, unit: 0.129 },
+  { name: "Avanzado", price: 2748, credits: 24000, unit: 0.1145 },
+  { name: "Pro", price: 4308, credits: 48000, unit: 0.08975 },
+  { name: "Corporativo", price: 7998, credits: 100000, unit: 0.07998 },
 ];
 
 // Coste en créditos por acción.
@@ -22,15 +20,13 @@ export const cost = { invoice: 1, reconcile: 0.4, bankConn: 14, agentAction: 5, 
 
 // Créditos que consume cada acción (iguales en todos los planes).
 export const creditActions: { label: string; credits: string }[] = [
-  { label: "Por documento contabilizado en el procesador", credits: "1" },
+  { label: "Por documento procesado", credits: "1" },
   { label: "Por transacción reconciliada", credits: "0,4" },
   { label: "Por conexión bancaria al mes", credits: "14" },
-  { label: "Por documento subido al gestor documental", credits: "0" },
-  { label: "Por documento escaneado en gestor", credits: "1" },
 ];
 
 // Productos donde gastar los créditos (grid "Incluido en todos los planes").
-export const includedProducts: { label: string; desc: string; value?: string; icon: string }[] = [
+export const includedProducts: { label: string; desc: string; value?: string; soon?: boolean; icon: string }[] = [
   {
     label: "Procesador",
     desc: "Procesa y digitaliza automáticamente las facturas de tus clientes.",
@@ -49,6 +45,7 @@ export const includedProducts: { label: string; desc: string; value?: string; ic
   {
     label: "Gestor Documental",
     desc: "Almacena y organiza la documentación de tus clientes.",
+    soon: true,
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>`,
   },
 ];
