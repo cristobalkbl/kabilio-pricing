@@ -1,3 +1,63 @@
+/* Aeonik, la tipografía de kabilio.es. Los .woff2 son los que sirve Framer
+   para el sitio actual; si esas URLs dejaran de responder, la familia cae a
+   Manrope (declarada como siguiente en la pila de Tailwind).
+   Aeonik no tiene 600 ni 800: el navegador resuelve 600 con Bold y 800 con Black. */
+@font-face {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://framerusercontent.com/assets/vnaL9rBM6b5S3aWm54I260AHU.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Aeonik";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://framerusercontent.com/assets/1pjMA2T8wa2GLdfwWNqyrdqtFA.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://framerusercontent.com/assets/k5HykTtyg5skn7str4Xse7JNbVw.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://framerusercontent.com/assets/QIWSpAUoDysYEeF0fHJ5o286yd0.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Aeonik";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://framerusercontent.com/assets/57sIuukQWTyd1bCDBw0pXPtBLc.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Aeonik";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("https://framerusercontent.com/assets/D5HVxRvLM807b0BCdbn6sJzDVT0.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Aeonik";
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("https://framerusercontent.com/assets/tattxRFE7rsIxOeCpJ6dEHIzvTo.woff2") format("woff2");
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

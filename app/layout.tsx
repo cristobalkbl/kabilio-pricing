@@ -36,6 +36,24 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={manrope.variable}>
+      <head>
+        {/* Aeonik se sirve desde el CDN de Framer (ver @font-face en globals.css). */}
+        <link rel="preconnect" href="https://framerusercontent.com" crossOrigin="" />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="https://framerusercontent.com/assets/vnaL9rBM6b5S3aWm54I260AHU.woff2"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="https://framerusercontent.com/assets/QIWSpAUoDysYEeF0fHJ5o286yd0.woff2"
+          crossOrigin=""
+        />
+      </head>
       <body className="flex min-h-screen flex-col">
         <ChromeGate header={<Header />} footer={<Footer />}>
           {children}

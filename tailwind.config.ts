@@ -42,7 +42,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        sans: ["Aeonik", "var(--font-manrope)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         xl: "14px",
