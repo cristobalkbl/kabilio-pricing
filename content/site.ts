@@ -10,6 +10,8 @@ export const site = {
     "Kabilio automatiza la conciliación bancaria y el procesamiento de facturas con IA para que asesorías y gestorías en España trabajen más rápido y con menos errores.",
   ogImage: "/og-image.png",
   phone: "+34 932 20 27 35",
+  // Contacto comercial que se muestra en las páginas de contacto.
+  salesEmail: "soporte.comercial@kabilio.ai",
   address: "Numància 164-168, planta 4 · 08029 Barcelona",
   loginUrl: "https://app.kabilio.ai/",
   social: {

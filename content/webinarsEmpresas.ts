@@ -7,6 +7,10 @@
 // TODO: apuntar a la URL real del calendario cuando exista.
 export const webinarsCalendarHref = "/recursos";
 
+// Colección de la video academy en el centro de ayuda.
+export const academyHref =
+  "https://help.kabilio.es/es/collections/1459848-video-academy-kabilio-empresas";
+
 export const WEBINAR_TITLE = "Presentación de Kabilio para empresas";
 
 export type Webinar = { weekday: string; day: string; month: string; time: string };
@@ -19,10 +23,7 @@ export const webinars: Webinar[] = [
 
 // Vídeos destacados de la academy, con su duración.
 export const academyVideos: { title: string; length: string }[] = [
-  { title: "Emite tu primera factura con Verifactu", length: "4 min" },
-  { title: "Sube tus gastos y que lleguen a tu asesoría", length: "3 min" },
-  { title: "Conecta tu banco y controla la tesorería", length: "5 min" },
+  { title: "Emite tu primera factura con Verifactu", length: "2 min" },
+  { title: "Sube tus gastos y que lleguen a tu asesoría", length: "2 min" },
+  { title: "Conecta tu banco y controla la tesorería", length: "2 min" },
 ];
-
-// Resumen que se muestra sobre la miniatura del reproductor.
-export const academyMeta = { count: "12 vídeos", length: "3-6 min cada uno" } as const;

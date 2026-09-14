@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { academyMeta, academyVideos, webinarsCalendarHref } from "@/content/webinarsEmpresas";
-import { site } from "@/content/site";
+import { academyHref, academyVideos, webinarsCalendarHref } from "@/content/webinarsEmpresas";
 
 // Bloques de la columna de información de /empresas/contacto: la video academy
 // y el calendario de webinars.
@@ -15,31 +14,7 @@ export function ContactAsideBlocks() {
 
 function VideoAcademyCard() {
   return (
-    <article className="mt-4 overflow-hidden rounded-2xl border border-line bg-surface">
-      <a
-        href={site.social.youtube}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Abrir la video academy de Kabilio"
-        className="group relative block aspect-video overflow-hidden bg-gradient-to-br from-brand-900 via-brand-700 to-brand-500"
-      >
-        {/* Manchas suaves para dar profundidad a la miniatura */}
-        <span className="absolute -left-10 -top-12 h-40 w-40 rounded-full bg-brand-400/40 blur-2xl" />
-        <span className="absolute -bottom-16 -right-8 h-44 w-44 rounded-full bg-lav/30 blur-2xl" />
-
-        <span className="absolute inset-0 grid place-items-center">
-          <span className="grid h-14 w-14 place-items-center rounded-full bg-surface/95 shadow-xl transition-transform duration-300 group-hover:scale-110">
-            <svg viewBox="0 0 24 24" className="ml-0.5 h-5 w-5 text-brand" fill="currentColor">
-              <path d="M8 5.5v13l11-6.5z" />
-            </svg>
-          </span>
-        </span>
-
-        <span className="absolute bottom-3 left-3 rounded-full bg-ink/60 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
-          {academyMeta.count} · {academyMeta.length}
-        </span>
-      </a>
-
+    <article className="rounded-2xl border border-line bg-surface">
       <div className="p-6">
         <p className="text-[11px] font-bold uppercase tracking-wider text-brand">Video academy</p>
         <h2 className="mt-1 text-[17px] font-bold text-ink">Aprende Kabilio en vídeo</h2>
@@ -74,7 +49,7 @@ function VideoAcademyCard() {
         </ul>
 
         <a
-          href={site.social.youtube}
+          href={academyHref}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-4 inline-block text-sm font-bold text-brand hover:underline"
@@ -107,12 +82,7 @@ function WebinarsCard() {
           </svg>
         </span>
         <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="text-[11px] font-bold uppercase tracking-wider text-brand">Webinars</p>
-            <span className="rounded-full bg-brand-100 px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-wide text-brand">
-              Gratis
-            </span>
-          </div>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-brand">Webinars</p>
           <h2 className="mt-1 text-[17px] font-bold leading-snug text-ink">
             Vemos Kabilio en directo contigo
           </h2>
@@ -129,7 +99,7 @@ function WebinarsCard() {
   );
 
   const className =
-    "group mt-4 block rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-lav hover:bg-brand-50";
+    "group block rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-lav hover:bg-brand-50";
 
   return external ? (
     <a href={webinarsCalendarHref} target="_blank" rel="noopener noreferrer" className={className}>
